@@ -89,6 +89,7 @@
     <Compile Include="PhysicsEngine\Physics.cs" />
     <Compile Include="PhysicsEngine\PhysicsInstance.cs" />
     <Compile Include="PhysicsEngine\RandomDirection.cs" />
+    <Compile Include="PhysicsEngine\Render.cs" />
     <Compile Include="PhysicsEngine\Rotation.cs" />
     <Compile Include="PhysicsEngine\Transform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

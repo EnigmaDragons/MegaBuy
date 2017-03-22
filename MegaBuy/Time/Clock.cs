@@ -2,7 +2,7 @@
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Render;
 
-namespace MegaBuy.Apartment
+namespace MegaBuy.Time
 {
     public sealed class Clock : IAutomaton
     {
@@ -43,8 +43,15 @@ namespace MegaBuy.Apartment
         private void IncrementHour()
         {
             if (_hour == 23)
-                _day++;
+                IncrementDay();
             _hour = (_hour + 1) % 24;
+        }
+
+        private void IncrementDay()
+        {
+            World.Publish(new DayEnded(_day));
+            _day++;
+            World.Publish(new DayStarted(_day));
         }
     }
 }

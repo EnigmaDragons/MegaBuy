@@ -6,9 +6,9 @@ namespace MonoDragons.Core.PhysicsEngine
     {
         public static Transform Zero = new Transform(Vector2.Zero);
 
-        public Vector2 Location { get; }
-        public Rotation Rotation { get; }
-        public float Scale { get; }
+        public Vector2 Location { get; set; }
+        public Rotation Rotation { get; set;}
+        public float Scale { get; set; }
 
         public Transform(float scale)
             : this(Vector2.Zero, Rotation.Default, scale) { }
@@ -23,9 +23,14 @@ namespace MonoDragons.Core.PhysicsEngine
             Scale = scale;
         }
 
+        public override string ToString()
+        {
+            return $"{Location} {Rotation} {Scale}";
+        }
+
         public static Transform operator+(Transform t1, Transform t2)
         {
-            return new Transform(t1.Location + t2.Location, t1.Rotation, t1.Scale * t2.Scale);
+            return new Transform(t1.Location + t2.Location, t1.Rotation + t2.Rotation, t1.Scale * t2.Scale);
         }
 
         public static Transform operator +(Transform t1, Vector2 by)

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Media;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.Memory;
+using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Engine
@@ -102,6 +103,11 @@ namespace MonoDragons.Core.Engine
         {
             Resources.Put(texture.GetHashCode().ToString(), texture);
             _spriteBatch.Draw(texture, position);
+        }
+
+        public static void Draw(string name, Transform transform, Point size)
+        {
+            Draw(name, new Rectangle((transform.Location * transform.Scale).ToPoint(), (size.ToVector2() * transform.Scale).ToPoint()));
         }
     }
 }

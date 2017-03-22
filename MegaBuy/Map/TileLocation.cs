@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace MegaBuy.Map
 {
@@ -7,9 +8,9 @@ namespace MegaBuy.Map
     {
         public int Column { get; }
         public int Row { get; }
-
-        public TileLocation(Vector2 pixelLoc) : this((int)pixelLoc.X / TileSize.Int, (int)pixelLoc.Y / TileSize.Int) { }
-
+        public Transform Transform => new Transform(Position, Rotation.Default, 1);
+        public Vector2 Position => new Vector2(Column * TileSize.Int, Row * TileSize.Int);
+        
         public TileLocation(int column, int row)
         {
             Column = column;
@@ -26,10 +27,7 @@ namespace MegaBuy.Map
                     locs.Add(new TileLocation(x, y));
             return locs;
         }
-
-        public Vector2 Position => new Vector2(Column * TileSize.Int, Row * TileSize.Int);
-        public Vector2 RenderPosition => new Vector2(Column * TileSize.RenderSize, Row * TileSize.RenderSize);
-
+        
         protected bool Equals(TileLocation other)
         {
             return Column == other.Column && Row == other.Row;
