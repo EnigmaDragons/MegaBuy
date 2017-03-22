@@ -8,7 +8,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.Navigation;
-using MonoDragons.Core.UI;
+using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Engine
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoDragons.Core.UI
+namespace MonoDragons.Core.UserInterface
 {
     public static class DefaultFont
     {

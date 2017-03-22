@@ -34,7 +34,9 @@ namespace MegaBuy
             {
                 { "Logo", () => new FadingInScene(new LogoScene()) },
                 { "Darkness", () => new Darkness() },
-                { "Room", () => new Room() }
+                { "Room", () => new Room() },
+                { "TickTock", () => new TickTock() },
+                { "ILovePolitics", () => new ILovePolitics() },
             });
         }
     }

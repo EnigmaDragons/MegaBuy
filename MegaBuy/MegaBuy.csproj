@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apartment\Clock.cs" />
     <Compile Include="Map\ApartmentMap.cs" />
     <Compile Include="Map\Tile.cs" />
     <Compile Include="Map\TileLocation.cs" />
@@ -50,10 +51,14 @@
     <Compile Include="Player\Movement.cs" />
     <Compile Include="Player\PlayerCharacter.cs" />
     <Compile Include="Player\PlayerCharacterAnimations.cs" />
+    <Compile Include="Policies\ActivePolicies.cs" />
+    <Compile Include="Policies\Policy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Room.cs" />
     <Compile Include="Scene\Darkness.cs" />
+    <Compile Include="Scene\ILovePolitics.cs" />
+    <Compile Include="Scene\TickTock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

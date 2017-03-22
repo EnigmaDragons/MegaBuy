@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.UI;
+using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Memory
 {
