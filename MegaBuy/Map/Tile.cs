@@ -28,7 +28,8 @@ namespace MegaBuy.Map
 
         public virtual void Draw(Transform parentTransform)
         {
-            World.Draw(TextureName, new Rectangle(Location.RenderPosition.ToPoint(), new Point(TileSize.RenderSize, TileSize.RenderSize)));
+            var rectangle = new Rectangle((int)(Location.RenderPosition.X + parentTransform.Location.X), (int)(Location.RenderPosition.Y + parentTransform.Location.Y), TileSize.RenderSize, TileSize.RenderSize);
+            World.Draw(TextureName, rectangle);
         }
     }
 }
