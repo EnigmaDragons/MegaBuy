@@ -1,5 +1,5 @@
 ﻿using System;
-using MegaBuy.Apartment;
+using MegaBuy.Time;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
