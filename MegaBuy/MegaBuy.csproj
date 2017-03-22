@@ -48,9 +48,12 @@
     <Compile Include="Player\Movement.cs" />
     <Compile Include="Player\PlayerCharacter.cs" />
     <Compile Include="Player\PlayerCharacterAnimations.cs" />
+    <Compile Include="Policies\ActivePolicies.cs" />
+    <Compile Include="Policies\Policy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Darkness.cs" />
+    <Compile Include="Scene\ILovePolitics.cs" />
     <Compile Include="Scene\TickTock.cs" />
   </ItemGroup>
   <ItemGroup>
