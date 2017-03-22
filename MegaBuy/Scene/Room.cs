@@ -12,6 +12,8 @@ namespace MegaBuy.Scenes
         private ApartmentMap _map;
         private PlayerCharacter _player;
 
+        private readonly Transform _camera = new Transform(new Vector2(-16, 0), Rotation.Default, 2);
+
         public void Init()
         {
             _map = new ApartmentMap();
@@ -30,7 +32,7 @@ namespace MegaBuy.Scenes
             _map.Add(new Tile("wall-bot-left", new TileLocation(0, 13), true, 1));
             _map.Add(new Tile("wall-bot-right", new TileLocation(25, 13), true, 1));
 
-            _player = new PlayerCharacter(_map, new Transform(new Vector2(3, 3)));
+            _player = new PlayerCharacter(_map, new TileLocation(8, 9).Transform);
         }
 
         public void Update(TimeSpan delta)
@@ -41,8 +43,8 @@ namespace MegaBuy.Scenes
 
         public void Draw()
         { 
-            _map.Draw(new Transform(new Vector2(-32, 2), Rotation.Default, 4));
-            _player.Draw(new Transform(new Vector2(-32, 2), Rotation.Default, 4));
+            _map.Draw(_camera);
+            _player.Draw(_camera);
         }
     }
 }

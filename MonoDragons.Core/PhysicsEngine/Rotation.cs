@@ -22,5 +22,18 @@ namespace MonoDragons.Core.PhysicsEngine
         {
             return Math.Abs(Value - ((Rotation)obj).Value) < 0.01;
         }
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
+
+        public static Rotation operator +(Rotation r1, Rotation r2)
+        {
+            var newValue = r1.Value + r2.Value;
+            while (newValue >= 360)
+                newValue -= 360;
+            return new Rotation(newValue);
+        }
     }
 }

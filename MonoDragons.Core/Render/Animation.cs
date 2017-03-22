@@ -51,7 +51,8 @@ namespace MonoDragons.Core.Render
 
         public void Draw(Transform transform)
         {
-            World.Draw(CurrentSprite, new Rectangle(transform.Location.ToPoint(), new Vector2(16 * transform.Scale, 16 * transform.Scale).ToPoint()));
+            // TODO: TileSize needs to be supplied externally
+            World.Draw(CurrentSprite, transform, new Point(32, 32));
         }
     }
 }
