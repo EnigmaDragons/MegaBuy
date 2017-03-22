@@ -43,6 +43,7 @@ namespace MegaBuy.Scenes
         { 
             _map.Draw(new Transform(new Vector2(-32, 2), Rotation.Default, 4));
             _player.Draw(new Transform(new Vector2(-32, 2), Rotation.Default, 4));
+            World.Draw("Effects/light-effect", new Rectangle(0, 0, 1600, 900));
         }
     }
 }
