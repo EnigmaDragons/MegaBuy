@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Scene;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;
@@ -14,7 +15,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Logo", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Darkness", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -31,6 +32,7 @@ namespace MegaBuy
             return new SceneFactory(new Dictionary<string, Func<IScene>>
             {
                 { "Logo", () => new FadingInScene(new LogoScene()) },
+                { "Darkness", () => new Darkness() },
             });
         }
     }
