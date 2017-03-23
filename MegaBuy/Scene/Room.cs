@@ -42,9 +42,10 @@ namespace MegaBuy.Scenes
         }
 
         public void Draw()
-        { 
+        {
             _map.Draw(_camera);
             _player.Draw(_camera);
+            World.Draw("Effects/light-effect", new Rectangle(0, 0, 1600, 900));
         }
     }
 }

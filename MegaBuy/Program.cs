@@ -37,6 +37,7 @@ namespace MegaBuy
                 { "Room", () => new Room() },
                 { "TickTock", () => new TickTock() },
                 { "ILovePolitics", () => new ILovePolitics() },
+                { "Screen", () => new Screen() },
             });
         }
     }

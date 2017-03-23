@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Media;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.Memory;
-using MonoDragons.Core.Navigation;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
@@ -21,6 +20,7 @@ namespace MonoDragons.Core.Engine
         private static ContentManager _content;
         private static SpriteBatch _spriteBatch;
         private static INavigation _navigation;
+
 
         private static float _scale = 1;
 
