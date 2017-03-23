@@ -11,7 +11,7 @@ namespace MonoDragons.Core.Common
             return Instance.Next(max);
         }
 
-        public static float Int(int min, int max)
+        public static int Int(int min, int max)
         {
             return Instance.Next(min, max);
         }
