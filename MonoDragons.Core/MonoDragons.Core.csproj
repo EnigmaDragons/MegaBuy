@@ -101,8 +101,13 @@
     <Compile Include="Render\MutableDrawnText.cs" />
     <Compile Include="Render\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
+    <Compile Include="UserInterface\ClickableUIElement.cs" />
+    <Compile Include="UserInterface\ClickUI.cs" />
     <Compile Include="UserInterface\ImageButton.cs" />
     <Compile Include="UserInterface\DefaultFont.cs" />
+    <Compile Include="UserInterface\ImageButton2.cs" />
+    <Compile Include="UserInterface\NoneClickableUIElement.cs" />
+    <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />
   </ItemGroup>
   <ItemGroup>
