@@ -20,6 +20,7 @@ namespace MegaBuy.Money
             World.Subscribe(new EventSubscription<DayStarted>(DayStarted, this));
             World.Subscribe(new EventSubscription<DayEnded>(DayEnded, this));
             World.Subscribe(new EventSubscription<CallSucceeded>(CallSucceeded, this));
+            World.Subscribe(new EventSubscription<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
         }
 
         private void CallSucceeded(CallSucceeded call)
@@ -36,6 +37,11 @@ namespace MegaBuy.Money
         {
             _playerAccount.Add(_dayPayment);
             _dayPayment = null;
+        }
+
+        private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
+        {
+            _dayPayment.Remove(mistake.PayPenalty);
         }
     }
 }

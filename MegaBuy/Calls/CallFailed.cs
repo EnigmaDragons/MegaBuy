@@ -1,7 +1,7 @@
 ﻿
 namespace MegaBuy.Calls
 {
-    public sealed class CallFailed
+    public struct CallFailed
     {
     }
 }

@@ -9,16 +9,20 @@ namespace MegaBuy.Scene
 {
     public class Screen : IScene
     {
+        private ClickUI _clickUi; 
         private ChatBox _box;
 
         public void Init()
         {
             _box = new ChatBox("sdf sjeifgj srjgjngj njnrgnjasrwntnjwer nolawnsogfns ggjisfgnjgn n rgjsg ni iswgf sgnewnrgn gjn jna gjnae ognaeg nagna ogjnejnarjgne ngn n rfgn jusgnsgju hnsghnas gnasgnsdajnhakjba swugs g lsnjdfj sgfbas fkab wfbna fanfabgfkjb sghbhsbcvhbxcvbhewuir reswoghfi irgfjdg ihnsfg oihnjsrgfswre jihnsfsw t ihnjsdfsf isrgf ijswdrgfe joirsgj aisjg swdfg sddgfijsogfij sdgfkjm sdfkjksgfj sdkfjksdfe njsdfkljnsd ewrhnwoerhn sdkflnj eefrkijhnkisf kjfs kisnjoklsnagv klgfklsdnjgfl fksdjfnjsf sdklfjklsf sdklfjklj sfklj kljsdfk jkl", 1500, DefaultFont.Font);
+            _clickUi = new ClickUI();
+            _clickUi.Add(new SimpleClickable(0, new Rectangle(0, 0, 1920, 1080), () => _box.CompletelyDisplayMessage()));
         }
 
         public void Update(TimeSpan delta)
         {
             _box.Update(delta);
+            _clickUi.Update(delta);
         }
 
         public void Draw()
