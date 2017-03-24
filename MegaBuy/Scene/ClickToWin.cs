@@ -13,9 +13,9 @@ namespace MegaBuy.Scene
         public void Init()
         {
             _button = new ImageButton(
-                "Images/Screen/button", 
-                "Images/Screen/screen", 
-                "Images/Screen/screen2", 
+                "Images/Screen/button-default", 
+                "Images/Screen/button-hover", 
+                "Images/Screen/button-pressed", 
                 new Transform2(new Vector2(150, 150), new Size2(450, 100)), 
                 () => Environment.Exit(0));
         }
@@ -27,6 +27,7 @@ namespace MegaBuy.Scene
 
         public void Draw()
         {
+            World.DrawBackgroundColor(Color.White);
             _button.Draw(Transform2.Zero);
         }
     }
