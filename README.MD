@@ -10,6 +10,10 @@ Set in the near future where mega-corporations rule the world and the gap betwee
 
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen2.jpg)
 
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen3.jpg)
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen4.jpg)
+
 ----
 
 <strong>Contributors</strong>:
