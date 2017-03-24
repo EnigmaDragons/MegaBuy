@@ -3,7 +3,7 @@ using MegaBuy.Calls.Rules;
 
 namespace MegaBuy.Calls
 {
-    public sealed class CallRating
+    public struct CallRating
     {
         private readonly int _rating;
 
