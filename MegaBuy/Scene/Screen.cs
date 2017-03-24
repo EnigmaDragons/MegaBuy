@@ -14,7 +14,7 @@ namespace MegaBuy.Scene
 
         public void Init()
         {
-            _box = new ChatBox("sdf sjeifgj srjgjngj njnrgnjasrwntnjwer nolawnsogfns ggjisfgnjgn n rgjsg ni iswgf sgnewnrgn gjn jna gjnae ognaeg nagna ogjnejnarjgne ngn n rfgn jusgnsgju hnsghnas gnasgnsdajnhakjba swugs g lsnjdfj sgfbas fkab wfbna fanfabgfkjb sghbhsbcvhbxcvbhewuir reswoghfi irgfjdg ihnsfg oihnjsrgfswre jihnsfsw t ihnjsdfsf isrgf ijswdrgfe joirsgj aisjg swdfg sddgfijsogfij sdgfkjm sdfkjksgfj sdkfjksdfe njsdfkljnsd ewrhnwoerhn sdkflnj eefrkijhnkisf kjfs kisnjoklsnagv klgfklsdnjgfl fksdjfnjsf sdklfjklsf sdklfjklj sfklj kljsdfk jkl", 1500, DefaultFont.Font);
+            _box = new ChatBox("My flying car just arrived, but I can't get it to turn on!", 1500, DefaultFont.Font);
             _clickUi = new ClickUI();
             _clickUi.Add(new SimpleClickable(0, new Rectangle(0, 0, 1920, 1080), () => _box.CompletelyDisplayMessage()));
         }

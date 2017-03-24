@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Scene;
-using MegaBuy.Scenes;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;

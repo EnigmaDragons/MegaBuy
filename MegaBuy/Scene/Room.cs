@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
-namespace MegaBuy.Scenes
+namespace MegaBuy.Scene
 {
     public class Room : IScene
     {
