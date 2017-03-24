@@ -25,7 +25,7 @@ namespace MegaBuy.Scene
 
         public void Draw()
         {
-            _clockText.Draw(Transform.Zero);
+            _clockText.Draw(Transform2.Zero);
         }
     }
 }

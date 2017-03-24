@@ -46,6 +46,7 @@
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatusChanged.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
+    <Compile Include="Scene\ClickToWin.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />

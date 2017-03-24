@@ -14,7 +14,7 @@ namespace MegaBuy.Player
         private readonly ICharSpace _charSpace;
 
         // Spatial
-        private Transform _transform;
+        private Transform2 _transform;
 
         // Motion
         private float moveSpeed = 0.12f;
@@ -31,7 +31,7 @@ namespace MegaBuy.Player
         private bool IsMoving => _dir.HDir != HorizontalDirection.None || _dir.VDir != VerticalDirection.None;
         private string AnimState => $"{_facing}-{IsMoving}";
 
-        public PlayerCharacter(ICharSpace charSpace, Transform startingLocation)
+        public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
         {
             _anims = new PlayerCharacterAnimations();
             _transform = startingLocation;
@@ -60,7 +60,7 @@ namespace MegaBuy.Player
                 _transform = _charSpace.ApplyMove(_transform, Collider, new Movement(distance, _dir).GetDelta());
         }
 
-        public void Draw(Transform parentTransform)
+        public void Draw(Transform2 parentTransform)
         {
             _anims.Draw(_transform + parentTransform);
         }

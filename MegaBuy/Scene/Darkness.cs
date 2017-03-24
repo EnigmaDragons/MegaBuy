@@ -15,7 +15,7 @@ namespace MegaBuy.Scene
         public void Init()
         {
             _map = new ApartmentMap();
-            _player = new PlayerCharacter(_map, Transform.Zero);
+            _player = new PlayerCharacter(_map, Transform2.Zero);
         }
 
         public void Update(TimeSpan delta)
@@ -26,8 +26,8 @@ namespace MegaBuy.Scene
 
         public void Draw()
         {
-            _player.Draw(new Transform(4));
-            _map.Draw(new Transform(4));
+            _player.Draw(new Transform2(4));
+            _map.Draw(new Transform2(4));
         }
     }
 }

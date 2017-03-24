@@ -9,7 +9,7 @@ namespace MegaBuy.Map
     {
         public string TextureName { get; }
         public TileLocation Location { get; }
-        public Transform Transform { get; }
+        public Transform2 Transform { get; }
         public bool IsBlocking { get; }
         public int Layer { get; }
         public BoxCollider Collider { get; } 
@@ -28,9 +28,9 @@ namespace MegaBuy.Map
         {
         }
 
-        public virtual void Draw(Transform parentTransform)
+        public virtual void Draw(Transform2 parentTransform)
         {
-            World.Draw(TextureName, parentTransform + Transform, TileSize.Area);
+            World.Draw(TextureName, parentTransform + Transform);
         }
     }
 }

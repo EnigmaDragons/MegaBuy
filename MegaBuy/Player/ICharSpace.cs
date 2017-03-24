@@ -5,6 +5,6 @@ namespace EncryptionLayer.Player
 {
     public interface ICharSpace
     {
-        Transform ApplyMove(Transform transform, BoxCollider collider, Vector2 moveBy);
+        Transform2 ApplyMove(Transform2 transform, BoxCollider collider, Vector2 moveBy);
     }
 }
