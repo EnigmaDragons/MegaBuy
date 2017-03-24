@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Xna.Framework;
+
 namespace MonoDragons.Core.Inputs
 {
     public struct Direction
@@ -12,6 +14,11 @@ namespace MonoDragons.Core.Inputs
         {
             HDir = hDir;
             VDir = vDir;
+        }
+
+        public Point AsOffset()
+        {
+            return new Point((int)HDir, (int)VDir);
         }
     }
 }

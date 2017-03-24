@@ -55,5 +55,10 @@ namespace MonoDragons.Core.PhysicsEngine
         {
             return new Transform2(t1.Location + by, t1.Rotation, t1.Size, t1.Scale);
         }
+
+        public Transform2 ToScale(float scale)
+        {
+            return this + new Transform2(Vector2.Zero, Rotation2.Default, Size2.Zero, Scale / scale);
+        }
     }
 }

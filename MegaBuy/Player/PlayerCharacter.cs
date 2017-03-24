@@ -1,5 +1,4 @@
 ﻿using System;
-using EncryptionLayer.Player;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
@@ -38,6 +37,12 @@ namespace MegaBuy.Player
             _charSpace = charSpace;
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
+            Input.On(Control.A, Interact);
+        }
+
+        private void Interact()
+        {
+            _charSpace.Interact(_transform);
         }
 
         private void UpdatePhysics(Direction dir)
