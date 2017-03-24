@@ -32,7 +32,7 @@ namespace MonoDragons.Core.Render
             CurrentAnimation.Update(delta);
         }
 
-        public void Draw(Transform transform)
+        public void Draw(Transform2 transform)
         {
             CurrentAnimation.Draw(transform);
         }

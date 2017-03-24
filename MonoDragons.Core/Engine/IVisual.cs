@@ -4,6 +4,6 @@ namespace MonoDragons.Core.Engine
 {
     public interface IVisual
     {
-        void Draw(Transform parentTransform);
+        void Draw(Transform2 parentTransform);
     }
 }

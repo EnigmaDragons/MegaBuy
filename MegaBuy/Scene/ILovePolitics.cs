@@ -28,7 +28,7 @@ namespace MegaBuy.Scene
         public void Draw()
         {
             if (_showingPolicies)
-                _textPage.Draw(Transform.Zero);
+                _textPage.Draw(Transform2.Zero);
         }
 
         private void ToggleShowPolicies()

@@ -8,12 +8,12 @@ namespace MonoDragons.Core.Render
     public sealed class MutableTextPage : IVisual
     {
         private readonly List<MutableDrawnText> _drawnTexts = new List<MutableDrawnText>();
-        private readonly Transform _betweenTexts;
+        private readonly Transform2 _betweenTexts;
         private readonly Color _textColor;
 
         public MutableTextPage()
         {
-            _betweenTexts = new Transform(new Vector2(0, 100));
+            _betweenTexts = new Transform2(new Vector2(0, 100));
             _textColor = Color.White;
         }
 
@@ -25,7 +25,7 @@ namespace MonoDragons.Core.Render
                 _drawnTexts[i].Set(texts[i]);
         }
 
-        public void Draw(Transform parentTransform)
+        public void Draw(Transform2 parentTransform)
         {
             var currentTransform = parentTransform;
             foreach (var text in _drawnTexts)

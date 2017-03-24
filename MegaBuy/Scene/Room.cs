@@ -12,7 +12,7 @@ namespace MegaBuy.Scenes
         private ApartmentMap _map;
         private PlayerCharacter _player;
 
-        private readonly Transform _camera = new Transform(new Vector2(-16, 0), Rotation.Default, 2);
+        private readonly Transform2 _camera = new Transform2(new Vector2(-16, 0), Rotation2.Default, 2);
 
         public void Init()
         {

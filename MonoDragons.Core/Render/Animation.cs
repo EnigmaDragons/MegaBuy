@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
@@ -49,10 +48,10 @@ namespace MonoDragons.Core.Render
 
         public string CurrentSprite => _spriteNames[_currentFrame];
 
-        public void Draw(Transform transform)
+        public void Draw(Transform2 transform)
         {
             // TODO: TileSize needs to be supplied externally
-            World.Draw(CurrentSprite, transform, new Point(32, 32));
+            World.Draw(CurrentSprite, transform.WithSize(new Size2(32, 32)));
         }
     }
 }

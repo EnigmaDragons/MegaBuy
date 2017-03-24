@@ -22,7 +22,7 @@ namespace MonoDragons.Core.Render
 
         public void Draw(IVisual visual)
         {
-            visual.Draw(new Transform(_position));
+            visual.Draw(new Transform2(_position));
         }
 
         public void Draw(IEnumerable<IVisual> visuals)

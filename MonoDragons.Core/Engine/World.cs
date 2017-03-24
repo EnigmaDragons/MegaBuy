@@ -21,9 +21,6 @@ namespace MonoDragons.Core.Engine
         private static SpriteBatch _spriteBatch;
         private static INavigation _navigation;
 
-
-        private static float _scale = 1;
-
         public static void Init(Game game, INavigation navigation, SpriteBatch spriteBatch)
         {
             _game = game;
@@ -105,9 +102,10 @@ namespace MonoDragons.Core.Engine
             _spriteBatch.Draw(texture, position);
         }
 
-        public static void Draw(string name, Transform transform, Point size)
+        public static void Draw(string name, Transform2 transform)
         {
-            Draw(name, new Rectangle((transform.Location * transform.Scale).ToPoint(), (size.ToVector2() * transform.Scale).ToPoint()));
+            //new Rectangle((transform.Location * transform.Scale).ToPoint(), (transform.Size * transform.Scale).ToPoint()
+            Draw(name, transform.ToRectangle());
         }
     }
 }

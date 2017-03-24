@@ -21,7 +21,7 @@ namespace MonoDragons.Core.Render
             _text = text;
         }
 
-        public void Draw(Transform parentTransform)
+        public void Draw(Transform2 parentTransform)
         {
             UI.DrawText(_text, parentTransform.Location, _color);
         }
