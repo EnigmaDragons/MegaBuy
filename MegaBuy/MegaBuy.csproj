@@ -51,6 +51,7 @@
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
+    <Compile Include="Scene\Menu.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
@@ -145,13 +146,19 @@
     <Content Include="Content\Images\Map\wall-top.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Screen\button-default.png">
+    <Content Include="Content\Images\Menu\menu.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Screen\button-hover.png">
+    <Content Include="Content\Images\Menu\title.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Screen\button-pressed.png">
+    <Content Include="Content\Images\Menu\button-default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Menu\button-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Menu\button-pressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Screen\button.png">
