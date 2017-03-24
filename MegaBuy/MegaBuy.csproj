@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Calls\Caller.cs" />
+    <Compile Include="Calls\CallerPatience.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\CallStarted.cs" />
@@ -45,6 +47,8 @@
     <Compile Include="Calls\AgentCurrentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatusChanged.cs" />
+    <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
+    <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
     <Compile Include="Time\Clock.cs" />
