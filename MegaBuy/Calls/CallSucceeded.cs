@@ -1,7 +1,7 @@
 ﻿
 namespace MegaBuy.Calls
 {
-    public sealed class CallSucceeded
+    public struct CallSucceeded
     {
         public CallRating Rating { get; }
 

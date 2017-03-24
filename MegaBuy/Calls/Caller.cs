@@ -1,6 +1,7 @@
 ﻿using System;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 
 namespace MegaBuy.Calls
 {
@@ -17,6 +18,7 @@ namespace MegaBuy.Calls
         {
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
+            World.Subscribe(new EventSubscription<SocialMistakeOccurred>(SocialMistakeOccurred, this));
         }
 
         public void Update(TimeSpan delta)
@@ -38,7 +40,12 @@ namespace MegaBuy.Calls
                 return;
             }
 
-            Patience.Reduce();
+            Patience.ReduceBy(1);
+        }
+
+        private void SocialMistakeOccurred(SocialMistakeOccurred mistake)
+        {
+            Patience.ReduceBy(mistake.PatiencePenalty);
         }
     }
 }

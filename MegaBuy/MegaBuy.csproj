@@ -50,6 +50,8 @@
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
+    <Compile Include="Calls\SocialMistakeOccurred.cs" />
+    <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
     <Compile Include="Time\Clock.cs" />

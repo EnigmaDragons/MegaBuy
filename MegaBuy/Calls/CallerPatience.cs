@@ -10,9 +10,9 @@ namespace MegaBuy.Calls
             Value = initial;
         }
 
-        public void Reduce()
+        public void ReduceBy(int amount)
         {
-            Value--;
+            Value -= amount;
         }
     }
 }
