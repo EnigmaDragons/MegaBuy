@@ -1,5 +1,4 @@
 ﻿using System;
-using EncryptionLayer.Player;
 using MegaBuy.Map;
 using MegaBuy.Player;
 using MonoDragons.Core.Engine;

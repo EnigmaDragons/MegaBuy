@@ -15,7 +15,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Menu", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Logo", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -24,6 +24,7 @@ namespace MegaBuy
             return new KeyboardController(new Map<Keys, Control>
             {
                 { Keys.Enter, Control.Start },
+                { Keys.V, Control.A }
             });
         }
 
@@ -38,7 +39,7 @@ namespace MegaBuy
                 { "ILovePolitics", () => new ILovePolitics() },
                 { "Screen", () => new Screen() },
                 { "ClickToWin", () => new ClickToWin() },
-                { "Menu", () => new Menu() },
+                { "MainMenu", () => new Menu() },
             });
         }
     }

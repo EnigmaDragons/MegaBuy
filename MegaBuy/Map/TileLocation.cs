@@ -8,13 +8,19 @@ namespace MegaBuy.Map
     {
         public int Column { get; }
         public int Row { get; }
-        public Transform2 Transform => new Transform2(Position, Rotation2.Default, TileSize.Size, 1);
-        public Vector2 Position => new Vector2(Column * TileSize.Int, Row * TileSize.Int);
-        
+        public Transform2 Transform { get; }
+
+        public TileLocation(Transform2 transform)
+            : this (GetColumn(transform), GetRow(transform), transform) { }
+
         public TileLocation(int column, int row)
+            : this (column, row, MakeTransform(column, row)) { }
+
+        public TileLocation(int column, int row, Transform2 transform)
         {
             Column = column;
             Row = row;
+            Transform = transform;
         }
 
         public List<TileLocation> Through(TileLocation end)
@@ -62,6 +68,21 @@ namespace MegaBuy.Map
         public override string ToString()
         {
             return $"{Column}, {Row}";
+        }
+
+        private static int GetRow(Transform2 transform)
+        {
+            return (int)(transform.ToScale(1).Location.Y / TileSize.Int);
+        }
+
+        private static int GetColumn(Transform2 transform)
+        {
+            return (int)(transform.ToScale(1).Location.X / TileSize.Int);
+        }
+
+        private static Transform2 MakeTransform(int column, int row)
+        {
+            return new Transform2(new Vector2(column, row) * TileSize.Int, Rotation2.Default, TileSize.Size, 1);
         }
     }
 }

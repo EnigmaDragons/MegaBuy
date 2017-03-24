@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EncryptionLayer.Player;
+using MegaBuy.Player;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
@@ -28,9 +28,9 @@ namespace MegaBuy.Map
             return _tiles.Any(x => x.Location.Equals(loc));
         }
 
-        public Tile Get(TileLocation loc)
+        public List<Tile> Get(TileLocation loc)
         {
-            return _tiles.First(x => x.Location.Equals(loc));
+            return _tiles.Where(x => x.Location.Equals(loc)).ToList();
         }
 
         public void Update(TimeSpan delta)
@@ -49,6 +49,11 @@ namespace MegaBuy.Map
             if (_tiles.Where(x => x.IsBlocking).Any(x => proposedLocation.Intersects(x.Collider.Rectangle)))
                 return transform;
             return transform + moveBy;
+        }
+
+        public void Interact(TileLocation location)
+        {
+            Get(location).ForEach(x => x.Interact());
         }
     }
 }
