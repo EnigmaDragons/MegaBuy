@@ -11,6 +11,10 @@ namespace MonoDragons.Core.PhysicsEngine
         public static Rotation2 Right = new Rotation2(90);
         public static Rotation2 Down = new Rotation2(180);
         public static Rotation2 Left = new Rotation2(270);
+        public static Rotation2 UpLeft = new Rotation2(315);
+        public static Rotation2 UpRight= new Rotation2(45);
+        public static Rotation2 DownLeft = new Rotation2(215);
+        public static Rotation2 DownRight = new Rotation2(135);
 
         public float Value { get; }
 

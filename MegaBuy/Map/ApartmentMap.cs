@@ -28,9 +28,9 @@ namespace MegaBuy.Map
             return _tiles.Any(x => x.Location.Equals(loc));
         }
 
-        public Tile Get(TileLocation loc)
+        public List<Tile> Get(TileLocation loc)
         {
-            return _tiles.First(x => x.Location.Equals(loc));
+            return _tiles.Where(x => x.Location.Equals(loc)).ToList();
         }
 
         public void Update(TimeSpan delta)
@@ -51,12 +51,9 @@ namespace MegaBuy.Map
             return transform + moveBy;
         }
 
-        public void Interact(Transform2 transform)
+        public void Interact(TileLocation location)
         {
-            var playerTile = new TileLocation(transform);
-            var offset = transform.Rotation.ToDirection().AsOffset();
-            var targetLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
-            Get(targetLocation).Interact();
+            Get(location).ForEach(x => x.Interact());
         }
     }
 }

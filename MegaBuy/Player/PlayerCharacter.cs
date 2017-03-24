@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Map;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
@@ -42,12 +43,17 @@ namespace MegaBuy.Player
 
         private void Interact()
         {
-            _charSpace.Interact(_transform);
+            var playerTile = new TileLocation(_transform);
+            var offset = _transform.Rotation.ToDirection().AsOffset();
+            var targetLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
+            _charSpace.Interact(targetLocation);
         }
 
         private void UpdatePhysics(Direction dir)
         {
             _dir = dir;
+            if (!dir.Equals(Direction.None))
+                _transform = _transform + new Transform2(dir.ToRotation());
 
             if (!dir.HDir.Equals(HorizontalDirection.None))
                 _facing = dir.HDir.ToString();

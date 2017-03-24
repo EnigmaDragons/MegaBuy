@@ -16,7 +16,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Room", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Logo", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -40,7 +40,7 @@ namespace MegaBuy
                 { "ILovePolitics", () => new ILovePolitics() },
                 { "Screen", () => new Screen() },
                 { "ClickToWin", () => new ClickToWin() },
-                { "Menu", () => new Menu() },
+                { "MainMenu", () => new Menu() },
             });
         }
     }
