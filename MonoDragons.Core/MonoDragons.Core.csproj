@@ -108,6 +108,7 @@
     <Compile Include="UserInterface\ImageButton2.cs" />
     <Compile Include="UserInterface\NoneClickableUIElement.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
+    <Compile Include="UserInterface\TextClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />
   </ItemGroup>
   <ItemGroup>

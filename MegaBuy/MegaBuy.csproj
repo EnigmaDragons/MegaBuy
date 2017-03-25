@@ -40,20 +40,27 @@
   <ItemGroup>
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
+    <Compile Include="Calls\CallerScript.cs" />
     <Compile Include="Calls\CallFailed.cs" />
+    <Compile Include="Calls\ICallOption.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\CallStarted.cs" />
     <Compile Include="Calls\CallSucceeded.cs" />
     <Compile Include="Calls\AgentCurrentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatusChanged.cs" />
+    <Compile Include="Calls\OptionReaction.cs" />
+    <Compile Include="Calls\Options\ReferToInfo.cs" />
+    <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="Money\Fee.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
+    <Compile Include="Scene\TimTest.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
