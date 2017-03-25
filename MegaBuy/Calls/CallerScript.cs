@@ -78,6 +78,7 @@ namespace MegaBuy.Calls
 
         public void Update(TimeSpan delta)
         {
+            Caller.Update(delta);
             ChatBox.Update(delta);
             if (!_areOptionsDisplayed && ChatBox.IsMessageCompletelyDisplayed())
                 DisplayOptions();

@@ -24,7 +24,7 @@ namespace MegaBuy.Scene
             _clickUi = new ClickUI();
             World.Subscribe<CallSucceeded>(new EventSubscription<CallSucceeded>((c) => this.CallEnded(), this));
             World.Subscribe<CallFailed>(new EventSubscription<CallFailed>((c) => this.CallEnded(), this));
-            _script = new CallerScript(5, "My flying car just arrived, but I can't get it to turn on!", _clickUi, new List<OptionReaction> {
+            _script = new CallerScript(5000, "My flying car just arrived, but I can't get it to turn on!", _clickUi, new List<OptionReaction> {
                 new OptionReaction(new ReferToTroubleShooting(), (a) => true , (a) => true, "Correct"),
                 new OptionReaction(new ReferToInfo(), (a) => true, (a) => false, incorrectMessage: "Incorrect") });
         }
@@ -41,12 +41,12 @@ namespace MegaBuy.Scene
         {
             _script.Dispose();
             if (_rng.Next(2) > 0)
-                _script = new CallerScript(5, "Do you just have insurance policies for flying cars bought from this company or in general?",
+                _script = new CallerScript(5000, "Do you just have insurance policies for flying cars bought from this company or in general?",
                     _clickUi, new List<OptionReaction> {
                         new OptionReaction(new ReferToTroubleShooting(), (a) => true , (a) => false, incorrectMessage: "Incorrect"),
                         new OptionReaction(new ReferToInfo(), (a) => true, (a) => true, "Correct") });
             else
-                _script = new CallerScript(5, "sjdofisorheworihewroinnoiweroijijowirjeoisldkfjlcxlk?", _clickUi,
+                _script = new CallerScript(5000, "sjdofisorheworihewroinnoiweroijijowirjeoisldkfjlcxlk?", _clickUi,
                     new List<OptionReaction> {
                         new OptionReaction(new TranslateButton(), (a) => true, (a) => true, "My computer has a virus, what should I do?"),
                         new OptionReaction(new ReferToTroubleShooting(), (a) => true , (a) => a.ContainsTypeOf(typeof(TranslateButton))),
