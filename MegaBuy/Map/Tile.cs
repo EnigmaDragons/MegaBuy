@@ -13,14 +13,19 @@ namespace MegaBuy.Map
         public bool IsBlocking { get; }
         public int Layer { get; }
         public BoxCollider Collider { get; } 
-
+        public Action Interact { get; }
+        
         public Tile(string textureName, TileLocation location, bool blocking, int layer = 0)
+            : this (textureName, location, blocking, () => { }, layer) { }
+
+        public Tile(string textureName, TileLocation location, bool blocking, Action onInteract, int layer = 0)
         {
             TextureName = "Images/Map/" + textureName;
             Location = location;
             Transform = location.Transform;
             IsBlocking = blocking;
             Layer = layer;
+            Interact = onInteract;
             Collider = new BoxCollider(Transform, new Point(TileSize.Int, TileSize.Int));
         }
 

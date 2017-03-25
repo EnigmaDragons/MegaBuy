@@ -6,9 +6,17 @@ Set in the near future where mega-corporations rule the world and the gap betwee
 
 ----
 
+Session 1
+
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen1.jpg)
 
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen2.jpg)
+
+Session 2
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen3.jpg)
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen4.jpg)
 
 ----
 

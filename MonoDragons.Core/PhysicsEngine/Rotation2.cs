@@ -1,4 +1,5 @@
 ﻿using System;
+using MonoDragons.Core.Inputs;
 
 namespace MonoDragons.Core.PhysicsEngine
 {
@@ -7,9 +8,13 @@ namespace MonoDragons.Core.PhysicsEngine
         public static Rotation2 None = new Rotation2(0);
         public static Rotation2 Default = new Rotation2(0);
         public static Rotation2 Up = new Rotation2(0);
-        public static Rotation2 Right = new Rotation2((float)(Math.PI / 2));
-        public static Rotation2 Down = new Rotation2((float)Math.PI);
-        public static Rotation2 Left = new Rotation2((float)(Math.PI * 1.5));
+        public static Rotation2 Right = new Rotation2(90);
+        public static Rotation2 Down = new Rotation2(180);
+        public static Rotation2 Left = new Rotation2(270);
+        public static Rotation2 UpLeft = new Rotation2(315);
+        public static Rotation2 UpRight= new Rotation2(45);
+        public static Rotation2 DownLeft = new Rotation2(215);
+        public static Rotation2 DownRight = new Rotation2(135);
 
         public float Value { get; }
 
@@ -39,6 +44,21 @@ namespace MonoDragons.Core.PhysicsEngine
             while (newValue >= 360)
                 newValue -= 360;
             return new Rotation2(newValue);
+        }
+
+        public Direction ToDirection()
+        {
+            var hDir = HorizontalDirection.None;
+            if (0 < Value && Value < 180)
+                hDir = HorizontalDirection.Right;
+            if (180 < Value && Value < 360)
+                hDir = HorizontalDirection.Left;
+            var vDir = VerticalDirection.None;
+            if (90 < Value && Value < 270)
+                vDir = VerticalDirection.Down;
+            if (270 < Value || Value < 90)
+                vDir = VerticalDirection.Up;
+            return new Direction(hDir, vDir);
         }
     }
 }

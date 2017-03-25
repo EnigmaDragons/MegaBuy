@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Endings;
 using MegaBuy.Scene;
-using MegaBuy.Scenes;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;
@@ -25,6 +25,7 @@ namespace MegaBuy
             return new KeyboardController(new Map<Keys, Control>
             {
                 { Keys.Enter, Control.Start },
+                { Keys.V, Control.A }
             });
         }
 
@@ -40,6 +41,8 @@ namespace MegaBuy
                 { "Screen", () => new Screen() },
                 { "ClickToWin", () => new ClickToWin() },
                 { "TimTest", () => new TimTest() },
+                { "MainMenu", () => new Menu() },
+                { "Starved", () => new Starved() },
             });
         }
     }

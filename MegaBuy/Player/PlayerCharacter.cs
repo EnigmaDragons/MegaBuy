@@ -1,5 +1,5 @@
 ﻿using System;
-using EncryptionLayer.Player;
+using MegaBuy.Map;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
@@ -10,6 +10,9 @@ namespace MegaBuy.Player
 {
     public class PlayerCharacter : IVisualAutomaton
     {
+        // Character Systems
+        private readonly Hunger _hunger; 
+
         // World Location
         private readonly ICharSpace _charSpace;
 
@@ -34,15 +37,27 @@ namespace MegaBuy.Player
         public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
         {
             _anims = new PlayerCharacterAnimations();
+            _hunger = new Hunger();
             _transform = startingLocation;
             _charSpace = charSpace;
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
+            Input.On(Control.A, Interact);
+        }
+
+        private void Interact()
+        {
+            var playerTile = new TileLocation(_transform);
+            var offset = _transform.Rotation.ToDirection().AsOffset();
+            var targetLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
+            _charSpace.Interact(targetLocation);
         }
 
         private void UpdatePhysics(Direction dir)
         {
             _dir = dir;
+            if (!dir.Equals(Direction.None))
+                _transform = _transform + new Transform2(dir.ToRotation());
 
             if (!dir.HDir.Equals(HorizontalDirection.None))
                 _facing = dir.HDir.ToString();
@@ -55,6 +70,7 @@ namespace MegaBuy.Player
         public void Update(TimeSpan delta)
         {
             _anims.Update(delta);
+            _hunger.Update(delta);
             var distance = new Physics().GetDistance(moveSpeed, delta);
             if (distance > 0)
                 _transform = _charSpace.ApplyMove(_transform, Collider, new Movement(distance, _dir).GetDelta());

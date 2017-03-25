@@ -18,6 +18,7 @@ namespace MegaBuy.Calls
         private ClickUI _clickUI;
         private bool _areOptionsDisplayed = false;
         private List<SimpleClickable> _clickables = new List<SimpleClickable>();
+        private bool _disposed;
 
         public CallerScript(int milliPerPatience, string startingText, ClickUI clickUI, List<OptionReaction> options)
         {
@@ -56,6 +57,8 @@ namespace MegaBuy.Calls
         public void SelectOption(OptionReaction action)
         {
             action.ChooseOption(_optionsCompleted);
+            if (_disposed)
+                return;
             ChatBox.ShowMessage(action.ResultMessage);
             _optionsCompleted.Add(action.Option);
             Options.Remove(action);
@@ -95,6 +98,7 @@ namespace MegaBuy.Calls
                 _clickUI.Remove(_clickables[0]);
                 _clickables.RemoveAt(0);
             }
+            _disposed = true;
         }
     }
 }

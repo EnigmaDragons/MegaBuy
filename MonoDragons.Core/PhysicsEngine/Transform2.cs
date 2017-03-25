@@ -14,6 +14,9 @@ namespace MonoDragons.Core.PhysicsEngine
         public Transform2(float scale)
             : this(Vector2.Zero, Rotation2.Default, Size2.Zero, scale) { }
 
+        public Transform2(Rotation2 rotation)
+            : this(Vector2.Zero, rotation, Size2.Zero, 1) { }
+
         public Transform2(Vector2 location)
             : this(location, Rotation2.Default, Size2.Zero, 1) { }
 
@@ -30,6 +33,8 @@ namespace MonoDragons.Core.PhysicsEngine
             Size = size;
             Scale = scale;
         }
+
+
 
         public Transform2 WithSize(Size2 size)
         {
@@ -54,6 +59,11 @@ namespace MonoDragons.Core.PhysicsEngine
         public static Transform2 operator +(Transform2 t1, Vector2 by)
         {
             return new Transform2(t1.Location + by, t1.Rotation, t1.Size, t1.Scale);
+        }
+
+        public Transform2 ToScale(float scale)
+        {
+            return this + new Transform2(Vector2.Zero, Rotation2.Default, Size2.Zero, Scale / scale);
         }
     }
 }
