@@ -52,7 +52,9 @@
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="Endings\Starved.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
+    <Compile Include="Player\Hunger.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="Time\Clock.cs" />

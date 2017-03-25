@@ -53,6 +53,7 @@
     <Compile Include="Engine\INavigation.cs" />
     <Compile Include="Engine\IVisualAutomaton.cs" />
     <Compile Include="Engine\ScreenSize.cs" />
+    <Compile Include="Engine\Timer.cs" />
     <Compile Include="Navigation\INavigation.cs" />
     <Compile Include="Engine\IScene.cs" />
     <Compile Include="Engine\IAutomaton.cs" />
