@@ -20,7 +20,10 @@ namespace MegaBuy.Calls.Options
                 new TechnicalMistakeOccurred(new Fee(2));
                 World.Publish(new CallFailed());
             }
-            World.Publish(new CallSucceeded());
+            else
+            {
+                World.Publish(new CallSucceeded());
+            }
         }
     }
 }

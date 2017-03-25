@@ -52,11 +52,13 @@
     <Compile Include="Calls\OptionReaction.cs" />
     <Compile Include="Calls\Options\ReferToInfo.cs" />
     <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
+    <Compile Include="Calls\Options\TranslateButton.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="IEnumableExtensions.cs" />
     <Compile Include="Money\Fee.cs" />
     <Compile Include="Endings\Starved.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
