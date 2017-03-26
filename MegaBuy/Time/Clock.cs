@@ -1,35 +1,32 @@
 ﻿using System;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Render;
+using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Time
 {
     public sealed class Clock : IAutomaton
     {
-        private readonly int _msPerMinute;
-        private readonly MutableDrawnText _mutableDrawnText;
+        private readonly Timer _timer;
+        private readonly Label _label;
 
         private int _day;
         private int _hour;
         private int _minute;
 
-        private double _elapsedMs;
+        public Clock(Label label)
+            : this(1200, label) { }
 
-        public Clock(MutableDrawnText mutableDrawnText)
-            : this(1200, mutableDrawnText) { }
-
-        public Clock(int msPerMinute, MutableDrawnText mutableDrawnText)
+        public Clock(int msPerMinute, Label label)
         {
-            _msPerMinute = msPerMinute;
-            _mutableDrawnText = mutableDrawnText;
+            _label = label;
+            _timer = new Timer(IncrementMinute, msPerMinute);
         }
 
         public void Update(TimeSpan delta)
         {
-            _elapsedMs += delta.TotalMilliseconds;
-            if (_elapsedMs > _msPerMinute)
-                IncrementMinute();
-            _mutableDrawnText.Set($"{_hour:D2}:{_minute:D2}");
+            _timer.Update(delta);
+            _label.Set($"{_hour:D2}:{_minute:D2}");
         }
 
         private void IncrementMinute()
@@ -37,7 +34,6 @@ namespace MegaBuy.Time
             if (_minute == 59)
                 IncrementHour();
             _minute = (_minute + 1) % 60;
-            _elapsedMs -= _msPerMinute;
         }
 
         private void IncrementHour()

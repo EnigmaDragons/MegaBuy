@@ -51,7 +51,7 @@ namespace MonoDragons.Core.PhysicsEngine
             return $"{Location} {Rotation} {Scale}";
         }
 
-        public static Transform2 operator+(Transform2 t1, Transform2 t2)
+        public static Transform2 operator +(Transform2 t1, Transform2 t2)
         {
             return new Transform2(t1.Location + t2.Location, t1.Rotation + t2.Rotation, t1.Size + t2.Size, t1.Scale * t2.Scale);
         }

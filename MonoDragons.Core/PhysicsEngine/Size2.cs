@@ -15,6 +15,11 @@ namespace MonoDragons.Core.PhysicsEngine
             Height = height;
         }
 
+        public override string ToString()
+        {
+            return $"{Width}, {Height}";
+        }
+
         public Point ToPoint()
         {
             return new Point(Width, Height);

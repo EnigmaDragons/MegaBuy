@@ -1,17 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
-using MonoDragons.Core.UserInterface;
 
-namespace MonoDragons.Core.Render
+namespace MonoDragons.Core.UserInterface
 {
-    public sealed class MutableDrawnText : IVisual
+    public sealed class Label : IVisual
     {
         private readonly Color _color;
 
         private string _text = "";
 
-        public MutableDrawnText(Color color)
+        public Label(Color color)
         {
             _color = color;
         }

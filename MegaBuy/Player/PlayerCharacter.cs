@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Food;
 using MegaBuy.Map;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -37,7 +38,7 @@ namespace MegaBuy.Player
         public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
         {
             _anims = new PlayerCharacterAnimations();
-            _hunger = new Hunger();
+            _hunger = new Hunger(100);
             _transform = startingLocation;
             _charSpace = charSpace;
             Input.ClearBindings();

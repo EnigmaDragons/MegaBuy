@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Render
 {
     public sealed class MutableTextPage : IVisual
     {
-        private readonly List<MutableDrawnText> _drawnTexts = new List<MutableDrawnText>();
+        private readonly List<Label> _drawnTexts = new List<Label>();
         private readonly Transform2 _betweenTexts;
         private readonly Color _textColor;
 
@@ -20,7 +21,7 @@ namespace MonoDragons.Core.Render
         public void Set(List<string> texts)
         {
             while (_drawnTexts.Count < texts.Count)
-                _drawnTexts.Add(new MutableDrawnText(_textColor));
+                _drawnTexts.Add(new Label(_textColor));
             for (var i = 0; i < texts.Count; i++)
                 _drawnTexts[i].Set(texts[i]);
         }

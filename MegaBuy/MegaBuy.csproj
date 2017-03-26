@@ -58,12 +58,18 @@
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="Food\Hungry.cs" />
+    <Compile Include="Food\NotHungry.cs" />
+    <Compile Include="Food\VeryHungry.cs" />
     <Compile Include="IEnumableExtensions.cs" />
+    <Compile Include="Map\ApartmentMapFactory.cs" />
     <Compile Include="Money\Fee.cs" />
     <Compile Include="Endings\Starved.cs" />
     <Compile Include="Money\MegaBuyAccounting.cs" />
-    <Compile Include="Player\Hunger.cs" />
+    <Compile Include="Food\Hunger.cs" />
+    <Compile Include="Food\HungerUI.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
+    <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\TimTest.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="Time\Clock.cs" />
@@ -122,6 +128,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\food-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\food.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\bed-bot.png">

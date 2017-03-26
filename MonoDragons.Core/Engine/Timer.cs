@@ -17,7 +17,7 @@ namespace MonoDragons.Core.Engine
 
         public void Update(TimeSpan delta)
         {
-            _elapsedMs = +delta.TotalMilliseconds;
+            _elapsedMs += delta.TotalMilliseconds;
             if (!(_elapsedMs > _intervalMs)) return;
 
             _task();
