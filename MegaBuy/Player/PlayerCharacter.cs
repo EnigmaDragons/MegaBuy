@@ -38,7 +38,7 @@ namespace MegaBuy.Player
         public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
         {
             _anims = new PlayerCharacterAnimations();
-            _hunger = new Hunger(100);
+            _hunger = new Hunger();
             _transform = startingLocation;
             _charSpace = charSpace;
             Input.ClearBindings();

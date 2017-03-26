@@ -9,7 +9,7 @@ namespace MonoDragons.Core.UserInterface
 
         public static void Load(ContentManager content)
         {
-            Font = content.Load<SpriteFont>("Arial");
+            Font = content.Load<SpriteFont>("Fonts/Audiowide");
         }
     }
 }
