@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
-using MonoDragons.Core.Navigation;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.Engine
@@ -50,6 +50,7 @@ namespace MonoDragons.Core.Engine
 
         protected override void Update(GameTime gameTime)
         {
+            CheckForEscape();
             _controller.Update(gameTime.ElapsedGameTime);
             _currentScene?.Update(gameTime.ElapsedGameTime);
             new Physics().Resolve();
@@ -70,6 +71,14 @@ namespace MonoDragons.Core.Engine
             var scene = _sceneFactory.Create(sceneName);
             scene.Init();
             _currentScene = scene;
+        }
+
+        // TODO: This is only for development. Remove this when re're ready to release to production!!
+        private void CheckForEscape()
+        {
+            var state = Keyboard.GetState();
+            if(state.IsKeyDown(Keys.Escape))
+                Hack.TheGame.Exit();
         }
     }
 }
