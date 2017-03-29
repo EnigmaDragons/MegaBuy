@@ -41,7 +41,13 @@
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
+    <Compile Include="Calls\CallGenerater.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
+    <Compile Include="Calls\Conversation Pieces\Nouns.cs" />
+    <Compile Include="Calls\Conversation Pieces\Verbs.cs" />
+    <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
+    <Compile Include="Calls\Rules\CallCenterPosition.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
@@ -55,7 +61,6 @@
     <Compile Include="Calls\Options\ReferToInfo.cs" />
     <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
-    <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\ScriptLine.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />

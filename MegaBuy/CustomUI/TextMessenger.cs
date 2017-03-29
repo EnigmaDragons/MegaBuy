@@ -60,7 +60,7 @@ namespace MegaBuy.CustomUI
         public void Draw(Transform2 parentTransform)
         {
             for (var i = 0; i < _labels.Count; i++)
-                _labels[i].Draw(new Transform2(new Vector2(0, (_labelSize.Height + _verticalMargin) * i)));
+                _labels[i].Draw(parentTransform + new Transform2(new Vector2(0, (_labelSize.Height + _verticalMargin) * i)));
         }
 
         private struct Message

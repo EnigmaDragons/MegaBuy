@@ -45,7 +45,7 @@ namespace MegaBuy
                 { "Starved", () => new Starved() },
                 { "SlowlyStarving", () => new SlowlyStarving() },
                 { "PAD", () => new PAD() },
-                { "Texting", () => new TextMessangerSample() },
+                { "Texting", () => new TextMessengerSample() },
             });
         }
     }

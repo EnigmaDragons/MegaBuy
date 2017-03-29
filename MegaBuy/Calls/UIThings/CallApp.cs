@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls.Rules;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -19,20 +21,38 @@ namespace MegaBuy.Calls.UIThings
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private Timer _timer;
-        private readonly TextMessenger _messenger = new TextMessenger(6, Color.White, new Size2(350, 50));
+        private TextMessenger _messenger = new TextMessenger(6, Color.White, new Size2(350, 50));
         private int _index = 0;
+        private string person = "female-customer";
 
         public CallApp(Call call)
         {
-            _call = call;
             _ui = new ClickUI();
+            _timer = new Timer(AddMessage, 1000);
+            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
+            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
+            UpdateCall(call);
+        }
+
+        private void UpdateCall(Call call)
+        {
+            _call = call;
             for (var i = 0; i < call.Options.Count; i++)
             {
                 var button = new TextButton(1, new Rectangle(((int)(i / 2)) * 350, ((i % 2) * 150) + 450, 300, 100), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
                 _ui.Add(button);
                 _visuals.Add(button);
             }
-            _timer = new Timer(AddMessage, 1000);
+        }
+
+        private void CallEnded()
+        {
+            person = person == "female-customer" ? "male-customer" : "female-customer";
+            _visuals.Clear();
+            _index = 0;
+            _messenger = new TextMessenger(6, Color.White, new Size2(350, 50));
+            _ui.Clear();
+            UpdateCall(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
         }
 
         public void Update(TimeSpan delta)
@@ -47,7 +67,7 @@ namespace MegaBuy.Calls.UIThings
             World.Draw(new RectangleTexture(1400, 900, Color.Red).Create(), parentTransform.Location);
             var callerTransform = new Transform2(parentTransform.Location, caller);
             World.Draw(new RectangleTexture(caller.Width, caller.Height, Color.Gray).Create(), callerTransform);
-            World.Draw("Images/Screen/female-customer", callerTransform);
+            World.Draw("Images/Screen/" + person, callerTransform);
             World.Draw(new RectangleTexture(messengertext.Width, messengertext.Height, Color.Gray).Create(), new Transform2(new Vector2(parentTransform.Location.X + 900, parentTransform.Location.Y + 0), messengertext));
             _visuals.ForEach(x => x.Draw(parentTransform));
             _messenger.Draw(new Transform2(new Vector2(parentTransform.Location.X + 925, 0)));

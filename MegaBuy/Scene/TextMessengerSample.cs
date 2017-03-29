@@ -6,16 +6,17 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace MegaBuy.Scene
 {
-    public sealed class TextMessangerSample : IScene
+    public sealed class TextMessengerSample : IScene
     {
         private Timer _timer;
-        private readonly TextMessenger _messenger = new TextMessenger(5, Color.Black, new Size2(500, 80));
+        private TextMessenger _messenger;
         private bool _isPlayer;
         private int _message;
 
         public void Init()
         {
             _timer = new Timer(AddMessage, 2000);
+            _messenger = new TextMessenger(5, Color.Black, new Size2(500, 80));
         }
 
         public void AddMessage()
