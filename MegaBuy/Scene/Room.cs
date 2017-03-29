@@ -32,12 +32,12 @@ namespace MegaBuy.Scene
             _map.Add(new Tile("wall-bot-left", new TileLocation(0, 13), true, 1));
             _map.Add(new Tile("wall-bot-right", new TileLocation(13, 13), true, 1));
 
-            _map.Add(new Tile("desk1", new TileLocation(2, 11), true, NavigateToScreen, 1));
-            _map.Add(new Tile("desk2", new TileLocation(3, 11), true, NavigateToScreen, 1));
-            _map.Add(new Tile("desk3", new TileLocation(4, 11), true, NavigateToScreen, 1));
-            _map.Add(new Tile("desk4", new TileLocation(2, 12), true, NavigateToScreen, 1));
-            _map.Add(new Tile("desk5", new TileLocation(3, 12), true, NavigateToScreen, 1));
-            _map.Add(new Tile("desk6", new TileLocation(4, 12), true, NavigateToScreen, 1));
+            _map.Add(new Tile("desk1", new TileLocation(2, 11), true, NavigateToPAD, 1));
+            _map.Add(new Tile("desk2", new TileLocation(3, 11), true, NavigateToPAD, 1));
+            _map.Add(new Tile("desk3", new TileLocation(4, 11), true, NavigateToPAD, 1));
+            _map.Add(new Tile("desk4", new TileLocation(2, 12), true, NavigateToPAD, 1));
+            _map.Add(new Tile("desk5", new TileLocation(3, 12), true, NavigateToPAD, 1));
+            _map.Add(new Tile("desk6", new TileLocation(4, 12), true, NavigateToPAD, 1));
 
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
         }
@@ -55,9 +55,9 @@ namespace MegaBuy.Scene
             World.Draw("Effects/light-effect", new Rectangle(350, 0, 900, 900));
         }
 
-        private void NavigateToScreen()
+        private void NavigateToPAD()
         {
-            World.NavigateToScene("Screen");
+            World.NavigateToScene("PAD");
         }
     }
 }
