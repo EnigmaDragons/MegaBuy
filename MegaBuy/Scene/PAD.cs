@@ -34,7 +34,7 @@ namespace MegaBuy.Scene
                 "Images/PAD/logout-hover",
                 "Images/PAD/logout-pressed",
                 new Transform2(new Vector2(600, 700), new Size2(200, 50)),
-                () => { });
+                () => World.NavigateToScene("Room"));
 
             _ui = new ClickUI();
             _ui.Add(_btnAvailableForCall);
