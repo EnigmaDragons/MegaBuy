@@ -9,15 +9,24 @@ namespace MegaBuy.Scene
     public class Menu : IScene
     {
         private ImageButton _btn;
+        private ClickUI _ui;
 
         public void Init()
         { 
-            _btn = new ImageButton("Images/Menu/button-default", "Images/Menu/button-hover", "Images/Menu/button-pressed", new Transform2(new Vector2(800 - 100, 750 - 22), new Size2(200, 44)), () => World.NavigateToScene("Room"));
+            _btn = new ImageButton(
+                "Images/Menu/button-default",
+                "Images/Menu/button-hover",
+                "Images/Menu/button-pressed",
+                new Transform2(new Vector2(800 - 100, 750 - 22),
+                new Size2(200, 44)), () => World.NavigateToScene("Room"));
+
+            _ui = new ClickUI();
+            _ui.Add(_btn);
         }
 
         public void Update(TimeSpan delta)
         {
-            _btn.Update(delta);
+            _ui.Update(delta);
         }
 
         public void Draw()
