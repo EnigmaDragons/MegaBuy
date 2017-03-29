@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoDragons.Core.Engine;
 using MonoDragons.Core.Memory;
 
 namespace MonoDragons.Core.UserInterface
@@ -48,6 +49,12 @@ namespace MonoDragons.Core.UserInterface
         public static void DrawText(string text, Vector2 position, Color color)
         {
             _spriteBatch.DrawString(DefaultFont.Font, text, position, color);
+        }
+
+        public static void DrawText(string text, Vector2 position, Color color, string font)
+        {
+            var spriteFont = Resources.Load<SpriteFont>(font);
+            _spriteBatch.DrawString(spriteFont, text, position, color);
         }
 
         private static Point ScalePoint(float x, float y)

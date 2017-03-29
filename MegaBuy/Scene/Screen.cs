@@ -1,6 +1,5 @@
 ﻿using System;
 using MegaBuy.Calls.UIThings;
-using MegaBuy.UIStuff;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;

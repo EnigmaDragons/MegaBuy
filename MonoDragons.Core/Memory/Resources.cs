@@ -22,7 +22,7 @@ namespace MonoDragons.Core.Memory
             _sceneContents.Put(disposable);
         }
 
-        public static T Load<T>(string resourceName) where T : IDisposable
+        public static T Load<T>(string resourceName)
         {
             return _sceneContents.Load<T>(resourceName);
         }

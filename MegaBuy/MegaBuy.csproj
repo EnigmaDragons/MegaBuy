@@ -45,7 +45,7 @@
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
-    <Compile Include="ICallOption.cs" />
+    <Compile Include="Calls\ICallOption.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\CallStarted.cs" />
     <Compile Include="Calls\CallSucceeded.cs" />
@@ -76,6 +76,8 @@
     <Compile Include="Scene\PAD.cs" />
     <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\Menu.cs" />
+    <Compile Include="CustomUI\TextMessenger.cs" />
+    <Compile Include="Scene\TextMessengerSample.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
@@ -108,7 +110,7 @@
     <Compile Include="Scene\TickTock.cs" />
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
-    <Compile Include="UIStuff\ChatBox.cs" />
+    <Compile Include="CustomUI\ChatBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
