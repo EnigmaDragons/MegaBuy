@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls;
 using MegaBuy.Endings;
 using MegaBuy.Scene;
 using Microsoft.Xna.Framework.Input;
@@ -16,7 +17,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Room", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Texting", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -43,7 +44,8 @@ namespace MegaBuy
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "SlowlyStarving", () => new SlowlyStarving() },
-                { "PAD", () => new PAD() }
+                { "PAD", () => new PAD() },
+                { "Texting", () => new TextMessengerSample() },
             });
         }
     }
