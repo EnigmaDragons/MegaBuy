@@ -69,6 +69,7 @@
     <Compile Include="Food\Hunger.cs" />
     <Compile Include="Food\HungerUI.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
+    <Compile Include="Scene\PAD.cs" />
     <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\TimTest.cs" />
     <Compile Include="Scene\Menu.cs" />
@@ -205,6 +206,9 @@
     <Content Include="Content\Images\Menu\button-pressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\PAD\available-default.png" />
+    <Content Include="Content\Images\PAD\available-hover.png" />
+    <Content Include="Content\Images\PAD\available-pressed.png" />
     <Content Include="Content\Images\Screen\button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

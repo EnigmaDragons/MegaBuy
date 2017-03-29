@@ -8,21 +8,25 @@ namespace MegaBuy.Scene
 {
     public sealed class ClickToWin : IScene
     {
-        private ImageButton _button;
+        private ImageButton2 _button;
+        private ClickUI _ui;
 
         public void Init()
         {
-            _button = new ImageButton(
+            _button = new ImageButton2(
                 "Images/Screen/button-default", 
                 "Images/Screen/button-hover", 
                 "Images/Screen/button-pressed", 
                 new Transform2(new Vector2(150, 150), new Size2(450, 100)), 
                 () => Environment.Exit(0));
+
+            _ui = new ClickUI();
+            _ui.Add(_button);
         }
 
         public void Update(TimeSpan delta)
         {
-            _button.Update(delta);
+            _ui.Update(delta);
         }
 
         public void Draw()

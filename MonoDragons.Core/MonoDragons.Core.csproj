@@ -105,7 +105,6 @@
     <Compile Include="UserInterface\ClickableUIElement.cs" />
     <Compile Include="UserInterface\ClickUI.cs" />
     <Compile Include="UserInterface\ImageBox.cs" />
-    <Compile Include="UserInterface\ImageButton.cs" />
     <Compile Include="UserInterface\DefaultFont.cs" />
     <Compile Include="UserInterface\ImageButton2.cs" />
     <Compile Include="UserInterface\NoneClickableUIElement.cs" />
@@ -130,16 +129,18 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Fonts\Arial.xnb">
+    <Content Include="Content\Fonts\Arial.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="Content\Fonts\Audiowide.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Fonts\Audiowide.spritefont">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Fonts\Audiowide.xnb" />
+    <Content Include="Content\Fonts\Audiowide.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Logo\enigmadragons.png">
