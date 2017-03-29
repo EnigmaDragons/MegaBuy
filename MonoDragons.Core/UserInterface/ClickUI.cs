@@ -49,6 +49,7 @@ namespace MonoDragons.Core.UserInterface
         {
             _currentElement.OnReleased();
             _wasClicked = false;
+            _currentElement.OnEntered();
         }
 
         private void ChangeActiveElement(ClickableUIElement newElement)

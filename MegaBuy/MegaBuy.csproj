@@ -41,7 +41,13 @@
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
+    <Compile Include="Calls\CallGenerater.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
+    <Compile Include="Calls\Conversation Pieces\Nouns.cs" />
+    <Compile Include="Calls\Conversation Pieces\Verbs.cs" />
+    <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
+    <Compile Include="Calls\Rules\CallCenterPosition.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
@@ -55,7 +61,6 @@
     <Compile Include="Calls\Options\ReferToInfo.cs" />
     <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
-    <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\ScriptLine.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
@@ -72,6 +77,7 @@
     <Compile Include="Food\HungerUI.cs" />
     <Compile Include="Player\PlayerNotifications.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
+    <Compile Include="Scene\PAD.cs" />
     <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="Time\Clock.cs" />
@@ -205,6 +211,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Menu\button-pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\available-default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\available-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\available-pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\logout-default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\orderfood-default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\logout-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\orderfood-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\logout-pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\PAD\orderfood-pressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Screen\button.png">

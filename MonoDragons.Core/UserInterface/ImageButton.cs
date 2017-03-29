@@ -1,22 +1,21 @@
-﻿using System;
-using Microsoft.Xna.Framework.Input;
-using MonoDragons.Core.Engine;
+﻿using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ImageButton : IVisualAutomaton
+    public sealed class ImageButton : ClickableUIElement, IVisual
     {
         private readonly string _basic;
         private readonly string _hover;
         private readonly string _pressed;
         private readonly Transform2 _transform;
         private readonly Action _onClick;
-
+        
         private string _current;
-        private bool _wasClicked;
 
-        public ImageButton(string basic, string hover, string pressed, Transform2 transform, Action onClick)
+        public ImageButton(string basic, string hover, string pressed, Transform2 transform, Action onClick) 
+            : base(10, transform.ToRectangle())
         {
             _basic = basic;
             _hover = hover;
@@ -28,33 +27,28 @@ namespace MonoDragons.Core.UserInterface
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw(_current, _transform + parentTransform);
+            World.Draw(_current, parentTransform + _transform);
         }
 
-        public void Update(TimeSpan delta)
+        public override void OnEntered()
         {
-            var mouse = Mouse.GetState();
-            if (_transform.ToRectangle().Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed)
-                SetClicked();
-            else if (_transform.ToRectangle().Contains(mouse.Position))
-                _current = _hover;
-            else
-                _current = _basic;
-            CheckForReleased(mouse);
+            _current = _hover;
         }
 
-        private void CheckForReleased(MouseState mouse)
+        public override void OnExitted()
         {
-            if (!_wasClicked || mouse.LeftButton != ButtonState.Released) return;
-
-            _wasClicked = false;
-            _onClick();
+            _current = _basic;
         }
 
-        private void SetClicked()
+        public override void OnPressed()
         {
-            _wasClicked = true;
             _current = _pressed;
+        }
+
+        public override void OnReleased()
+        {
+            _current = _basic;
+            _onClick.Invoke();
         }
     }
 }
