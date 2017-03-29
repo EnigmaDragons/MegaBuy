@@ -37,6 +37,7 @@ namespace MegaBuy.Money
         {
             _playerAccount.Add(_dayPayment);
             _dayPayment = null;
+            //World.Publish()
         }
 
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)

@@ -40,7 +40,6 @@ namespace MegaBuy
                 { "ILovePolitics", () => new ILovePolitics() },
                 { "Screen", () => new Screen() },
                 { "ClickToWin", () => new ClickToWin() },
-                { "TimTest", () => new TimTest() },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "SlowlyStarving", () => new SlowlyStarving() },
