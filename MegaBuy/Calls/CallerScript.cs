@@ -87,9 +87,12 @@ namespace MegaBuy.Calls
         public void Draw(Transform2 parentTransform)
         {
             ChatBox.Draw(new Transform2(new Vector2(50, 725), new Size2(1500, 150)));
+
             if (_areOptionsDisplayed)
                 for (var i = 0; i < _availableOptions.Count; i++)
                     UI.DrawText(_availableOptions[i].Option.message, new Vector2(0, i * 100), Color.Yellow);
+
+
         }
 
         public void Dispose()

@@ -58,6 +58,7 @@
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="Calls\UIThings\CallApp.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />

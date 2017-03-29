@@ -87,6 +87,7 @@
     <Compile Include="Inputs\VerticalDirection.cs" />
     <Compile Include="Memory\Resources.cs" />
     <Compile Include="PhysicsEngine\BoxCollider.cs" />
+    <Compile Include="PhysicsEngine\ISpatial.cs" />
     <Compile Include="PhysicsEngine\Physics.cs" />
     <Compile Include="PhysicsEngine\PhysicsInstance.cs" />
     <Compile Include="PhysicsEngine\RandomDirection.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Render\Animations.cs" />
     <Compile Include="Render\Camera.cs" />
     <Compile Include="Navigation\FadingInScene.cs" />
+    <Compile Include="UserInterface\Bordered.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="Render\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
@@ -139,7 +141,9 @@
     <Content Include="Content\Fonts\Audiowide.spritefont">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Fonts\Audiowide.xnb" />
+    <None Include="Content\Fonts\Audiowide.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Logo\enigmadragons.png">
