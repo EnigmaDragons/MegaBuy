@@ -106,7 +106,7 @@
     <Compile Include="UserInterface\ClickUI.cs" />
     <Compile Include="UserInterface\ImageBox.cs" />
     <Compile Include="UserInterface\DefaultFont.cs" />
-    <Compile Include="UserInterface\ImageButton2.cs" />
+    <Compile Include="UserInterface\ImageButton.cs" />
     <Compile Include="UserInterface\NoneClickableUIElement.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\TextClickable.cs" />

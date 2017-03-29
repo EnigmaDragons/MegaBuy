@@ -4,7 +4,7 @@ using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ImageButton2 : ClickableUIElement, IVisual
+    public sealed class ImageButton : ClickableUIElement, IVisual
     {
         private readonly string _basic;
         private readonly string _hover;
@@ -14,7 +14,7 @@ namespace MonoDragons.Core.UserInterface
         
         private string _current;
 
-        public ImageButton2(string basic, string hover, string pressed, Transform2 transform, Action onClick) 
+        public ImageButton(string basic, string hover, string pressed, Transform2 transform, Action onClick) 
             : base(10, transform.ToRectangle())
         {
             _basic = basic;

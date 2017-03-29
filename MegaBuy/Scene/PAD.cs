@@ -8,11 +8,11 @@ namespace MegaBuy.Scene
 {
     class PAD : IScene
     {
-        private ImageButton2 _btn;
+        private ImageButton _btn;
 
         public void Init()
         {
-            _btn = new ImageButton2("", "", "", new Transform2(new Vector2(600, 500), new Size2(200, 50)), () => World.NavigateToScene("Room"));
+            _btn = new ImageButton("", "", "", new Transform2(new Vector2(600, 500), new Size2(200, 50)), () => World.NavigateToScene("Room"));
         }
 
         public void Update(TimeSpan delta)
