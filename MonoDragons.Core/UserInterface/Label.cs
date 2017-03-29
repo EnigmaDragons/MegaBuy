@@ -6,23 +6,17 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class Label : IVisual
     {
-        private readonly Color _color;
-
-        private string _text = "";
-
-        public Label(Color color)
-        {
-            _color = color;
-        }
-
-        public void Set(string text)
-        {
-            _text = text;
-        }
-
+        public string Font { get; set; } = "Fonts/Arial";
+        public Transform2 Transform { get; set; } = new Transform2(new Size2(400, 100));
+        public Color TextColor { get; set; } = Color.White;
+        public Color BackgroundColor { get; set; } = Color.Transparent;
+        public string Text { get; set; } = "";
+      
         public void Draw(Transform2 parentTransform)
         {
-            UI.DrawText(_text, parentTransform.Location, _color);
+            var position = parentTransform + Transform;
+            World.DrawRectangle(position.ToRectangle(), BackgroundColor);
+            UI.DrawText(Text, position.Location, TextColor, Font);
         }
     }
 }

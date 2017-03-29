@@ -19,7 +19,7 @@ namespace MonoDragons.Core.Engine
             _diposables.Add(disposable);
         }
 
-        public T Load<T>(string resourceName) where T : IDisposable
+        public T Load<T>(string resourceName)
         {
             return _contentManager.Load<T>(resourceName);
         }

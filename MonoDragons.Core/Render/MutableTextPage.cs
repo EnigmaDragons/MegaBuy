@@ -21,9 +21,9 @@ namespace MonoDragons.Core.Render
         public void Set(List<string> texts)
         {
             while (_drawnTexts.Count < texts.Count)
-                _drawnTexts.Add(new Label(_textColor));
+                _drawnTexts.Add(new Label());
             for (var i = 0; i < texts.Count; i++)
-                _drawnTexts[i].Set(texts[i]);
+                _drawnTexts[i].Text = texts[i];
         }
 
         public void Draw(Transform2 parentTransform)
