@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MegaBuy.Calls.Rules;
 using MegaBuy.Money;
 using MonoDragons.Core.Engine;
@@ -8,18 +9,24 @@ namespace MegaBuy.Calls
 {
     public sealed class Call : IAutomaton
     {
-        private readonly Caller _caller;
-        private readonly Script _script;
+        public List<ICallOption> Options { get; }
+        public Caller Caller { get; }
+        public Script Script { get; }
+        
         private readonly CallResolution _correctResolution;
-        private readonly ICallOption _option;
 
-        public Call(Caller caller, Script script, CallResolution correctResolution, ICallOption option)
+        public Call(Caller caller, Script script, CallResolution correctResolution, List<ICallOption> options)
         {
-            _caller = caller;
-            _script = script;
+            Caller = caller;
+            Script = script;
             _correctResolution = correctResolution;
-            _option = option;
+            Options = options;
             World.Subscribe(new EventSubscription<CallResolved>(ResolveCall, this));
+        }
+
+        public void Update(TimeSpan delta)
+        {
+            Caller.Update(delta);
         }
 
         private void ResolveCall(CallResolved callResolved)
@@ -28,11 +35,6 @@ namespace MegaBuy.Calls
                 World.Publish(new CallSucceeded());
             else
                 World.Publish(new CallFailed(new Fee(2)));
-        }
-
-        public void Update(TimeSpan delta)
-        {
-            _caller.Update(delta);
         }
     }
 }
