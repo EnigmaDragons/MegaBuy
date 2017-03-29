@@ -42,6 +42,7 @@
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="Calls\Conversation.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
