@@ -1,30 +1,15 @@
-﻿using MegaBuy.Money;
+﻿using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 
 namespace MegaBuy.Calls.Options
 {
-    public sealed class ReferToTroubleShooting : ICallOption
+    public sealed class ReferToTroubleshooting : ICallOption
     {
-        public string message
-        {
-            get
-            {
-                return "Refer the caller to troubleshooting.";
-            }
-        }
+        public string Description => "Refer the caller to troubleshooting.";
 
-        public void Go(bool IsCorrect)
+        public void Go()
         {
-            if (!IsCorrect)
-            {
-                new TechnicalMistakeOccurred(new Fee(2));
-                World.Publish(new CallFailed());
-            }
-            else
-            {
-                World.Publish(new CallSucceeded());
-            }
-            
+            World.Publish(new CallResolved(CallResolution.ReferToTroubleshooting));
         }
     }
 }

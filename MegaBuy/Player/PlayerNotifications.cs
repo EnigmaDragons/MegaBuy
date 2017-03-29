@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaBuy.Calls
+namespace MegaBuy.Player
 {
-    public interface ICallOption
+    public sealed class PlayerNotifications
     {
-        string message { get; }
-        void Go(bool IsCorrect);
     }
 }
