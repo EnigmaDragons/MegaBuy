@@ -72,7 +72,7 @@
     <Compile Include="Food\HungerUI.cs" />
     <Compile Include="Player\PlayerNotifications.cs" />
     <Compile Include="Scene\ClickToWin.cs" />
-    <Compile Include="Scene\Labels.cs" />
+    <Compile Include="Scene\TextMessengerSample.cs" />
     <Compile Include="Scene\PAD.cs" />
     <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\Menu.cs" />
