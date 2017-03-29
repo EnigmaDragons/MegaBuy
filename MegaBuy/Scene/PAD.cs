@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using MegaBuy.Calls;
+using MegaBuy.Calls.Options;
+using MegaBuy.Calls.Rules;
 using MegaBuy.Calls.UIThings;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.UserInterface;
@@ -44,7 +48,7 @@ namespace MegaBuy.Scene
             _ui.Add(_foodApp);
             _ui.Add(_leave);
 
-            _app = new CallApp(_ui);
+            _app = new CallApp(new Call(new Caller(10000), new Script(), CallResolution.ReferToInfo, new List<ICallOption> { new ReferToInfo(), new ReferToTroubleshooting(), new ReferToTroubleshooting(), new ReferToInfo()}));
         }
 
         public void Update(TimeSpan delta)

@@ -5,7 +5,7 @@ namespace MegaBuy.Calls.Options
 {
     public sealed class ReferToTroubleshooting : ICallOption
     {
-        public string Description => "Refer the caller to troubleshooting.";
+        public string Description => "Troubleshoot";
 
         public void Go()
         {

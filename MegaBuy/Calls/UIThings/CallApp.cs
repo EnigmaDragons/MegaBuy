@@ -14,35 +14,28 @@ namespace MegaBuy.Calls.UIThings
         //900
         private Size2 caller = new Size2(400, 450);
         private Size2 messengertext = new Size2(400, 450);
+        private ClickUI _ui;
         private readonly List<IVisual> _visuals = new List<IVisual>();
 
-        public CallApp(ClickUI ui)
+        public CallApp(Call call)
         {
-            var info = new ImageButton(
-                "Images/PAD/logout-default",
-                "Images/PAD/logout-hover",
-                "Images/PAD/logout-pressed",
-                new Transform2(new Vector2(300, 600), new Size2(200, 50)),
-                () => { });
-            var troubleshooting = new ImageButton(
-                "Images/PAD/logout-default",
-                "Images/PAD/logout-hover",
-                "Images/PAD/logout-pressed",
-                new Transform2(new Vector2(300, 400), new Size2(200, 50)),
-                () => { });
-
-            ui.Add(info);
-            ui.Add(troubleshooting);
-            _visuals.Add(info);
-            _visuals.Add(troubleshooting);
+            _ui = new ClickUI();
+            for (var i = 0; i < call.Options.Count; i++)
+            {
+                var button = new TextButton(1, new Rectangle(((int)(i / 2)) * 350, ((i % 2) * 150) + 450, 300, 100), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
+                _ui.Add(button);
+                _visuals.Add(button);
+            }
         }
 
         public void Update(TimeSpan delta)
         {
+            _ui.Update(delta);
         }
 
         public void Draw(Transform2 parentTransform)
         {
+            _ui.Position = parentTransform.Location;
             World.Draw(new RectangleTexture(1400, 900, Color.Red).Create(), parentTransform.Location);
             var callerTransform = new Transform2(parentTransform.Location, caller);
             World.Draw(new RectangleTexture(caller.Width, caller.Height, Color.Gray).Create(), callerTransform);

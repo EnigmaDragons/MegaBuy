@@ -5,7 +5,7 @@ namespace MegaBuy.Calls.Options
 {
     public sealed class ReferToInfo : ICallOption
     {
-        public string Description => "Refer the caller to information.";
+        public string Description => "Info";
 
         public void Go()
         {
