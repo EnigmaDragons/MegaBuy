@@ -140,7 +140,9 @@
     <Content Include="Content\Fonts\Audiowide.spritefont">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Fonts\Audiowide.xnb" />
+    <Content Include="Content\Fonts\Audiowide.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Logo\enigmadragons.png">
