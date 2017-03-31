@@ -6,6 +6,9 @@ namespace MegaBuy.Money
     {
         private decimal _amount;
 
+        public PlayerAccount()
+            : this(500) { }
+
         public PlayerAccount(decimal initial)
         {
             _amount = initial;
