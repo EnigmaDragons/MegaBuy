@@ -22,10 +22,10 @@ namespace MegaBuy.Scene
         public void Init()
         {
             _leave = new ImageButton(
-                "Images/PAD/logout-default",
-                "Images/PAD/logout-hover",
-                "Images/PAD/logout-pressed",
-                new Transform2(new Vector2(0, 0), new Size2(200, 50)),
+                "Images/Icons/poweroff",
+                "Images/Icons/poweroff-hover",
+                "Images/Icons/poweroff-hover",
+                new Transform2(new Vector2(52, 750), new Size2(96, 96)),
                 () => World.NavigateToScene("Room"));
 
             _ui = new ClickUI();
