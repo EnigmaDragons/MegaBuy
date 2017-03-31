@@ -154,6 +154,12 @@
     <Content Include="Content\Images\Icons\food.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Icons\poweroff-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\poweroff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Map\bed-bot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

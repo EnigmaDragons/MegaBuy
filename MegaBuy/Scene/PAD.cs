@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
 using MegaBuy.Calls.UIThings;
 using MonoDragons.Core.Engine;
@@ -20,19 +18,17 @@ namespace MegaBuy.Scene
 
         public void Init()
         {
-
             _leave = new ImageButton(
-                "Images/PAD/logout-default",
-                "Images/PAD/logout-hover",
-                "Images/PAD/logout-pressed",
-                new Transform2(new Vector2(0, 0), new Size2(200, 50)),
+                "Images/Icons/poweroff",
+                "Images/Icons/poweroff-hover",
+                "Images/Icons/poweroff-hover",
+                new Transform2(new Vector2(52, 750), new Size2(96, 96)),
                 () => World.NavigateToScene("Room"));
 
             _ui = new ClickUI();
             _ui.Add(_leave);
 
             _app = new CallApp(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
-            //_app = new CallApp(new Call(new Caller(10000), new Script(), CallResolution.ReferToInfo, new List<ICallOption> { new ReferToInfo(), new ReferToTroubleshooting(), new ReferToTroubleshooting(), new ReferToInfo()}));
         }
 
         public void Update(TimeSpan delta)
