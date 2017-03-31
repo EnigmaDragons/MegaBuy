@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
@@ -16,7 +18,8 @@ namespace MonoDragons.Core.UserInterface
         {
             var position = parentTransform + Transform;
             World.DrawRectangle(position.ToRectangle(), BackgroundColor);
-            UI.DrawText(Text, position.Location, TextColor, Font);
+            var size = Resources.Load<SpriteFont>(Font).MeasureString(Text);
+            UI.DrawText(Text, new Vector2(position.Location.X + (position.Size.Width / 2) - (size.X / 2), position.Location.Y + (position.Size.Height / 2) - (size.Y / 2)), TextColor, Font);
         }
     }
 }

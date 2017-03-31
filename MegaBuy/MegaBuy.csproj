@@ -67,6 +67,7 @@
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
     <Compile Include="Calls\UIThings\CallApp.cs" />
+    <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
@@ -150,6 +151,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\burger.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\chaos-theory.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\noise.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\nothing.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\food-red.png">

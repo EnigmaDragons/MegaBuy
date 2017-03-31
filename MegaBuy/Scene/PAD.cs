@@ -7,6 +7,9 @@ using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.PhysicsEngine;
 using Microsoft.Xna.Framework;
 
+//1400 width
+//900 height
+
 namespace MegaBuy.Scene
 {
     public sealed class PAD : IScene
@@ -40,7 +43,7 @@ namespace MegaBuy.Scene
             _ui.Add(_food);
             _ui.Add(_calls);
 
-            _app = new CallApp(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
+            _app = new CallApp(_ui, new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
         }
 
         public void Update(TimeSpan delta)

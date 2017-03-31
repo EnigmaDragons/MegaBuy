@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.Graphics
 {
@@ -9,6 +10,8 @@ namespace MonoDragons.Core.Graphics
         private readonly int _width;
         private readonly int _height;
         private readonly Color _color;
+
+        public RectangleTexture(Size2 size, Color color) : this(size.Width, size.Height, color) { }
 
         public RectangleTexture(int width, int height, Color color)
         {

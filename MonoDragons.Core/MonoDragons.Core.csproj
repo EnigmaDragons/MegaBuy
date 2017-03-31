@@ -99,8 +99,10 @@
     <Compile Include="Render\Animations.cs" />
     <Compile Include="Render\Camera.cs" />
     <Compile Include="Navigation\FadingInScene.cs" />
+    <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\Bordered.cs" />
     <Compile Include="UserInterface\IconButton.cs" />
+    <Compile Include="UserInterface\ClickUILayer.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
