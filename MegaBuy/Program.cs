@@ -38,11 +38,8 @@ namespace MegaBuy
                 { "Darkness", () => new Darkness() },
                 { "Room", () => new Room() },
                 { "ILovePolitics", () => new ILovePolitics() },
-                { "Screen", () => new Screen() },
-                { "ClickToWin", () => new ClickToWin() },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
-                { "SlowlyStarving", () => new SlowlyStarving() },
                 { "PAD", () => new PAD() },
                 { "Texting", () => new TextMessengerSample() },
             });

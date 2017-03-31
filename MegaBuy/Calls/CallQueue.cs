@@ -17,7 +17,7 @@ namespace MegaBuy.Calls
             if (!statusChanged.Status.Equals(AgentCallStatus.Available)) return;
 
             await Task.Delay(Rng.Int(0, 5) * 1000);
-            World.Publish(new CallStarted());
+            World.Publish(new CallStarted(new CallGenerater(Rules.CallCenterPosition.Referrer).GenerateCall()));
         }
     }
 }

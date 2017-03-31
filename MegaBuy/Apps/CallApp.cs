@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Calls;
 using MegaBuy.Calls.Rules;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
@@ -10,12 +11,12 @@ using MonoDragons.Core.Graphics;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.Calls.UIThings
+namespace MegaBuy.Apps
 {
     public class CallApp : IVisualAutomaton
     {
-        private ClickUI _ui;
-        private ClickUILayer _layer;
+        private readonly ClickUI _ui;
+        private readonly ClickUILayer _layer;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private Timer _timer;
@@ -23,7 +24,7 @@ namespace MegaBuy.Calls.UIThings
         private int _index;
         private string _person;
 
-        public CallApp(ClickUI ui, Call call)
+        public CallApp(ClickUI ui)
         {
             _ui = ui;
             _layer = new ClickUILayer();
@@ -31,6 +32,7 @@ namespace MegaBuy.Calls.UIThings
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
+            World.Subscribe(new EventSubscription<CallStarted>(x => UpdateCall(x.Call), this));
             CallEnded();
         }
 
@@ -57,14 +59,21 @@ namespace MegaBuy.Calls.UIThings
             _call = null;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
 
-            var button = new TextButton(1, new Rectangle(650, 720, 300, 90),
-                () => UpdateCall(new CallGenerater(CallCenterPosition.Referrer).GenerateCall()),
+            var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
+                PublishReadyForCall,
                 "Ready",
                 Color.FromNonPremultiplied(42, 42, 42, 250), 
                 Color.FromNonPremultiplied(30, 30, 30, 250),
                 Color.FromNonPremultiplied(21, 21, 21, 250));
             _visuals.Add(button);
             _layer.Add(button);
+        }
+
+        private void PublishReadyForCall()
+        {
+            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
+            _layer.Clear();
+            _visuals.Clear();
         }
 
         public void Update(TimeSpan delta)

@@ -1,7 +1,7 @@
 ﻿using System;
+using MegaBuy.Apps;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Rules;
-using MegaBuy.Calls.UIThings;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.PhysicsEngine;
@@ -18,6 +18,7 @@ namespace MegaBuy.Scene
         private IconButton _food;
         private IconButton _calls;
         private ClickUI _ui;
+        private CallQueue _callQueue;
 
         private CallApp _app;
 
@@ -43,7 +44,9 @@ namespace MegaBuy.Scene
             _ui.Add(_food);
             _ui.Add(_calls);
 
-            _app = new CallApp(_ui, new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
+            _app = new CallApp(_ui);
+
+            _callQueue = new CallQueue();
         }
 
         public void Update(TimeSpan delta)
