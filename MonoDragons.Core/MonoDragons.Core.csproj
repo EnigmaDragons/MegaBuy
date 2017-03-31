@@ -52,7 +52,6 @@
     <Compile Include="Engine\Hack.cs" />
     <Compile Include="Engine\INavigation.cs" />
     <Compile Include="Engine\IVisualAutomaton.cs" />
-    <Compile Include="Engine\ScreenSize.cs" />
     <Compile Include="Engine\Timer.cs" />
     <Compile Include="Navigation\INavigation.cs" />
     <Compile Include="Engine\IScene.cs" />
@@ -64,8 +63,8 @@
     <Compile Include="Engine\SceneFactory.cs" />
     <Compile Include="Engine\ScreenSettings.cs" />
     <Compile Include="Engine\World.cs" />
-    <Compile Include="EventSystem\Convience\KeyDownEventSubscription.cs" />
-    <Compile Include="EventSystem\Convience\KeyUpEventSubscription.cs" />
+    <Compile Include="EventSystem\Convenience\KeyDownEventSubscription.cs" />
+    <Compile Include="EventSystem\Convenience\KeyUpEventSubscription.cs" />
     <Compile Include="EventSystem\Events.cs" />
     <Compile Include="EventSystem\EventSubscription.cs" />
     <Compile Include="EventSystem\EventTypes\KeyDownEvent.cs" />
@@ -100,7 +99,7 @@
     <Compile Include="Render\Camera.cs" />
     <Compile Include="Navigation\FadingInScene.cs" />
     <Compile Include="UserInterface\Label.cs" />
-    <Compile Include="Render\MutableTextPage.cs" />
+    <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="UserInterface\ClickableUIElement.cs" />
     <Compile Include="UserInterface\ClickUI.cs" />

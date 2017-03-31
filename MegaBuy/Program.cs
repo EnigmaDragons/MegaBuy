@@ -43,7 +43,7 @@ namespace MegaBuy
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "SlowlyStarving", () => new SlowlyStarving() },
-                { "PAD", () => new PAD() }
+                { "PAD", () => new FadingInScene(new PAD()) }
             });
         }
     }
