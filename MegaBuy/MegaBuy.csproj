@@ -67,6 +67,7 @@
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
     <Compile Include="Calls\UIThings\CallApp.cs" />
+    <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Scene\Darkness.cs" />
     <Compile Include="Scene\ILovePolitics.cs" />
     <Compile Include="Scene\Screen.cs" />
-    <Compile Include="Scene\TickTock.cs" />
+    <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
     <Compile Include="CustomUI\ChatBox.cs" />
