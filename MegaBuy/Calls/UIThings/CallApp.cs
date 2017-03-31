@@ -15,6 +15,7 @@ namespace MegaBuy.Calls.UIThings
     public class CallApp : IVisualAutomaton
     {
         private ClickUI _ui;
+        private ClickUILayer _layer;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private Timer _timer;
@@ -22,9 +23,11 @@ namespace MegaBuy.Calls.UIThings
         private int _index;
         private string _person;
 
-        public CallApp(Call call)
+        public CallApp(ClickUI ui, Call call)
         {
-            _ui = new ClickUI();
+            _ui = ui;
+            _layer = new ClickUILayer();
+            _ui.Add(_layer);
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
@@ -34,13 +37,13 @@ namespace MegaBuy.Calls.UIThings
         private void UpdateCall(Call call)
         {
             _visuals.Clear();
-            _ui.Clear();
+            _layer.Clear();
             _call = call;
             _person = _call.Script.First(x => x.CharacterName != "player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
             {
                 var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
-                _ui.Add(button);
+                _layer.Add(button);
                 _visuals.Add(button);
             }
         }
@@ -49,18 +52,19 @@ namespace MegaBuy.Calls.UIThings
         {
             _person = "nothing";
             _visuals.Clear();
-            _ui.Clear();
+            _layer.Clear();
             _index = 0;
+            _call = null;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
 
             var button = new TextButton(1, new Rectangle(650, 720, 300, 90),
                 () => UpdateCall(new CallGenerater(CallCenterPosition.Referrer).GenerateCall()),
-                "Ready For Call",
+                "Ready",
                 Color.FromNonPremultiplied(42, 42, 42, 250), 
                 Color.FromNonPremultiplied(30, 30, 30, 250),
                 Color.FromNonPremultiplied(21, 21, 21, 250));
             _visuals.Add(button);
-            _ui.Add(button);
+            _layer.Add(button);
         }
 
         public void Update(TimeSpan delta)
@@ -71,13 +75,13 @@ namespace MegaBuy.Calls.UIThings
 
         public void Draw(Transform2 parentTransform)
         {
-            _ui.Position = parentTransform.Location;
+            _layer.Location = parentTransform.Location;
 
             World.Draw(new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create(), new Vector2(210, 10));
 
-            World.Draw(new RectangleTexture(new Size2(400, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(1160, 30));
-            World.Draw("Images/Customers/" + _person.ToLower().Replace(' ', '-'), new Rectangle(1160, 20, 400, 600));
-            UI.DrawText(_person, new Vector2(1160, 600), Color.White, "Fonts/Audiowide");
+            World.Draw(new RectangleTexture(new Size2(400, 570), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(1160, 60));
+            World.Draw("Images/Customers/" + _person.ToLower().Replace(' ', '-'), new Rectangle(1160, 60, 400, 580));
+            UI.DrawText(_person, new Vector2(1160, 20), Color.Green, "Fonts/Audiowide");
             _visuals.ForEach(x => x.Draw(parentTransform));
 
             World.Draw(new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(230, 30));

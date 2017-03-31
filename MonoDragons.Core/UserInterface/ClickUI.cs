@@ -4,34 +4,47 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
     public sealed class ClickUI : IAutomaton
     {
-        private static readonly ClickableUIElement None = new NoneClickableUIElement();
+        public static readonly ClickableUIElement None = new NoneClickableUIElement();
 
-        private List<ClickableUIElement> _elements = new List<ClickableUIElement>();
+        private readonly List<ClickUILayer> _layers = new List<ClickUILayer> { new ClickUILayer() };
 
         private ClickableUIElement _currentElement = None;
         private bool _wasClicked;
-        public Vector2 Position { private get; set; }
+
+        public void Add(ClickUILayer layer)
+        {
+            Add(layer, _layers.Count);
+        }
+
+        public void Add(ClickUILayer layer, int priority)
+        {
+            for (var i = _layers.Count - 1; i < priority; i++)
+                _layers.Add(new ClickUILayer());
+            _layers.RemoveAt(priority);
+            _layers.Insert(priority, layer);
+        }
 
         public void Add(ClickableUIElement element)
         {
-            _elements.Add(element);
-            _elements = _elements.OrderByDescending(x => x.Layer).ToList();
+            _layers[0].Add(element);
         }
 
-        public void Remove(ClickableUIElement element)
+        public void Remove(ClickUILayer layer)
         {
-            _elements.Remove(element);
+            Remove(_layers.IndexOf(layer));
         }
 
-        public void Clear()
+        public void Remove(int priority)
         {
-            _elements.Clear();
+            for (var i = _layers.Count - 1; i < priority; i++)
+                _layers.Add(new ClickUILayer());
+            _layers.RemoveAt(priority);
+            _layers.Insert(priority, new ClickUILayer());
         }
 
         public void Update(TimeSpan delta)
@@ -74,7 +87,7 @@ namespace MonoDragons.Core.UserInterface
 
         private ClickableUIElement GetElement(Point mousePosition)
         {
-            var element = _elements.FirstOrDefault(x => x.Area.Contains(mousePosition - Position.ToPoint()));
+            var element = _layers.LastOrDefault(x => x.GetElement(mousePosition) != None)?.GetElement(mousePosition);
             return element ?? None;
         }
     }

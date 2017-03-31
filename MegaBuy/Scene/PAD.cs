@@ -21,7 +21,6 @@ namespace MegaBuy.Scene
 
         public void Init()
         {
-
             _leave = new ImageButton(
                 "Images/PAD/logout-default",
                 "Images/PAD/logout-hover",
@@ -32,7 +31,7 @@ namespace MegaBuy.Scene
             _ui = new ClickUI();
             _ui.Add(_leave);
 
-            _app = new CallApp(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
+            _app = new CallApp(_ui, new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
         }
 
         public void Update(TimeSpan delta)
