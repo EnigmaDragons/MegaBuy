@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
 using MegaBuy.Calls.UIThings;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.PhysicsEngine;
 using Microsoft.Xna.Framework;
+
+//1400 width
+//900 height
 
 namespace MegaBuy.Scene
 {
@@ -32,7 +33,6 @@ namespace MegaBuy.Scene
             _ui.Add(_leave);
 
             _app = new CallApp(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
-            //_app = new CallApp(new Call(new Caller(10000), new Script(), CallResolution.ReferToInfo, new List<ICallOption> { new ReferToInfo(), new ReferToTroubleshooting(), new ReferToTroubleshooting(), new ReferToInfo()}));
         }
 
         public void Update(TimeSpan delta)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Calls.Rules;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
@@ -13,17 +14,13 @@ namespace MegaBuy.Calls.UIThings
 {
     public class CallApp : IVisualAutomaton
     {
-        //1400
-        //900
-        private Size2 caller = new Size2(400, 450);
-        private Size2 messengertext = new Size2(400, 450);
         private ClickUI _ui;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private Timer _timer;
-        private TextMessenger _messenger = new TextMessenger(6, Color.White, new Size2(350, 50));
-        private int _index = 0;
-        private string person = "female-customer";
+        private AutoSizingTextMessenger _messenger;
+        private int _index;
+        private string _person;
 
         public CallApp(Call call)
         {
@@ -31,15 +28,18 @@ namespace MegaBuy.Calls.UIThings
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
-            UpdateCall(call);
+            CallEnded();
         }
 
         private void UpdateCall(Call call)
         {
+            _visuals.Clear();
+            _ui.Clear();
             _call = call;
+            _person = _call.Script.First(x => x.CharacterName != "player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
             {
-                var button = new TextButton(1, new Rectangle(((int)(i / 2)) * 350, ((i % 2) * 150) + 450, 300, 100), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
+                var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
                 _ui.Add(button);
                 _visuals.Add(button);
             }
@@ -47,12 +47,20 @@ namespace MegaBuy.Calls.UIThings
 
         private void CallEnded()
         {
-            person = person == "female-customer" ? "male-customer" : "female-customer";
+            _person = "nothing";
             _visuals.Clear();
-            _index = 0;
-            _messenger = new TextMessenger(6, Color.White, new Size2(350, 50));
             _ui.Clear();
-            UpdateCall(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
+            _index = 0;
+            _messenger = new AutoSizingTextMessenger(6, Color.Black);
+
+            var button = new TextButton(1, new Rectangle(650, 720, 300, 90),
+                () => UpdateCall(new CallGenerater(CallCenterPosition.Referrer).GenerateCall()),
+                "Ready For Call",
+                Color.FromNonPremultiplied(42, 42, 42, 250), 
+                Color.FromNonPremultiplied(30, 30, 30, 250),
+                Color.FromNonPremultiplied(21, 21, 21, 250));
+            _visuals.Add(button);
+            _ui.Add(button);
         }
 
         public void Update(TimeSpan delta)
@@ -64,20 +72,23 @@ namespace MegaBuy.Calls.UIThings
         public void Draw(Transform2 parentTransform)
         {
             _ui.Position = parentTransform.Location;
-            World.Draw(new RectangleTexture(1400, 900, Color.Red).Create(), parentTransform.Location);
-            var callerTransform = new Transform2(parentTransform.Location, caller);
-            World.Draw(new RectangleTexture(caller.Width, caller.Height, Color.Gray).Create(), callerTransform);
-            World.Draw("Images/Screen/" + person, callerTransform);
-            World.Draw(new RectangleTexture(messengertext.Width, messengertext.Height, Color.Gray).Create(), new Transform2(new Vector2(parentTransform.Location.X + 900, parentTransform.Location.Y + 0), messengertext));
+
+            World.Draw(new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create(), new Vector2(210, 10));
+
+            World.Draw(new RectangleTexture(new Size2(400, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(1160, 30));
+            World.Draw("Images/Customers/" + _person.ToLower().Replace(' ', '-'), new Rectangle(1160, 20, 400, 600));
+            UI.DrawText(_person, new Vector2(1160, 600), Color.White, "Fonts/Audiowide");
             _visuals.ForEach(x => x.Draw(parentTransform));
-            _messenger.Draw(new Transform2(new Vector2(parentTransform.Location.X + 925, 0)));
+
+            World.Draw(new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(230, 30));
+            _messenger.Draw(new Transform2(new Vector2(250, 50)));
         }
 
         public void AddMessage()
         {
-            if (_index == _call.Script.Count)
+            if (_call == null || _index == _call.Script.Count)
                 return;
-            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName == "player" ? Color.LightBlue : Color.LightGreen);
+            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName == "player" ? Color.FromNonPremultiplied(0, 0, 200, 150) : Color.FromNonPremultiplied(0, 200, 0, 150));
             _index++;
         }
     }
