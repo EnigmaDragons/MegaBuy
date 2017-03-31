@@ -42,11 +42,17 @@
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
+    <Compile Include="Calls\CallGenerater.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
+    <Compile Include="Calls\Conversation Pieces\Nouns.cs" />
+    <Compile Include="Calls\Conversation Pieces\Verbs.cs" />
+    <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
+    <Compile Include="Calls\Rules\CallCenterPosition.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
-    <Compile Include="ICallOption.cs" />
+    <Compile Include="Calls\ICallOption.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\CallStarted.cs" />
     <Compile Include="Calls\CallSucceeded.cs" />
@@ -56,11 +62,11 @@
     <Compile Include="Calls\Options\ReferToInfo.cs" />
     <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
-    <Compile Include="Calls\Rules\CallerPatienceDecay.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\ScriptLine.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
+    <Compile Include="Calls\UIThings\CallApp.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />
@@ -76,6 +82,8 @@
     <Compile Include="Scene\PAD.cs" />
     <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\Menu.cs" />
+    <Compile Include="CustomUI\TextMessenger.cs" />
+    <Compile Include="Scene\TextMessengerSample.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
@@ -108,7 +116,7 @@
     <Compile Include="Scene\TickTock.cs" />
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
-    <Compile Include="UIStuff\ChatBox.cs" />
+    <Compile Include="CustomUI\ChatBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

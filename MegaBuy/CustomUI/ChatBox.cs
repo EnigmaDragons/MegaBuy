@@ -6,7 +6,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.UIStuff
+namespace MegaBuy.CustomUI
 {
     public class ChatBox : IVisualAutomaton
     {

@@ -1,9 +1,7 @@
 ﻿using System;
 using MegaBuy.Time;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
-using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Scene
@@ -15,7 +13,7 @@ namespace MegaBuy.Scene
 
         public void Init()
         {
-            _clockText = new Label(Color.White);
+            _clockText = new Label();
             _clock = new Clock(_clockText);
         }
 

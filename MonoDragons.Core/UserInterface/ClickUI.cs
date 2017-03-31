@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
@@ -15,6 +16,7 @@ namespace MonoDragons.Core.UserInterface
 
         private ClickableUIElement _currentElement = None;
         private bool _wasClicked;
+        public Vector2 Position { private get; set; }
 
         public void Add(ClickableUIElement element)
         {
@@ -25,6 +27,11 @@ namespace MonoDragons.Core.UserInterface
         public void Remove(ClickableUIElement element)
         {
             _elements.Remove(element);
+        }
+
+        public void Clear()
+        {
+            _elements.Clear();
         }
 
         public void Update(TimeSpan delta)
@@ -67,7 +74,7 @@ namespace MonoDragons.Core.UserInterface
 
         private ClickableUIElement GetElement(Point mousePosition)
         {
-            var element = _elements.FirstOrDefault(x => x.Area.Contains(mousePosition));
+            var element = _elements.FirstOrDefault(x => x.Area.Contains(mousePosition - Position.ToPoint()));
             return element ?? None;
         }
     }

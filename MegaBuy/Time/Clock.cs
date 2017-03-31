@@ -26,7 +26,7 @@ namespace MegaBuy.Time
         public void Update(TimeSpan delta)
         {
             _timer.Update(delta);
-            _label.Set($"{_hour:D2}:{_minute:D2}");
+            _label.Text = $"{_hour:D2}:{_minute:D2}";
         }
 
         private void IncrementMinute()

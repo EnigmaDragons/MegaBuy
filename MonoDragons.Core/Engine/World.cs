@@ -67,6 +67,11 @@ namespace MonoDragons.Core.Engine
             _spriteBatch.Draw(Resources.Load<Texture2D>(imageName), rectPostion, Color.White);
         }
 
+        public static void Draw(Texture2D texture, Rectangle rectPosition)
+        {
+            _spriteBatch.Draw(texture, rectPosition, Color.White);
+        }
+
         public static void DrawCircle(float radius, Color color, Vector2 position)
         {
             var circle = new CircleTexture((int) radius, color).Create();
@@ -106,6 +111,11 @@ namespace MonoDragons.Core.Engine
         {
             //new Rectangle((transform.Location * transform.Scale).ToPoint(), (transform.Size * transform.Scale).ToPoint()
             Draw(name, transform.ToRectangle());
+        }
+
+        public static void Draw(Texture2D texture, Transform2 transform)
+        {
+            Draw(texture, transform.ToRectangle());
         }
     }
 }

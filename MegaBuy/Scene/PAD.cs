@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using MegaBuy.Calls;
+using MegaBuy.Calls.Options;
+using MegaBuy.Calls.Rules;
+using MegaBuy.Calls.UIThings;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.PhysicsEngine;
@@ -8,51 +13,39 @@ namespace MegaBuy.Scene
 {
     public sealed class PAD : IScene
     {
-        private ImageButton _btnAvailableForCall;
-        private ImageButton _btnOrderFood;
-        private ImageButton _btnLogout;
+        private ImageButton _leave;
         private ClickUI _ui;
+
+        private CallApp _app;
 
         public void Init()
         {
-            _btnAvailableForCall = new ImageButton(
-                "Images/PAD/available-default",
-                "Images/PAD/available-hover",
-                "Images/PAD/available-pressed",
-                new Transform2(new Vector2(600, 500), new Size2(200, 50)),
-                () => { });
 
-            _btnOrderFood = new ImageButton(
-                "Images/PAD/orderfood-default",
-                "Images/PAD/orderfood-hover",
-                "Images/PAD/orderfood-pressed",
-                new Transform2(new Vector2(600, 600), new Size2(200, 50)),
-                () => { });
-
-            _btnLogout = new ImageButton(
+            _leave = new ImageButton(
                 "Images/PAD/logout-default",
                 "Images/PAD/logout-hover",
                 "Images/PAD/logout-pressed",
-                new Transform2(new Vector2(600, 700), new Size2(200, 50)),
+                new Transform2(new Vector2(0, 0), new Size2(200, 50)),
                 () => World.NavigateToScene("Room"));
 
             _ui = new ClickUI();
-            _ui.Add(_btnAvailableForCall);
-            _ui.Add(_btnOrderFood);
-            _ui.Add(_btnLogout);
+            _ui.Add(_leave);
+
+            _app = new CallApp(new CallGenerater(CallCenterPosition.Referrer).GenerateCall());
+            //_app = new CallApp(new Call(new Caller(10000), new Script(), CallResolution.ReferToInfo, new List<ICallOption> { new ReferToInfo(), new ReferToTroubleshooting(), new ReferToTroubleshooting(), new ReferToInfo()}));
         }
 
         public void Update(TimeSpan delta)
         {
             _ui.Update(delta);
+            _app.Update(delta);
         }
 
         public void Draw()
         {
-            World.DrawBackgroundColor(Color.White);
-            _btnAvailableForCall.Draw(Transform2.Zero);
-            _btnOrderFood.Draw(Transform2.Zero);
-            _btnLogout.Draw(Transform2.Zero);
+            World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
+            _leave.Draw(Transform2.Zero);
+            _app.Draw(new Transform2(new Vector2(200, 0), new Size2(0, 0)));
         }
     }
 }
