@@ -38,7 +38,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apps\App.cs" />
+    <Compile Include="Apps\FoodApp.cs" />
+    <Compile Include="Apps\IApp.cs" />
     <Compile Include="Apps\Notifications.cs" />
+    <Compile Include="Apps\PAD.cs" />
+    <Compile Include="Apps\MenuBar.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
@@ -85,7 +90,7 @@
     <Compile Include="Money\RentIncreased.cs" />
     <Compile Include="Money\RentPaid.cs" />
     <Compile Include="Notifications\PlayerNotification.cs" />
-    <Compile Include="Scene\PAD.cs" />
+    <Compile Include="Scene\Online.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="CustomUI\TextMessenger.cs" />
     <Compile Include="Scene\TextMessengerSample.cs" />
