@@ -34,7 +34,7 @@ namespace MegaBuy.Apps
             if (app.Equals(App.Call))
                 return new CallApp(_clickUi);
             if (app.Equals(App.Food))
-                return new FoodApp();
+                return new FoodApp(_clickUi);
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
 

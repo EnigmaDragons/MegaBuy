@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MegaBuy.Money;
 
 namespace MegaBuy.Food
 {
-    class FoodViewModel
+    public class FoodViewModel
     {
+        public string Name { get; private set; }
+        public IAmount Cost { get; private set; }
+        public string Image { get; private set; }
+
+        public FoodViewModel(string name, IAmount cost, string image)
+        {
+            Name = name;
+            Cost = cost;
+            Image = image;
+        }
     }
 }
