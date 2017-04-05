@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls;
+using MegaBuy.Calls.UI;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -25,6 +26,8 @@ namespace MegaBuy.Apps
         private int _index;
         private string _person;
 
+        private const int _stars = 5;
+
         public CallApp(ClickUI ui)
         {
             _ui = ui;
@@ -39,8 +42,6 @@ namespace MegaBuy.Apps
 
         private void UpdateCall(Call call)
         {
-            _visuals.Clear();
-            _layer.Clear();
             _call = call;
             _person = _call.Script.First(x => x.CharacterName != "player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
@@ -59,7 +60,7 @@ namespace MegaBuy.Apps
             _index = 0;
             _call = null;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
-
+            DisplayStars(_stars);
             var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
                 PublishReadyForCall,
                 "Ready",
@@ -70,11 +71,17 @@ namespace MegaBuy.Apps
             _layer.Add(button);
         }
 
+        private void DisplayStars(int stars)
+        {
+            for (var i = 1; i < 6; i++)
+                _visuals.Add(i <= _stars ? (IVisual)new WholeStar(new Vector2(150 * i + 180, 230)) : (IVisual)new EmptyStar(new Vector2(150 * i + 180, 230)));
+        }
+
         private void PublishReadyForCall()
         {
-            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
             _layer.Clear();
             _visuals.Clear();
+            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
         }
 
         public void Update(TimeSpan delta)
@@ -87,22 +94,23 @@ namespace MegaBuy.Apps
         {
             _layer.Location = parentTransform.Location;
 
-            World.Draw(new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create(), new Vector2(210, 10));
+            //World.Draw(new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create(), new Vector2(210, 10));
 
             World.Draw(new RectangleTexture(new Size2(400, 570), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(1160, 60));
             World.Draw("Images/Customers/" + _person.ToLower().Replace(' ', '-'), new Rectangle(1160, 60, 400, 580));
             UI.DrawText(_person, new Vector2(1160, 20), Color.Green, "Fonts/Audiowide");
-            _visuals.ForEach(x => x.Draw(parentTransform));
 
-            World.Draw(new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(230, 30));
+            //World.Draw(new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(230, 30));
             _messenger.Draw(new Transform2(new Vector2(250, 50)));
+
+            _visuals.ForEach(x => x.Draw(parentTransform));
         }
 
         public void AddMessage()
         {
             if (_call == null || _index == _call.Script.Count)
                 return;
-            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName == "player" ? Color.FromNonPremultiplied(0, 0, 200, 150) : Color.FromNonPremultiplied(0, 200, 0, 150));
+            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName.Equals("player", StringComparison.InvariantCultureIgnoreCase) ? Color.FromNonPremultiplied(250, 100, 250, 200) : Color.FromNonPremultiplied(100, 250, 100, 200));
             _index++;
         }
     }
