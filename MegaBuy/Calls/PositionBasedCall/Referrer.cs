@@ -15,24 +15,24 @@ namespace MegaBuy.Calls.PositionBasedCall
         private static Func<Call>[] calls = new Func<Call>[]
         {
             () => {
-                var name = CallerNames.GetRandomName();
+                var name = CallerNames.names.Random();
                 var player = "Player";
                 var script = new Script();
                 script.Add(new ScriptLine(name, "Hello my name is " + name + "."));
                 script.Add(new ScriptLine(player, "Hello " + name + ", how can I help you?"));
-                var verb = Verbs.GetRandomCantVerb();
-                var noun = Nouns.GetRandomNounWithAttribute(verb.Value);
-                script.Add(new ScriptLine(name, "My " + noun + " " + verb.Key + "."));
+                var verb = Verbs.verbs.Random();
+                var noun = Nouns.nouns[verb.Value].Random();
+                script.Add(new ScriptLine(name, "My " + noun + " " + Verbs.canNotSynonyms.Random() + " " + verb.Key + "."));
                 return new Call(new Caller(2000), script, CallResolution.ReferToTroubleshooting, new List<ICallOption>
                     { new ReferToTroubleshooting(), new ReferToInfo() });
             },
             () => {
-                var name = CallerNames.names[Rng.Int(CallerNames.names.Length)];
+                var name = CallerNames.names.Random();
                 var player = "Player";
                 var script = new Script();
                 script.Add(new ScriptLine(name, "Hello my name is " + name + "."));
                 script.Add(new ScriptLine(player, "Hello " + name + ", how can I help you?"));
-                script.Add(new ScriptLine(name, "How much can I sell my " + Nouns.GetRandomNoun()));
+                script.Add(new ScriptLine(name, "How much can I sell my " + Nouns.nouns.Random().Value.Random() + " for?"));
                 return new Call(new Caller(2000), script, CallResolution.ReferToInfo, new List<ICallOption>
                     { new ReferToTroubleshooting(), new ReferToInfo() });
             }

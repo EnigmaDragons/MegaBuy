@@ -9,21 +9,10 @@ namespace MegaBuy.Calls.Conversation_Pieces
 {
     public class Nouns
     {
-        public static Dictionary<VerbAttribute, string[]> nouns = new Dictionary<VerbAttribute, string[]>
+        public static Dictionary<NounOperations, string[]> nouns = new Dictionary<NounOperations, string[]>
         {
-            { VerbAttribute.CanRun, new string[] { "flying car", "smart computer" } },
-            { VerbAttribute.CanTurnOnOrOff, new string[] { "flying car", "smart computer" } }
+            { NounOperations.CanRun, new string[] { "flying car", "smart computer" } },
+            { NounOperations.CanTurnOnOrOff, new string[] { "flying car", "smart computer" } }
         };
-
-        public static string GetRandomNounWithAttribute(VerbAttribute attribute)
-        {
-            return nouns[attribute][Rng.Int(nouns[attribute].Count())];
-        }
-
-        public static string GetRandomNoun()
-        {
-            var attributesNouns = nouns.ElementAt(Rng.Int(nouns.Count())).Value;
-            return attributesNouns[Rng.Int(attributesNouns.Length)];
-        }
     }
 }

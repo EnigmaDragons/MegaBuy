@@ -9,20 +9,17 @@ namespace MegaBuy.Calls.Conversation_Pieces
 {
     public class Verbs
     {
-        public static Dictionary<string, VerbAttribute> cantVerbs = new Dictionary<string, VerbAttribute>
+        public static Dictionary<string, NounOperations> verbs = new Dictionary<string, NounOperations>
         {
-            { "can't run", VerbAttribute.CanRun},
-            { "can't turn on", VerbAttribute.CanTurnOnOrOff },
-            { "can't turn off", VerbAttribute.CanTurnOnOrOff }
+            { "run", NounOperations.CanRun},
+            { "turn on", NounOperations.CanTurnOnOrOff },
+            { "turn off", NounOperations.CanTurnOnOrOff }
         };
 
-        public static KeyValuePair<string, VerbAttribute> GetRandomCantVerb()
-        {
-            return cantVerbs.ElementAt(Rng.Int(cantVerbs.Count()));
-        }
+        public static string[] canNotSynonyms = new string[] { "can't", "fails to", "is unable to" };
     }
 
-    public enum VerbAttribute
+    public enum NounOperations
     {
         CanRun,
         CanTurnOnOrOff

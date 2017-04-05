@@ -44,6 +44,7 @@
     <Compile Include="Calls\CallerPatience.cs" />
     <Compile Include="Calls\CallGenerater.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Nouns.cs" />
     <Compile Include="Calls\Conversation Pieces\Verbs.cs" />
@@ -72,7 +73,6 @@
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />
-    <Compile Include="IEnumableExtensions.cs" />
     <Compile Include="Map\ApartmentMapFactory.cs" />
     <Compile Include="Money\Fee.cs" />
     <Compile Include="Endings\Starved.cs" />
