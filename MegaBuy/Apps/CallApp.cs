@@ -16,8 +16,7 @@ namespace MegaBuy.Apps
     public class CallApp : IApp
     {
         public App Type => App.Call;
-
-        private readonly ClickUI _ui;
+        
         private readonly ClickUILayer _layer;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
@@ -30,9 +29,8 @@ namespace MegaBuy.Apps
 
         public CallApp(ClickUI ui)
         {
-            _ui = ui;
             _layer = new ClickUILayer();
-            _ui.Add(_layer);
+            ui.Add(_layer);
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
@@ -86,7 +84,6 @@ namespace MegaBuy.Apps
 
         public void Update(TimeSpan delta)
         {
-            _ui.Update(delta);
             _timer.Update(delta);
         }
 
