@@ -24,6 +24,12 @@ Session 4
 
 ----
 
+Session 5
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen6.jpg)
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen7.jpg)
+
 <strong>Contributors</strong>:
 - SilasReinagel
 - ZavixDragon
