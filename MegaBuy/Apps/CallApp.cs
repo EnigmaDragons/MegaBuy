@@ -26,18 +26,16 @@ namespace MegaBuy.Apps
         private int _index;
         private string _person;
 
-        private const int _stars = 5;
-
         public CallApp(ClickUI ui)
         {
             _ui = ui;
             _layer = new ClickUILayer();
             _ui.Add(_layer);
             _timer = new Timer(AddMessage, 1000);
-            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
-            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
+            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(x.Rating.AsInt()), this));
+            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(0), this));
             World.Subscribe(new EventSubscription<CallStarted>(x => UpdateCall(x.Call), this));
-            CallEnded();
+            CallEnded(4);
         }
 
         private void UpdateCall(Call call)
@@ -52,7 +50,7 @@ namespace MegaBuy.Apps
             }
         }
 
-        private void CallEnded()
+        private void CallEnded(int x)
         {
             _person = "nothing";
             _visuals.Clear();
@@ -60,7 +58,7 @@ namespace MegaBuy.Apps
             _index = 0;
             _call = null;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
-            DisplayStars(_stars);
+            DisplayStars(x);
             var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
                 PublishReadyForCall,
                 "Ready",
@@ -74,7 +72,7 @@ namespace MegaBuy.Apps
         private void DisplayStars(int stars)
         {
             for (var i = 1; i < 6; i++)
-                _visuals.Add(i <= _stars ? (IVisual)new WholeStar(new Vector2(150 * i + 180, 230)) : (IVisual)new EmptyStar(new Vector2(150 * i + 180, 230)));
+                _visuals.Add(i <= stars ? (IVisual)new WholeStar(new Vector2(150 * i + 180, 230)) : (IVisual)new EmptyStar(new Vector2(150 * i + 180, 230)));
         }
 
         private void PublishReadyForCall()
@@ -86,6 +84,8 @@ namespace MegaBuy.Apps
 
         public void Update(TimeSpan delta)
         {
+            if (_call != null)
+                _call.Update(delta);
             _ui.Update(delta);
             _timer.Update(delta);
         }

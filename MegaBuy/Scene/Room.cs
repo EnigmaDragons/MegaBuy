@@ -45,7 +45,7 @@ namespace MegaBuy.Scene
 
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
 
-            _overlay = new Overlay(new PlayerAccount(), new Clock());
+            _overlay = new Overlay();
         }
 
         public void Update(TimeSpan delta)
@@ -65,7 +65,7 @@ namespace MegaBuy.Scene
 
         private void NavigateToPAD()
         {
-            World.NavigateToScene("PAD");
+            World.NavigateToScene("Online");
         }
     }
 }

@@ -103,6 +103,7 @@
     <Compile Include="Navigation\FadingInScene.cs" />
     <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\Bordered.cs" />
+    <Compile Include="UserInterface\ColoredRectangle.cs" />
     <Compile Include="UserInterface\IconButton.cs" />
     <Compile Include="UserInterface\ClickUILayer.cs" />
     <Compile Include="UserInterface\Label.cs" />

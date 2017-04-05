@@ -19,6 +19,9 @@ namespace MegaBuy.CustomUI
 
         private readonly Transform2 _transform;
 
+        public Overlay()
+            : this(GameState.PlayerAccount, GameState.Clock) { }
+
         public Overlay(PlayerAccount account, Clock clock)
         {
             _transform = new Transform2(new Vector2(1300, 40));
