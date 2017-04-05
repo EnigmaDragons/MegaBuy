@@ -57,7 +57,7 @@ namespace MegaBuy.Scene
 
         public void Draw()
         {
-            World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
+            //World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
             _food.Draw(Transform2.Zero);
             _calls.Draw(Transform2.Zero);
             _leave.Draw(Transform2.Zero);
