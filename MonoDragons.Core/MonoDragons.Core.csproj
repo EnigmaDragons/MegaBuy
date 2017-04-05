@@ -52,6 +52,7 @@
     <Compile Include="Engine\Hack.cs" />
     <Compile Include="Engine\INavigation.cs" />
     <Compile Include="Engine\IVisualAutomaton.cs" />
+    <Compile Include="Engine\Metrics.cs" />
     <Compile Include="Engine\Timer.cs" />
     <Compile Include="GameDebug.cs" />
     <Compile Include="Navigation\INavigation.cs" />
