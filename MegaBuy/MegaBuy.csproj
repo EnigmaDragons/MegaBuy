@@ -76,6 +76,8 @@
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
+    <Compile Include="Foods.cs" />
+    <Compile Include="Food\FoodOptionUI.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />

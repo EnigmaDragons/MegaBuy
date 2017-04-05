@@ -5,6 +5,7 @@ using MegaBuy.Calls;
 using MegaBuy.Calls.UI;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Graphics;
@@ -27,6 +28,12 @@ namespace MegaBuy.Apps
         private string _person;
 
         private const int _stars = 5;
+
+
+        private readonly Texture2D _backgroundRect = new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create();
+        private readonly Texture2D _messengerRect = new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create();
+        private readonly Texture2D _callerRect = new RectangleTexture(new Size2(400, 570), Color.FromNonPremultiplied(0, 0, 0, 100)).Create();
+
 
         public CallApp(ClickUI ui)
         {
@@ -94,13 +101,13 @@ namespace MegaBuy.Apps
         {
             _layer.Location = parentTransform.Location;
 
-            //World.Draw(new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create(), new Vector2(210, 10));
+            World.Draw(_backgroundRect, new Vector2(210, 10));
 
-            World.Draw(new RectangleTexture(new Size2(400, 570), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(1160, 60));
+            World.Draw(_callerRect, new Vector2(1160, 60));
             World.Draw("Images/Customers/" + _person.ToLower().Replace(' ', '-'), new Rectangle(1160, 60, 400, 580));
             UI.DrawText(_person, new Vector2(1160, 20), Color.Green, "Fonts/Audiowide");
 
-            //World.Draw(new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create(), new Vector2(230, 30));
+            World.Draw(_messengerRect, new Vector2(230, 30));
             _messenger.Draw(new Transform2(new Vector2(250, 50)));
 
             _visuals.ForEach(x => x.Draw(parentTransform));
