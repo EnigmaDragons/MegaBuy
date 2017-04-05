@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
@@ -10,12 +11,13 @@ namespace MonoDragons.Core.UserInterface
         private readonly Color _defaultColor;
         private readonly Color _hover;
         private readonly Color _pressed;
+        private readonly Action _onPressed;
         private readonly Rectangle _buttonArea;
         private readonly Rectangle _iconArea;
 
         private Color _color;
 
-        public IconButton(string icon, Rectangle iconArea, Rectangle buttonArea, Color defaultColor, Color hover, Color pressed) 
+        public IconButton(string icon, Rectangle iconArea, Rectangle buttonArea, Color defaultColor, Color hover, Color pressed, Action onPressed) 
             : base(10, buttonArea)
         {
             _icon = icon;
@@ -24,6 +26,7 @@ namespace MonoDragons.Core.UserInterface
             _defaultColor = defaultColor;
             _hover = hover;
             _pressed = pressed;
+            _onPressed = onPressed;
             _color = _defaultColor;
             _buttonArea = buttonArea;
         }
@@ -46,6 +49,7 @@ namespace MonoDragons.Core.UserInterface
         public override void OnReleased()
         {
             _color = _hover;
+            _onPressed();
         }
 
         public void Draw(Transform2 parentTransform)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls;
-using MegaBuy.Calls.Rules;
 using MegaBuy.Calls.UI;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
@@ -14,8 +13,10 @@ using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Apps
 {
-    public class CallApp : IVisualAutomaton
+    public class CallApp : IApp
     {
+        public App Type => App.Call;
+
         private readonly ClickUI _ui;
         private readonly ClickUILayer _layer;
         private Call _call;

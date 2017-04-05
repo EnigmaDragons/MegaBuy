@@ -12,11 +12,10 @@ namespace MegaBuy.Calls.PositionBasedCall
 {
     public class Referrer
     {
-        private static Func<Call>[] calls = new Func<Call>[]
+        private static Func<string, Call>[] calls = new Func<string, Call>[]
         {
-            () => {
+            (player) => {
                 var name = CallerNames.names.Random();
-                var player = "Player";
                 var script = new Script();
                 script.Add(new ScriptLine(name, "Hello my name is " + name + "."));
                 script.Add(new ScriptLine(player, "Hello " + name + ", how can I help you?"));
@@ -26,9 +25,8 @@ namespace MegaBuy.Calls.PositionBasedCall
                 return new Call(new Caller(2000), script, CallResolution.ReferToTroubleshooting, new List<ICallOption>
                     { new ReferToTroubleshooting(), new ReferToInfo() });
             },
-            () => {
+            (player) => {
                 var name = CallerNames.names.Random();
-                var player = "Player";
                 var script = new Script();
                 script.Add(new ScriptLine(name, "Hello my name is " + name + "."));
                 script.Add(new ScriptLine(player, "Hello " + name + ", how can I help you?"));
@@ -38,9 +36,9 @@ namespace MegaBuy.Calls.PositionBasedCall
             }
         };
 
-        public static Call NewCall()
+        public static Call NewCall(string player)
         {
-            return calls[Rng.Int(calls.Length)]();
+            return calls.Random()(player);
         }
     }
 }

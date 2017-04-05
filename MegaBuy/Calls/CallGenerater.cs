@@ -11,9 +11,11 @@ namespace MegaBuy.Calls
     public class CallGenerater
     {
         private CallCenterPosition _position;
+        private string _player;
 
-        public CallGenerater(CallCenterPosition position)
+        public CallGenerater(CallCenterPosition position, string player = "Player")
         {
+            _player = player;
             _position = position;
         }
 
@@ -25,7 +27,7 @@ namespace MegaBuy.Calls
         public Call GenerateCall()
         {
             if (_position == CallCenterPosition.Referrer)
-                return Referrer.NewCall();
+                return Referrer.NewCall(_player);
             throw new Exception();
         }
     }
