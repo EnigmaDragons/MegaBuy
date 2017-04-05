@@ -18,6 +18,10 @@ Session 2
 
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen4.jpg)
 
+Session 4
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen5.jpg)
+
 ----
 
 <strong>Contributors</strong>:

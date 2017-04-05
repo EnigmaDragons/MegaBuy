@@ -67,7 +67,7 @@
     <Compile Include="Calls\ScriptLine.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
-    <Compile Include="Calls\UIThings\CallApp.cs" />
+    <Compile Include="Apps\CallApp.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Food\Hungry.cs" />
@@ -85,9 +85,7 @@
     <Compile Include="Money\RentIncreased.cs" />
     <Compile Include="Money\RentPaid.cs" />
     <Compile Include="Notifications\PlayerNotification.cs" />
-    <Compile Include="Scene\ClickToWin.cs" />
     <Compile Include="Scene\PAD.cs" />
-    <Compile Include="Scene\SlowlyStarving.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="CustomUI\TextMessenger.cs" />
     <Compile Include="Scene\TextMessengerSample.cs" />
@@ -119,11 +117,9 @@
     <Compile Include="Scene\Room.cs" />
     <Compile Include="Scene\Darkness.cs" />
     <Compile Include="Scene\ILovePolitics.cs" />
-    <Compile Include="Scene\Screen.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
-    <Compile Include="CustomUI\ChatBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -134,6 +130,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Credits.txt" />
     <Content Include="Content\Effects\light-effect.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -147,6 +144,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\burger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\chaos-theory.jpg">
@@ -168,6 +168,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\poweroff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\video-call.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\bed-bot.png">
