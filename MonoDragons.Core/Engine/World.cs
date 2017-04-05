@@ -71,13 +71,8 @@ namespace MonoDragons.Core.Engine
 
         public static void Draw(Texture2D texture, Rectangle rectPosition)
         {
+            Resources.Put(texture.GetHashCode().ToString(), texture);
             _spriteBatch.Draw(texture, rectPosition, Color.White);
-        }
-
-        public static void DrawCircle(float radius, Color color, Vector2 position)
-        {
-            var circle = new CircleTexture((int) radius, color).Create();
-            _spriteBatch.Draw(circle, position);
         }
 
         public static void Publish<T>(T payload)
@@ -96,22 +91,20 @@ namespace MonoDragons.Core.Engine
             _events.Unsubscribe(owner);
         }
 
-        public static void DrawRectangle(Rectangle rectangle, Color color)
-        {
-            var rect = new RectangleTexture(rectangle.Width, rectangle.Height, color).Create();
-            Resources.Put(Guid.NewGuid().ToString(), rect);
-            _spriteBatch.Draw(rect, rectangle, color);
-        }
+        //public static void DrawRectangle(Rectangle rectangle, Color color)
+        //{
+        //    var texture = new RectangleTexture(rectangle.Width, rectangle.Height, color).Create();
+        //    Resources.Put(texture.GetHashCode().ToString(), texture);
+        //    _spriteBatch.Draw(texture, rectangle, color);
+        //}
 
         public static void Draw(Texture2D texture, Vector2 position)
         {
-            Resources.Put(texture.GetHashCode().ToString(), texture);
             _spriteBatch.Draw(texture, position);
         }
 
         public static void Draw(string name, Transform2 transform)
         {
-            //new Rectangle((transform.Location * transform.Scale).ToPoint(), (transform.Size * transform.Scale).ToPoint()
             Draw(name, transform.ToRectangle());
         }
 

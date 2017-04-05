@@ -81,6 +81,7 @@
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="IEnumableExtensions.cs" />
     <Compile Include="Map\ApartmentMapFactory.cs" />
     <Compile Include="Money\Fee.cs" />
@@ -97,7 +98,6 @@
     <Compile Include="Scene\Online.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="CustomUI\TextMessenger.cs" />
-    <Compile Include="Scene\TextMessengerSample.cs" />
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Room.cs" />
-    <Compile Include="Scene\Darkness.cs" />
     <Compile Include="Scene\ILovePolitics.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Time\DayEnded.cs" />

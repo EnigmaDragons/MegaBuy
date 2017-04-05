@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MegaBuy.Calls;
 using MegaBuy.Endings;
 using MegaBuy.Scene;
 using Microsoft.Xna.Framework.Input;
@@ -17,7 +16,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("PAD", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Online", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -35,13 +34,11 @@ namespace MegaBuy
             return new SceneFactory(new Dictionary<string, Func<IScene>>
             {
                 { "Logo", () => new FadingInScene(new LogoScene()) },
-                { "Darkness", () => new Darkness() },
                 { "Room", () => new Room() },
                 { "ILovePolitics", () => new ILovePolitics() },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
-                { "PAD", () => new Online() },
-                { "Texting", () => new TextMessengerSample() },
+                { "Online", () => new Online() },
             });
         }
     }

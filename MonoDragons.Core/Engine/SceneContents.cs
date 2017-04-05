@@ -9,6 +9,8 @@ namespace MonoDragons.Core.Engine
         private readonly List<IDisposable> _diposables = new List<IDisposable>();
         private readonly ContentManager _contentManager;
 
+        public int ContentCount => _diposables.Count;
+
         public SceneContents(ContentManager contentManager)
         {
             _contentManager = contentManager;
@@ -29,6 +31,12 @@ namespace MonoDragons.Core.Engine
             _diposables.ForEach(x => x.Dispose());
             _diposables.Clear();
             _contentManager.Unload();
+        }
+
+        public void Dispose(IDisposable disposable)
+        {
+            disposable.Dispose();
+            _diposables.Remove(disposable);
         }
     }
 }

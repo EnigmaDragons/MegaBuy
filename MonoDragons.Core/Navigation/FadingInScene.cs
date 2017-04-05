@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Navigation
 {
@@ -11,6 +13,8 @@ namespace MonoDragons.Core.Navigation
         
         private double _transitionElapsedMillis;
         private bool _transitionComplete;
+
+        private ColoredRectangle _fade = new ColoredRectangle { Transform = new Transform2(new Size2(1920, 1080)) };
 
         private IScene _scene;
 
@@ -38,6 +42,7 @@ namespace MonoDragons.Core.Navigation
             {
                 _transitionElapsedMillis += delta.TotalMilliseconds;
                 _transitionComplete = _transitionElapsedMillis > _duration.TotalMilliseconds;
+                _fade.Color = Color.FromNonPremultiplied(0, 0, 0, (int)(255 - 255 * (_transitionElapsedMillis / _duration.TotalMilliseconds)));
                 return;
             }
 
@@ -49,8 +54,7 @@ namespace MonoDragons.Core.Navigation
             _scene.Draw();
 
             if (!_transitionComplete)
-                World.DrawRectangle(new Rectangle(0, 0, 1920, 1080),
-                    Color.FromNonPremultiplied(0, 0, 0, (int)(255 - 255 * (_transitionElapsedMillis / _duration.TotalMilliseconds))));
+                _fade.Draw(Transform2.Zero);
         }
     }
 }
