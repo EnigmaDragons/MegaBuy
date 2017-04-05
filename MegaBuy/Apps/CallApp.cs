@@ -71,9 +71,9 @@ namespace MegaBuy.Apps
 
         private void PublishReadyForCall()
         {
-            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
             _layer.Clear();
             _visuals.Clear();
+            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
         }
 
         public void Update(TimeSpan delta)
@@ -101,7 +101,7 @@ namespace MegaBuy.Apps
         {
             if (_call == null || _index == _call.Script.Count)
                 return;
-            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName == "player" ? Color.FromNonPremultiplied(0, 0, 200, 150) : Color.FromNonPremultiplied(0, 200, 0, 150));
+            _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName.Equals("player", StringComparison.InvariantCultureIgnoreCase) ? Color.FromNonPremultiplied(250, 100, 250, 200) : Color.FromNonPremultiplied(100, 250, 100, 200));
             _index++;
         }
     }
