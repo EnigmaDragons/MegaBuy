@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.PhysicsEngine;
@@ -14,6 +15,7 @@ namespace MonoDragons.Core.UserInterface
         private readonly Color _hover;
         private readonly Color _press;
         private Color _currentColor;
+        private readonly Texture2D _rect;
 
         public TextButton(int layer, Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press) : base(layer, area)
         {
@@ -23,6 +25,7 @@ namespace MonoDragons.Core.UserInterface
             _hover = hover;
             _press = press;
             _currentColor = _defaultColor;
+            _rect = new RectangleTexture(Area.Width, Area.Height, _currentColor).Create();
         }
 
         public override void OnEntered()
@@ -51,7 +54,7 @@ namespace MonoDragons.Core.UserInterface
             var str = DefaultFont.Font.MeasureString(_text);
             var x = parentTransform.Location.X + Area.X + ((Area.Width - str.X)/2);
             var y = parentTransform.Location.Y + Area.Y + ((Area.Height - str.Y) / 2);
-            World.Draw(new RectangleTexture(Area.Width, Area.Height, _currentColor).Create(), new Vector2(Area.X + parentTransform.Location.X, Area.Y + parentTransform.Location.Y));
+            World.Draw(_rect, new Vector2(Area.X + parentTransform.Location.X, Area.Y + parentTransform.Location.Y));
             UI.DrawText(_text, new Vector2(x, y), Color.White);
         }
     }

@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ClickUI : IAutomaton
+    public sealed class ClickUI : IVisualAutomaton
     {
         public static readonly ClickableUIElement None = new NoneClickableUIElement();
 
         private readonly List<ClickUILayer> _layers = new List<ClickUILayer> { new ClickUILayer() };
 
+        private readonly ColoredRectangle _elementHighlight = new ColoredRectangle { Color = Color.Transparent };
         private ClickableUIElement _currentElement = None;
         private bool _wasClicked;
+        private ClickUILayer _elementLayer;
+        private bool _elementChangeAfterPressed;
+
+        public ClickUI()
+        {
+            _elementLayer = _layers[0];
+        }
 
         public void Add(ClickUILayer layer)
         {
@@ -61,6 +69,9 @@ namespace MonoDragons.Core.UserInterface
 
         private void OnPressed()
         {
+            if (_wasClicked)
+                return;
+
             _currentElement.OnPressed();
             _wasClicked = true;
         }
@@ -69,26 +80,46 @@ namespace MonoDragons.Core.UserInterface
         {
             _currentElement.OnReleased();
             _wasClicked = false;
+            _elementChangeAfterPressed = false;
             _currentElement.OnEntered();
         }
 
         private void ChangeActiveElement(ClickableUIElement newElement)
         {
+            _elementChangeAfterPressed = _wasClicked;
             _currentElement.OnExitted();
             _wasClicked = false;
             _currentElement = newElement;
             _currentElement.OnEntered();
+            _elementHighlight.Transform = new Transform2(_currentElement.Area);
+            _elementHighlight.Color = Color.FromNonPremultiplied(100, 100, 0, 30);
         }
 
         private bool WasMouseReleased(MouseState mouse)
         {
-            return _wasClicked && mouse.LeftButton == ButtonState.Released && _currentElement.Area.Contains(mouse.Position);
+            return _wasClicked 
+                && mouse.LeftButton == ButtonState.Released 
+                && new Rectangle(_currentElement.Area.Location + _elementLayer.Location.ToPoint(), _currentElement.Area.Size).Contains(mouse.Position);
         }
 
         private ClickableUIElement GetElement(Point mousePosition)
         {
-            var element = _layers.LastOrDefault(x => x.GetElement(mousePosition) != None)?.GetElement(mousePosition);
-            return element ?? None;
+            for (var i = _layers.Count - 1; i >= 0; i--)
+                if (_layers[i].GetElement(mousePosition) != None)
+                {
+                    _elementLayer = _layers[i];
+                    return _layers[i].GetElement(mousePosition);
+                }
+            return None;
+        }
+
+        public void Draw(Transform2 parentTransform)
+        {
+#if DEBUG
+            _elementHighlight?.Draw(parentTransform + _elementLayer.Location);
+            UI.DrawText($"Mouse: {Mouse.GetState().Position}", new Vector2(1200, 800), Color.Yellow);
+            UI.DrawText($"Clicked: {_wasClicked}, {_elementChangeAfterPressed}", new Vector2(1200, 840), Color.Yellow);
+#endif
         }
     }
 }

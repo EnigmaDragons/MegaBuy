@@ -34,7 +34,7 @@ namespace MegaBuy.Apps
             if (app.Equals(App.Call))
                 return new CallApp(_clickUi);
             if (app.Equals(App.Food))
-                return new FoodApp();
+                return new FoodApp(_clickUi);
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
 
@@ -49,6 +49,7 @@ namespace MegaBuy.Apps
             World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
             _menuBar.Draw(parentTransform);
             _currentApp?.Draw(new Transform2(new Vector2(200, 0), new Size2(0, 0)));
+            _clickUi.Draw(Transform2.Zero);
         }
     }
 }
