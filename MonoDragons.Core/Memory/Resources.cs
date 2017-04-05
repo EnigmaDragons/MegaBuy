@@ -32,5 +32,13 @@ namespace MonoDragons.Core.Memory
             _sceneContents = new SceneContents(_game.Content);
             DefaultFont.Load(_game.Content);
         }
+
+        public static void Dispose(IDisposable disposable)
+        {
+            if (disposable != null)
+                _sceneContents.Dispose(disposable);
+        }
+
+        public static int CurrentSceneDisposableCount => _sceneContents?.ContentCount ?? 0;
     }
 }

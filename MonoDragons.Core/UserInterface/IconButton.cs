@@ -7,6 +7,8 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class IconButton : ClickableUIElement, IVisual
     {
+        private readonly ColoredRectangle _background = new ColoredRectangle();
+
         private readonly string _icon;
         private readonly Color _defaultColor;
         private readonly Color _hover;
@@ -29,26 +31,31 @@ namespace MonoDragons.Core.UserInterface
             _onPressed = onPressed;
             _color = _defaultColor;
             _buttonArea = buttonArea;
+            _background = new ColoredRectangle
+            {
+                Color = defaultColor,
+                Transform = new Transform2(buttonArea)
+            };
         }
 
         public override void OnEntered()
         {
-            _color = _hover;
+            _background.Color = _hover;
         }
 
         public override void OnExitted()
         {
-            _color = _defaultColor;
+            _background.Color = _defaultColor;
         }
 
         public override void OnPressed()
         {
-            _color = _pressed;
+            _background.Color = _pressed;
         }
 
         public override void OnReleased()
         {
-            _color = _hover;
+            _background.Color = _hover;
             _onPressed();
         }
 
@@ -56,7 +63,7 @@ namespace MonoDragons.Core.UserInterface
         {
             var buttonArea = new Rectangle(_buttonArea.Location, _buttonArea.Size);
             buttonArea.Offset(parentTransform.Location);
-            World.DrawRectangle(_buttonArea, _color);
+            _background.Draw(parentTransform);
             var iconArea = new Rectangle(_iconArea.Location, _iconArea.Size);
             iconArea.Offset(parentTransform.Location);
             World.Draw(_icon, iconArea);

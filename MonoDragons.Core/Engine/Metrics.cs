@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
@@ -33,11 +34,13 @@ namespace MonoDragons.Core.Engine
 
         public void Draw(Transform2 parentTransform)
         {
-#if DEBUG  
-            UI.DrawText($"FPS: {_framesPerSecond}", new Vector2(0, 0), Color.Yellow);
-            UI.DrawText($"UPS: {_updatesPerSecond}", new Vector2(0, 40), Color.Yellow);
-            UI.DrawText($"RAM: {AppDomain.MonitoringSurvivedProcessMemorySize}", new Vector2(0, 80), Color.Yellow);
-            UI.DrawText($"Sub: {World.CurrentEventSubscriptionCount}", new Vector2(0, 120), Color.Yellow);
+#if DEBUG
+            var color = Color.Yellow;
+            UI.DrawText($"FPS: {_framesPerSecond}", new Vector2(0, 0), color);
+            UI.DrawText($"UPS: {_updatesPerSecond}", new Vector2(0, 40), color);
+            UI.DrawText($"RAM: {AppDomain.MonitoringSurvivedProcessMemorySize}", new Vector2(0, 80), color);
+            UI.DrawText($"Sub: {World.CurrentEventSubscriptionCount}", new Vector2(0, 120), color);
+            UI.DrawText($"Scn: {Resources.CurrentSceneDisposableCount}", new Vector2(0, 160), color);
             _framesThisSecond++;
 #endif
         }

@@ -31,11 +31,11 @@ namespace MonoDragons.Core.Engine
         protected override void Initialize()
         {
             IsMouseVisible = true;
+            Resources.Init(this);
             _sprites = new SpriteBatch(GraphicsDevice);
             Hack.TheGame = this;
             Input.SetController(_controller);
             World.Init(this, this, _sprites);
-            Resources.Init(this);
             UI.Init(this, _sprites);
             base.Initialize();
         }
