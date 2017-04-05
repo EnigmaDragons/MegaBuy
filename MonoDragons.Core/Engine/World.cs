@@ -16,6 +16,8 @@ namespace MonoDragons.Core.Engine
     {
         private static readonly Events _events = new Events();
 
+        public static int CurrentEventSubscriptionCount => _events.SubscriptionCount;
+
         private static Game _game;
         private static ContentManager _content;
         private static SpriteBatch _spriteBatch;

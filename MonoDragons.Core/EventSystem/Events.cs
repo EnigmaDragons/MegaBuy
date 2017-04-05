@@ -9,6 +9,8 @@ namespace MonoDragons.Core.EventSystem
         private readonly Dictionary<Type, List<object>> _events = new Dictionary<Type, List<object>>();
         private readonly Dictionary<object, List<object>> _owners = new Dictionary<object, List<object>>();
 
+        public int SubscriptionCount => _events.Sum(e => e.Value.Count);
+
         public void Publish<T>(T payload)
         {
             var eventType = typeof(T);
@@ -31,9 +33,12 @@ namespace MonoDragons.Core.EventSystem
 
         public void Unsubscribe(object owner)
         {
-            var events = _owners[owner]; 
+            if (!_owners.ContainsKey(owner))
+                return;
+            var events = _owners[owner];
             for (var i = 0; i < _events.Count; i++)
                 _events.ElementAt(i).Value.RemoveAll(x => events.Any(y => y.Equals(x)));
+            _owners.Remove(owner);
         }
     }
 }

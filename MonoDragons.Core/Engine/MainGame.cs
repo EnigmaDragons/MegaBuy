@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Engine
 {
@@ -12,6 +13,7 @@ namespace MonoDragons.Core.Engine
         private readonly string _startingViewName;
         private readonly SceneFactory _sceneFactory;
         private readonly IController _controller;
+        private readonly Metrics _metrics;
 
         private SpriteBatch _sprites;
         private IScene _currentScene;
@@ -23,18 +25,18 @@ namespace MonoDragons.Core.Engine
             _startingViewName = startingViewName;
             _sceneFactory = sceneFactory;
             _controller = controller;
+            _metrics = new Metrics();
         }
 
         protected override void Initialize()
         {
-            
             IsMouseVisible = true;
             _sprites = new SpriteBatch(GraphicsDevice);
             Hack.TheGame = this;
             Input.SetController(_controller);
             World.Init(this, this, _sprites);
             Resources.Init(this);
-            UserInterface.UI.Init(this, _sprites);
+            UI.Init(this, _sprites);
             base.Initialize();
         }
 
@@ -51,6 +53,7 @@ namespace MonoDragons.Core.Engine
         protected override void Update(GameTime gameTime)
         {
             CheckForEscape();
+            _metrics.Update(gameTime.ElapsedGameTime);
             _controller.Update(gameTime.ElapsedGameTime);
             _currentScene?.Update(gameTime.ElapsedGameTime);
             new Physics().Resolve();
@@ -62,6 +65,7 @@ namespace MonoDragons.Core.Engine
             _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             World.DrawBackgroundColor(Color.Black);
             _currentScene?.Draw();
+            _metrics.Draw(Transform2.Zero);
             _sprites.End();
             base.Draw(gameTime);
         }
@@ -76,9 +80,11 @@ namespace MonoDragons.Core.Engine
         // TODO: This is only for development. Remove this when re're ready to release to production!!
         private void CheckForEscape()
         {
+#if DEBUG  
             var state = Keyboard.GetState();
             if(state.IsKeyDown(Keys.Escape))
                 Hack.TheGame.Exit();
+#endif
         }
     }
 }
