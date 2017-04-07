@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Money.Rules;
+using MegaBuy.Notifications;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -22,7 +23,7 @@ namespace MegaBuy.Money
             _currentRate = new Day1PerCallRate();
             _pendingPayments = new List<int>();
             World.Subscribe(new EventSubscription<DayStarted>(DayStarted, this));
-            World.Subscribe(new EventSubscription<DayEnded>(DayEnded, this));
+            World.Subscribe(new EventSubscription<HourChanged>(HourChanged, this));
             World.Subscribe(new EventSubscription<CallSucceeded>(CallSucceeded, this));
             World.Subscribe(new EventSubscription<CallRated>(CallRated, this));
             World.Subscribe(new EventSubscription<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
@@ -44,11 +45,17 @@ namespace MegaBuy.Money
             _dayPayment = new DayPayment();
         }
 
-        private void DayEnded(DayEnded day)
+        private void HourChanged(HourChanged hourChanged)
+        {
+            if (hourChanged.Hour == 20)
+                WorkDayEnded();
+        }
+
+        private void WorkDayEnded()
         {
             _playerAccount.Add(_dayPayment);
+            World.Publish(new PlayerNotification("MegaBuy", $"You have been paid MBit - {_dayPayment.Amount()}"));
             _dayPayment = null;
-            //World.Publish()
         }
 
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
