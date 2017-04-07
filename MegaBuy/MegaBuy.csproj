@@ -78,11 +78,13 @@
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
-    <Compile Include="Foods.cs" />
     <Compile Include="Food\FoodCost.cs" />
+    <Compile Include="Food\FoodEmporium.cs" />
+    <Compile Include="Food\FoodOptions\Menu.cs" />
     <Compile Include="Food\FoodOptionUI.cs" />
     <Compile Include="Food\FoodOrdered.cs" />
     <Compile Include="Food\FoodViewModel.cs" />
+    <Compile Include="Food\Food.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />

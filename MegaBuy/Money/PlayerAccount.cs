@@ -22,7 +22,7 @@ namespace MegaBuy.Money
 
         public void Remove(IAmount amount)
         {
-            throw new System.NotImplementedException();
+            _amount -= amount.Amount();
         }
 
         public decimal Amount()
