@@ -132,6 +132,7 @@
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
+    <Compile Include="Time\HourChanged.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
