@@ -50,5 +50,10 @@ namespace MonoDragons.Core.UserInterface
             _current = _basic;
             _onClick.Invoke();
         }
+
+        public override string ToString()
+        {
+            return _basic;
+        }
     }
 }

@@ -22,8 +22,6 @@ namespace MegaBuy.Calls
             _correctResolution = correctResolution;
             Options = options;
             World.Subscribe(new EventSubscription<CallResolved>(ResolveCall, this));
-            World.Subscribe(new EventSubscription<CallSucceeded>(x => World.Unsubscribe(this), this));
-            World.Subscribe(new EventSubscription<CallFailed>(x => World.Unsubscribe(this), this));
         }
 
         public void Update(TimeSpan delta)
@@ -34,9 +32,11 @@ namespace MegaBuy.Calls
         private void ResolveCall(CallResolved callResolved)
         {
             if (callResolved.Resolution == _correctResolution)
-                World.Publish(new CallSucceeded(CallerPatienceCallRatings.Get(Caller.Patience)));
+                World.Publish(new CallSucceeded(GetHashCode()));
             else
                 World.Publish(new CallFailed(new Fee(2)));
+            World.Publish(new CallRated(GetHashCode(), CallerPatienceCallRatings.Get(Caller.Patience)));
+            World.Unsubscribe(this);
         }
     }
 }

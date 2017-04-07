@@ -18,15 +18,22 @@ namespace MegaBuy.Apps
 
         public PAD()
         {
+            _currentApp = new NoneApp();
             _clickUi = new ClickUI();
             _menuBar = new MenuBar(_clickUi, this);
         }
 
         public void OpenApp(App app)
         {
+            if (_currentApp.Type == app)
+                return;
+
             if (!_apps.ContainsKey(app))
                 _apps[app] = MakeApp(app);
+
+            _currentApp.LostFocus();
             _currentApp = _apps[app];
+            _apps[app].GainedFocus();
         }
 
         private IApp MakeApp(App app)
@@ -35,6 +42,8 @@ namespace MegaBuy.Apps
                 return new CallApp(_clickUi);
             if (app.Equals(App.Food))
                 return new FoodApp(_clickUi);
+            if (app.Equals(App.Notification))
+                return new NotificationApp(_clickUi);
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
 

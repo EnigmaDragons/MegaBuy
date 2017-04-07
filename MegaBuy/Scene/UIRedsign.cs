@@ -50,8 +50,8 @@ namespace MegaBuy.Scene
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
 
             _clock = new Clock();
-            var layer = new ClickUILayer();
-            _clickUi.Add(layer, (int)ClickableLayers.Overlay);
+            var layer = new ClickUILayer("overlay");
+            _clickUi.Add(layer);
             _overlay = new OverlayUI(layer, _clock, new PlayerAccount(500));
         }
 

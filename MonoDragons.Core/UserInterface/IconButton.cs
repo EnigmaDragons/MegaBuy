@@ -7,7 +7,7 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class IconButton : ClickableUIElement, IVisual
     {
-        private readonly ColoredRectangle _background = new ColoredRectangle();
+        private readonly ColoredRectangle _background;
 
         private readonly string _icon;
         private readonly Color _defaultColor;
@@ -67,6 +67,11 @@ namespace MonoDragons.Core.UserInterface
             var iconArea = new Rectangle(_iconArea.Location, _iconArea.Size);
             iconArea.Offset(parentTransform.Location);
             World.Draw(_icon, iconArea);
+        }
+
+        public override string ToString()
+        {
+            return _icon;
         }
     }
 }

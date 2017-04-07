@@ -7,9 +7,15 @@ namespace MonoDragons.Core.UserInterface
     public class ClickUILayer
     {
         private List<ClickableUIElement> _elements = new List<ClickableUIElement>();
+        private readonly string _name;
 
         public Vector2 Location { get; set; }
 
+        public ClickUILayer(string name)
+        {
+            _name = name;
+        }
+        
         public void Add(ClickableUIElement element)
         {
             _elements.Add(element);
@@ -30,6 +36,11 @@ namespace MonoDragons.Core.UserInterface
         {
             var element = _elements.FirstOrDefault(x => x.Area.Contains(mousePosition - Location.ToPoint()));
             return element ?? ClickUI.None;
+        }
+
+        public override string ToString()
+        {
+            return _name;
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using MegaBuy.CustomUI;
 using MegaBuy.Map;
-using MegaBuy.Money;
 using MegaBuy.Player;
-using MegaBuy.Time;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MegaBuy.Scene
@@ -46,6 +45,8 @@ namespace MegaBuy.Scene
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
 
             _overlay = new Overlay();
+
+            Input.On(Control.X, NavigateToPAD);
         }
 
         public void Update(TimeSpan delta)

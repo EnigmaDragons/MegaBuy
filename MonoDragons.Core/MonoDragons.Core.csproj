@@ -54,7 +54,6 @@
     <Compile Include="Engine\IVisualAutomaton.cs" />
     <Compile Include="Engine\Metrics.cs" />
     <Compile Include="Engine\Timer.cs" />
-    <Compile Include="GameDebug.cs" />
     <Compile Include="Navigation\INavigation.cs" />
     <Compile Include="Engine\IScene.cs" />
     <Compile Include="Engine\IAutomaton.cs" />
@@ -115,6 +114,7 @@
     <Compile Include="UserInterface\DefaultFont.cs" />
     <Compile Include="UserInterface\ImageButton.cs" />
     <Compile Include="UserInterface\NoneClickableUIElement.cs" />
+    <Compile Include="UserInterface\OffsetClickableUIElement.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\SingleImageButton.cs" />
     <Compile Include="UserInterface\TextButton.cs" />
