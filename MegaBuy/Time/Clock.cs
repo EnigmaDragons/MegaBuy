@@ -14,7 +14,7 @@ namespace MegaBuy.Time
         public string Time => $"{_hour:D2}:{_minute:D2}";
 
         public Clock()
-            : this(1200, 8, 0) { }
+            : this(400, 8, 0) { }
 
         public Clock(int msPerMinute, int hour, int minute)
         {
@@ -40,6 +40,7 @@ namespace MegaBuy.Time
             if (_hour == 23)
                 IncrementDay();
             _hour = (_hour + 1) % 24;
+            World.Publish(new HourChanged(_hour));
         }
 
         private void IncrementDay()

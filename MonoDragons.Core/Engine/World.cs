@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.Graphics;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -15,8 +14,9 @@ namespace MonoDragons.Core.Engine
     public static class World
     {
         private static readonly Events _events = new Events();
+        private static readonly Events _persistentEvents = new Events();
 
-        public static int CurrentEventSubscriptionCount => _events.SubscriptionCount;
+        public static int CurrentEventSubscriptionCount => _events.SubscriptionCount + _persistentEvents.SubscriptionCount;
 
         private static Game _game;
         private static ContentManager _content;
@@ -78,9 +78,15 @@ namespace MonoDragons.Core.Engine
         public static void Publish<T>(T payload)
         {
             _events.Publish(payload);
+            _persistentEvents.Publish(payload);
         }
 
         public static void Subscribe<T>(EventSubscription<T> subscription)
+        {
+            _persistentEvents.Subscribe(subscription);
+        }
+
+        public static void SubscribeForScene<T>(EventSubscription<T> subscription)
         {
             _events.Subscribe(subscription);
             Resources.Put(Guid.NewGuid().ToString(), subscription);
@@ -89,14 +95,8 @@ namespace MonoDragons.Core.Engine
         public static void Unsubscribe(object owner)
         {
             _events.Unsubscribe(owner);
+            _persistentEvents.Unsubscribe(owner);
         }
-
-        //public static void DrawRectangle(Rectangle rectangle, Color color)
-        //{
-        //    var texture = new RectangleTexture(rectangle.Width, rectangle.Height, color).Create();
-        //    Resources.Put(texture.GetHashCode().ToString(), texture);
-        //    _spriteBatch.Draw(texture, rectangle, color);
-        //}
 
         public static void Draw(Texture2D texture, Vector2 position)
         {
