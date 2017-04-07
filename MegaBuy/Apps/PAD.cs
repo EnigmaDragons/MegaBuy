@@ -46,7 +46,7 @@ namespace MegaBuy.Apps
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
+            World.Draw("Images/PAD/background", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
             _menuBar.Draw(parentTransform);
             _currentApp?.Draw(new Transform2(new Vector2(200, 0), new Size2(0, 0)));
             _clickUi.Draw(Transform2.Zero);

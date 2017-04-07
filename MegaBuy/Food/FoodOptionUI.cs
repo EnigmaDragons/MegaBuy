@@ -25,14 +25,14 @@ namespace MegaBuy.Food
             _visuals.Add(button);
             _visuals.Add(new Label
             {
-                BackgroundColor = Color.FromNonPremultiplied(100, 100, 100, 100),
+                BackgroundColor = Color.FromNonPremultiplied(0, 0, 0, 0),
                 Text = viewModel.Name,
                 Transform = new Transform2(new Vector2(x, y), 
                 new Size2(200, 30))
             });
             _visuals.Add(new Label
             {
-                BackgroundColor = Color.FromNonPremultiplied(100, 100, 100, 100),
+                BackgroundColor = Color.FromNonPremultiplied(0, 0, 0, 0),
                 Text = $"MBit - {viewModel.Cost.Amount()}",
                 Transform = new Transform2(new Vector2(x, y + 170), 
                 new Size2(200, 30))
