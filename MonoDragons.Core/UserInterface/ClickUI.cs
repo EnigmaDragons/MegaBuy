@@ -11,7 +11,7 @@ namespace MonoDragons.Core.UserInterface
     {
         public static readonly ClickableUIElement None = new NoneClickableUIElement();
 
-        private readonly List<ClickUILayer> _layers = new List<ClickUILayer> { new ClickUILayer() };
+        private readonly List<ClickUILayer> _layers = new List<ClickUILayer> { new ClickUILayer("Default") };
 
         private readonly ColoredRectangle _elementHighlight = new ColoredRectangle { Color = Color.Transparent };
         private ClickableUIElement _currentElement = None;
@@ -26,14 +26,12 @@ namespace MonoDragons.Core.UserInterface
 
         public void Add(ClickUILayer layer)
         {
-            Add(layer, _layers.Count);
+            if(!_layers.Contains(layer))
+                _layers.Add(layer);
         }
 
         public void Add(ClickUILayer layer, int priority)
         {
-            for (var i = _layers.Count - 1; i < priority; i++)
-                _layers.Add(new ClickUILayer());
-            _layers.RemoveAt(priority);
             _layers.Insert(priority, layer);
         }
 
@@ -47,12 +45,9 @@ namespace MonoDragons.Core.UserInterface
             Remove(_layers.IndexOf(layer));
         }
 
-        public void Remove(int priority)
+        public void Remove(int index)
         {
-            for (var i = _layers.Count - 1; i < priority; i++)
-                _layers.Add(new ClickUILayer());
-            _layers.RemoveAt(priority);
-            _layers.Insert(priority, new ClickUILayer());
+            _layers.RemoveAt(index);
         }
 
         public void Update(TimeSpan delta)

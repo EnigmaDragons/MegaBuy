@@ -17,11 +17,12 @@ namespace MegaBuy.Apps
     public class CallApp : IApp
     {
         public App Type => App.Call;
-        
+
+        private readonly ClickUI _clickUI;
         private readonly ClickUILayer _layer;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
-        private Timer _timer;
+        private readonly Timer _timer;
         private AutoSizingTextMessenger _messenger;
         private int _index;
         private string _person;
@@ -32,8 +33,8 @@ namespace MegaBuy.Apps
         
         public CallApp(ClickUI ui)
         {
-            _layer = new ClickUILayer();
-            ui.Add(_layer);
+            _layer = new ClickUILayer("Call App");
+            _clickUI = ui;
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
@@ -114,6 +115,16 @@ namespace MegaBuy.Apps
                 return;
             _messenger.AddMessage(_call.Script[_index].Text, _call.Script[_index].CharacterName.Equals("player", StringComparison.InvariantCultureIgnoreCase) ? Color.FromNonPremultiplied(250, 100, 250, 200) : Color.FromNonPremultiplied(100, 250, 100, 200));
             _index++;
+        }
+
+        public void LostFocus()
+        {
+            _clickUI.Remove(_layer);
+        }
+
+        public void GainedFocus()
+        {
+            _clickUI.Add(_layer);
         }
     }
 }
