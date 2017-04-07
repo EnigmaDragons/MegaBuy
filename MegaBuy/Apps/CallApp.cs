@@ -38,6 +38,7 @@ namespace MegaBuy.Apps
             World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(x.Rating.AsInt()), this));
             World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(0), this));
             World.Subscribe(new EventSubscription<CallStarted>(x => UpdateCall(x.Call), this));
+            // @todo Wire in Caller Feedback Event
             CallEnded(4);
         }
 
