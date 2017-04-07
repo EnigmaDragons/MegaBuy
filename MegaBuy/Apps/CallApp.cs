@@ -25,7 +25,7 @@ namespace MegaBuy.Apps
         private AutoSizingTextMessenger _messenger;
         private int _index;
         private string _person;
-        
+
         private readonly Texture2D _backgroundRect = new RectangleTexture(new Size2(1380, 880), Color.FromNonPremultiplied(0, 0, 0, 50)).Create();
         private readonly Texture2D _messengerRect = new RectangleTexture(new Size2(900, 600), Color.FromNonPremultiplied(0, 0, 0, 100)).Create();
         private readonly Texture2D _callerRect = new RectangleTexture(new Size2(400, 570), Color.FromNonPremultiplied(0, 0, 0, 100)).Create();
@@ -35,11 +35,11 @@ namespace MegaBuy.Apps
             _layer = new ClickUILayer();
             ui.Add(_layer);
             _timer = new Timer(AddMessage, 1000);
-            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(x.Rating.AsInt()), this));
-            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(0), this));
+            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
+            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
             World.Subscribe(new EventSubscription<CallStarted>(x => UpdateCall(x.Call), this));
-            // @todo Wire in Caller Feedback Event
-            CallEnded(4);
+            World.Subscribe(new EventSubscription<CallRated>(x => DisplayStars(x.Rating.AsInt()), this));
+            CallEnded(); // TODO: Fix this
         }
 
         private void UpdateCall(Call call)
@@ -54,7 +54,7 @@ namespace MegaBuy.Apps
             }
         }
 
-        private void CallEnded(int x)
+        private void CallEnded()
         {
             _person = "nothing";
             _visuals.Clear();
@@ -62,7 +62,6 @@ namespace MegaBuy.Apps
             _index = 0;
             _call = null;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
-            DisplayStars(x);
             var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
                 PublishReadyForCall,
                 "Ready",

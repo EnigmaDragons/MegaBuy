@@ -48,6 +48,7 @@
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
     <Compile Include="Calls\CallGenerater.cs" />
+    <Compile Include="Calls\CallRated.cs" />
     <Compile Include="Calls\CallResolved.cs" />
     <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />

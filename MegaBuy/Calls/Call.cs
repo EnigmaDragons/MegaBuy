@@ -34,9 +34,10 @@ namespace MegaBuy.Calls
         private void ResolveCall(CallResolved callResolved)
         {
             if (callResolved.Resolution == _correctResolution)
-                World.Publish(new CallSucceeded(CallerPatienceCallRatings.Get(Caller.Patience)));
+                World.Publish(new CallSucceeded(GetHashCode()));
             else
                 World.Publish(new CallFailed(new Fee(2)));
+            World.Publish(new CallRated(GetHashCode(), CallerPatienceCallRatings.Get(Caller.Patience)));
         }
     }
 }

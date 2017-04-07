@@ -3,11 +3,11 @@ namespace MegaBuy.Calls
 {
     public struct CallSucceeded
     {
-        public CallRating Rating { get; }
+        public int CallId { get; }
 
-        public CallSucceeded(CallRating rating)
+        public CallSucceeded(int callId)
         {
-            Rating = rating;
+            CallId = callId;
         }
     }
 }
