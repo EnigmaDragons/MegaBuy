@@ -41,6 +41,7 @@
     <Compile Include="Apps\App.cs" />
     <Compile Include="Apps\FoodApp.cs" />
     <Compile Include="Apps\IApp.cs" />
+    <Compile Include="Apps\NoneApp.cs" />
     <Compile Include="Apps\Notifications.cs" />
     <Compile Include="Apps\PAD.cs" />
     <Compile Include="Apps\MenuBar.cs" />
