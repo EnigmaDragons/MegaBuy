@@ -45,7 +45,7 @@ namespace MegaBuy.Apps
         private void UpdateCall(Call call)
         {
             _call = call;
-            _person = _call.Script.First(x => x.CharacterName != "player").CharacterName;
+            _person = _call.Script.First(x => x.CharacterName != "Player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
             {
                 var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
