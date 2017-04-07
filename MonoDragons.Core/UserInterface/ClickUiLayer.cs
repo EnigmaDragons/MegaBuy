@@ -15,9 +15,7 @@ namespace MonoDragons.Core.UserInterface
         {
             _name = name;
         }
-
-        public ClickUILayer() : this("") {}
-
+        
         public void Add(ClickableUIElement element)
         {
             _elements.Add(element);

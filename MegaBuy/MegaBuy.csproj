@@ -42,7 +42,7 @@
     <Compile Include="Apps\FoodApp.cs" />
     <Compile Include="Apps\IApp.cs" />
     <Compile Include="Apps\NoneApp.cs" />
-    <Compile Include="Apps\Notifications.cs" />
+    <Compile Include="Apps\NotificationApp.cs" />
     <Compile Include="Apps\PAD.cs" />
     <Compile Include="Apps\MenuBar.cs" />
     <Compile Include="Calls\Call.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Money\Rent.cs" />
     <Compile Include="Money\RentIncreased.cs" />
     <Compile Include="Money\RentPaid.cs" />
+    <Compile Include="Notifications\NotificationUI.cs" />
     <Compile Include="Notifications\PlayerNotification.cs" />
     <Compile Include="Scene\Online.cs" />
     <Compile Include="Scene\Menu.cs" />
@@ -177,10 +178,16 @@
     <Content Include="Content\Images\Customers\nothing.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Icons\dismiss.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Icons\food-red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\food.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Icons\notification.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\poweroff-hover.png">

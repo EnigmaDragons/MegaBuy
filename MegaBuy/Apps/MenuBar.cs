@@ -31,6 +31,11 @@ namespace MegaBuy.Apps
                 Color.LightBlue, Color.Blue, Color.DarkBlue, () => pad.OpenApp(App.Call));
             _visuals.Add(call);
             clickUi.Add(call);
+
+            var notification = new IconButton("Images/Icons/notification", iconRect, new Rectangle(new Point(0, 220), new Point(200, 110)),
+                Color.LightBlue, Color.Blue, Color.DarkBlue, () => pad.OpenApp(App.Notification));
+            _visuals.Add(notification);
+            clickUi.Add(notification);
         }
 
         public void Draw(Transform2 parentTransform)

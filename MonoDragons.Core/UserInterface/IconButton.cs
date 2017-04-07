@@ -7,7 +7,7 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class IconButton : ClickableUIElement, IVisual
     {
-        private readonly ColoredRectangle _background = new ColoredRectangle();
+        private readonly ColoredRectangle _background;
 
         private readonly string _icon;
         private readonly Color _defaultColor;

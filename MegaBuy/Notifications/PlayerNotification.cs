@@ -1,6 +1,6 @@
 ﻿namespace MegaBuy.Notifications
 {
-    public struct PlayerNotification
+    public sealed class PlayerNotification
     {
         public string Time { get; }
         public string Sender { get; }
