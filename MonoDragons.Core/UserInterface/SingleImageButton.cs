@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.Graphics;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
@@ -11,9 +9,8 @@ namespace MonoDragons.Core.UserInterface
     {
         private readonly string _image;
         
-        private readonly ColoredRectangle _default;
-        private readonly ColoredRectangle _hover;
-        private readonly ColoredRectangle _press;
+        private readonly Color _hover;
+        private readonly Color _press;
 
         private readonly Transform2 _transform;
         private readonly Action _onClick;
@@ -23,18 +20,13 @@ namespace MonoDragons.Core.UserInterface
         public SingleImageButton(string image, Color hover, Color press, Transform2 transform, Action onClick) : base(10, transform.ToRectangle())
         {
             _image = image;
-            _default = new ColoredRectangle();
-            _default.Color = Color.Transparent;
-            _default.Transform = transform;
-            _hover = new ColoredRectangle();
-            _hover.Color = hover;
-            _hover.Transform = transform;
-            _press = new ColoredRectangle();
-            _press.Color = hover;
-            _press.Transform = transform;
+            _hover = hover;
+            _press = press;
             _transform = transform;
             _onClick = onClick;
-            _current = _default;
+            _current = new ColoredRectangle();
+            _current.Color = Color.Transparent;
+            _current.Transform = transform;
         }
 
         public void Draw(Transform2 parentTransform)
@@ -45,30 +37,27 @@ namespace MonoDragons.Core.UserInterface
 
         public override void OnEntered()
         {
-            _current = _hover;
+            _current.Color = _hover;
         }
 
         public override void OnExitted()
         {
-            _current = _default;
+            _current.Color = Color.Transparent;
         }
 
         public override void OnPressed()
         {
-            _current = _press;
+            _current.Color = _press;
         }
 
         public override void OnReleased()
         {
-            _current = _default;
+            _current.Color = Color.Transparent;
             _onClick.Invoke();
         }
 
         public void Dispose()
         {
-            _default.Dispose();
-            _hover.Dispose();
-            _press.Dispose();
             _current.Dispose();
         }
     }
