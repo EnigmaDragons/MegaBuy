@@ -4,10 +4,11 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
+using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ColoredRectangle : IVisual
+    public sealed class ColoredRectangle : IVisual, IDisposable
     {
         private Texture2D _background;
 
@@ -20,6 +21,11 @@ namespace MonoDragons.Core.UserInterface
             Resources.Dispose(_background);
             _background = new RectangleTexture(position.ToRectangle(), Color).Create();
             World.Draw(_background, position.ToRectangle());
+        }
+
+        public void Dispose()
+        {
+            Resources.Dispose(_background);
         }
     }
 }

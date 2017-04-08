@@ -3,10 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
+using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class Label : IVisual
+    public sealed class Label : IVisual, IDisposable
     {
         private readonly ColoredRectangle _background = new ColoredRectangle();
 
@@ -32,6 +33,11 @@ namespace MonoDragons.Core.UserInterface
             _background.Draw(parentTransform);
             var size = Resources.Load<SpriteFont>(Font).MeasureString(Text);
             UI.DrawText(Text, new Vector2(position.Location.X + (position.Size.Width / 2) - (size.X / 2), position.Location.Y + (position.Size.Height / 2) - (size.Y / 2)), TextColor, Font);
+        }
+
+        public void Dispose()
+        {
+            _background.Dispose();
         }
     }
 }

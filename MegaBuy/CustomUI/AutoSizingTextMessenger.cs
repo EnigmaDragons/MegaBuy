@@ -12,7 +12,7 @@ using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.CustomUI
 {
-    public class AutoSizingTextMessenger : IVisual
+    public class AutoSizingTextMessenger : IVisual, IDisposable
     {
         private readonly List<Message> _messages = new List<Message>();
         private readonly List<Label> _labels = new List<Label>();
@@ -72,6 +72,12 @@ namespace MegaBuy.CustomUI
         {
             public string Text { get; set; }
             public Color Background { get; set; }
+        }
+
+        public void Dispose()
+        {
+            for (var i = 0; i < _labels.Count; i++)
+                _labels[i].Dispose();
         }
     }
 }
