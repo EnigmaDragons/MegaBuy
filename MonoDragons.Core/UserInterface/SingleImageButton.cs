@@ -10,22 +10,28 @@ namespace MonoDragons.Core.UserInterface
     public class SingleImageButton : ClickableUIElement, IVisual
     {
         private readonly string _image;
-        // @todo #65 dispose of these when SingleImageButton is done being used
-        private readonly Texture2D _default;
-        private readonly Texture2D _hover;
-        private readonly Texture2D _press;
+        
+        private readonly ColoredRectangle _default;
+        private readonly ColoredRectangle _hover;
+        private readonly ColoredRectangle _press;
 
         private readonly Transform2 _transform;
         private readonly Action _onClick;
 
-        private Texture2D _current;
+        private ColoredRectangle _current;
 
         public SingleImageButton(string image, Color hover, Color press, Transform2 transform, Action onClick) : base(10, transform.ToRectangle())
         {
             _image = image;
-            _default = new RectangleTexture(transform.Size, Color.Transparent).Create();
-            _hover = new RectangleTexture(transform.Size, hover).Create();
-            _press = new RectangleTexture(transform.Size, hover).Create();
+            _default = new ColoredRectangle();
+            _default.Color = Color.Transparent;
+            _default.Transform = transform;
+            _hover = new ColoredRectangle();
+            _hover.Color = hover;
+            _hover.Transform = transform;
+            _press = new ColoredRectangle();
+            _press.Color = hover;
+            _press.Transform = transform;
             _transform = transform;
             _onClick = onClick;
             _current = _default;
@@ -34,7 +40,7 @@ namespace MonoDragons.Core.UserInterface
         public void Draw(Transform2 parentTransform)
         {
             World.Draw(_image, parentTransform + _transform);
-            World.Draw(_current, parentTransform + _transform);
+            _current.Draw(parentTransform);
         }
 
         public override void OnEntered()
@@ -56,6 +62,14 @@ namespace MonoDragons.Core.UserInterface
         {
             _current = _default;
             _onClick.Invoke();
+        }
+
+        public void Dispose()
+        {
+            _default.Dispose();
+            _hover.Dispose();
+            _press.Dispose();
+            _current.Dispose();
         }
     }
 }
