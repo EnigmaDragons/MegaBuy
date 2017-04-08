@@ -24,8 +24,8 @@ namespace MegaBuy.CustomUI
             _current = _open;
             layer.Add(_open);
             layer.Location = _location;
-            World.Subscribe(new EventSubscription<PadOpened>(x => PadOpened(), this));
-            World.Subscribe(new EventSubscription<PadClosed>(x => PadClosed(), this));
+            World.Subscribe(EventSubscription.Create<PadOpened>(x => PadOpened(), this));
+            World.Subscribe(EventSubscription.Create<PadClosed>(x => PadClosed(), this));
         }
 
         public void Draw(Transform2 parentTransform)

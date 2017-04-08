@@ -36,10 +36,10 @@ namespace MegaBuy.Apps
             _layer = new ClickUILayer("Call App");
             _clickUI = ui;
             _timer = new Timer(AddMessage, 1000);
-            World.Subscribe(new EventSubscription<CallSucceeded>(x => CallEnded(), this));
-            World.Subscribe(new EventSubscription<CallFailed>(x => CallEnded(), this));
-            World.Subscribe(new EventSubscription<CallStarted>(x => UpdateCall(x.Call), this));
-            World.Subscribe(new EventSubscription<CallRated>(x => DisplayStars(x.Rating.AsInt()), this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(x => CallEnded(), this));
+            World.Subscribe(EventSubscription.Create<CallFailed>(x => CallEnded(), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => UpdateCall(x.Call), this));
+            World.Subscribe(EventSubscription.Create<CallRated>(x => DisplayStars(x.Rating.AsInt()), this));
             CallEnded(); // TODO: Fix this
         }
 

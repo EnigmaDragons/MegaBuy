@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
@@ -15,6 +18,7 @@ namespace MonoDragons.Core.Engine
     {
         private static readonly Events _events = new Events();
         private static readonly Events _persistentEvents = new Events();
+        private static readonly List<EventSubscription> _eventSubs = new List<EventSubscription>();
 
         public static int CurrentEventSubscriptionCount => _events.SubscriptionCount + _persistentEvents.SubscriptionCount;
 
@@ -81,21 +85,27 @@ namespace MonoDragons.Core.Engine
             _persistentEvents.Publish(payload);
         }
 
-        public static void Subscribe<T>(EventSubscription<T> subscription)
+        public static void Subscribe(EventSubscription subscription)
         {
             _persistentEvents.Subscribe(subscription);
         }
 
-        public static void SubscribeForScene<T>(EventSubscription<T> subscription)
+        public static void SubscribeForScene(EventSubscription subscription)
         {
             _events.Subscribe(subscription);
-            Resources.Put(Guid.NewGuid().ToString(), subscription);
+            _eventSubs.Add(subscription);
+            Resources.Put(subscription.GetHashCode().ToString(), subscription);
         }
 
         public static void Unsubscribe(object owner)
         {
             _events.Unsubscribe(owner);
             _persistentEvents.Unsubscribe(owner);
+            _eventSubs.Where(x => x.Owner.Equals(owner)).ForEach(x => 
+                {
+                    Resources.NotifyDisposed(x);
+                    _eventSubs.Remove(x);
+                });
         }
 
         public static void Draw(Texture2D texture, Vector2 position)

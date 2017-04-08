@@ -6,39 +6,39 @@ namespace MonoDragons.Core.EventSystem
 {
     public class Events
     {
-        private readonly Dictionary<Type, List<object>> _events = new Dictionary<Type, List<object>>();
-        private readonly Dictionary<object, List<object>> _owners = new Dictionary<object, List<object>>();
+        private readonly Dictionary<Type, List<object>> _eventActions = new Dictionary<Type, List<object>>();
+        private readonly Dictionary<object, List<EventSubscription>> _ownerSubscriptions = new Dictionary<object, List<EventSubscription>>();
 
-        public int SubscriptionCount => _events.Sum(e => e.Value.Count);
+        public int SubscriptionCount => _eventActions.Sum(e => e.Value.Count);
 
         public void Publish<T>(T payload)
         {
             var eventType = typeof(T);
-            if (!_events.ContainsKey(eventType))
+            if (!_eventActions.ContainsKey(eventType))
                 return;
-            foreach (var e in _events[eventType].ToList())
-                ((Action<T>)e)(payload);
+            foreach (var action in _eventActions[eventType].ToList())
+                ((Action<T>)action)(payload);
         }
 
-        public void Subscribe<T>(EventSubscription<T> subscription)
+        public void Subscribe(EventSubscription subscription)
         {
-            var eventType = typeof(T);
-            if (!_events.ContainsKey(eventType))
-                _events[eventType] = new List<object>();
-            if (!_owners.ContainsKey(subscription.Owner))
-                _owners[subscription.Owner] = new List<object>();
-            _events[eventType].Add(subscription.OnEvent);
-            _owners[subscription.Owner].Add(subscription.OnEvent);
+            var eventType = subscription.EventType;
+            if (!_eventActions.ContainsKey(eventType))
+                _eventActions[eventType] = new List<object>();
+            if (!_ownerSubscriptions.ContainsKey(subscription.Owner))
+                _ownerSubscriptions[subscription.Owner] = new List<EventSubscription>();
+            _eventActions[eventType].Add(subscription.OnEvent);
+            _ownerSubscriptions[subscription.Owner].Add(subscription);
         }
 
         public void Unsubscribe(object owner)
         {
-            if (!_owners.ContainsKey(owner))
+            if (!_ownerSubscriptions.ContainsKey(owner))
                 return;
-            var events = _owners[owner];
-            for (var i = 0; i < _events.Count; i++)
-                _events.ElementAt(i).Value.RemoveAll(x => events.Any(y => y.Equals(x)));
-            _owners.Remove(owner);
+            var events = _ownerSubscriptions[owner];
+            for (var i = 0; i < _eventActions.Count; i++)
+                _eventActions.ElementAt(i).Value.RemoveAll(x => events.Any(y => y.OnEvent.Equals(x)));
+            _ownerSubscriptions.Remove(owner);
         }
     }
 }
