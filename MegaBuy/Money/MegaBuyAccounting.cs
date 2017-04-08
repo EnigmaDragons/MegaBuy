@@ -1,5 +1,7 @@
-﻿using MegaBuy.Calls;
+﻿using System.Collections.Generic;
+using MegaBuy.Calls;
 using MegaBuy.Money.Rules;
+using MegaBuy.Notifications;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -13,19 +15,29 @@ namespace MegaBuy.Money
         private IPerCallRate _currentRate;
         private DayPayment _dayPayment;
 
+        private readonly List<int> _pendingPayments;
+
         public MegaBuyAccounting(IAccount playerAccount)
         {
             _playerAccount = playerAccount;
             _currentRate = new Day1PerCallRate();
-            World.Subscribe(new EventSubscription<DayStarted>(DayStarted, this));
-            World.Subscribe(new EventSubscription<DayEnded>(DayEnded, this));
-            World.Subscribe(new EventSubscription<CallSucceeded>(CallSucceeded, this));
-            World.Subscribe(new EventSubscription<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
+            _pendingPayments = new List<int>();
+            World.Subscribe(EventSubscription.Create<DayStarted>(DayStarted, this));
+            World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
+            World.Subscribe(EventSubscription.Create<CallSucceeded>(CallSucceeded, this));
+            World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
+            World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
         }
 
         private void CallSucceeded(CallSucceeded call)
         {
-            _dayPayment.Add(new CallPayment(_currentRate, call.Rating));
+            _pendingPayments.Add(call.CallId);
+        }
+
+        private void CallRated(CallRated rated)
+        {
+            _pendingPayments.Remove(rated.CallId);
+            _dayPayment.Add(new CallPayment(_currentRate, rated.Rating));
         }
 
         private void DayStarted(DayStarted day)
@@ -33,11 +45,17 @@ namespace MegaBuy.Money
             _dayPayment = new DayPayment();
         }
 
-        private void DayEnded(DayEnded day)
+        private void HourChanged(HourChanged hourChanged)
+        {
+            if (hourChanged.Hour == 20)
+                WorkDayEnded();
+        }
+
+        private void WorkDayEnded()
         {
             _playerAccount.Add(_dayPayment);
+            World.Publish(new PlayerNotification("MegaBuy", $"You have been paid MBit - {_dayPayment.Amount()}"));
             _dayPayment = null;
-            //World.Publish()
         }
 
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)

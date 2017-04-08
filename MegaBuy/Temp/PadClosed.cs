@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaBuy
+namespace MegaBuy.Temp
 {
-    class Foods
+    class PadClosed
     {
     }
 }

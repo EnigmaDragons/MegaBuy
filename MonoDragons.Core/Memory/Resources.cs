@@ -10,6 +10,8 @@ namespace MonoDragons.Core.Memory
         private static Game _game;
         private static SceneContents _sceneContents;
 
+        public static int CurrentSceneDisposableCount => _sceneContents?.ContentCount ?? 0;
+
         public static void Init(Game game)
         {
             _game = game;
@@ -39,6 +41,11 @@ namespace MonoDragons.Core.Memory
                 _sceneContents.Dispose(disposable);
         }
 
-        public static int CurrentSceneDisposableCount => _sceneContents?.ContentCount ?? 0;
+        public static void NotifyDisposed(IDisposable disposable)
+        {
+            if (disposable != null)
+                _sceneContents.NotifyDisposed(disposable);
+        }
+
     }
 }

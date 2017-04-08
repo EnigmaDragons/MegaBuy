@@ -18,15 +18,22 @@ namespace MegaBuy.Apps
 
         public PAD()
         {
+            _currentApp = new NoneApp();
             _clickUi = new ClickUI();
             _menuBar = new MenuBar(_clickUi, this);
         }
 
         public void OpenApp(App app)
         {
+            if (_currentApp.Type == app)
+                return;
+
             if (!_apps.ContainsKey(app))
                 _apps[app] = MakeApp(app);
+
+            _currentApp.LostFocus();
             _currentApp = _apps[app];
+            _apps[app].GainedFocus();
         }
 
         private IApp MakeApp(App app)
@@ -35,6 +42,8 @@ namespace MegaBuy.Apps
                 return new CallApp(_clickUi);
             if (app.Equals(App.Food))
                 return new FoodApp(_clickUi);
+            if (app.Equals(App.Notification))
+                return new NotificationApp(_clickUi);
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
 
@@ -46,7 +55,7 @@ namespace MegaBuy.Apps
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/Screen/screen2", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
+            World.Draw("Images/PAD/background", new Transform2(new Vector2(0, 0), new Size2(1600, 900)));
             _menuBar.Draw(parentTransform);
             _currentApp?.Draw(new Transform2(new Vector2(200, 0), new Size2(0, 0)));
             _clickUi.Draw(Transform2.Zero);

@@ -18,9 +18,8 @@ namespace MegaBuy.Calls
         {
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
-            World.Subscribe(new EventSubscription<SocialMistakeOccurred>(SocialMistakeOccurred, this));
-            World.Subscribe(new EventSubscription<CallSucceeded>(x => World.Unsubscribe(this), this));
-            World.Subscribe(new EventSubscription<CallFailed>(x => World.Unsubscribe(this), this));
+            World.SubscribeForScene(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
+            World.SubscribeForScene(EventSubscription.Create<CallResolved>(x => World.Unsubscribe(this), this));
         }
 
         public void Update(TimeSpan delta)

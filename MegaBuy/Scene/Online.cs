@@ -2,6 +2,7 @@
 using MegaBuy.Apps;
 using MegaBuy.CustomUI;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MegaBuy.Scene
@@ -16,6 +17,7 @@ namespace MegaBuy.Scene
             _overlay = new Overlay();
             _pad = GameState.PAD;
             _pad.OpenApp(App.Call);
+            Input.On(Control.X, () => World.NavigateToScene("Room"));
         }
 
         public void Update(TimeSpan delta)

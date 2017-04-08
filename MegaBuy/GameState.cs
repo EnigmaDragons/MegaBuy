@@ -1,6 +1,7 @@
 ﻿using System;
 using MegaBuy.Apps;
 using MegaBuy.Calls;
+using MegaBuy.Food;
 using MegaBuy.Money;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
@@ -22,6 +23,7 @@ namespace MegaBuy
             PAD = new PAD();
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
+            AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
             World.Publish(new DayStarted(0));
         }
 

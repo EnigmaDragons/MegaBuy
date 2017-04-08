@@ -19,20 +19,20 @@ namespace MegaBuy.Food
                 Color.FromNonPremultiplied(0, 0, 0, 50),
                 Color.FromNonPremultiplied(0, 0, 0, 100),
                 new Transform2(new Vector2(x, y), new Size2(200, 200)),
-                () => World.Publish(new FoodOrdered()));
+                () => World.Publish(new FoodOrdered(new Food("Pancakes", new FoodCost(10), 10))));
             layer.Add(button);
             _visuals = new List<IVisual>();
             _visuals.Add(button);
             _visuals.Add(new Label
             {
-                BackgroundColor = Color.FromNonPremultiplied(100, 100, 100, 100),
+                BackgroundColor = Color.FromNonPremultiplied(0, 0, 0, 0),
                 Text = viewModel.Name,
                 Transform = new Transform2(new Vector2(x, y), 
                 new Size2(200, 30))
             });
             _visuals.Add(new Label
             {
-                BackgroundColor = Color.FromNonPremultiplied(100, 100, 100, 100),
+                BackgroundColor = Color.FromNonPremultiplied(0, 0, 0, 0),
                 Text = $"MBit - {viewModel.Cost.Amount()}",
                 Transform = new Transform2(new Vector2(x, y + 170), 
                 new Size2(200, 30))

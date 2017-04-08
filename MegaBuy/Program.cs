@@ -25,7 +25,8 @@ namespace MegaBuy
             return new KeyboardController(new Map<Keys, Control>
             {
                 { Keys.Enter, Control.Start },
-                { Keys.V, Control.A }
+                { Keys.V, Control.A },
+                { Keys.O, Control.X }
             });
         }
 
@@ -39,6 +40,8 @@ namespace MegaBuy
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "Online", () => new Online() },
+                { "Redesign", () => new UIRedsign() },
+                { "Blank", () => new Blank() },
             });
         }
     }
