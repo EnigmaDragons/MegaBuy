@@ -10,7 +10,7 @@ namespace MonoDragons.Core.UserInterface
     public class SingleImageButton : ClickableUIElement, IVisual
     {
         private readonly string _image;
-        // @todo dispose of these when SingleImageButton is done being used
+        // @todo #65 dispose of these when SingleImageButton is done being used
         private readonly Texture2D _default;
         private readonly Texture2D _hover;
         private readonly Texture2D _press;
