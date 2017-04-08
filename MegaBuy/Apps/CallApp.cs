@@ -36,11 +36,22 @@ namespace MegaBuy.Apps
             _layer = new ClickUILayer("Call App");
             _clickUI = ui;
             _timer = new Timer(AddMessage, 1000);
-            World.Subscribe(EventSubscription.Create<CallResolved>(x => CallEnded(), this));
+            World.Subscribe(EventSubscription.Create<CallSucceeded>(x => CallEnded(), this));
             World.Subscribe(EventSubscription.Create<CallFailed>(x => CallEnded(), this));
             World.Subscribe(EventSubscription.Create<CallStarted>(x => UpdateCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallRated>(x => DisplayStars(x.Rating.AsInt()), this));
-            CallEnded(); // TODO: Fix this
+            _person = "nothing";
+            _index = 0;
+            _messenger = new AutoSizingTextMessenger(6, Color.Black);
+            var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
+                PublishReadyForCall,
+                "Ready",
+                Color.FromNonPremultiplied(42, 42, 42, 250),
+                Color.FromNonPremultiplied(30, 30, 30, 250),
+                Color.FromNonPremultiplied(21, 21, 21, 250));
+            _visuals.Add(button);
+            _layer.Add(button);
+            //CallEnded(); // TODO: Fix this
         }
 
         private void UpdateCall(Call call)
@@ -49,7 +60,10 @@ namespace MegaBuy.Apps
             _person = _call.Script.First(x => x.CharacterName != "Player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
             {
-                var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description, Color.FromNonPremultiplied(42, 42, 42, 250), Color.FromNonPremultiplied(30, 30, 30, 250), Color.FromNonPremultiplied(21, 21, 21, 250));
+                var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description,
+                    Color.FromNonPremultiplied(42, 42, 42, 250),
+                    Color.FromNonPremultiplied(30, 30, 30, 250),
+                    Color.FromNonPremultiplied(21, 21, 21, 250));
                 _layer.Add(button);
                 _visuals.Add(button);
             }
@@ -78,7 +92,8 @@ namespace MegaBuy.Apps
         private void DisplayStars(int stars)
         {
             for (var i = 1; i < 6; i++)
-                _visuals.Add(i <= stars ? (IVisual)new WholeStar(new Vector2(150 * i + 180, 230)) : (IVisual)new EmptyStar(new Vector2(150 * i + 180, 230)));
+                _visuals.Add(i <= stars ? (IVisual)new WholeStar(new Vector2(150 * i + 180, 230))
+                    : (IVisual)new EmptyStar(new Vector2(150 * i + 180, 230)));
         }
 
         private void PublishReadyForCall()
