@@ -8,18 +8,18 @@ namespace MonoDragons.Core.UserInterface
     {
         private readonly string _basic;
         private readonly string _hover;
-        private readonly string _pressed;
+        private readonly string _press;
         private readonly Transform2 _transform;
         private readonly Action _onClick;
         
         private string _current;
 
-        public ImageButton(string basic, string hover, string pressed, Transform2 transform, Action onClick) 
+        public ImageButton(string basic, string hover, string press, Transform2 transform, Action onClick) 
             : base(10, transform.ToRectangle())
         {
             _basic = basic;
             _hover = hover;
-            _pressed = pressed;
+            _press = press;
             _transform = transform;
             _onClick = onClick;
             _current = _basic;
@@ -42,7 +42,7 @@ namespace MonoDragons.Core.UserInterface
 
         public override void OnPressed()
         {
-            _current = _pressed;
+            _current = _press;
         }
 
         public override void OnReleased()

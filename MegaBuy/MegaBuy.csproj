@@ -79,20 +79,22 @@
     <Compile Include="Calls\UI\WholeStar.cs" />
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
-    <Compile Include="CustomUI\Colors.cs" />
+    <Compile Include="Temp\Colors.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Endings\Evicted.cs" />
+    <Compile Include="Temp\Sizes.cs" />
     <Compile Include="Save\AutoSave.cs" />
     <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Scene\Blank.cs" />
-    <Compile Include="Temp\ClickableLayers.cs" />
-    <Compile Include="Temp\MoneyUI.cs" />
-    <Compile Include="Temp\OverlayUI.cs" />
-    <Compile Include="Temp\PadClosed.cs" />
-    <Compile Include="Temp\PadOpened.cs" />
-    <Compile Include="Temp\Room.cs" />
-    <Compile Include="Temp\TimeUI.cs" />
-    <Compile Include="Temp\TogglePadUI.cs" />
+    <Compile Include="Temp\Events\AppChanged.cs" />
+    <Compile Include="Temp\UIThings\MenuBarUI.cs" />
+    <Compile Include="Temp\UIThings\MoneyUI.cs" />
+    <Compile Include="Temp\UIThings\OverlayUI.cs" />
+    <Compile Include="Temp\UIThings\PadUI.cs" />
+    <Compile Include="Temp\Events\PadClosed.cs" />
+    <Compile Include="Temp\Events\PadOpened.cs" />
+    <Compile Include="Temp\UIThings\TimeUI.cs" />
+    <Compile Include="Temp\UIThings\TogglePadUI.cs" />
     <Compile Include="Food\FoodCost.cs" />
     <Compile Include="Food\FoodEmporium.cs" />
     <Compile Include="Food\FoodOptions\Menu.cs" />
@@ -352,10 +354,31 @@
     <Content Include="Content\Images\Screen\screen2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\button-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\button-press.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\close-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\close-press.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\close.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\label.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\open-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\open-press.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\open.png">
