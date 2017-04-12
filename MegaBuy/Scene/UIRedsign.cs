@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Apartment;
 using MegaBuy.CustomUI;
 using MegaBuy.Map;
 using MegaBuy.Money;
@@ -28,8 +29,8 @@ namespace MegaBuy.Scene
             _clickUi.Add(layer);
             _overlay = new OverlayUI(layer, _clock, new PlayerAccount(500));
             _pad = new PadUI(_clickUi);
-            World.Subscribe(new EventSubscription<PadOpened>(x => _isPadVisible = true, this));
-            World.Subscribe(new EventSubscription<PadClosed>(x => _isPadVisible = false, this));
+            World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadVisible = true, this));
+            World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadVisible = false, this));
         }
 
         public void Update(TimeSpan delta)

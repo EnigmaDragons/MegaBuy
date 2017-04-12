@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Apartment;
 using MegaBuy.CustomUI;
 using MegaBuy.Map;
 using MegaBuy.Player;

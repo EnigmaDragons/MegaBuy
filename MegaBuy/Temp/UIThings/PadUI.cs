@@ -24,7 +24,7 @@ namespace MegaBuy.Temp
             _clickUI = clickUI;
             _menuBar = new MenuBarUI(clickUI);
             _currentApp = new NoneApp();
-            World.Subscribe(new EventSubscription<AppChanged>(x => OpenApp(x.App), this));
+            World.Subscribe(EventSubscription.Create<AppChanged>(x => OpenApp(x.App), this));
         }
 
         public void Update(TimeSpan delta)

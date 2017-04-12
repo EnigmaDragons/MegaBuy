@@ -1,32 +1,34 @@
 ﻿using System;
+using MegaBuy.Time;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 
 namespace MegaBuy.Food
 {
     public sealed class Hunger : IAutomaton
     {
-        private readonly Timer _timer;
+        private readonly int _hungerPerHour;
 
         private bool _hungerChanged;
         private int _hunger;
 
         public Hunger()
-            : this(6000) { }
+            : this (6) { }
 
-        public Hunger(int msPerHungerGain)
+        public Hunger(int hungerPerHour)
         {
-            _timer = new Timer(IncreaseHunger, msPerHungerGain);
+            _hungerPerHour = hungerPerHour;
+            World.Subscribe(EventSubscription.Create<HourChanged>(IncreaseHunger, this));
         }
 
-        private void IncreaseHunger()
+        private void IncreaseHunger(HourChanged hourChanged)
         {
-            _hunger++;
+            _hunger += _hungerPerHour;
             _hungerChanged = true;
         }
 
         public void Update(TimeSpan delta)
         {
-            _timer.Update(delta);
             if (!_hungerChanged)
                 return;
             else if (_hunger >= 100)

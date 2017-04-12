@@ -25,7 +25,7 @@ namespace MegaBuy.Apps
             _layer = new ClickUILayer("NotificationApp");
             _clickUi = clickUi;
             _notifications.Add(new NotificationUI(new PlayerNotification("MegaBuy", "Congratulations! Your notification app has been installed."), _notifications));
-            World.Subscribe(new EventSubscription<PlayerNotification>(OnNotificationReceived, this));
+            World.Subscribe(EventSubscription.Create<PlayerNotification>(OnNotificationReceived, this));
         }
 
         private void OnNotificationReceived(PlayerNotification obj)

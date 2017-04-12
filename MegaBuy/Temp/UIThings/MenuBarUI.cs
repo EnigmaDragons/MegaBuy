@@ -35,8 +35,8 @@ namespace MegaBuy.Temp
             _layer.Add(_notificationApp);
 
             //temp code that will go away
-            World.Subscribe(new EventSubscription<PadOpened>(x => _clickUI.Add(_layer), this));
-            World.Subscribe(new EventSubscription<PadClosed>(x => _clickUI.Remove(_layer), this));
+            World.Subscribe(EventSubscription.Create<PadOpened>(x => _clickUI.Add(_layer), this));
+            World.Subscribe(EventSubscription.Create<PadClosed>(x => _clickUI.Remove(_layer), this));
         }
 
         public void Draw(Transform2 parentTransform)

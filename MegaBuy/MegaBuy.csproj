@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Apps\App.cs" />
     <Compile Include="Apps\FoodApp.cs" />
     <Compile Include="Apps\IApp.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Temp\Colors.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Temp\Sizes.cs" />
+    <Compile Include="Save\AutoSave.cs" />
+    <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Scene\Blank.cs" />
     <Compile Include="Temp\Events\AppChanged.cs" />
     <Compile Include="Temp\UIThings\MenuBarUI.cs" />
@@ -102,7 +105,7 @@
     <Compile Include="Food\NotHungry.cs" />
     <Compile Include="Food\VeryHungry.cs" />
     <Compile Include="GameState.cs" />
-    <Compile Include="Map\ApartmentMapFactory.cs" />
+    <Compile Include="Apartment\ApartmentMapFactory.cs" />
     <Compile Include="Money\Fee.cs" />
     <Compile Include="Endings\Starved.cs" />
     <Compile Include="Money\IRent.cs" />
@@ -110,9 +113,9 @@
     <Compile Include="Food\Hunger.cs" />
     <Compile Include="Food\HungerUI.cs" />
     <Compile Include="Money\MoneyDeposited.cs" />
-    <Compile Include="Money\Rent.cs" />
-    <Compile Include="Money\RentIncreased.cs" />
-    <Compile Include="Money\RentPaid.cs" />
+    <Compile Include="Apartment\Rent.cs" />
+    <Compile Include="Apartment\RentIncreased.cs" />
+    <Compile Include="Apartment\RentPaid.cs" />
     <Compile Include="Notifications\NotificationUI.cs" />
     <Compile Include="Notifications\PlayerNotification.cs" />
     <Compile Include="Scene\Online.cs" />
@@ -122,7 +125,7 @@
     <Compile Include="Time\Clock.cs" />
     <Compile Include="Calls\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
-    <Compile Include="Map\ApartmentMap.cs" />
+    <Compile Include="Apartment\ApartmentMap.cs" />
     <Compile Include="Map\Tile.cs" />
     <Compile Include="Map\TileLocation.cs" />
     <Compile Include="Map\TileSize.cs" />

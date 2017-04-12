@@ -11,7 +11,7 @@ namespace MegaBuy.Food
         public FoodEmporium(IAccount playerAccount)
         {
             _playerAccount = playerAccount;
-            World.Subscribe(new EventSubscription<FoodOrdered>(FoodOrdered, this));
+            World.Subscribe(EventSubscription.Create<FoodOrdered>(FoodOrdered, this));
         }
 
         private void FoodOrdered(FoodOrdered order)

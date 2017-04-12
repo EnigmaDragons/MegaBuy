@@ -12,8 +12,8 @@ namespace MegaBuy.Calls
 
         public AgentCurrentCallStatus()
         {
-            World.Subscribe(new EventSubscription<AgentCallStatusChanged>(UpdateStatus, this));
-            World.Subscribe(new EventSubscription<CallStarted>(CallStarted, this));
+            World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(UpdateStatus, this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(CallStarted, this));
         }
 
         private void UpdateStatus(AgentCallStatusChanged statusEvent)

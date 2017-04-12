@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Content;
 
 namespace MonoDragons.Core.Engine
@@ -28,7 +29,7 @@ namespace MonoDragons.Core.Engine
 
         public void Dispose()
         {
-            _diposables.ForEach(x => x.Dispose());
+            _diposables.ToList().ForEach(x => x.Dispose());
             _diposables.Clear();
             _contentManager.Unload();
         }
@@ -36,6 +37,11 @@ namespace MonoDragons.Core.Engine
         public void Dispose(IDisposable disposable)
         {
             disposable.Dispose();
+            _diposables.Remove(disposable);
+        }
+
+        public void NotifyDisposed(IDisposable disposable)
+        {
             _diposables.Remove(disposable);
         }
     }

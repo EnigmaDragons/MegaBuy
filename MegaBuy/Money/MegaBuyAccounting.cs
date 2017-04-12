@@ -22,11 +22,11 @@ namespace MegaBuy.Money
             _playerAccount = playerAccount;
             _currentRate = new Day1PerCallRate();
             _pendingPayments = new List<int>();
-            World.Subscribe(new EventSubscription<DayStarted>(DayStarted, this));
-            World.Subscribe(new EventSubscription<HourChanged>(HourChanged, this));
-            World.Subscribe(new EventSubscription<CallSucceeded>(CallSucceeded, this));
-            World.Subscribe(new EventSubscription<CallRated>(CallRated, this));
-            World.Subscribe(new EventSubscription<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
+            World.Subscribe(EventSubscription.Create<DayStarted>(DayStarted, this));
+            World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
+            World.Subscribe(EventSubscription.Create<CallSucceeded>(CallSucceeded, this));
+            World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
+            World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
         }
 
         private void CallSucceeded(CallSucceeded call)

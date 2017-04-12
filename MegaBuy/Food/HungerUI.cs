@@ -12,9 +12,9 @@ namespace MegaBuy.Food
         public HungerUI(ImageBox icon)
         {
             _icon = icon;
-            World.SubscribeForScene(new EventSubscription<NotHungry>(x => _icon.Clear(), this));
-            World.SubscribeForScene(new EventSubscription<Hungry>(x => _icon.SetImage("Images/Icons/food"), this));
-            World.SubscribeForScene(new EventSubscription<VeryHungry>(x => _icon.SetImage("Images/Icons/food-red"), this));
+            World.SubscribeForScene(EventSubscription.Create<NotHungry>(x => _icon.Clear(), this));
+            World.SubscribeForScene(EventSubscription.Create<Hungry>(x => _icon.SetImage("Images/Icons/food"), this));
+            World.SubscribeForScene(EventSubscription.Create<VeryHungry>(x => _icon.SetImage("Images/Icons/food-red"), this));
         }
 
         public void Draw(Transform2 parentTransform)

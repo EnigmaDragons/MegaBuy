@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Map;
 using MegaBuy.Player;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
-namespace MegaBuy.Map
+namespace MegaBuy.Apartment
 {
     public class ApartmentMap : IVisualAutomaton, ICharSpace
     {

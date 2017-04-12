@@ -9,7 +9,7 @@ namespace MegaBuy.Calls
     {
         public CallQueue()
         {
-            World.Subscribe(new EventSubscription<AgentCallStatusChanged>(PlayerAvailable, this));
+            World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(PlayerAvailable, this));
         }
 
         private async void PlayerAvailable(AgentCallStatusChanged statusChanged)
