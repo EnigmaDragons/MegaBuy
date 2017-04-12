@@ -1,5 +1,4 @@
 ﻿using System;
-using MegaBuy.Money;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -10,7 +9,10 @@ namespace MegaBuy.Apartment
     {
         private readonly Rent _currenRent;
 
-        private bool _rentPaidToday;
+        public bool RentPaidToday { get; private set; } = false;
+
+        public string RentDue => "24:00";
+        public string RentAmount => _currenRent.Amount().ToString("0.##");
 
         public Landlord(Rent rent)
         {
@@ -21,16 +23,16 @@ namespace MegaBuy.Apartment
 
         private void IncreaseRent(DayEnded dayended)
         {
-            if (!_rentPaidToday)
+            if (!RentPaidToday)
                 World.NavigateToScene("Evicted");
             _currenRent.IncreaseByPercent(Convert.ToDecimal(0.15));
-            _rentPaidToday = false;
+            RentPaidToday = false;
         }
 
         private void RentPaid(RentPaid rentPaid)
         {
             // @todo #1 Deduct rent amount from player's account
-            _rentPaidToday = true;
+            RentPaidToday = true;
         }
     }
 }

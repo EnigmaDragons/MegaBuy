@@ -16,6 +16,7 @@ namespace MegaBuy
         public static PlayerAccount PlayerAccount { get; set; }
         public static PAD PAD { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
+        public static Landlord Landlord { get; set; }
 
         static GameState()
         {
@@ -23,10 +24,10 @@ namespace MegaBuy
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             PAD = new PAD();
+            Landlord = new Landlord(new Rent(50));
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
-            AddSingleInstanceSubscription(new Landlord(new Rent(50)));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
         }

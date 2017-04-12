@@ -46,6 +46,7 @@
     <Compile Include="Apps\NotificationApp.cs" />
     <Compile Include="Apps\PAD.cs" />
     <Compile Include="Apps\MenuBar.cs" />
+    <Compile Include="Apps\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />

@@ -60,6 +60,8 @@ namespace MegaBuy.Temp
                 return new FoodApp(_clickUI);
             if (app.Equals(App.Notification))
                 return new NotificationApp(_clickUI);
+            if (app.Equals(App.Rent))
+                return new RentApp(_clickUI);
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

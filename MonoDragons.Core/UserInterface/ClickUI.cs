@@ -42,7 +42,7 @@ namespace MonoDragons.Core.UserInterface
 
         public void Remove(ClickUILayer layer)
         {
-            Remove(_layers.IndexOf(layer));
+            _layers.Remove(layer);
         }
 
         public void Remove(int index)

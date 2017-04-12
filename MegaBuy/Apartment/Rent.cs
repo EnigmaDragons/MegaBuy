@@ -1,7 +1,7 @@
-﻿using MegaBuy.Apartment;
+﻿using MegaBuy.Money;
 using MonoDragons.Core.Engine;
 
-namespace MegaBuy.Money
+namespace MegaBuy.Apartment
 {
     public class Rent : IRent, IAmount
     {
