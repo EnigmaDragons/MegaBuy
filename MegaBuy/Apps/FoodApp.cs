@@ -20,14 +20,14 @@ namespace MegaBuy.Apps
         {
             _layer = new ClickUILayer("Food App") {Location = new Vector2(200, 100)};
             _visuals = new List<IVisual>();
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("PC", new FoodCost(1), "pancakes"), _layer, 0));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Cakes", new FoodCost(10), "pancakes"), _layer, 1));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Pancakes", new FoodCost(100), "pancakes"), _layer, 2));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Fancy Pancakes", new FoodCost(1000), "pancakes"), _layer, 3));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Peach Pancakes", new FoodCost(10000), "pancakes"), _layer, 4));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Blueberry Pancakes", new FoodCost(100000), "pancakes"), _layer, 5));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Chocolate Pancakes", new FoodCost(1000000), "pancakes"), _layer, 6));
-            _visuals.Add(new FoodOptionUI(new FoodViewModel("Strawberry Pancakes", new FoodCost(10000000), "pancakes"), _layer, 7));
+            _visuals.Add(new FoodOptionUI(MegaBuy.Food.FoodOptions.Menu.FoodMenu["Burger"], _layer, 0));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Cakes", new FoodCost(10), 0, "pancakes"), _layer, 1));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Pancakes", new FoodCost(100), 0, "pancakes"), _layer, 2));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Fancy Pancakes", new FoodCost(1000), 0, "pancakes"), _layer, 3));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Peach Pancakes", new FoodCost(10000), 0, "pancakes"), _layer, 4));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Blueberry Pancakes", new FoodCost(100000), 0, "pancakes"), _layer, 5));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Chocolate Pancakes", new FoodCost(1000000), 0, "pancakes"), _layer, 6));
+            _visuals.Add(new FoodOptionUI(new Food.Food("Strawberry Pancakes", new FoodCost(10000000), 0, "pancakes"), _layer, 7));
             _clickUI = clickUi;
         }
 

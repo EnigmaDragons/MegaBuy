@@ -174,6 +174,9 @@
     <Content Include="Content\Images\Character\u1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Food\nothing.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Food\pancakes.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
