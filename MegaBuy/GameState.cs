@@ -4,6 +4,7 @@ using MegaBuy.Apps;
 using MegaBuy.Calls;
 using MegaBuy.Food;
 using MegaBuy.Money;
+using MegaBuy.Save;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 
@@ -26,12 +27,22 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
             AddSingleInstanceSubscription(new Landlord(new Rent(50)));
+            AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
         }
 
         private static void AddSingleInstanceSubscription(object obj)
         {
             SingleInstanceSubscriptions.Add(obj.GetType(), obj);
+        }
+
+        public static object GetSaveData()
+        {
+            return new
+            {
+                Clock = Clock.Time,
+                PlayerAccount = PlayerAccount.Amount()
+            };
         }
     }
 }
