@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Apartment;
 using MegaBuy.Apps;
 using MegaBuy.Calls;
 using MegaBuy.Food;
@@ -24,6 +25,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
+            AddSingleInstanceSubscription(new Landlord(new Rent(50)));
             World.Publish(new DayStarted(0));
         }
 

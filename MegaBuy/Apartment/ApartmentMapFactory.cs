@@ -1,5 +1,7 @@
 ﻿
-namespace MegaBuy.Map
+using MegaBuy.Map;
+
+namespace MegaBuy.Apartment
 {
     public static class ApartmentMapFactory
     {
