@@ -12,7 +12,7 @@ namespace MegaBuy.Apps
     public sealed class NotificationApp : IApp
     {
         private readonly ClickUI _clickUi;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
         private readonly List<NotificationUI> _notifications = new List<NotificationUI>();
         private int _notificationCount;
 
@@ -22,7 +22,7 @@ namespace MegaBuy.Apps
 
         public NotificationApp(ClickUI clickUi)
         {
-            _layer = new ClickUILayer("NotificationApp");
+            _layer = new ClickUIBranch("NotificationApp", 7);
             _clickUi = clickUi;
             _notifications.Add(new NotificationUI(new PlayerNotification("MegaBuy", "Congratulations! Your notification app has been installed."), _notifications));
             World.Subscribe(EventSubscription.Create<PlayerNotification>(OnNotificationReceived, this));
@@ -41,7 +41,7 @@ namespace MegaBuy.Apps
                 return;
 
             _notificationCount = _notifications.Count;
-            _layer.Clear();
+            _layer.ClearElements();
             for (var i = 0; i < _notifications.Count; i++)
                 _layer.Add(new OffsetClickableUIElement(_notifications[i].Button, new Point(0, i * 110)));
         }

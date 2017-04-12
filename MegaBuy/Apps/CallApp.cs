@@ -19,7 +19,7 @@ namespace MegaBuy.Apps
         public App Type => App.Call;
 
         private readonly ClickUI _clickUI;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
         private Call _call;
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly Timer _timer;
@@ -33,7 +33,7 @@ namespace MegaBuy.Apps
         
         public CallApp(ClickUI ui)
         {
-            _layer = new ClickUILayer("Call App");
+            _layer = new ClickUIBranch("Call App", 5);
             _clickUI = ui;
             _timer = new Timer(AddMessage, 1000);
             World.Subscribe(EventSubscription.Create<CallSucceeded>(x => CallEnded(), this));
@@ -72,7 +72,7 @@ namespace MegaBuy.Apps
         {
             _person = "nothing";
             _visuals.Clear();
-            _layer.Clear();
+            _layer.ClearElements();
             _index = 0;
             _call = null;
             if(_messenger != null)
@@ -97,7 +97,7 @@ namespace MegaBuy.Apps
 
         private void PublishReadyForCall()
         {
-            _layer.Clear();
+            _layer.ClearElements();
             _visuals.Clear();
             World.Publish(new AgentCallStatusChanged(AgentCallStatus.Available));
         }

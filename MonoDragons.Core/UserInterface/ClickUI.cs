@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using System.Linq;
 
 namespace MonoDragons.Core.UserInterface
 {
@@ -11,43 +12,58 @@ namespace MonoDragons.Core.UserInterface
     {
         public static readonly ClickableUIElement None = new NoneClickableUIElement();
 
-        private readonly List<ClickUILayer> _layers = new List<ClickUILayer> { new ClickUILayer("Default") };
+        private List<ClickUIBranch> _branches = new List<ClickUIBranch> { new ClickUIBranch("Base", 0) };
 
         private readonly ColoredRectangle _elementHighlight = new ColoredRectangle { Color = Color.Transparent };
         private ClickableUIElement _currentElement = None;
         private bool _wasClicked;
-        private ClickUILayer _elementLayer;
+        private ClickUIBranch _elementLayer;
         private bool _elementChangeAfterPressed;
+        private readonly Action<ClickUIBranch>[] subscribeAction;
 
         public ClickUI()
         {
-            _elementLayer = _layers[0];
+            _elementLayer = _branches[0];
+            subscribeAction = new Action<ClickUIBranch>[] { (br) => Add(br), (br) => Remove(br) }; ;
         }
 
-        public void Add(ClickUILayer layer)
+        public void Add(ClickUIBranch branch)
         {
-            if(!_layers.Contains(layer))
-                _layers.Add(layer);
+            var branches = GetAllBrancesFrom(branch);
+            foreach (var b in branches)
+            {
+                _branches.Add(b);
+                b.Subscribe(subscribeAction);
+            }
+            _branches = _branches.OrderBy((b) => b.Priority).Reverse().ToList();
         }
 
-        public void Add(ClickUILayer layer, int priority)
+        private List<ClickUIBranch> GetAllBrancesFrom(ClickUIBranch branch)
         {
-            _layers.Insert(priority, layer);
+            var branches = new List<ClickUIBranch> { branch };
+            foreach (ClickUIBranch subBranch in branch.SubBranches)
+                branches.AddRange(GetAllBrancesFrom(subBranch));
+            return branches;
         }
 
         public void Add(ClickableUIElement element)
         {
-            _layers[0].Add(element);
+            _elementLayer.Add(element);
         }
 
-        public void Remove(ClickUILayer layer)
+        public void Remove(ClickUIBranch branch)
         {
-            Remove(_layers.IndexOf(layer));
+            var branches = GetAllBrancesFrom(branch);
+            foreach (var b in branches)
+            {
+                _branches.Remove(b);
+                b.Unsubscribe(subscribeAction);
+            }
         }
 
-        public void Remove(int index)
+        public void Remove(ClickableUIElement element)
         {
-            _layers.RemoveAt(index);
+            _elementLayer.Remove(element);
         }
 
         public void Update(TimeSpan delta)
@@ -99,13 +115,8 @@ namespace MonoDragons.Core.UserInterface
 
         private ClickableUIElement GetElement(Point mousePosition)
         {
-            for (var i = _layers.Count - 1; i >= 0; i--)
-                if (_layers[i].GetElement(mousePosition) != None)
-                {
-                    _elementLayer = _layers[i];
-                    return _layers[i].GetElement(mousePosition);
-                }
-            return None;
+            var branch = _branches.Find((b) => b.GetElement(mousePosition) != None);
+            return branch != null ? branch.GetElement(mousePosition) : None ;
         }
 
         public void Draw(Transform2 parentTransform)

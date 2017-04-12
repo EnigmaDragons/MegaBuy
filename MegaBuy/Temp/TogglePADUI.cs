@@ -12,11 +12,11 @@ namespace MegaBuy.CustomUI
         private readonly Vector2 _location = new Vector2(600, 850);
         private readonly SingleImageButton _open;
         private readonly SingleImageButton _close;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
 
         private IVisual _current;
 
-        public TogglePadUI(ClickUILayer layer)
+        public TogglePadUI(ClickUIBranch layer)
         {
             _open = new SingleImageButton("Images/UI/open", Colors.Hover, Colors.Press, new Transform2(new Size2(400, 50)), () => World.Publish(new PadOpened()));
             _close = new SingleImageButton("Images/UI/close", Colors.Hover, Colors.Press, new Transform2(new Size2(400, 50)), () => World.Publish(new PadClosed()));

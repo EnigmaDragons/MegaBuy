@@ -10,7 +10,7 @@ namespace MegaBuy.Food
     {
         private readonly List<IVisual> _visuals;
 
-        public FoodOptionUI(Food food, ClickUILayer layer, int i)
+        public FoodOptionUI(Food food, ClickUIBranch layer, int i)
         {
             var x = (int) (i%4)*300;
             var y = (i/4)*300;

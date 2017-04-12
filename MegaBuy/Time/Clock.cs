@@ -12,7 +12,7 @@ namespace MegaBuy.Time
         private int _minute;
 
         public string Time => $"{_hour:D2}:{_minute:D2}";
-
+        
         public Clock()
             : this(400, 8, 0) { }
 

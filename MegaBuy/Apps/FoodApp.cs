@@ -11,14 +11,14 @@ namespace MegaBuy.Apps
     public sealed class FoodApp : IApp
     {
         private readonly ClickUI _clickUI;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
 
         public App Type => App.Food;
         public readonly List<IVisual> _visuals;
 
         public FoodApp(ClickUI clickUi)
         {
-            _layer = new ClickUILayer("Food App") {Location = new Vector2(200, 100)};
+            _layer = new ClickUIBranch("Food App", 10) {Location = new Vector2(200, 100)};
             _visuals = new List<IVisual>();
             _visuals.Add(new FoodOptionUI(MegaBuy.Food.FoodOptions.Menu.FoodMenu["Burger"], _layer, 0));
             _visuals.Add(new FoodOptionUI(new Food.Food("Cakes", new FoodCost(10), 0, "pancakes"), _layer, 1));
