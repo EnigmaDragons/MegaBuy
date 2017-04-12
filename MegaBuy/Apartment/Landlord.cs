@@ -8,13 +8,15 @@ namespace MegaBuy.Apartment
 {
     public sealed class Landlord
     {
-        private readonly Rent _currenRent;
+        private readonly Rent _currentRent;
+        private PlayerAccount _rentersAccount;
 
         private bool _rentPaidToday;
 
-        public Landlord(Rent rent)
+        public Landlord(Rent rent, PlayerAccount acct)
         {
-            _currenRent = rent;
+            _currentRent = rent;
+            _rentersAccount = acct;
             World.Subscribe(EventSubscription.Create<DayEnded>(IncreaseRent, this));
             World.Subscribe(EventSubscription.Create<RentPaid>(RentPaid, this));
         }
@@ -23,14 +25,20 @@ namespace MegaBuy.Apartment
         {
             if (!_rentPaidToday)
                 World.NavigateToScene("Evicted");
-            _currenRent.IncreaseByPercent(Convert.ToDecimal(0.15));
+            _currentRent.IncreaseByPercent(Convert.ToDecimal(0.15));
             _rentPaidToday = false;
         }
 
         private void RentPaid(RentPaid rentPaid)
         {
-            // @todo #1 Deduct rent amount from player's account
-            _rentPaidToday = true;
+            if(_rentersAccount.Amount() > _currentRent.Amount())
+            {
+                _rentersAccount.Remove(new Rent(_currentRent.Amount()));
+                _rentPaidToday = true;
+            }
+            else
+                World.NavigateToScene("Evicted");
+            
         }
     }
 }
