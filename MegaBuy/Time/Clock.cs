@@ -14,7 +14,7 @@ namespace MegaBuy.Time
         public string Time => $"{_hour:D2}:{_minute:D2}";
         
         public Clock()
-            : this(400, 8, 0) { }
+            : this(80, 8, 0) { }
 
         public Clock(int msPerMinute, int hour, int minute)
         {

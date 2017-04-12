@@ -6,8 +6,8 @@ using MegaBuy.Money;
 using MegaBuy.Player;
 using MegaBuy.Temp;
 using MegaBuy.Time;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
@@ -15,13 +15,14 @@ namespace MegaBuy.Scene
 {
     public class UIRedsign : IScene
     {
-        private ApartmentMap _map;
-        private PlayerCharacter _player;
-        private OverlayUI _overlay;
         private ClickUI _clickUi = new ClickUI();
+        private OverlayUI _overlay;
+        private PadUI _pad;
         private Clock _clock;
 
-        private readonly Transform2 _camera = new Transform2(new Vector2(180, 0), Rotation2.Default, 2);
+        private bool _isPadVisible;
+        private ApartmentMap _map;
+        private PlayerCharacter _player;
 
         public void Init()
         {
@@ -49,33 +50,30 @@ namespace MegaBuy.Scene
             _map.Add(new Tile("desk6", new TileLocation(4, 12), true, 1));
 
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
-
-            _clock = new Clock();
+            
             var layer = new ClickUIBranch("overlay", 3);
+            _clock = GameState.Clock;
             _clickUi.Add(layer);
-            _overlay = new OverlayUI(layer, _clock, new PlayerAccount(500));
+            _overlay = new OverlayUI(layer);
+            _pad = new PadUI(_clickUi);
+            GameState.Pad = _pad;
+            World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadVisible = true, this));
+            World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadVisible = false, this));
         }
 
         public void Update(TimeSpan delta)
         {
             _clock.Update(delta);
             _clickUi.Update(delta);
-            _player.Update(delta);
-            _map.Update(delta);
             _overlay.Update(delta);
+            _pad.Update(delta);
         }
 
         public void Draw()
         {
-            _map.Draw(_camera);
-            _player.Draw(_camera);
-            World.Draw("Effects/light-effect", new Rectangle(350, 0, 900, 900));
+            if(_isPadVisible)
+                _pad.Draw(Transform2.Zero);
             _overlay.Draw(Transform2.Zero);
-        }
-
-        private void NavigateToPAD()
-        {
-            World.NavigateToScene("Online");
         }
     }
 }

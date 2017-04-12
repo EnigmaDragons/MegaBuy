@@ -1,6 +1,7 @@
-﻿using MonoDragons.Core.Engine;
+﻿using MegaBuy.Money;
+using MonoDragons.Core.Engine;
 
-namespace MegaBuy.Money
+namespace MegaBuy.Apartment
 {
     public class Rent : IRent, IAmount
     {
@@ -9,11 +10,6 @@ namespace MegaBuy.Money
         public Rent(decimal initial)
         {
             _amount = initial;
-        }
-
-        public void Pay(IAmount amount)
-        {
-            World.Publish(new RentPaid());
         }
 
         public void Increase(IAmount amount)

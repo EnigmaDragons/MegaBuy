@@ -8,5 +8,6 @@ namespace MegaBuy.Apps
         Food,
         Notification,
         Account,
+        Rent
     }
 }

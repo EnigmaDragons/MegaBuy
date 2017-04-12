@@ -11,16 +11,16 @@ namespace MegaBuy.Temp
 {
     public class OverlayUI : IVisualAutomaton
     {
-        private readonly Vector2 _location = new Vector2(0, 0);
+        private readonly Transform2 _transform = Transform2.Zero;
         private readonly TimeUI _timeUI;
         private readonly TogglePadUI _togglePadUI;
         private readonly MoneyUI _moneyUI;
 
-        public OverlayUI(ClickUIBranch layer, Clock clock, PlayerAccount account)
+        public OverlayUI(ClickUIBranch layer)
         {
-            _timeUI = new TimeUI(clock);
+            _timeUI = new TimeUI();
             _togglePadUI = new TogglePadUI(layer);
-            _moneyUI = new MoneyUI(account);
+            _moneyUI = new MoneyUI();
         }
 
         public void Update(TimeSpan delta)
@@ -31,7 +31,7 @@ namespace MegaBuy.Temp
 
         public void Draw(Transform2 parentTransform)
         {
-            var transform = parentTransform + new Transform2(_location);
+            var transform = parentTransform + _transform;
             _timeUI.Draw(transform);
             _togglePadUI.Draw(transform);
             _moneyUI.Draw(transform);

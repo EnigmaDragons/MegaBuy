@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.CustomUI;
 using MegaBuy.Time;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -9,13 +10,13 @@ namespace MegaBuy.Temp
 {
     public class TimeUI : IVisualAutomaton
     {
-        private readonly Vector2 _location = new Vector2(0, 850);
+        private readonly Transform2 _transform = new Transform2(new Vector2(Sizes.Margin, 850 - Sizes.Margin));
         private readonly Clock _clock;
         private readonly Label _label;
 
-        public TimeUI(Clock clock)
+        public TimeUI()
         {
-            _clock = clock;
+            _clock = GameState.Clock;
             _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Transform = new Transform2(new Size2(200, 50)) };
         }
 
@@ -26,8 +27,8 @@ namespace MegaBuy.Temp
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/UI/label", parentTransform + new Transform2(_location, new Size2(200, 50)));
-            _label.Draw(parentTransform + new Transform2(_location));
+            World.Draw("Images/UI/label", parentTransform + new Transform2(_transform.Location, new Size2(200, 50)));
+            _label.Draw(parentTransform + _transform);
         }
     }
 }
