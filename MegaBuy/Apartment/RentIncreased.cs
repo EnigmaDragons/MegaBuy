@@ -1,4 +1,4 @@
-﻿namespace MegaBuy.Money
+﻿namespace MegaBuy.Apartment
 {
     public struct RentIncreased
     {
