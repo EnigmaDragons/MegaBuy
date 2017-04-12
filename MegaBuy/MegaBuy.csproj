@@ -84,7 +84,6 @@
     <Compile Include="Save\AutoSave.cs" />
     <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Scene\Blank.cs" />
-    <Compile Include="Scene\SaveTest.cs" />
     <Compile Include="Temp\ClickableLayers.cs" />
     <Compile Include="Temp\MoneyUI.cs" />
     <Compile Include="Temp\OverlayUI.cs" />

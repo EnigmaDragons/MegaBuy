@@ -21,7 +21,7 @@ namespace MegaBuy.Save
         public void SaveGame(HourChanged hourChanged)
         {
             if (hourChanged.Hour.Equals(20))
-                _save.Save($"autosave-{DateTime.Now}");
+                _save.Save($"autosave-{DateTime.Now:yyMMddHHmmss}");
         }
     }
 }
