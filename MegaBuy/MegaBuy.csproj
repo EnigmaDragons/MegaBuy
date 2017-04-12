@@ -81,6 +81,7 @@
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="CustomUI\Colors.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
+    <Compile Include="Endings\Evicted.cs" />
     <Compile Include="Save\AutoSave.cs" />
     <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Scene\Blank.cs" />

@@ -42,6 +42,7 @@ namespace MegaBuy
                 { "Online", () => new Online() },
                 { "Redesign", () => new UIRedsign() },
                 { "Blank", () => new Blank() },
+                { "Evicted", () => new Evicted() },
             });
         }
     }
