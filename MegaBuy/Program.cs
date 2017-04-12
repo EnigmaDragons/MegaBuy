@@ -39,7 +39,6 @@ namespace MegaBuy
                 { "ILovePolitics", () => new ILovePolitics() },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
-                { "Online", () => new Online() },
                 { "Redesign", () => new UIRedsign() },
                 { "Blank", () => new Blank() },
                 { "Evicted", () => new Evicted() },

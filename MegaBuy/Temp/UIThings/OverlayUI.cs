@@ -16,11 +16,11 @@ namespace MegaBuy.Temp
         private readonly TogglePadUI _togglePadUI;
         private readonly MoneyUI _moneyUI;
 
-        public OverlayUI(ClickUILayer layer, Clock clock, PlayerAccount account)
+        public OverlayUI(ClickUILayer layer)
         {
-            _timeUI = new TimeUI(clock);
+            _timeUI = new TimeUI();
             _togglePadUI = new TogglePadUI(layer);
-            _moneyUI = new MoneyUI(account);
+            _moneyUI = new MoneyUI();
         }
 
         public void Update(TimeSpan delta)

@@ -14,9 +14,9 @@ namespace MegaBuy.Temp
         private readonly Clock _clock;
         private readonly Label _label;
 
-        public TimeUI(Clock clock)
+        public TimeUI()
         {
-            _clock = clock;
+            _clock = GameState.Clock;
             _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Transform = new Transform2(new Size2(200, 50)) };
         }
 

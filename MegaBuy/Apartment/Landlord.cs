@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Money;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -7,16 +8,18 @@ namespace MegaBuy.Apartment
 {
     public sealed class Landlord
     {
-        private readonly Rent _currenRent;
+        private readonly Rent _currentRent;
+        private PlayerAccount _rentersAccount;
 
         public bool RentPaidToday { get; private set; } = false;
 
         public string RentDue => "24:00";
-        public string RentAmount => _currenRent.Amount().ToString("0.##");
+        public string RentAmount => _currentRent.Amount().ToString("0.##");
 
-        public Landlord(Rent rent)
+        public Landlord(Rent rent, PlayerAccount acct)
         {
-            _currenRent = rent;
+            _currentRent = rent;
+            _rentersAccount = acct;
             World.Subscribe(EventSubscription.Create<DayEnded>(IncreaseRent, this));
             World.Subscribe(EventSubscription.Create<RentPaid>(RentPaid, this));
         }
@@ -25,14 +28,19 @@ namespace MegaBuy.Apartment
         {
             if (!RentPaidToday)
                 World.NavigateToScene("Evicted");
-            _currenRent.IncreaseByPercent(Convert.ToDecimal(0.15));
+            _currentRent.IncreaseByPercent(Convert.ToDecimal(0.15));
             RentPaidToday = false;
         }
 
         private void RentPaid(RentPaid rentPaid)
         {
-            // @todo #1 Deduct rent amount from player's account
-            RentPaidToday = true;
+            if(_rentersAccount.Amount() > _currentRent.Amount())
+            {
+                _rentersAccount.Remove(new Rent(_currentRent.Amount()));
+                RentPaidToday = true;
+            }
+            else
+                World.NavigateToScene("Evicted");
         }
     }
 }
