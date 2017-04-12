@@ -9,28 +9,30 @@ namespace MegaBuy.CustomUI
 {
     public class TogglePadUI : IVisual
     {
-        private readonly Vector2 _location = new Vector2(600, 850);
-        private readonly SingleImageButton _open;
-        private readonly SingleImageButton _close;
+        private readonly Transform2 _transform = new Transform2(new Vector2(600, 850));
+        private readonly ImageButton _open;
+        private readonly ImageButton _close;
         private readonly ClickUILayer _layer;
 
         private IVisual _current;
 
         public TogglePadUI(ClickUILayer layer)
         {
-            _open = new SingleImageButton("Images/UI/open", Colors.Hover, Colors.Press, new Transform2(new Size2(400, 50)), () => World.Publish(new PadOpened()));
-            _close = new SingleImageButton("Images/UI/close", Colors.Hover, Colors.Press, new Transform2(new Size2(400, 50)), () => World.Publish(new PadClosed()));
+            _open = new ImageButton("Images/UI/open", "Images/UI/open-hover", "Images/UI/open-press", 
+                new Transform2(Sizes.PadToggle), () => World.Publish(new PadOpened()));
+            _close = new ImageButton("Images/UI/close", "Images/UI/close-hover", "Images/UI/close-press", 
+                new Transform2(Sizes.PadToggle), () => World.Publish(new PadClosed()));
             _layer = layer;
             _current = _open;
             layer.Add(_open);
-            layer.Location = _location;
+            layer.Location = _transform.Location;
             World.Subscribe(new EventSubscription<PadOpened>(x => PadOpened(), this));
             World.Subscribe(new EventSubscription<PadClosed>(x => PadClosed(), this));
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            _current.Draw(parentTransform + new Transform2(_location));
+            _current.Draw(parentTransform + _transform);
         }
 
         private void PadOpened()

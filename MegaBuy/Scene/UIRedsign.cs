@@ -5,8 +5,8 @@ using MegaBuy.Money;
 using MegaBuy.Player;
 using MegaBuy.Temp;
 using MegaBuy.Time;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
@@ -14,67 +14,37 @@ namespace MegaBuy.Scene
 {
     public class UIRedsign : IScene
     {
-        private ApartmentMap _map;
-        private PlayerCharacter _player;
-        private OverlayUI _overlay;
         private ClickUI _clickUi = new ClickUI();
+        private OverlayUI _overlay;
+        private PadUI _pad;
         private Clock _clock;
 
-        private readonly Transform2 _camera = new Transform2(new Vector2(180, 0), Rotation2.Default, 2);
+        private bool _isPadVisible; 
 
         public void Init()
         {
-            _map = new ApartmentMap();
-            _map.Add(new TileWalker(1, 13, 1, 13).Get(x => new Tile("floor", x, false, 0)));
-
-            _map.Add(new Tile("bed-top", new TileLocation(12, 5), true, 1));
-            _map.Add(new Tile("bed-mid", new TileLocation(12, 6), true, 1));
-            _map.Add(new Tile("bed-bot", new TileLocation(12, 7), true, 1));
-
-            _map.Add(new TileWalker(0, 1, 1, 12).Get(x => new Tile("wall-left", x, true, 1)));
-            _map.Add(new TileWalker(13, 1, 1, 12).Get(x => new Tile("wall-right", x, true, 1)));
-            _map.Add(new TileWalker(1, 12, 0, 1).Get(x => new Tile("wall-top", x, true, 1)));
-            _map.Add(new TileWalker(1, 12, 13, 1).Get(x => new Tile("wall-bot", x, true, 1)));
-            _map.Add(new Tile("wall-top-left", new TileLocation(0, 0), true, 1));
-            _map.Add(new Tile("wall-top-right", new TileLocation(13, 0), true, 1));
-            _map.Add(new Tile("wall-bot-left", new TileLocation(0, 13), true, 1));
-            _map.Add(new Tile("wall-bot-right", new TileLocation(13, 13), true, 1));
-
-            _map.Add(new Tile("desk1", new TileLocation(2, 11), true, 1));
-            _map.Add(new Tile("desk2", new TileLocation(3, 11), true, 1));
-            _map.Add(new Tile("desk3", new TileLocation(4, 11), true, 1));
-            _map.Add(new Tile("desk4", new TileLocation(2, 12), true, 1));
-            _map.Add(new Tile("desk5", new TileLocation(3, 12), true, 1));
-            _map.Add(new Tile("desk6", new TileLocation(4, 12), true, 1));
-
-            _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
-
             _clock = new Clock();
             var layer = new ClickUILayer("overlay");
             _clickUi.Add(layer);
             _overlay = new OverlayUI(layer, _clock, new PlayerAccount(500));
+            _pad = new PadUI(_clickUi);
+            World.Subscribe(new EventSubscription<PadOpened>(x => _isPadVisible = true, this));
+            World.Subscribe(new EventSubscription<PadClosed>(x => _isPadVisible = false, this));
         }
 
         public void Update(TimeSpan delta)
         {
             _clock.Update(delta);
             _clickUi.Update(delta);
-            _player.Update(delta);
-            _map.Update(delta);
             _overlay.Update(delta);
+            _pad.Update(delta);
         }
 
         public void Draw()
         {
-            _map.Draw(_camera);
-            _player.Draw(_camera);
-            World.Draw("Effects/light-effect", new Rectangle(350, 0, 900, 900));
+            if(_isPadVisible)
+                _pad.Draw(Transform2.Zero);
             _overlay.Draw(Transform2.Zero);
-        }
-
-        private void NavigateToPAD()
-        {
-            World.NavigateToScene("Online");
         }
     }
 }
