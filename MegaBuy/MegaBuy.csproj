@@ -79,6 +79,7 @@
     <Compile Include="Calls\UI\WholeStar.cs" />
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
+    <Compile Include="Endings\Fired.cs" />
     <Compile Include="Temp\Colors.cs" />
     <Compile Include="CustomUI\Overlay.cs" />
     <Compile Include="Endings\Evicted.cs" />

@@ -15,6 +15,8 @@ namespace MegaBuy.Money
         private IPerCallRate _currentRate;
         private DayPayment _dayPayment;
 
+        private int _numMistakesInCurrentDay;
+
         private readonly List<int> _pendingPayments;
 
         public MegaBuyAccounting(IAccount playerAccount)
@@ -43,6 +45,7 @@ namespace MegaBuy.Money
         private void DayStarted(DayStarted day)
         {
             _dayPayment = new DayPayment();
+            _numMistakesInCurrentDay = 0;
         }
 
         private void HourChanged(HourChanged hourChanged)
@@ -61,6 +64,9 @@ namespace MegaBuy.Money
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
         {
             _dayPayment.Remove(mistake.PayPenalty);
+            _numMistakesInCurrentDay++;
+            if (_numMistakesInCurrentDay == 7)
+                World.NavigateToScene("Fired");
         }
     }
 }
