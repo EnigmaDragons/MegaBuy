@@ -1,10 +1,10 @@
 ﻿using System;
 using MegaBuy.Apartment;
-using MegaBuy.Apps;
 using MegaBuy.Calls;
 using MegaBuy.Food;
 using MegaBuy.Money;
 using MegaBuy.Save;
+using MegaBuy.Temp;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 
@@ -14,7 +14,7 @@ namespace MegaBuy
     {
         public static Clock Clock { get; set; }
         public static PlayerAccount PlayerAccount { get; set; }
-        public static PAD PAD { get; set; }
+        public static PadUI Pad { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
 
         static GameState()
@@ -22,7 +22,6 @@ namespace MegaBuy
             Clock = new Clock();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
-            PAD = new PAD();
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));

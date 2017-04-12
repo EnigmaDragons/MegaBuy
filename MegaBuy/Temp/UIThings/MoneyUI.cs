@@ -14,9 +14,9 @@ namespace MegaBuy.Temp
         private readonly PlayerAccount _account;
         private readonly Label _label;
 
-        public MoneyUI(PlayerAccount account)
+        public MoneyUI()
         {
-            _account = account;
+            _account = GameState.PlayerAccount;
             _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Transform = new Transform2(new Size2(200, 50)) };
         }
 

@@ -24,11 +24,12 @@ namespace MegaBuy.Scene
 
         public void Init()
         {
-            _clock = new Clock();
+            _clock = GameState.Clock;
             var layer = new ClickUILayer("overlay");
             _clickUi.Add(layer);
-            _overlay = new OverlayUI(layer, _clock, new PlayerAccount(500));
+            _overlay = new OverlayUI(layer);
             _pad = new PadUI(_clickUi);
+            GameState.Pad = _pad;
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadVisible = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadVisible = false, this));
         }
