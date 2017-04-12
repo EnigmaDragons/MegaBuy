@@ -76,8 +76,7 @@ namespace MegaBuy.CustomUI
 
         public void Dispose()
         {
-            for (var i = 0; i < _labels.Count; i++)
-                _labels[i].Dispose();
+            _labels.ForEach(x => x.Dispose());
         }
     }
 }

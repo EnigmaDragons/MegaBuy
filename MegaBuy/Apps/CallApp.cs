@@ -51,7 +51,6 @@ namespace MegaBuy.Apps
                 Color.FromNonPremultiplied(21, 21, 21, 250));
             _visuals.Add(button);
             _layer.Add(button);
-            //CallEnded(); // TODO: Fix this
         }
 
         private void UpdateCall(Call call)
