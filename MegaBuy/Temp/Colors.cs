@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MegaBuy.CustomUI
+namespace MegaBuy.Temp
 {
     public static class Colors
     {

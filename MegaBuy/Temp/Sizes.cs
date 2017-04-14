@@ -1,6 +1,6 @@
 ﻿using MonoDragons.Core.PhysicsEngine;
 
-namespace MegaBuy.CustomUI
+namespace MegaBuy.Temp
 {
     public static class Sizes
     {

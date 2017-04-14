@@ -17,6 +17,7 @@ namespace MegaBuy.Apps
         private int _notificationCount;
 
         public App Type => App.Notification;
+        public ClickUIBranch Branch { get; }
 
         private readonly ColoredRectangle _rect = new ColoredRectangle { Transform = new Transform2(new Size2(1920, 1080)) };
 

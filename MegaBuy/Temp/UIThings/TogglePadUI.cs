@@ -12,41 +12,43 @@ namespace MegaBuy.CustomUI
         private readonly Transform2 _transform = new Transform2(new Vector2(600, 850));
         private readonly ImageButton _open;
         private readonly ImageButton _close;
-        private readonly ClickUIBranch _layer;
+        private readonly ClickUIBranch _branch;
 
         private IVisual _current;
 
-        public TogglePadUI(ClickUIBranch layer)
+        public TogglePadUI(ClickUIBranch parentBranch)
         {
             _open = new ImageButton("Images/UI/open", "Images/UI/open-hover", "Images/UI/open-press", 
                 new Transform2(Sizes.PadToggle), () => World.Publish(new PadOpened()));
             _close = new ImageButton("Images/UI/close", "Images/UI/close-hover", "Images/UI/close-press", 
                 new Transform2(Sizes.PadToggle), () => World.Publish(new PadClosed()));
-            _layer = layer;
+            _branch = new ClickUIBranch("Toggle Pad", (int)ClickUIPriorities.Overlay);
+            parentBranch.Add(_branch);
             _current = _open;
-            layer.Add(_open);
-            layer.Location = _transform.Location;
+            _branch.Add(_open);
             World.Subscribe(EventSubscription.Create<PadOpened>(x => PadOpened(), this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => PadClosed(), this));
         }
 
         public void Draw(Transform2 parentTransform)
         {
+            var absoluteTransform = parentTransform + _transform;
+            _branch.ParentLocation = absoluteTransform.Location;
             _current.Draw(parentTransform + _transform);
         }
 
         private void PadOpened()
         {
             _current = _close;
-            _layer.Remove(_open);
-            _layer.Add(_close);
+            _branch.Remove(_open);
+            _branch.Add(_close);
         }
 
         private void PadClosed()
         {
             _current = _open;
-            _layer.Remove(_close);
-            _layer.Add(_open);
+            _branch.Remove(_close);
+            _branch.Add(_open);
         }
     }
 }

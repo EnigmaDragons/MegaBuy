@@ -1,11 +1,14 @@
 ﻿using System;
+using MegaBuy.Temp;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Apps
 {
     public sealed class NoneApp : IApp
     {
         public App Type => App.None;
+        public ClickUIBranch Branch { get; } = new ClickUIBranch("None", (int)ClickUIPriorities.Pad);
 
         public void Update(TimeSpan delta)
         {

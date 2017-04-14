@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Calls;
 using MegaBuy.CustomUI;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MegaBuy.Temp.UIThings
@@ -18,6 +20,8 @@ namespace MegaBuy.Temp.UIThings
         public CallMessengerUI()
         {
             _timer = new Timer(UpdateMessenger, 1000);
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => AddMessages(x.Call.Script), this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(x => Clear(), this));
         }
 
         public void Update(TimeSpan delta)
@@ -39,12 +43,17 @@ namespace MegaBuy.Temp.UIThings
             }
         }
 
-        public void AddMessage(string text, bool isPlayer)
+        private void AddMessages(Script script)
+        {
+            script.ForEach(y => AddMessage(y.Text, y.CharacterName.Equals("player", StringComparison.OrdinalIgnoreCase)));
+        }
+
+        private void AddMessage(string text, bool isPlayer)
         {
             _incomingMessages.Add(new MessageUI(text, 350 - Sizes.MessageMargin * 2, isPlayer));
         }
 
-        public void Clear()
+        private void Clear()
         {
             _incomingMessages.Clear();
             _messages.Clear();

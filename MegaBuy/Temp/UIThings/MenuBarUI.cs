@@ -16,13 +16,14 @@ namespace MegaBuy.Temp
         private readonly ImageButton _foodApp;
         private readonly ImageButton _notificationApp;
         private readonly ImageButton _rentApp;
-        private readonly ClickUI _clickUI;
-        private readonly ClickUIBranch _layer;
+        private readonly ClickUIBranch _branch;
 
         private App _currentApp = App.None;
 
-        public MenuBarUI(ClickUI clickUI)
+        public MenuBarUI(ClickUIBranch parentBranch)
         {
+            _branch = new ClickUIBranch("Menu Bar", (int)ClickUIPriorities.Pad);
+            parentBranch.Add(_branch);
             _callApp = new ImageButton("Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
                 new Transform2(new Vector2(575 - Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Call));
             _foodApp = new ImageButton("Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
@@ -31,24 +32,20 @@ namespace MegaBuy.Temp
                 new Transform2(new Vector2(875 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
             _rentApp = new ImageButton("Images/UI/button", "Images/UI/button", "Images/UI/button",
                 new Transform2(new Vector2(1025 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
-            _clickUI = clickUI;
-            _layer = new ClickUIBranch("Pad Menu", 1);
-            _layer.Add(_callApp);
-            _layer.Add(_foodApp);
-            _layer.Add(_notificationApp);
-            _layer.Add(_rentApp);
-
-            //temp code that will go away
-            World.Subscribe(EventSubscription.Create<PadOpened>(x => _clickUI.Add(_layer), this));
-            World.Subscribe(EventSubscription.Create<PadClosed>(x => _clickUI.Remove(_layer), this));
+            _branch.Add(_callApp);
+            _branch.Add(_foodApp);
+            _branch.Add(_notificationApp);
+            _branch.Add(_rentApp);
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            _callApp.Draw(parentTransform + _transform);
-            _foodApp.Draw(parentTransform + _transform);
-            _notificationApp.Draw(parentTransform + _transform);
-            _rentApp.Draw(parentTransform + _transform);
+            var absoluteTransform = parentTransform + _transform;
+            _branch.ParentLocation = absoluteTransform.Location;
+            _callApp.Draw(absoluteTransform);
+            _foodApp.Draw(absoluteTransform);
+            _notificationApp.Draw(absoluteTransform);
+            _rentApp.Draw(absoluteTransform);
         }
 
         private void ChangeApp(App app)

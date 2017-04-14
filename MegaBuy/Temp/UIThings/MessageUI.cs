@@ -23,7 +23,7 @@ namespace MegaBuy.Temp.UIThings
             Height = (int)size.Y + 10;
             _label = new Label
             {
-                BackgroundColor = isPlayer ? Colors.General : Colors.Primary,
+                BackgroundColor = isPlayer ? Colors.Secondary : Colors.Primary,
                 TextColor = Color.Black,
                 Font = "Fonts/arial",
                 Text = newMessage,
