@@ -13,6 +13,7 @@ namespace MegaBuy
 {
     public static class GameState
     {
+        public static string CharName { get; set; }
         public static Clock Clock { get; set; }
         public static PlayerEnergy Energy { get; set; }
         public static PlayerAccount PlayerAccount { get; set; }
