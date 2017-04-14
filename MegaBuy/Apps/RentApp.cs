@@ -24,6 +24,7 @@ namespace MegaBuy.Apps
         private bool _canPayChanged;
 
         public App Type => App.Rent;
+        public ClickUIBranch Branch { get; }
 
         public RentApp(ClickUI clickUi)
         {

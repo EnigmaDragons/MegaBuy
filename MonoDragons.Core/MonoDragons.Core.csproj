@@ -106,6 +106,7 @@
     <Compile Include="UserInterface\ClickUIBranch.cs" />
     <Compile Include="UserInterface\ColoredRectangle.cs" />
     <Compile Include="UserInterface\IconButton.cs" />
+    <Compile Include="UserInterface\ImageTextButton.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />

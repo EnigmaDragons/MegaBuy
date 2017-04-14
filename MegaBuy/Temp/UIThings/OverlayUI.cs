@@ -15,11 +15,15 @@ namespace MegaBuy.Temp
         private readonly TimeUI _timeUI;
         private readonly TogglePadUI _togglePadUI;
         private readonly MoneyUI _moneyUI;
+        private readonly ClickUIBranch _branch;
 
-        public OverlayUI(ClickUIBranch layer)
+        public OverlayUI(ClickUIBranch parentBranch)
         {
+            //@todo #1 update toggle button colors and label colors
+            _branch = new ClickUIBranch("Overlay", (int)ClickUIPriorities.Overlay);
+            parentBranch.Add(_branch);
             _timeUI = new TimeUI();
-            _togglePadUI = new TogglePadUI(layer);
+            _togglePadUI = new TogglePadUI(_branch);
             _moneyUI = new MoneyUI();
         }
 
@@ -31,10 +35,11 @@ namespace MegaBuy.Temp
 
         public void Draw(Transform2 parentTransform)
         {
-            var transform = parentTransform + _transform;
-            _timeUI.Draw(transform);
-            _togglePadUI.Draw(transform);
-            _moneyUI.Draw(transform);
+            var absoluteTransform = parentTransform + _transform;
+            _branch.ParentLocation = absoluteTransform.Location;
+            _timeUI.Draw(absoluteTransform);
+            _togglePadUI.Draw(absoluteTransform);
+            _moneyUI.Draw(absoluteTransform);
         }
     }
 }

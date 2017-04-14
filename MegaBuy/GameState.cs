@@ -7,6 +7,7 @@ using MegaBuy.Save;
 using MegaBuy.Temp;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
+using MegaBuy.Energy;
 
 namespace MegaBuy
 {
@@ -14,6 +15,7 @@ namespace MegaBuy
     {
         public static string CharName { get; set; }
         public static Clock Clock { get; set; }
+        public static PlayerEnergy Energy { get; set; }
         public static PlayerAccount PlayerAccount { get; set; }
         public static PadUI Pad { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
@@ -22,6 +24,7 @@ namespace MegaBuy
         static GameState()
         {
             Clock = new Clock();
+            Energy = new PlayerEnergy();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
