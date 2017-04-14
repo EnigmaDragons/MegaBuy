@@ -46,7 +46,7 @@ namespace MegaBuy.Temp.UIThings
 
         private void StartConnecting()
         {
-            //@todo #1 Need Call Connecting published before call after of call
+            // @todo #1 Need Call Connecting published before call after of call
             _isCalling = true;
             Branch.Remove(_ready.Branch);
             Branch.Add(_callOptions.Branch);

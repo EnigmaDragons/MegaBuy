@@ -18,7 +18,7 @@ namespace MegaBuy.Temp.UIThings
 
         public CallOptionsUI()
         {
-            Branch = new ClickUIBranch("Call Options", 20/*(int)ClickUIPriorities.Pad*/);
+            Branch = new ClickUIBranch("Call Options", (int)ClickUIPriorities.Pad);
             World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
         }

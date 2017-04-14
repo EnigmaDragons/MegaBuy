@@ -55,7 +55,7 @@ namespace MegaBuy.Temp.UIThings
             var caller = call.Script.First(x => !x.CharacterName.Equals("player", StringComparison.OrdinalIgnoreCase)).CharacterName;
             _caller = caller.ToLower().Replace(" ", "-");
             _name.Text = caller;
-            //@todo #1 Make Callers know their own name
+            // @todo #1 Make Callers know their own name
         }
 
         private void EndCall()
