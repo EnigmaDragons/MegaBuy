@@ -12,10 +12,10 @@ namespace MegaBuy.Temp
     public class MenuBarUI : IVisual
     {
         private readonly Transform2 _transform = Transform2.Zero;
-        private readonly ImageButton _callApp;
-        private readonly ImageButton _foodApp;
-        private readonly ImageButton _notificationApp;
-        private readonly ImageButton _rentApp;
+        private readonly ImageTextButton _callApp;
+        private readonly ImageTextButton _foodApp;
+        private readonly ImageTextButton _notificationApp;
+        private readonly ImageTextButton _rentApp;
         private readonly ClickUIBranch _branch;
 
         private App _currentApp = App.None;
@@ -24,14 +24,18 @@ namespace MegaBuy.Temp
         {
             _branch = new ClickUIBranch("Menu Bar", (int)ClickUIPriorities.Pad);
             parentBranch.Add(_branch);
-            _callApp = new ImageButton("Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
+            _callApp = new ImageTextButton("Calls",
+                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
                 new Transform2(new Vector2(575 - Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Call));
-            _foodApp = new ImageButton("Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
+            _foodApp = new ImageTextButton("Food",
+                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
                 new Transform2(new Vector2(725, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Food));
-            _notificationApp = new ImageButton("Images/UI/button", "Images/UI/button", "Images/UI/button", 
+            _notificationApp = new ImageTextButton("Notification",
+                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
                 new Transform2(new Vector2(875 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
-            _rentApp = new ImageButton("Images/UI/button", "Images/UI/button", "Images/UI/button",
-                new Transform2(new Vector2(1025 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
+            _rentApp = new ImageTextButton("Rent",
+                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
+                new Transform2(new Vector2(1025 + Sizes.Margin * 2, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
             _branch.Add(_callApp);
             _branch.Add(_foodApp);
             _branch.Add(_notificationApp);

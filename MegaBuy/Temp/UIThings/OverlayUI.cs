@@ -19,6 +19,7 @@ namespace MegaBuy.Temp
 
         public OverlayUI(ClickUIBranch parentBranch)
         {
+            //@todo #1 update toggle button colors and label colors
             _branch = new ClickUIBranch("Overlay", (int)ClickUIPriorities.Overlay);
             parentBranch.Add(_branch);
             _timeUI = new TimeUI();

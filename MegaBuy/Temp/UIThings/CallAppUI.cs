@@ -14,6 +14,9 @@ namespace MegaBuy.Temp.UIThings
         private readonly CallMessengerUI _messenger = new CallMessengerUI();
         private readonly CallerUI _caller = new CallerUI();
         private readonly ReadyUI _ready = new ReadyUI();
+        private readonly CallOptionsUI _callOptions = new CallOptionsUI();
+
+        private bool _isCalling = false;
 
         public ClickUIBranch Branch { get; private set; }
         public App Type => App.Call;
@@ -21,6 +24,7 @@ namespace MegaBuy.Temp.UIThings
         public CallAppUI()
         {
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
+            Branch.Add(_ready.Branch);
             World.Subscribe(EventSubscription.Create<CallConnecting>(x => StartConnecting(), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
         }
@@ -35,16 +39,23 @@ namespace MegaBuy.Temp.UIThings
             var absoluteTransform = parentTransform + _transform;
             _messenger.Draw(absoluteTransform);
             _caller.Draw(absoluteTransform);
-            _ready.Draw(parentTransform);
+            _callOptions.Draw(absoluteTransform);
+            if (!_isCalling)
+                _ready.Draw(absoluteTransform);
         }
 
         private void StartConnecting()
         {
+            //@todo #1 Need Call Connecting published before call after of call
+            _isCalling = true;
             Branch.Remove(_ready.Branch);
+            Branch.Add(_callOptions.Branch);
         }
 
         private void EndCall()
         {
+            _isCalling = false;
+            Branch.Remove(_callOptions.Branch);
             Branch.Add(_ready.Branch);
         }
     }

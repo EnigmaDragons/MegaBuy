@@ -32,7 +32,7 @@ namespace MegaBuy.Apps
             _layer = new ClickUIBranch("RentApp", 1);
             _clickUi = clickUi;
             _rect.Color = Color.FromNonPremultiplied(100, 0, 100, 100);
-            _payButton = new TextButton(1, new Rectangle(100, 400, 400, 100), PayRent, "Pay Rent",
+            _payButton = new TextButton(new Rectangle(100, 400, 400, 100), PayRent, "Pay Rent",
                 Color.CadetBlue, Color.Red, Color.Green);
             _rentDueDate = new Label {Transform = new Transform2(new Vector2(100, 100), new Size2(800, 100))};
             _rentAmount = new Label { Transform = new Transform2(new Vector2(100, 200), new Size2(800, 100))};

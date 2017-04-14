@@ -12,7 +12,7 @@ namespace MegaBuy.Temp.UIThings
 {
     public class CallMessengerUI : IVisualAutomaton
     {
-        private readonly Transform2 _transform = new Transform2(new Vector2(25, 25));
+        private readonly Transform2 _transform = new Transform2(new Vector2(Sizes.Margin, Sizes.Margin));
         private readonly List<MessageUI> _messages = new List<MessageUI>();
         private readonly List<MessageUI> _incomingMessages = new List<MessageUI>();
         private readonly Timer _timer;

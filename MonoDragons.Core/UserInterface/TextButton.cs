@@ -17,7 +17,7 @@ namespace MonoDragons.Core.UserInterface
         private Color _currentColor;
         private readonly Texture2D _rect;
 
-        public TextButton(int layer, Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press) : base(layer, area)
+        public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press) : base(area)
         {
             _onClick = onClick;
             _text = text;

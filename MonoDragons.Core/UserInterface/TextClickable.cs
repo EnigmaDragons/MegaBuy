@@ -11,7 +11,7 @@ namespace MonoDragons.Core.UserInterface
         private readonly Rectangle _area;
         private readonly Action _onClick;
 
-        public TextClickable(string text, int layer, Rectangle area, Action action) : base(layer, area)
+        public TextClickable(string text, Rectangle area, Action action) : base(area)
         {
             _area = area;
             _text = text;

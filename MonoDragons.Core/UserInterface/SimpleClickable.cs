@@ -7,7 +7,7 @@ namespace MonoDragons.Core.UserInterface
     {
         private readonly Action _onClick;
 
-        public SimpleClickable(int layer, Rectangle area, Action onClick) : base(layer, area)
+        public SimpleClickable(Rectangle area, Action onClick) : base(area)
         {
             _onClick = onClick;
         }

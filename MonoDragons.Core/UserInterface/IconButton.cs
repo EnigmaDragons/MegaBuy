@@ -20,7 +20,7 @@ namespace MonoDragons.Core.UserInterface
         private Color _color;
 
         public IconButton(string icon, Rectangle iconArea, Rectangle buttonArea, Color defaultColor, Color hover, Color pressed, Action onPressed) 
-            : base(10, buttonArea)
+            : base(buttonArea)
         {
             _icon = icon;
             _iconArea = iconArea;
