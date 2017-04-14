@@ -39,6 +39,7 @@ namespace MegaBuy.Food
                 World.Publish(new Hungry());
             else
                 World.Publish(new NotHungry());
+            _hungerChanged = false;
         }
     }
 }
