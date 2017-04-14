@@ -15,8 +15,9 @@ namespace MegaBuy.Temp
         private readonly ImageButton _callApp;
         private readonly ImageButton _foodApp;
         private readonly ImageButton _notificationApp;
+        private readonly ImageButton _rentApp;
         private readonly ClickUI _clickUI;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
 
         private App _currentApp = App.None;
 
@@ -28,11 +29,14 @@ namespace MegaBuy.Temp
                 new Transform2(new Vector2(725, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Food));
             _notificationApp = new ImageButton("Images/UI/button", "Images/UI/button", "Images/UI/button", 
                 new Transform2(new Vector2(875 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
+            _rentApp = new ImageButton("Images/UI/button", "Images/UI/button", "Images/UI/button",
+                new Transform2(new Vector2(1025 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
             _clickUI = clickUI;
-            _layer = new ClickUILayer("Pad Menu");
+            _layer = new ClickUIBranch("Pad Menu", 1);
             _layer.Add(_callApp);
             _layer.Add(_foodApp);
             _layer.Add(_notificationApp);
+            _layer.Add(_rentApp);
 
             //temp code that will go away
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _clickUI.Add(_layer), this));
@@ -44,6 +48,7 @@ namespace MegaBuy.Temp
             _callApp.Draw(parentTransform + _transform);
             _foodApp.Draw(parentTransform + _transform);
             _notificationApp.Draw(parentTransform + _transform);
+            _rentApp.Draw(parentTransform + _transform);
         }
 
         private void ChangeApp(App app)

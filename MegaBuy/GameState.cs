@@ -16,16 +16,17 @@ namespace MegaBuy
         public static PlayerAccount PlayerAccount { get; set; }
         public static PadUI Pad { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
+        public static Landlord Landlord { get; set; }
 
         static GameState()
         {
             Clock = new Clock();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
+            Landlord = new Landlord(new Rent(50), PlayerAccount);
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
-            AddSingleInstanceSubscription(new Landlord(new Rent(50)));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
         }

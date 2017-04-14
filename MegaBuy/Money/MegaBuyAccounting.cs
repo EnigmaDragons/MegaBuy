@@ -24,7 +24,7 @@ namespace MegaBuy.Money
             _playerAccount = playerAccount;
             _currentRate = new Day1PerCallRate();
             _pendingPayments = new List<int>();
-            World.Subscribe(EventSubscription.Create<DayStarted>(DayStarted, this));
+            _dayPayment = new DayPayment();
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallSucceeded>(CallSucceeded, this));
             World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
@@ -42,12 +42,6 @@ namespace MegaBuy.Money
             _dayPayment.Add(new CallPayment(_currentRate, rated.Rating));
         }
 
-        private void DayStarted(DayStarted day)
-        {
-            _dayPayment = new DayPayment();
-            _numMistakesInCurrentDay = 0;
-        }
-
         private void HourChanged(HourChanged hourChanged)
         {
             if (hourChanged.Hour == 20)
@@ -58,7 +52,8 @@ namespace MegaBuy.Money
         {
             _playerAccount.Add(_dayPayment);
             World.Publish(new PlayerNotification("MegaBuy", $"You have been paid MBit - {_dayPayment.Amount()}"));
-            _dayPayment = null;
+            _dayPayment = new DayPayment();
+            _numMistakesInCurrentDay = 0;
         }
 
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)

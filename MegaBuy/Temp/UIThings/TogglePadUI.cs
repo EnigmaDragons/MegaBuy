@@ -12,11 +12,11 @@ namespace MegaBuy.CustomUI
         private readonly Transform2 _transform = new Transform2(new Vector2(600, 850));
         private readonly ImageButton _open;
         private readonly ImageButton _close;
-        private readonly ClickUILayer _layer;
+        private readonly ClickUIBranch _layer;
 
         private IVisual _current;
 
-        public TogglePadUI(ClickUILayer layer)
+        public TogglePadUI(ClickUIBranch layer)
         {
             _open = new ImageButton("Images/UI/open", "Images/UI/open-hover", "Images/UI/open-press", 
                 new Transform2(Sizes.PadToggle), () => World.Publish(new PadOpened()));

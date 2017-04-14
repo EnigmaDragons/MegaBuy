@@ -16,7 +16,7 @@ namespace MegaBuy.Temp
         private readonly TogglePadUI _togglePadUI;
         private readonly MoneyUI _moneyUI;
 
-        public OverlayUI(ClickUILayer layer)
+        public OverlayUI(ClickUIBranch layer)
         {
             _timeUI = new TimeUI();
             _togglePadUI = new TogglePadUI(layer);

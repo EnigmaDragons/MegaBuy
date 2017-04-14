@@ -41,6 +41,7 @@ namespace MegaBuy
                 { "Starved", () => new Starved() },
                 { "Redesign", () => new UIRedsign() },
                 { "Blank", () => new Blank() },
+                { "TTest", () => new TimTest() },
                 { "Evicted", () => new Evicted() },
                 { "Fired", () => new Fired() },
                 { "Messenger", () => new NewMessenger() },

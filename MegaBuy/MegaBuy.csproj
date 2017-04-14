@@ -44,6 +44,7 @@
     <Compile Include="Apps\IApp.cs" />
     <Compile Include="Apps\NoneApp.cs" />
     <Compile Include="Apps\NotificationApp.cs" />
+    <Compile Include="Apps\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Save\AutoSave.cs" />
     <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Scene\Blank.cs" />
+    <Compile Include="Scene\TimTest.cs" />
     <Compile Include="Temp\Events\AppChanged.cs" />
     <Compile Include="Temp\UIThings\CallAppUI.cs" />
     <Compile Include="Temp\UIThings\CallMessengerUI.cs" />
@@ -103,7 +105,6 @@
     <Compile Include="Food\FoodOptions\Menu.cs" />
     <Compile Include="Food\FoodOptionUI.cs" />
     <Compile Include="Food\FoodOrdered.cs" />
-    <Compile Include="Food\FoodViewModel.cs" />
     <Compile Include="Food\Food.cs" />
     <Compile Include="Food\Hungry.cs" />
     <Compile Include="Food\NotHungry.cs" />
@@ -180,6 +181,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Food\nothing.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Food\pancakes.png">

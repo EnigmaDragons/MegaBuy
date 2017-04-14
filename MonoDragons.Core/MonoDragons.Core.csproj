@@ -54,7 +54,6 @@
     <Compile Include="Engine\IVisualAutomaton.cs" />
     <Compile Include="Engine\Metrics.cs" />
     <Compile Include="Engine\Timer.cs" />
-    <Compile Include="IO\JsonDataSave.cs" />
     <Compile Include="IO\AppDataJsonIo.cs" />
     <Compile Include="Navigation\INavigation.cs" />
     <Compile Include="Engine\IScene.cs" />
@@ -104,9 +103,9 @@
     <Compile Include="Navigation\FadingInScene.cs" />
     <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\Bordered.cs" />
+    <Compile Include="UserInterface\ClickUIBranch.cs" />
     <Compile Include="UserInterface\ColoredRectangle.cs" />
     <Compile Include="UserInterface\IconButton.cs" />
-    <Compile Include="UserInterface\ClickUILayer.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
