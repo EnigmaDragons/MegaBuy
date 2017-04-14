@@ -56,7 +56,7 @@
     <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
-    <Compile Include="Calls\Conversation Pieces\Verbs.cs" />
+    <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
     <Compile Include="Calls\Rules\CallCenterPosition.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
@@ -179,6 +179,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\dalton-bowdoin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Food\nothing.png">

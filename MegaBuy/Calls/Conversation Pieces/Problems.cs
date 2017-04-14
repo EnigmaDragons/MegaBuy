@@ -2,32 +2,32 @@
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
-    public class Verbs
+    public class Problems
     {
-        public static Dictionary<NounOperations, string> verbs = new Dictionary<NounOperations, string>
+        public static Dictionary<Problem, string> description = new Dictionary<Problem, string>
         {
-            { NounOperations.CanRun, "run" },
-            { NounOperations.CanTurnOnOrOff, "turn on" },
-            { NounOperations.CanTurnOnOrOff, "turn off" },
-            { NounOperations.Jams, "always jams" },
-            { NounOperations.IsDefective, "arrived with a defect" },
-            { NounOperations.IsBuggy, "has tons of known bugs" },
-            { NounOperations.HasSpyware, "infected my system with spyware" },
-            { NounOperations.RunsSlowly, "infected my system with spyware" },
+            { Problem.DoesntRun, "can't run" },
+            { Problem.DoesntTurnOn, "doesn't turn on" },
+            { Problem.Jams, "always jams" },
+            { Problem.IsDefective, "arrived with a defect" },
+            { Problem.TerribleExperience, "is the worst" },
+            { Problem.IsBuggy, "has tons of known bugs" },
+            { Problem.HasSpyware, "infected my system with spyware" },
+            { Problem.RunsSlowly, "takes forever to launch" },
+            { Problem.Crashes, "crashes constantly" },
         };
-
-        public static string[] canNotSynonyms = new string[] { "can't", "fails to", "is unable to" };
     }
 
-    public enum NounOperations
+    public enum Problem
     {
-        CanRun,
-        CanTurnOnOrOff,
+        DoesntRun,
+        DoesntTurnOn,
         Jams,
         IsDefective,
         TerribleExperience,
         IsBuggy,
         HasSpyware,
-        RunsSlowly
+        RunsSlowly,
+        Crashes,
     }
 }

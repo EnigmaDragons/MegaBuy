@@ -18,7 +18,7 @@ namespace MegaBuy.Calls.PositionBasedCall
                 script.Add(new ScriptLine(name, "Hello " + player + ", I need help."));
                 var product = Products.Random();
                 var operation = Products.GetOperations(product).Random();
-                script.Add(new ScriptLine(name, "My " + product + " " + Verbs.canNotSynonyms.Random() + " " + Verbs.verbs[operation] + "."));
+                script.Add(new ScriptLine(name, "My " + product + " " + Problems.description[operation] + "."));
                 return new Call(new Caller(PatienceLevel.Average), script, CallResolution.ReferToTroubleshooting, DayOneOptions);
             },
             (player) => {
