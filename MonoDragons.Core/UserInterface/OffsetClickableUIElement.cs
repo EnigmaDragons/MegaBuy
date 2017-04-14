@@ -7,7 +7,7 @@ namespace MonoDragons.Core.UserInterface
         private readonly ClickableUIElement _element;
 
         public OffsetClickableUIElement(ClickableUIElement element, Point offset) 
-            : base(element.Layer, new Rectangle(element.Area.Location + offset, element.Area.Size))
+            : base(new Rectangle(element.Area.Location + offset, element.Area.Size))
         {
             _element = element;
         }

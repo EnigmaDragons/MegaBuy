@@ -43,7 +43,7 @@ namespace MegaBuy.Apps
             _person = "nothing";
             _index = 0;
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
-            var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
+            var button = new TextButton( new Rectangle(550, 720, 300, 90),
                 PublishReadyForCall,
                 "Ready",
                 Color.FromNonPremultiplied(42, 42, 42, 250),
@@ -59,7 +59,7 @@ namespace MegaBuy.Apps
             _person = _call.Script.First(x => x.CharacterName != "Player").CharacterName;
             for (var i = 0; i < call.Options.Count; i++)
             {
-                var button = new TextButton(1, new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description,
+                var button = new TextButton( new Rectangle(i * 400 + 100, 720, 300, 90), call.Options[i].Go, call.Options[i].Description,
                     Color.FromNonPremultiplied(42, 42, 42, 250),
                     Color.FromNonPremultiplied(30, 30, 30, 250),
                     Color.FromNonPremultiplied(21, 21, 21, 250));
@@ -78,7 +78,7 @@ namespace MegaBuy.Apps
             if(_messenger != null)
                 _messenger.Dispose();
             _messenger = new AutoSizingTextMessenger(6, Color.Black);
-            var button = new TextButton(1, new Rectangle(550, 720, 300, 90),
+            var button = new TextButton( new Rectangle(550, 720, 300, 90),
                 PublishReadyForCall,
                 "Ready",
                 Color.FromNonPremultiplied(42, 42, 42, 250), 

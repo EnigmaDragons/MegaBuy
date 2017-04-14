@@ -41,7 +41,7 @@ namespace MonoDragons.Core.UserInterface
         private List<ClickUIBranch> GetAllBrancesFrom(ClickUIBranch branch)
         {
             var branches = new List<ClickUIBranch> { branch };
-            foreach (ClickUIBranch subBranch in branch.SubBranches)
+            foreach (ClickUIBranch subBranch in branch.SubBranches())
                 branches.AddRange(GetAllBrancesFrom(subBranch));
             return branches;
         }
@@ -110,7 +110,8 @@ namespace MonoDragons.Core.UserInterface
         {
             return _wasClicked 
                 && mouse.LeftButton == ButtonState.Released 
-                && new Rectangle(_currentElement.Area.Location + _elementLayer.Location.ToPoint(), _currentElement.Area.Size).Contains(mouse.Position);
+                && new Rectangle(_currentElement.Area.Location + _currentElement.ParentLocation.ToPoint(), _currentElement.Area.Size)
+                    .Contains(mouse.Position);
         }
 
         private ClickableUIElement GetElement(Point mousePosition)

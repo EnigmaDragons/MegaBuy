@@ -17,7 +17,7 @@ namespace MonoDragons.Core.UserInterface
 
         private ColoredRectangle _current;
 
-        public SingleImageButton(string image, Color hover, Color press, Transform2 transform, Action onClick) : base(10, transform.ToRectangle())
+        public SingleImageButton(string image, Color hover, Color press, Transform2 transform, Action onClick) : base(transform.ToRectangle())
         {
             _image = image;
             _hover = hover;

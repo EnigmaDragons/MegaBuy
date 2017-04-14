@@ -2,15 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonoDragons.Core.UserInterface
 {
     public class ClickUIBranch
     {
         private List<ClickableUIElement> _elements = new List<ClickableUIElement>();
-        public List<ClickUIBranch> SubBranches = new List<ClickUIBranch>();
+        private List<ClickUIBranch> _subBranches = new List<ClickUIBranch>();
         public readonly int Priority;
         private readonly string _name;
         private List<Action<ClickUIBranch>[]> subscriberActions = new List<Action<ClickUIBranch>[]>();
@@ -23,7 +21,8 @@ namespace MonoDragons.Core.UserInterface
             {
                 parentLocation = value;
                 totalLocation = new Vector2(location.X + ParentLocation.X, location.Y + ParentLocation.Y);
-                SubBranches.ForEach((b) => b.ParentLocation = totalLocation);
+                _subBranches.ForEach((b) => b.ParentLocation = totalLocation);
+                _elements.ForEach((e) => e.ParentLocation = totalLocation);
             }
         }
         private Vector2 location;
@@ -34,7 +33,8 @@ namespace MonoDragons.Core.UserInterface
             {
                 location = value;
                 totalLocation = new Vector2(location.X + ParentLocation.X, location.Y + ParentLocation.Y);
-                SubBranches.ForEach((b) => b.ParentLocation = totalLocation);
+                _subBranches.ForEach((b) => b.ParentLocation = totalLocation);
+                _elements.ForEach((e) => e.ParentLocation = totalLocation);
             }
         }
         private Vector2 totalLocation;
@@ -48,12 +48,34 @@ namespace MonoDragons.Core.UserInterface
         public void Add(ClickableUIElement element)
         {
             _elements.Add(element);
-            _elements = _elements.OrderByDescending(x => x.Layer).ToList();
         }
 
         public void Remove(ClickableUIElement element)
         {
             _elements.Remove(element);
+        }
+
+        public ClickUIBranch SubBranch(int indexer)
+        {
+            return _subBranches[indexer];
+        }
+
+        public List<ClickUIBranch> SubBranches()
+        {
+            return _subBranches;
+        }
+
+        public void Add(ClickUIBranch branch)
+        {
+            branch.ParentLocation = new Vector2(ParentLocation.X + Location.X, ParentLocation.Y + Location.Y);
+            _subBranches.Add(branch);
+            subscriberActions.ForEach((a) => a[0](branch));
+        }
+
+        public void Remove(ClickUIBranch branch)
+        {
+            _subBranches.Remove(branch);
+            subscriberActions.ForEach((a) => a[1](branch));
         }
 
         public void Subscribe(Action<ClickUIBranch>[] actions)
@@ -65,20 +87,6 @@ namespace MonoDragons.Core.UserInterface
         {
             subscriberActions.Remove(actions);
         }
-
-        public void Add(ClickUIBranch branch)
-        {
-            branch.ParentLocation = new Vector2(ParentLocation.X + Location.X, ParentLocation.Y + Location.Y);
-            SubBranches.Add(branch);
-            subscriberActions.ForEach((a) => a[0](branch));
-        }
-
-        public void Remove(ClickUIBranch branch)
-        {
-            SubBranches.Remove(branch);
-            subscriberActions.ForEach((a) => a[1](branch));
-        }
-
         public void ClearElements()
         {
             _elements.Clear();
