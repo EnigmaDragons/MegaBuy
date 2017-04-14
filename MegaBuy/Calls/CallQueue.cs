@@ -15,7 +15,7 @@ namespace MegaBuy.Calls
         private async void PlayerAvailable(AgentCallStatusChanged statusChanged)
         {
             if (!statusChanged.Status.Equals(AgentCallStatus.Available)) return;
-
+            World.Publish(new CallConnecting());
             await Task.Delay(Rng.Int(0, 5) * 1000);
             World.Publish(new CallStarted(new CallGenerator(Rules.JobRole.ReferrerLevel1).GenerateCall()));
         }

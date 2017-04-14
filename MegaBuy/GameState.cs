@@ -23,6 +23,7 @@ namespace MegaBuy
 
         static GameState()
         {
+            CharName = "player";
             Clock = new Clock();
             Energy = new PlayerEnergy();
             PlayerAccount = new PlayerAccount();
