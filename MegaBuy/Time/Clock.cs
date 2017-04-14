@@ -33,6 +33,7 @@ namespace MegaBuy.Time
             if (_minute == 59)
                 IncrementHour();
             _minute = (_minute + 1) % 60;
+            World.Publish(new MinuteChanged(_hour, _minute));
         }
 
         private void IncrementHour()
