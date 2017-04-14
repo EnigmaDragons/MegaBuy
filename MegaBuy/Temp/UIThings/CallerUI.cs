@@ -23,7 +23,7 @@ namespace MegaBuy.Temp.UIThings
             {
                 BackgroundColor = Color.Transparent,
                 Font = "Fonts/arial",
-                TextColor = Color.Black,
+                TextColor = Color.White,
                 Transform = new Transform2(new Vector2(0, 410 + Sizes.Margin), new Size2(250, 50))
             };
             World.Subscribe(EventSubscription.Create<CallConnecting>(x => StartConnecting(), this));

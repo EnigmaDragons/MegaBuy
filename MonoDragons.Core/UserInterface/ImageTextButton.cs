@@ -13,7 +13,7 @@ namespace MonoDragons.Core.UserInterface
         public ImageTextButton(string text, string basic, string hover, string press, Transform2 transform, Action onClick) : base(transform.ToRectangle())
         {
             _button = new ImageButton(basic, hover, press, transform, onClick);
-            _label = new Label { BackgroundColor = Color.Transparent, Text = text, Transform = transform, TextColor = Color.Black };
+            _label = new Label { BackgroundColor = Color.Transparent, Text = text, Transform = transform, TextColor = Color.White };
         }
 
         public override void OnEntered()
