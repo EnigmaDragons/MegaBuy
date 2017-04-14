@@ -36,6 +36,8 @@ Session 8
 
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen8.jpg)
 
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen9.jpg)
+
 <strong>Contributors</strong>:
 - SilasReinagel
 - ZavixDragon
