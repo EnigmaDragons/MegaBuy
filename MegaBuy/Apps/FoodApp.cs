@@ -10,6 +10,7 @@ namespace MegaBuy.Apps
 {
     public sealed class FoodApp : IApp
     {
+        public ClickUIBranch Branch { get; }
         private readonly ClickUI _clickUI;
         private readonly ClickUIBranch _layer;
 

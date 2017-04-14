@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MegaBuy.Apps;
 using MegaBuy.Temp.Events;
+using MegaBuy.Temp.UIThings;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
@@ -14,15 +15,16 @@ namespace MegaBuy.Temp
     public class PadUI : IVisualAutomaton
     {
         private readonly Transform2 _transform = new Transform2(new Vector2(0, 0));
+        private readonly ClickUIBranch _branch;
         private readonly MenuBarUI _menuBar;
         private readonly Map<App, IApp> _apps = new Map<App, IApp>();
-        private readonly ClickUI _clickUI;
         private IApp _currentApp;
 
-        public PadUI(ClickUI clickUI)
+        public PadUI(ClickUIBranch parentBranch)
         {
-            _clickUI = clickUI;
-            _menuBar = new MenuBarUI(clickUI);
+            _branch = new ClickUIBranch("Pad", (int)ClickUIPriorities.Pad);
+            parentBranch.Add(_branch);
+            _menuBar = new MenuBarUI(_branch);
             _currentApp = new NoneApp();
             World.Subscribe(EventSubscription.Create<AppChanged>(x => OpenApp(x.App), this));
         }
@@ -34,34 +36,32 @@ namespace MegaBuy.Temp
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/PAD/background", new Transform2(_transform.Location, new Size2(1600, 900)));
-            _menuBar.Draw(parentTransform + _transform);
-            _currentApp.Draw(parentTransform + _transform + new Transform2(new Vector2(0, 75)));
+            var absoluteTransform = parentTransform + _transform;
+            _branch.ParentLocation = absoluteTransform.Location;
+            World.Draw("Images/PAD/background", new Transform2(absoluteTransform.Location, new Size2(1600, 900)));
+            _menuBar.Draw(absoluteTransform);
+            _currentApp.Draw(absoluteTransform + new Transform2(new Vector2(0, 75)));
         }
 
         public void OpenApp(App app)
         {
             if (_currentApp.Type == app)
                 return;
-
             if (!_apps.ContainsKey(app))
                 _apps[app] = MakeApp(app);
-
-            _currentApp.LostFocus();
+            _branch.Remove(_currentApp.Branch);
             _currentApp = _apps[app];
-            _apps[app].GainedFocus();
+            _branch.Add(_currentApp.Branch);
         }
 
         private IApp MakeApp(App app)
         {
             if (app.Equals(App.Call))
-                return new CallApp(_clickUI);
-            if (app.Equals(App.Food))
-                return new FoodApp(_clickUI);
+                return new CallAppUI();
+            /*if (app.Equals(App.Food))
+                return new FoodApp(_branch);
             if (app.Equals(App.Notification))
-                return new NotificationApp(_clickUI);
-            if (app.Equals(App.Rent))
-                return new RentApp(_clickUI);
+                return new NotificationApp(_branch);*/
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

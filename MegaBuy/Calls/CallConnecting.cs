@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaBuy.Calls.Rules
+namespace MegaBuy.Calls
 {
-    public enum CallCenterPosition
+    public class CallConnecting
     {
-        Referrer
     }
 }

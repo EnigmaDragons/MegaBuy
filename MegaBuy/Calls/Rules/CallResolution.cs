@@ -5,5 +5,7 @@ namespace MegaBuy.Calls.Rules
     {
         ReferToInfo,
         ReferToTroubleshooting,
+        ReferToReturns,
+        ReferToCareers
     }
 }

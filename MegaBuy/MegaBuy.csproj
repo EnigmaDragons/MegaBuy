@@ -46,19 +46,24 @@
     <Compile Include="Apps\NotificationApp.cs" />
     <Compile Include="Apps\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
+    <Compile Include="Calls\CallConnecting.cs" />
     <Compile Include="Calls\Caller.cs" />
     <Compile Include="Calls\CallerPatience.cs" />
-    <Compile Include="Calls\CallGenerater.cs" />
+    <Compile Include="Calls\CallGenerator.cs" />
     <Compile Include="Calls\CallRated.cs" />
     <Compile Include="Calls\CallResolved.cs" />
+    <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
+    <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
+    <Compile Include="Calls\Options\ReferToCareers.cs" />
+    <Compile Include="Calls\Options\ReferToReturns.cs" />
+    <Compile Include="Calls\PositionBasedCall\ReferrerLevel2.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
-    <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
-    <Compile Include="Calls\Rules\CallCenterPosition.cs" />
+    <Compile Include="Calls\PositionBasedCall\ReferrerLevel1.cs" />
+    <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\CallFailed.cs" />
     <Compile Include="Calls\Script.cs" />
@@ -76,12 +81,12 @@
     <Compile Include="Calls\ScriptLine.cs" />
     <Compile Include="Calls\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\TechnicalMistakeOccurred.cs" />
-    <Compile Include="Apps\CallApp.cs" />
     <Compile Include="Calls\UI\WholeStar.cs" />
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="Endings\Fired.cs" />
     <Compile Include="Energy\Awaken.cs" />
+    <Compile Include="Temp\ClickUIPriorities.cs" />
     <Compile Include="Energy\NotTired.cs" />
     <Compile Include="Energy\PlayerEnergy.cs" />
     <Compile Include="Energy\VeryTired.cs" />
@@ -94,12 +99,18 @@
     <Compile Include="Scene\Blank.cs" />
     <Compile Include="Scene\TimTest.cs" />
     <Compile Include="Temp\Events\AppChanged.cs" />
+    <Compile Include="Temp\UIThings\CallAppUI.cs" />
+    <Compile Include="Temp\UIThings\CallerUI.cs" />
+    <Compile Include="Temp\UIThings\CallMessengerUI.cs" />
     <Compile Include="Temp\UIThings\MenuBarUI.cs" />
+    <Compile Include="Temp\UIThings\MessageUI.cs" />
     <Compile Include="Temp\UIThings\MoneyUI.cs" />
+    <Compile Include="Temp\UIThings\CallOptionsUI.cs" />
     <Compile Include="Temp\UIThings\OverlayUI.cs" />
     <Compile Include="Temp\UIThings\PadUI.cs" />
     <Compile Include="Temp\Events\PadClosed.cs" />
     <Compile Include="Temp\Events\PadOpened.cs" />
+    <Compile Include="Temp\UIThings\ReadyUI.cs" />
     <Compile Include="Temp\UIThings\TimeUI.cs" />
     <Compile Include="Temp\UIThings\TogglePadUI.cs" />
     <Compile Include="Food\FoodCost.cs" />
@@ -390,6 +401,9 @@
     <Content Include="Content\Images\UI\button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\caller.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\close-hover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -400,6 +414,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\label.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\messenger.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\name.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\open-hover.png">
@@ -423,8 +443,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Fonts\" />
     <Folder Include="Content\Images\Workshop\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\Arial.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
