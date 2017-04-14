@@ -85,6 +85,7 @@
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="Endings\Fired.cs" />
+    <Compile Include="Energy\Awaken.cs" />
     <Compile Include="Temp\ClickUIPriorities.cs" />
     <Compile Include="Energy\NotTired.cs" />
     <Compile Include="Energy\PlayerEnergy.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Time\DayEnded.cs" />
     <Compile Include="Time\DayStarted.cs" />
     <Compile Include="Time\HourChanged.cs" />
+    <Compile Include="Time\MinuteChanged.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -10,7 +10,7 @@ namespace MegaBuy.Food
         private readonly int _hungerPerHour;
 
         private bool _hungerChanged;
-        private int _hunger;
+        private decimal _hunger;
 
         public Hunger()
             : this (6) { }
@@ -18,13 +18,14 @@ namespace MegaBuy.Food
         public Hunger(int hungerPerHour)
         {
             _hungerPerHour = hungerPerHour;
-            World.Subscribe(EventSubscription.Create<HourChanged>(IncreaseHunger, this));
+            World.Subscribe(EventSubscription.Create<MinuteChanged>(IncreaseHunger, this));
         }
 
-        private void IncreaseHunger(HourChanged hourChanged)
+        private void IncreaseHunger(MinuteChanged hourChanged)
         {
-            _hunger += _hungerPerHour;
-            _hungerChanged = true;
+            if(_hunger + _hungerPerHour / 60 >= Math.Ceiling(_hunger))
+                _hungerChanged = true;
+            _hunger += _hungerPerHour / 60;
         }
 
         public void Update(TimeSpan delta)
