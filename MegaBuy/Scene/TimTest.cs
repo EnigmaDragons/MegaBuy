@@ -6,6 +6,8 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 using Microsoft.Xna.Framework;
+using MegaBuy.Calls;
+using MegaBuy.Money;
 
 namespace MegaBuy.Scene
 {
@@ -22,18 +24,18 @@ namespace MegaBuy.Scene
             branch.Add(subBranch);
             var branch2 = new ClickUIBranch("bob", 3);
             UI.Add(branch2);
-            branch.Add(new SimpleClickable(0, new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(branch)));
-            subBranch.Add(new SimpleClickable(0, new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(subBranch)));
-            branch2.Add(new SimpleClickable(0, new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(branch2)));
+            branch.Add(new SimpleClickable( new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(branch)));
+            subBranch.Add(new SimpleClickable( new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(subBranch)));
+            branch2.Add(new SimpleClickable( new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(branch2)));
 
-            branch.Add(new SimpleClickable(0, new Rectangle(new Point(100, 0), new Point(100, 100)), () => Test(branch)));
-            subBranch.Add(new SimpleClickable(0, new Rectangle(new Point(100, 0), new Point(100, 100)), () => Test(subBranch)));
+            branch.Add(new SimpleClickable( new Rectangle(new Point(100, 0), new Point(100, 100)), () => Test(branch)));
+            subBranch.Add(new SimpleClickable( new Rectangle(new Point(100, 0), new Point(100, 100)), () => Test(subBranch)));
 
-            subBranch.Add(new SimpleClickable(0, new Rectangle(new Point(200, 0), new Point(100, 100)), () => Test(subBranch)));
-            branch2.Add(new SimpleClickable(0, new Rectangle(new Point(200, 0), new Point(100, 100)), () => Test(branch2)));
+            subBranch.Add(new SimpleClickable( new Rectangle(new Point(200, 0), new Point(100, 100)), () => Test(subBranch)));
+            branch2.Add(new SimpleClickable( new Rectangle(new Point(200, 0), new Point(100, 100)), () => Test(branch2)));
 
-            branch.Add(new SimpleClickable(0, new Rectangle(new Point(300, 0), new Point(100, 100)), () => Test(branch)));
-            branch2.Add(new SimpleClickable(0, new Rectangle(new Point(300, 0), new Point(100, 100)), () => Test(branch2)));
+            branch.Add(new SimpleClickable( new Rectangle(new Point(300, 0), new Point(100, 100)), () => Test(branch)));
+            branch2.Add(new SimpleClickable( new Rectangle(new Point(300, 0), new Point(100, 100)), () => Test(branch2)));
 
             var b1 = new ClickUIBranch("b", 5) { Location = new Vector2(100, 100) };
             UI.Add(b1);
@@ -49,11 +51,13 @@ namespace MegaBuy.Scene
             b1.Location = new Vector2(200, 200);
             if (b1.Location.X + 200 != ssb.ParentLocation.X || b1.Location.X != 200)
                 throw new Exception();
-            var x = new SimpleClickable(0, new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(ssb));
+            var x = new SimpleClickable( new Rectangle(new Point(0, 0), new Point(100, 100)), () => Test(ssb));
             ssb.Add(x);
             if (ssb.GetElement(new Point(501, 501)) != x)
                 throw new Exception();
-            
+
+            new MegaBuyAccounting(new PlayerAccount());
+            World.Publish(new TechnicalMistakeOccurred(new Fee(5), new Policy("asd")));
         }
 
         public void Test(object obj)

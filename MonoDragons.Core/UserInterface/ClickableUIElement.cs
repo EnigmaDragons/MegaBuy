@@ -8,14 +8,14 @@ namespace MonoDragons.Core.UserInterface
         public abstract void OnExitted();
         public abstract void OnPressed();
         public abstract void OnReleased();
-
-        public int Layer { get; }
+        
+        public Vector2 ParentLocation { get; set; }
         public Rectangle Area { get; }
 
-        protected ClickableUIElement(int layer, Rectangle area)
+        protected ClickableUIElement(Rectangle area)
         {
-            Layer = layer;
             Area = area;
+            ParentLocation = new Vector2(0, 0);
         }
     }
 }

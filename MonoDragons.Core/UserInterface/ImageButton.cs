@@ -15,7 +15,7 @@ namespace MonoDragons.Core.UserInterface
         private string _current;
 
         public ImageButton(string basic, string hover, string press, Transform2 transform, Action onClick) 
-            : base(10, transform.ToRectangle())
+            : base(transform.ToRectangle())
         {
             _basic = basic;
             _hover = hover;
