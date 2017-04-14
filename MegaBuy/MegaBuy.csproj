@@ -51,12 +51,12 @@
     <Compile Include="Calls\CallGenerater.cs" />
     <Compile Include="Calls\CallRated.cs" />
     <Compile Include="Calls\CallResolved.cs" />
-    <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
+    <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Calls\PositionBasedCall\Referrer.cs" />
     <Compile Include="Calls\Rules\CallCenterPosition.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
@@ -185,6 +185,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\u1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\dalton-bowdoin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\darrell-riordan.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\jonas-rhyne.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\shad-holbach.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\shade-corwin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Food\nothing.png">

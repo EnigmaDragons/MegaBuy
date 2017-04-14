@@ -22,15 +22,15 @@ namespace MegaBuy.Calls.Conversation_Pieces
             { "Mini-Micro-Mega-DataMaster", new [] { ProductCategory.Software } },
         };
 
-        private static readonly Dictionary<ProductCategory, NounOperations[]> Operations = new Dictionary<ProductCategory, NounOperations[]>
+        private static readonly Dictionary<ProductCategory, Problem[]> Operations = new Dictionary<ProductCategory, Problem[]>
         {
-            { ProductCategory.Machine, new[] {NounOperations.CanRun, NounOperations.CanTurnOnOrOff, NounOperations.IsDefective } },
-            { ProductCategory.Weapon, new[] {NounOperations.Jams, NounOperations.IsDefective} },
-            { ProductCategory.Entertainment, new[] {NounOperations.TerribleExperience} },
-            { ProductCategory.Software, new[] {NounOperations.IsDefective, NounOperations.IsBuggy, NounOperations.HasSpyware, NounOperations.RunsSlowly} }
+            { ProductCategory.Machine, new[] {Problem.DoesntRun, Problem.DoesntTurnOn, Problem.IsDefective } },
+            { ProductCategory.Weapon, new[] {Problem.Jams, Problem.IsDefective} },
+            { ProductCategory.Entertainment, new[] {Problem.TerribleExperience} },
+            { ProductCategory.Software, new[] {Problem.IsDefective, Problem.IsBuggy, Problem.HasSpyware, Problem.RunsSlowly, Problem.Crashes} }
         };
 
-        public static List<NounOperations> GetOperations(string product)
+        public static List<Problem> GetOperations(string product)
         {
             return Prods[product]
                 .SelectMany(x => Operations[x])
