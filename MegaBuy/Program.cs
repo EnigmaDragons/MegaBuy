@@ -16,7 +16,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Redesign", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("Messenger", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -43,6 +43,7 @@ namespace MegaBuy
                 { "Blank", () => new Blank() },
                 { "Evicted", () => new Evicted() },
                 { "Fired", () => new Fired() },
+                { "Messenger", () => new NewMessenger() },
             });
         }
     }
