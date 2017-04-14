@@ -58,7 +58,6 @@
     <Compile Include="Calls\Options\ReferToReturns.cs" />
     <Compile Include="Calls\PositionBasedCall\ReferrerLevel2.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
-    <Compile Include="CollectionExtensionsMethods.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
