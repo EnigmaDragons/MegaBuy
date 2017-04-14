@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MonoDragons.Core.Common
 {
@@ -14,6 +16,21 @@ namespace MonoDragons.Core.Common
         public static int Int(int min, int max)
         {
             return Instance.Next(min, max);
+        }
+
+        public static KeyValuePair<T, T2> Random<T, T2>(this Dictionary<T, T2> dictionary)
+        {
+            return dictionary.ElementAt(Int(dictionary.Count));
+        }
+
+        public static T Random<T>(this T[] array)
+        {
+            return array[Int(array.Length)];
+        }
+
+        public static T Random<T>(this List<T> list)
+        {
+            return list[Int(list.Count)];
         }
     }
 }

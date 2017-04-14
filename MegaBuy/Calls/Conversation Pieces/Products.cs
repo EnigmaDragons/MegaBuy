@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
@@ -30,7 +31,7 @@ namespace MegaBuy.Calls.Conversation_Pieces
             { ProductCategory.Software, new[] {Problem.IsDefective, Problem.IsBuggy, Problem.HasSpyware, Problem.RunsSlowly, Problem.Crashes} }
         };
 
-        public static List<Problem> GetOperations(string product)
+        public static List<Problem> GetProblems(string product)
         {
             return Prods[product]
                 .SelectMany(x => Operations[x])
@@ -38,9 +39,11 @@ namespace MegaBuy.Calls.Conversation_Pieces
                 .ToList();
         }
 
-        public static string Random()
+        public static string Random => Prods.Random().Key;
+
+        public static Problem GetProblemFor(string product)
         {
-            return Prods.Random().Key;
+            return GetProblems(product).Random();
         }
     }
 }

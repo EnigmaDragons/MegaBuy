@@ -14,6 +14,9 @@ namespace MegaBuy.Calls
 
         private double _elapsedMs;
 
+        public Caller()
+            : this(PatienceLevel.Random) { }
+
         public Caller(int patienceLossRateMs)
         {
             _patienceLossRateMs = patienceLossRateMs;
