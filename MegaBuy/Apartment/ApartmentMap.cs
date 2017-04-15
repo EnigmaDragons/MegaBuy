@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MegaBuy.Map;
+using MegaBuy.Apartment.Map;
 using MegaBuy.Player;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;

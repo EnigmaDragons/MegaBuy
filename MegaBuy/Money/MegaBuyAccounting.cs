@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Calls;
+using MegaBuy.Calls.Events;
+using MegaBuy.Money.Accounts;
+using MegaBuy.Money.Amounts;
 using MegaBuy.Money.Rules;
 using MegaBuy.Notifications;
 using MegaBuy.Time;
@@ -59,7 +62,7 @@ namespace MegaBuy.Money
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
         {
             _dayPayment.Remove(mistake.PayPenalty);
-            World.Publish(new PlayerNotification("MegaBuy", mistake.Policy.Text()));
+            World.Publish(new PlayerNotification("MegaBuy", mistake.Policy.Text));
             _numMistakesInCurrentDay++;
             if (_numMistakesInCurrentDay == 7)
                 World.NavigateToScene("Fired");

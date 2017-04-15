@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MegaBuy.Energy;
-using MegaBuy.Food;
-using MegaBuy.Map;
+using MegaBuy.Apartment.Map;
+using MegaBuy.Foods;
+using MegaBuy.Player.Energy;
+using MegaBuy.Player.Hungers;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;

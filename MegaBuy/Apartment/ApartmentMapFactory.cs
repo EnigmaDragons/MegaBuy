@@ -1,5 +1,5 @@
 ﻿
-using MegaBuy.Map;
+using MegaBuy.Apartment.Map;
 
 namespace MegaBuy.Apartment
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MegaBuy.Calls.Ratings;
 
 namespace MegaBuy.Calls.Rules
 {

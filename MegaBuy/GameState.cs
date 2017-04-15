@@ -1,15 +1,16 @@
 ﻿using System;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
-using MegaBuy.Food;
+using MegaBuy.Foods;
 using MegaBuy.Money;
 using MegaBuy.Save;
-using MegaBuy.Temp;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
-using MegaBuy.Energy;
+using MegaBuy.Money.Accounts;
+using MegaBuy.Pads;
 using MegaBuy.Player;
 using MegaBuy.Policies;
+using MegaBuy.Rents;
 
 namespace MegaBuy
 {
@@ -19,7 +20,7 @@ namespace MegaBuy
         public static Clock Clock { get; set; }
         public static PlayerCharacter PlayerCharacter { get; set; }
         public static PlayerAccount PlayerAccount { get; set; }
-        public static PadUI Pad { get; set; }
+        public static Pad Pad { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
         public static Landlord Landlord { get; set; }
         public static ActivePolicies ActivePolicies { get; set; }
