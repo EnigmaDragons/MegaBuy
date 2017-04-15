@@ -26,16 +26,16 @@ namespace MegaBuy.Temp
             parentBranch.Add(_branch);
             _callApp = new ImageTextButton("Calls",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
-                new Transform2(new Vector2(575 - Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Call));
+                new Transform2(new Vector2(Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Call));
             _foodApp = new ImageTextButton("Food",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
-                new Transform2(new Vector2(725, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Food));
+                new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.Button.Width, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Food));
             _notificationApp = new ImageTextButton("Notification",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(875 + Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
+                new Transform2(new Vector2(Sizes.Margin * 3 + Sizes.Button.Width * 2, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
             _rentApp = new ImageTextButton("Rent",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(1025 + Sizes.Margin * 2, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
+                new Transform2(new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
             _branch.Add(_callApp);
             _branch.Add(_foodApp);
             _branch.Add(_notificationApp);
@@ -50,6 +50,8 @@ namespace MegaBuy.Temp
             _foodApp.Draw(absoluteTransform);
             _notificationApp.Draw(absoluteTransform);
             _rentApp.Draw(absoluteTransform);
+            World.Draw("Images/UI/line-vertical", absoluteTransform + 
+                new Transform2(new Vector2(0, (int)(Sizes.Margin * 1.5 - Sizes.VerticalLine.Height / 2 + Sizes.Button.Height)), Sizes.VerticalLine));
         }
 
         private void ChangeApp(App app)

@@ -31,14 +31,14 @@ namespace MegaBuy.Temp.UIThings
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/UI/Messenger", parentTransform + new Transform2(_transform.Location, Sizes.Messanger));
+            World.Draw("Images/UI/Messenger", parentTransform + new Transform2(_transform.Location, Sizes.Messenger));
             var currentHeightUsed = 0;
             for (var i = 0; i < _messages.Count; i++)
             {
-                if (currentHeightUsed + _messages[i].Height > 700 - Sizes.MessageMargin * 2)
+                if (currentHeightUsed + _messages[i].Height > Sizes.Messenger.Height - Sizes.MessageMargin * 2)
                     break;
                 _messages[i].Draw(parentTransform + _transform +
-                    new Transform2(new Vector2(Sizes.MessageMargin, 700 - _messages[i].Height - Sizes.MessageMargin - currentHeightUsed)));
+                    new Transform2(new Vector2(Sizes.MessageMargin, Sizes.Messenger.Height - _messages[i].Height - Sizes.MessageMargin - currentHeightUsed)));
                 currentHeightUsed += _messages[i].Height + Sizes.MessageMargin;
             }
         }
@@ -50,7 +50,7 @@ namespace MegaBuy.Temp.UIThings
 
         private void AddMessage(string text, bool isPlayer)
         {
-            _incomingMessages.Add(new MessageUI(text, 350 - Sizes.MessageMargin * 2, isPlayer));
+            _incomingMessages.Add(new MessageUI(text, Sizes.Messenger.Width - Sizes.MessageMargin * 2, isPlayer));
         }
 
         private void Clear()

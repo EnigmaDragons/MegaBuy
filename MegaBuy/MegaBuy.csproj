@@ -416,6 +416,9 @@
     <Content Include="Content\Images\UI\label.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\line-vertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\messenger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
