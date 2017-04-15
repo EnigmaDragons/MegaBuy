@@ -5,7 +5,7 @@ using System;
 
 namespace MegaBuy.Energy
 {
-    public class PlayerEnergy
+    public sealed class PlayerEnergy : IAutomaton
     {
         private readonly int _energyUsedPerHour;
         private readonly int _energyPerHourSlept;

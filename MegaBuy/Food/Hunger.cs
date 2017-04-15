@@ -19,6 +19,12 @@ namespace MegaBuy.Food
         {
             _hungerPerHour = hungerPerHour;
             World.Subscribe(EventSubscription.Create<MinuteChanged>(IncreaseHunger, this));
+            World.Subscribe(EventSubscription.Create<FoodEaten>(EatFood, this));
+        }
+
+        private void EatFood(FoodEaten foodEaten)
+        {
+            _hunger -= foodEaten.Food.Recovery.Amount;
         }
 
         private void IncreaseHunger(MinuteChanged hourChanged)
