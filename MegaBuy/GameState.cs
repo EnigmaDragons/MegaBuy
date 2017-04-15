@@ -9,6 +9,7 @@ using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MegaBuy.Energy;
 using MegaBuy.Player;
+using MegaBuy.Policies;
 
 namespace MegaBuy
 {
@@ -21,6 +22,7 @@ namespace MegaBuy
         public static PadUI Pad { get; set; }
         public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
         public static Landlord Landlord { get; set; }
+        public static ActivePolicies ActivePolicies { get; set; }
 
         static GameState()
         {

@@ -44,6 +44,7 @@
     <Compile Include="Apps\IApp.cs" />
     <Compile Include="Apps\NoneApp.cs" />
     <Compile Include="Apps\NotificationApp.cs" />
+    <Compile Include="Policies\PoliciesApp.cs" />
     <Compile Include="Apps\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\CallConnecting.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Energy\Awaken.cs" />
     <Compile Include="Food\FoodEaten.cs" />
     <Compile Include="Food\HungerRecovery.cs" />
+    <Compile Include="Policies\PolicyPageUI.cs" />
     <Compile Include="Temp\ClickUIPriorities.cs" />
     <Compile Include="Energy\NotTired.cs" />
     <Compile Include="Energy\PlayerEnergy.cs" />
