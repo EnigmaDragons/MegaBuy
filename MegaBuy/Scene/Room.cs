@@ -1,7 +1,6 @@
 ﻿using System;
 using MegaBuy.Apartment;
-using MegaBuy.CustomUI;
-using MegaBuy.Map;
+using MegaBuy.Apartment.Map;
 using MegaBuy.Player;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -14,7 +13,7 @@ namespace MegaBuy.Scene
     {
         private ApartmentMap _map;
         private PlayerCharacter _player;
-        private Overlay _overlay;
+        //private Overlay _overlay;
 
         private readonly Transform2 _camera = new Transform2(new Vector2(180, 0), Rotation2.Default, 2);
 
@@ -45,7 +44,7 @@ namespace MegaBuy.Scene
 
             _player = new PlayerCharacter(_map, new TileLocation(11, 6).Transform);
 
-            _overlay = new Overlay();
+            //_overlay = new Overlay();
 
             Input.On(Control.X, NavigateToPAD);
         }
@@ -54,7 +53,7 @@ namespace MegaBuy.Scene
         {
             _player.Update(delta);
             _map.Update(delta);
-            _overlay.Update(delta);
+            //_overlay.Update(delta);
         }
 
         public void Draw()
@@ -62,7 +61,7 @@ namespace MegaBuy.Scene
             _map.Draw(_camera);
             _player.Draw(_camera);
             World.Draw("Effects/light-effect", new Rectangle(350, 0, 900, 900));
-            _overlay.Draw(Transform2.Zero);
+            //_overlay.Draw(Transform2.Zero);
         }
 
         private void NavigateToPAD()

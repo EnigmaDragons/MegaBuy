@@ -1,4 +1,6 @@
 ﻿
+using MegaBuy.Calls.Callers;
+
 namespace MegaBuy.Calls.Rules
 {
     public static class CallerStartingPatience

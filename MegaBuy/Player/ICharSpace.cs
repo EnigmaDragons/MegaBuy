@@ -1,4 +1,4 @@
-﻿using MegaBuy.Map;
+﻿using MegaBuy.Apartment.Map;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
 
