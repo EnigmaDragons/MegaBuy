@@ -12,6 +12,7 @@ namespace MegaBuy.Energy
         private decimal _energy = 80;
         private bool _energyChanged;
         private bool _isExhausted;
+
         public PlayerEnergy()
             : this (4, 6) { }
         
@@ -22,13 +23,13 @@ namespace MegaBuy.Energy
             World.Subscribe(EventSubscription.Create<MinuteChanged>(DecreaseEnergy, this));
         }
 
-        public void FellASleep()
+        private void CollapseFromExhaustion()
         {
             _isExhausted = true;
             Sleep();
         }
 
-        public void Sleep()
+        private void Sleep()
         {
             World.Unsubscribe(this);
             World.Subscribe(EventSubscription.Create<HourChanged>(IncreaseEnergy, this));
@@ -36,9 +37,10 @@ namespace MegaBuy.Energy
 
         private void DecreaseEnergy(MinuteChanged hourChanged)
         {
-            if (_energy - _energyUsedPerHour / 60 <= Math.Floor(_energy))
+            var energyChange = Convert.ToDecimal(_energyUsedPerHour) / 60;
+            if (_energy - energyChange <= Math.Floor(_energy))
                 _energyChanged = true;
-            _energy -= _energyUsedPerHour / 60;
+            _energy -= energyChange;
         }
 
         private void IncreaseEnergy(HourChanged hourChanged)
@@ -52,17 +54,18 @@ namespace MegaBuy.Energy
                 World.Unsubscribe(this);
                 World.Subscribe(EventSubscription.Create<MinuteChanged>(DecreaseEnergy, this));
             }
-
         }
 
         public void Update(TimeSpan delta)
         {
             if (!_energyChanged)
                 return;
+            if (_energy < 0)
+                World.NavigateToScene("HeartAttack");
             else if (_energy <= 25)
             {
-                World.Publish(new FellASleep());
-                FellASleep();
+                World.Publish(new CollapsedFromExhaustion());
+                CollapseFromExhaustion();
             }
             else
                 World.Publish(new NotTired());

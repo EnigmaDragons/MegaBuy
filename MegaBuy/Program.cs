@@ -44,6 +44,7 @@ namespace MegaBuy
                 { "TTest", () => new TimTest() },
                 { "Evicted", () => new Evicted() },
                 { "Fired", () => new Fired() },
+                { "HeartAttack", () => new HeartAttack() },
             });
         }
     }
