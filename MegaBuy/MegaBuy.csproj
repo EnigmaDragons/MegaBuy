@@ -201,15 +201,20 @@
     <Content Include="Content\Images\Character\u1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\anelle-ryen.jpg" />
     <Content Include="Content\Images\Customers\dalton-bowdoin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\darrell-riordan.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\heidy-slayton.jpg" />
     <Content Include="Content\Images\Customers\jonas-rhyne.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\lilliam-watrous.jpg" />
+    <Content Include="Content\Images\Customers\liniya-kupshcheva.jpg" />
+    <Content Include="Content\Images\Customers\lorilee-faulknen.jpg" />
     <Content Include="Content\Images\Customers\shad-holbach.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
