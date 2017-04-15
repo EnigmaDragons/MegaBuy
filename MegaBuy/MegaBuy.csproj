@@ -85,7 +85,10 @@
     <Compile Include="Calls\UI\EmptyStar.cs" />
     <Compile Include="CustomUI\AutoSizingTextMessenger.cs" />
     <Compile Include="Endings\Fired.cs" />
+    <Compile Include="Endings\HeartAttack.cs" />
     <Compile Include="Energy\Awaken.cs" />
+    <Compile Include="Food\FoodEaten.cs" />
+    <Compile Include="Food\HungerRecovery.cs" />
     <Compile Include="Temp\ClickUIPriorities.cs" />
     <Compile Include="Energy\NotTired.cs" />
     <Compile Include="Energy\PlayerEnergy.cs" />

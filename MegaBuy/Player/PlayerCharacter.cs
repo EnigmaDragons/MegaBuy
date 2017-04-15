@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using MegaBuy.Energy;
 using MegaBuy.Food;
 using MegaBuy.Map;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Render;
@@ -12,7 +15,7 @@ namespace MegaBuy.Player
     public class PlayerCharacter : IVisualAutomaton
     {
         // Character Systems
-        private readonly Hunger _hunger; 
+        private readonly List<IAutomaton> _components = new List<IAutomaton>();
 
         // World Location
         private readonly ICharSpace _charSpace;
@@ -38,12 +41,19 @@ namespace MegaBuy.Player
         public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
         {
             _anims = new PlayerCharacterAnimations();
-            _hunger = new Hunger();
+            _components.Add(new Hunger());
+            _components.Add(new PlayerEnergy());
             _transform = startingLocation;
             _charSpace = charSpace;
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
             Input.On(Control.A, Interact);
+            World.Subscribe(EventSubscription.Create<FoodOrdered>(FoodOrdered, this));
+        }
+
+        private void FoodOrdered(FoodOrdered order)
+        {
+            World.Publish(new FoodEaten(order.Food));
         }
 
         private void Interact()
@@ -71,7 +81,7 @@ namespace MegaBuy.Player
         public void Update(TimeSpan delta)
         {
             _anims.Update(delta);
-            _hunger.Update(delta);
+            _components.ForEach(x => x.Update(delta));
             var distance = new Physics().GetDistance(moveSpeed, delta);
             if (distance > 0)
                 _transform = _charSpace.ApplyMove(_transform, Collider, new Movement(distance, _dir).GetDelta());

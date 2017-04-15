@@ -1,7 +1,7 @@
 ﻿
 namespace MegaBuy.Energy
 {
-    public struct FellASleep
+    public struct CollapsedFromExhaustion
     {
     }
 }
