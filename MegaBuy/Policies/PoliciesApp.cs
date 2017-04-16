@@ -23,12 +23,8 @@ namespace MegaBuy.Policies
         {
             Branch = new ClickUIBranch("Policies App", (int)ClickUIPriorities.Pad);
             _pageUi = new PolicyPageUI(GameState.ActivePolicies, 0, 6);
-            _backButton = new ImageTextButton("Back",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(50, 400), Sizes.Button), NavigateBack);
-            _nextButton = new ImageTextButton("Next",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(1300, 400), Sizes.Button), NavigateForward);
+            _backButton = ImageTextButtonFactory.Create("Back", new Vector2(50, 400), NavigateBack);
+            _nextButton = ImageTextButtonFactory.Create("Next", new Vector2(1300, 400), NavigateForward);
             UpdateNavButtons();
         }
 

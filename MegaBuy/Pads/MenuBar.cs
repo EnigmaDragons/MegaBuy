@@ -24,21 +24,11 @@ namespace MegaBuy.Pads
         {
             _branch = new ClickUIBranch("Menu Bar", (int)ClickUIPriorities.Pad);
             parentBranch.Add(_branch);
-            _callApp = new ImageTextButton("Calls",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
-                new Transform2(new Vector2(Sizes.Margin, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Call));
-            _foodApp = new ImageTextButton("Food",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
-                new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.Button.Width, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Food));
-            _notificationApp = new ImageTextButton("Notification",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(Sizes.Margin * 3 + Sizes.Button.Width * 2, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Notification));
-            _rentApp = new ImageTextButton("Rent",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
-            _policiesApp = new ImageTextButton("Policies",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(Sizes.Margin * 5 + Sizes.Button.Width * 4, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Policies));
+            _callApp = ImageTextButtonFactory.Create("Calls", new Vector2(Sizes.Margin, Sizes.Margin), () => ChangeApp(App.Call));
+            _foodApp = ImageTextButtonFactory.Create("Food", new Vector2(Sizes.Margin * 2 + Sizes.Button.Width, Sizes.Margin), () => ChangeApp(App.Food));
+            _notificationApp = ImageTextButtonFactory.Create("Notification", new Vector2(Sizes.Margin * 3 + Sizes.Button.Width * 2, Sizes.Margin), () => ChangeApp(App.Notification));
+            _rentApp = ImageTextButtonFactory.Create("Rent", new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin), () => ChangeApp(App.Rent));
+            _policiesApp = ImageTextButtonFactory.Create("Policies", new Vector2(Sizes.Margin * 5 + Sizes.Button.Width * 4, Sizes.Margin), () => ChangeApp(App.Policies));
             _branch.Add(_callApp);
             _branch.Add(_foodApp);
             _branch.Add(_notificationApp);

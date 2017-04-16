@@ -40,8 +40,9 @@
   <ItemGroup>
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
+    <Compile Include="Foods\FoodApp.cs" />
+    <Compile Include="Foods\FoodPage.cs" />
     <Compile Include="Pads\Apps\App.cs" />
-    <Compile Include="Foods\Old\FoodApp.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
     <Compile Include="Notifications\Old\NotificationApp.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Pads\TogglePad.cs" />
     <Compile Include="Foods\FoodCost.cs" />
     <Compile Include="Foods\FoodEmporium.cs" />
-    <Compile Include="Foods\Menu.cs" />
     <Compile Include="Foods\FoodOptionUI.cs" />
     <Compile Include="Foods\FoodOrdered.cs" />
     <Compile Include="Foods\Food.cs" />
@@ -173,6 +173,7 @@
     <Compile Include="Time\MinuteChanged.cs" />
     <Compile Include="UIs\ClickUIPriorities.cs" />
     <Compile Include="UIs\Colors.cs" />
+    <Compile Include="UIs\ImageTextButtonFactory.cs" />
     <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />
   </ItemGroup>
@@ -234,10 +235,7 @@
     <Content Include="Content\Images\Customers\shade-corwin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Food\nothing.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\Food\pancakes.png">
+    <Content Include="Content\Images\Food\value-burger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\burger.png">

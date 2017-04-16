@@ -18,9 +18,7 @@ namespace MegaBuy.Calls
         public ReadyUI()
         {
             Branch = new ClickUIBranch("Ready Button", (int)ClickUIPriorities.Pad);
-            _button = new ImageTextButton("Ready",
-                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(Sizes.Button), StartCall);
+            _button = ImageTextButtonFactory.Create("Ready", Vector2.Zero, StartCall);
             Branch.Add(_button);
         }
 

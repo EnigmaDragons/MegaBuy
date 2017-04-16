@@ -35,9 +35,8 @@ namespace MegaBuy.Calls.Options
         {
             for (var i = 0; i < call.Options.Count; i++)
             {
-                var button = new ImageTextButton(call.Options[i].Description,
-                    "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                    new Transform2(new Vector2(i % 2 * (Sizes.Button.Width + Sizes.Margin), (int)(i / 2) * (Sizes.Button.Height + Sizes.Margin)), Sizes.Button), call.Options[i].Go);
+                var button = ImageTextButtonFactory.Create(call.Options[i].Description, 
+                    new Vector2(i % 2 * (Sizes.Button.Width + Sizes.Margin), (int)(i / 2) * (Sizes.Button.Height + Sizes.Margin)), call.Options[i].Go);
                 _buttons.Add(button);
                 Branch.Add(button);
             }
