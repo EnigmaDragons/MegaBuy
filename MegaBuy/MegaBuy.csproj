@@ -45,6 +45,8 @@
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
     <Compile Include="Notifications\Old\NotificationApp.cs" />
+    <Compile Include="Policies\PoliciesApp.cs" />
+    <Compile Include="Policies\PolicyPageUI.cs" />
     <Compile Include="Rents\Old\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />
@@ -198,15 +200,20 @@
     <Content Include="Content\Images\Character\u1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\anelle-ryen.jpg" />
     <Content Include="Content\Images\Customers\dalton-bowdoin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\darrell-riordan.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\heidy-slayton.jpg" />
     <Content Include="Content\Images\Customers\jonas-rhyne.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\lilliam-watrous.jpg" />
+    <Content Include="Content\Images\Customers\liniya-kupshcheva.jpg" />
+    <Content Include="Content\Images\Customers\lorilee-faulknen.jpg" />
     <Content Include="Content\Images\Customers\shad-holbach.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

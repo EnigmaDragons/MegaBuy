@@ -62,7 +62,7 @@ namespace MegaBuy.Money
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
         {
             _dayPayment.Remove(mistake.PayPenalty);
-            World.Publish(new PlayerNotification("MegaBuy", mistake.Policy.Text()));
+            World.Publish(new PlayerNotification("MegaBuy", mistake.Policy.Text));
             _numMistakesInCurrentDay++;
             if (_numMistakesInCurrentDay == 7)
                 World.NavigateToScene("Fired");

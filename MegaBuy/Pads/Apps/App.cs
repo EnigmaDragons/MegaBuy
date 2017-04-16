@@ -8,6 +8,7 @@ namespace MegaBuy.Pads.Apps
         Food,
         Notification,
         Account,
-        Rent
+        Rent,
+        Policies
     }
 }
