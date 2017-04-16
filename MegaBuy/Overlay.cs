@@ -2,6 +2,7 @@
 using MegaBuy.Money;
 using MegaBuy.Pads;
 using MegaBuy.Time;
+using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;

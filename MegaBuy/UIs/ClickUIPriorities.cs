@@ -1,4 +1,4 @@
-﻿namespace MegaBuy.Temp
+﻿namespace MegaBuy.UIs
 {
     public enum ClickUIPriorities
     {

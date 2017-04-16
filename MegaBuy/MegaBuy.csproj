@@ -169,10 +169,10 @@
     <Compile Include="Time\DayStarted.cs" />
     <Compile Include="Time\HourChanged.cs" />
     <Compile Include="Time\MinuteChanged.cs" />
+    <Compile Include="UIs\ClickUIPriorities.cs" />
+    <Compile Include="UIs\Colors.cs" />
+    <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />
-    <Compile Include="UI\ClickUIPriorities.cs" />
-    <Compile Include="UI\Colors.cs" />
-    <Compile Include="UI\Sizes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
