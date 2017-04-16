@@ -34,6 +34,10 @@ namespace MegaBuy.Player
         // Animations
         private readonly Animations _anims;
 
+        // Interaction
+        private readonly ColoredRectangle _interactRect = new ColoredRectangle {Color = Color.FromNonPremultiplied(255, 0, 0, 100)};
+        private TileLocation _interactLocation;
+        
         private Direction _dir;
         private string _facing = "Down";
         private bool IsMoving => _dir.HDir != HorizontalDirection.None || _dir.VDir != VerticalDirection.None;
@@ -59,10 +63,7 @@ namespace MegaBuy.Player
 
         private void Interact()
         {
-            var playerTile = new TileLocation(_transform);
-            var offset = _transform.Rotation.ToDirection().AsOffset();
-            var targetLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
-            _charSpace.Interact(targetLocation);
+            _charSpace.Interact(_interactLocation);
         }
 
         private void UpdatePhysics(Direction dir)
@@ -86,12 +87,22 @@ namespace MegaBuy.Player
             var distance = new Physics().GetDistance(moveSpeed, delta);
             if (distance > 0)
                 _transform = _charSpace.ApplyMove(_transform, Collider, new Movement(distance, _dir).GetDelta());
+            UpdateInteractLocation();
+        }
+
+        private void UpdateInteractLocation()
+        {
+            var playerTile = new TileLocation(_transform);
+            var offset = _transform.Rotation.ToDirection().AsOffset();
+            _interactLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
+            _interactRect.Transform = _interactLocation.Transform;
         }
 
         public void Draw(Transform2 parentTransform)
         {
             var t = _transform + parentTransform;
             _anims.Draw(t);
+            //_interactRect.Draw(parentTransform); Uncomment to debug interactions
         }
 
         private void UpdateAnimState()
