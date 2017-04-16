@@ -45,6 +45,7 @@
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
     <Compile Include="Notifications\Old\NotificationApp.cs" />
+    <Compile Include="Player\Energy\WentToBed.cs" />
     <Compile Include="Policies\PoliciesApp.cs" />
     <Compile Include="Policies\PolicyPageUI.cs" />
     <Compile Include="Rents\Old\RentApp.cs" />
