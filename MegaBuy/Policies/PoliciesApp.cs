@@ -21,13 +21,13 @@ namespace MegaBuy.Policies
         public PoliciesApp()
         {
             Branch = new ClickUIBranch("Policies App", (int)ClickUIPriorities.Pad);
-            _pageUi = new PolicyPageUI(GameState.ActivePolicies);
+            _pageUi = new PolicyPageUI(GameState.ActivePolicies, 0, 6);
             _backButton = new ImageTextButton("Back",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(50, 600), Sizes.Button), NavigateBack);
+                new Transform2(new Vector2(50, 400), Sizes.Button), NavigateBack);
             _nextButton = new ImageTextButton("Next",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
-                new Transform2(new Vector2(1300, 600), Sizes.Button), NavigateForward);
+                new Transform2(new Vector2(1300, 400), Sizes.Button), NavigateForward);
             UpdateNavButtons();
         }
 
@@ -47,8 +47,12 @@ namespace MegaBuy.Policies
         {
             if (!_pageUi.CanTravelBack)
                 Branch.Remove(_backButton);
+            else
+                Branch.Add(_backButton);
             if (!_pageUi.CanTravelNext)
                 Branch.Remove(_nextButton);
+            else
+                Branch.Add(_nextButton);
         }
 
         public void Update(TimeSpan delta)
@@ -58,6 +62,7 @@ namespace MegaBuy.Policies
         public void Draw(Transform2 parentTransform)
         {
             var t = parentTransform + _transform;
+            Branch.ParentLocation = t.Location;
             _pageUi.Draw(t);
             if (_pageUi.CanTravelBack)
                 _backButton.Draw(t);

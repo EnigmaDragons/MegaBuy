@@ -7,7 +7,7 @@ using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Policies
 {
-    // @todo Make Policy Pages look nice
+    // @todo #TEST Make Policy Pages look nice
     public sealed class PolicyPageUI : IVisual
     {
         private readonly ColoredRectangle _pageRect;
@@ -29,7 +29,7 @@ namespace MegaBuy.Policies
             _policies = policies;
             _pagePolicyIndex = pagePolicyIndex;
             _pagePolicyCount = pagePolicyCount;
-            _pageRect = new ColoredRectangle {  Color = Color.Blue, Transform = new Transform2(new Vector2(50, 50), new Size2(1400, 800)) };
+            _pageRect = new ColoredRectangle {  Color = Color.Blue, Transform = new Transform2(new Vector2(0, 20), new Size2(1600, 600)) };
             UpdatePolicyTexts();
         }
 
@@ -53,7 +53,7 @@ namespace MegaBuy.Policies
         {
             _pageRect.Draw(parentTransform);
             for (var i = 0; i < _policyTexts.Count; i++)
-                UI.DrawText(_policyTexts[i], new Vector2(50, 50 + (i * 50)), Color.White);
+                UI.DrawText(_policyTexts[i], new Vector2(50, 40 + (i * 50)) + parentTransform.Location, Color.White);
         }
     }
 }

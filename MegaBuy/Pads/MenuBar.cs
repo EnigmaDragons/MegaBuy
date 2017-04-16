@@ -14,6 +14,7 @@ namespace MegaBuy.Pads
         private readonly ImageTextButton _foodApp;
         private readonly ImageTextButton _notificationApp;
         private readonly ImageTextButton _rentApp;
+        private readonly ImageTextButton _policiesApp;
         private readonly ClickUIBranch _branch;
 
         private App _currentApp = App.None;
@@ -34,10 +35,14 @@ namespace MegaBuy.Pads
             _rentApp = new ImageTextButton("Rent",
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
                 new Transform2(new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Rent));
+            _policiesApp = new ImageTextButton("Policies",
+                "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
+                new Transform2(new Vector2(Sizes.Margin * 5 + Sizes.Button.Width * 4, Sizes.Margin), Sizes.Button), () => ChangeApp(App.Policies));
             _branch.Add(_callApp);
             _branch.Add(_foodApp);
             _branch.Add(_notificationApp);
             _branch.Add(_rentApp);
+            _branch.Add(_policiesApp);
         }
 
         public void Draw(Transform2 parentTransform)
@@ -48,6 +53,7 @@ namespace MegaBuy.Pads
             _foodApp.Draw(absoluteTransform);
             _notificationApp.Draw(absoluteTransform);
             _rentApp.Draw(absoluteTransform);
+            _policiesApp.Draw(absoluteTransform);
             World.Draw("Images/UI/line-vertical", absoluteTransform + 
                 new Transform2(new Vector2(0, (int)(Sizes.Margin * 1.5 - Sizes.VerticalLine.Height / 2 + Sizes.Button.Height)), Sizes.VerticalLine));
         }
