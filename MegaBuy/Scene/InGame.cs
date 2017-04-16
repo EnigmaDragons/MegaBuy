@@ -21,7 +21,7 @@ namespace MegaBuy.Scene
         private readonly double _speed = 3.0;
         private readonly Transform2 _mapTransform = new Transform2(new Vector2(175, -20), Rotation2.None, 2);
 
-        private ClickUI _clickUi = new ClickUI();
+        private ClickUI _clickUi = new ClickUI(1600, 900);
         private ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
         private Overlay _overlay;
         private Pad _pad;

@@ -18,7 +18,7 @@ namespace MegaBuy.Endings
         // @todo #1 Design Evicted Game Over Scene appearance
         public void Draw()
         {
-            UI.DrawText("You Starved To Death", Vector2.Zero, Color.White);
+            UI.DrawText("You have been evicted for failure to pay your rent!", Vector2.Zero, Color.White);
         }
     }
 }

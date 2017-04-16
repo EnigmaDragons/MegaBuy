@@ -10,6 +10,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Render;
+using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Player
 {
@@ -28,8 +29,7 @@ namespace MegaBuy.Player
         private float moveSpeed = 0.12f;
 
         // Collision
-        private BoxCollider Collider => 
-            new BoxCollider(new Rectangle(_transform.Location.ToPoint(), new Vector2(16 * _transform.Scale, 16 * _transform.Scale).ToPoint()));
+        private BoxCollider Collider => new BoxCollider(_transform, TileSize.Size);
 
         // Animations
         private readonly Animations _anims;
@@ -90,7 +90,8 @@ namespace MegaBuy.Player
 
         public void Draw(Transform2 parentTransform)
         {
-            _anims.Draw(_transform + parentTransform);
+            var t = _transform + parentTransform;
+            _anims.Draw(t);
         }
 
         private void UpdateAnimState()

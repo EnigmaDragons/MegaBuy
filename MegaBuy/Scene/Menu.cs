@@ -20,7 +20,7 @@ namespace MegaBuy.Scene
                 new Transform2(new Vector2(800 - 100, 750 - 22),
                 new Size2(200, 44)), () => World.NavigateToScene("Room"));
 
-            _ui = new ClickUI();
+            _ui = new ClickUI(1600, 900);
             _ui.Add(_btn);
         }
 
