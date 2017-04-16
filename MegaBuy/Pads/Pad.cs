@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Pads.Apps;
+using MegaBuy.Policies;
 using MegaBuy.Temp;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -64,6 +65,8 @@ namespace MegaBuy.Pads
                 return new FoodApp(Branch);
             if (app.Equals(App.Notification))
                 return new NotificationApp(Branch);*/
+            if (app.Equals(App.Policies))
+                return new PoliciesApp();
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

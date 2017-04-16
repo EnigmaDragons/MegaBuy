@@ -54,10 +54,8 @@ namespace MegaBuy.Calls.Callers
         private void StartCall(Call call)
         {
             _isInCall = true;
-            var caller = call.Script.First(x => !x.CharacterName.Equals("player", StringComparison.OrdinalIgnoreCase)).CharacterName;
-            _caller = caller.ToLower().Replace(" ", "-");
-            _name.Text = caller;
-            // @todo #1 Make Callers know their own name
+            _name.Text = call.Caller.Name;
+            _caller = call.Caller.Name.ToLower().Replace(" ", "-");
         }
 
         private void EndCall()

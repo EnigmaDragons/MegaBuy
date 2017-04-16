@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MonoDragons.Core.Common;
 
 namespace MonoDragons.Core.UserInterface
 {
     public class ClickUIBranch
     {
-        private List<ClickableUIElement> _elements = new List<ClickableUIElement>();
+        private HashSet<ClickableUIElement> _elements = new HashSet<ClickableUIElement>();
         private List<ClickUIBranch> _subBranches = new List<ClickUIBranch>();
         public readonly int Priority;
         private readonly string _name;

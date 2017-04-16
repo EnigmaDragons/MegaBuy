@@ -21,9 +21,6 @@ namespace MegaBuy.Calls.Conversation_Pieces
             "Liniya Kupshcheva"
         };
 
-        public static string Random()
-        {
-            return names.Random();
-        }
+        public static string Random => names.Random();
     }
 }

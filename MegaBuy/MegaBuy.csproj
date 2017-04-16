@@ -171,6 +171,7 @@
     <Compile Include="UIs\ClickUIPriorities.cs" />
     <Compile Include="UIs\Colors.cs" />
     <Compile Include="UIs\Sizes.cs" />
+    <Compile Include="Time\TimeRateChanged.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

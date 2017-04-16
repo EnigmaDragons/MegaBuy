@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
 using MegaBuy.Foods;
@@ -11,6 +12,7 @@ using MegaBuy.Pads;
 using MegaBuy.Player;
 using MegaBuy.Policies;
 using MegaBuy.Rents;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy
 {
@@ -28,6 +30,8 @@ namespace MegaBuy
         static GameState()
         {
             CharName = "player";
+            ActivePolicies = new ActivePolicies();
+            Enumerable.Range(1, 26).ForEach(x => ActivePolicies.Add(new Policy($"Policy #{x}")));
             Clock = new Clock();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
@@ -37,6 +41,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
+            World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
 
         private static void AddSingleInstanceSubscription(object obj)

@@ -7,11 +7,15 @@ namespace MegaBuy.Player.Energy
 {
     public sealed class PlayerEnergy : IAutomaton
     {
+        private const float TimeRateFactorWhileSleeping = 2.0f;
+
         private readonly int _energyUsedPerHour;
         private readonly int _energyPerHourSlept;
         private decimal _energy = 80;
         private bool _energyChanged;
         private bool _isExhausted;
+
+        private bool _sleeping;
 
         public PlayerEnergy()
             : this (4, 6) { }
@@ -21,6 +25,12 @@ namespace MegaBuy.Player.Energy
             _energyUsedPerHour = energyUsedPerHour;
             _energyPerHourSlept = energyPerHourSlept;
             World.Subscribe(EventSubscription.Create<MinuteChanged>(DecreaseEnergy, this));
+            World.Subscribe(EventSubscription.Create<HourChanged>(IncreaseEnergy, this));
+        }
+
+        private void Awaken()
+        {
+            World.Publish(new TimeRateChanged(1f / TimeRateFactorWhileSleeping));
         }
 
         private void CollapseFromExhaustion()
@@ -31,12 +41,16 @@ namespace MegaBuy.Player.Energy
 
         private void Sleep()
         {
+            _sleeping = true;
             World.Unsubscribe(this);
-            World.Subscribe(EventSubscription.Create<HourChanged>(IncreaseEnergy, this));
+            World.Publish(new TimeRateChanged(TimeRateFactorWhileSleeping));
         }
 
         private void DecreaseEnergy(MinuteChanged hourChanged)
         {
+            if (_sleeping)
+                return;
+
             var energyChange = Convert.ToDecimal(_energyUsedPerHour) / 60;
             if (_energy - energyChange <= Math.Floor(_energy))
                 _energyChanged = true;
@@ -45,14 +59,17 @@ namespace MegaBuy.Player.Energy
 
         private void IncreaseEnergy(HourChanged hourChanged)
         {
+            if (!_sleeping)
+                return;
+
             _energy += _isExhausted ? _energyPerHourSlept : _energyPerHourSlept * new decimal(0.55);
             _energyChanged = true;
             if (_energy >= 70)
             {
                 _isExhausted = false;
+                Awaken();
+                // @todo #1 Game Scene needs so subscribe to Sleep/Waking states
                 World.Publish(new Awaken());
-                World.Unsubscribe(this);
-                World.Subscribe(EventSubscription.Create<MinuteChanged>(DecreaseEnergy, this));
             }
         }
 
