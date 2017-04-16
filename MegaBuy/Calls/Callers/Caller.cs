@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
@@ -9,6 +10,7 @@ namespace MegaBuy.Calls.Callers
     public sealed class Caller : IAutomaton
     {
         public CallerPatience Patience = CallerStartingPatience.New;
+        public string Name { get; }
 
         private readonly int _patienceLossRateMs;
         private int _gracePeriods;
@@ -16,10 +18,14 @@ namespace MegaBuy.Calls.Callers
         private double _elapsedMs;
 
         public Caller()
-            : this(PatienceLevel.Random) { }
+            : this(CallerNames.Random, PatienceLevel.Random) { }
 
-        public Caller(int patienceLossRateMs)
+        public Caller(string name)
+            : this(name, PatienceLevel.Random) { }
+
+        public Caller(string name, int patienceLossRateMs)
         {
+            Name = name;
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
             World.SubscribeForScene(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
