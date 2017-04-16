@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -79,6 +80,7 @@ namespace MonoDragons.Core.Engine
             _spriteBatch.Draw(texture, rectPosition, Color.White);
         }
 
+        [DebuggerStepThrough]
         public static void Publish<T>(T payload)
         {
             _events.Publish(payload);

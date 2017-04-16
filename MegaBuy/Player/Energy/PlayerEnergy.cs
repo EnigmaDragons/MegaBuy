@@ -7,7 +7,7 @@ namespace MegaBuy.Player.Energy
 {
     public sealed class PlayerEnergy : IAutomaton
     {
-        private const float TimeRateFactorWhileSleeping = 2.0f;
+        private const float TimeRateFactorWhileSleeping = 10.0f;
 
         private readonly int _energyUsedPerHour;
         private readonly int _energyPerHourSlept;

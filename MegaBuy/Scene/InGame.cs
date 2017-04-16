@@ -5,6 +5,7 @@ using MegaBuy.Apartment.Map;
 using MegaBuy.Money;
 using MegaBuy.Pads;
 using MegaBuy.Player;
+using MegaBuy.Player.Energy;
 using MegaBuy.Temp;
 using MegaBuy.Time;
 using MegaBuy.UIs;
@@ -31,6 +32,11 @@ namespace MegaBuy.Scene
         private ApartmentMap _map;
         private int _padLocation;
 
+        // Sleep
+        private bool _preparingForBed;
+        private bool _isSleeping;
+        private SelectSleepDurationUI _sleep;
+
         public void Init()
         {
             _padLocation = 900;
@@ -41,10 +47,32 @@ namespace MegaBuy.Scene
             _pad = new Pad(_branch);
             GameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
+            _sleep = new SelectSleepDurationUI();
             GameState.PlayerCharacter = new PlayerCharacter(_map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 11, TileSize.Size.Height * 6)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
+            World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
+            World.Subscribe(EventSubscription.Create<WentToBed>(WentToBed, this));
+            World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
+        }
+
+        private void Awaken(Awaken obj)
+        {
+            _isSleeping = false;
+        }
+
+        private void WentToBed(WentToBed obj)
+        {
+            _preparingForBed = false;
+            _clickUi.Remove(_sleep.Branch);
+            _isSleeping = true;
+        }
+
+        private void PrepareForBed(PreparingForBed bed)
+        {
+            _preparingForBed = true;
+            _clickUi.Add(_sleep.Branch);
         }
 
         public void Update(TimeSpan delta)
@@ -62,10 +90,19 @@ namespace MegaBuy.Scene
 
         public void Draw()
         {
+            if (_isSleeping)
+            {
+                UI.DrawText("Sleeping...", new Vector2(400, 400), Color.White);
+                return;
+            }
+
             _map.Draw(_mapTransform);
             GameState.PlayerCharacter.Draw(_mapTransform);
             _pad.Draw(new Transform2(new Vector2(0, _padLocation)));
             _overlay.Draw(Transform2.Zero);
+
+            if (_preparingForBed)
+                _sleep.Draw(new Transform2(new Vector2(400, 300)));
         }
     }
 }

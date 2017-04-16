@@ -1,5 +1,7 @@
 ﻿
 using MegaBuy.Apartment.Map;
+using MegaBuy.Player.Energy;
+using MonoDragons.Core.Engine;
 
 namespace MegaBuy.Apartment
 {
@@ -10,9 +12,9 @@ namespace MegaBuy.Apartment
             var map = new ApartmentMap();
             map.Add(new TileWalker(1, 13, 1, 13).Get(x => new Tile("floor", x, false, 0)));
 
-            map.Add(new Tile("bed-top", new TileLocation(12, 5), true, 1));
-            map.Add(new Tile("bed-mid", new TileLocation(12, 6), true, 1));
-            map.Add(new Tile("bed-bot", new TileLocation(12, 7), true, 1));
+            map.Add(new Tile("bed-top", new TileLocation(12, 5), true, () => World.Publish(new PreparingForBed()), 1));
+            map.Add(new Tile("bed-mid", new TileLocation(12, 6), true, () => World.Publish(new PreparingForBed()), 1));
+            map.Add(new Tile("bed-bot", new TileLocation(12, 7), true, () => World.Publish(new PreparingForBed()), 1));
 
             map.Add(new TileWalker(0, 1, 1, 12).Get(x => new Tile("wall-left", x, true, 1)));
             map.Add(new TileWalker(13, 1, 1, 12).Get(x => new Tile("wall-right", x, true, 1)));

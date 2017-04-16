@@ -5,5 +5,6 @@
         Base = 0,
         Overlay = 1,
         Pad = 2,
+        Room = 3,
     }
 }
