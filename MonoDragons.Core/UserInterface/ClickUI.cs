@@ -25,6 +25,9 @@ namespace MonoDragons.Core.UserInterface
         public ClickUI()
             : this (new Size2(1600, 900)) { }
 
+        public ClickUI(int width, int height)
+            : this(new Size2(width, height)) { }
+
         public ClickUI(Size2 screenSize)
         {
             _screenSize = screenSize;
