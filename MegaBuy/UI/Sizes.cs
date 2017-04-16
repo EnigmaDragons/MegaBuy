@@ -11,5 +11,6 @@ namespace MegaBuy.Temp
         public static Size2 PadToggle = new Size2(400, 50);
         public static Size2 Button = new Size2(300, 100);
         public static Size2 Messenger = new Size2(300, 600);
+        public static Size2 Star = new Size2(150, 150);
     }
 }

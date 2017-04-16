@@ -3,6 +3,7 @@ using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
+using MegaBuy.Calls.Ratings;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Temp;
 using MonoDragons.Core.Engine;
@@ -19,6 +20,7 @@ namespace MegaBuy.Calls
         private readonly CallerUi _caller = new CallerUi();
         private readonly ReadyUI _ready = new ReadyUI();
         private readonly CallOptionsUI _callOptions = new CallOptionsUI();
+        private readonly RatingUI _rating = new RatingUI();
 
         private bool _isCalling = false;
 
@@ -45,7 +47,10 @@ namespace MegaBuy.Calls
             _caller.Draw(absoluteTransform);
             _callOptions.Draw(absoluteTransform);
             if (!_isCalling)
+            {
                 _ready.Draw(absoluteTransform);
+                _rating.Draw(absoluteTransform);
+            }
         }
 
         private void StartConnecting()

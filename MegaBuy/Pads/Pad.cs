@@ -60,9 +60,9 @@ namespace MegaBuy.Pads
             if (app.Equals(App.Call))
                 return new CallApp();
             /*if (app.Equals(App.Food))
-                return new FoodApp(_branch);
+                return new FoodApp(Branch);
             if (app.Equals(App.Notification))
-                return new NotificationApp(_branch);*/
+                return new NotificationApp(Branch);*/
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

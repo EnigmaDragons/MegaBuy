@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Apartment\Landlord.cs" />
+    <Compile Include="Calls\Ratings\RatingUI.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Foods\Old\FoodApp.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
@@ -81,8 +82,6 @@
     <Compile Include="Calls\Messages\ScriptLine.cs" />
     <Compile Include="Calls\Events\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\Events\TechnicalMistakeOccurred.cs" />
-    <Compile Include="Calls\Ratings\WholeStar.cs" />
-    <Compile Include="Calls\Ratings\EmptyStar.cs" />
     <Compile Include="Endings\Fired.cs" />
     <Compile Include="Endings\HeartAttack.cs" />
     <Compile Include="Player\Energy\Awaken.cs" />
@@ -358,10 +357,10 @@
     <Content Include="Content\Images\PAD\orderfood-pressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\PAD\star-empty.png">
+    <Content Include="Content\Images\UI\star-empty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\PAD\star-filled.png">
+    <Content Include="Content\Images\UI\star-filled.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Screen\button.png">

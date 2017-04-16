@@ -16,7 +16,7 @@ namespace MegaBuy.Scene
     {
         private ClickUI _clickUi = new ClickUI();
         private ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
-        private OverlayUI _overlay;
+        private Overlay _overlay;
         private Pad _pad;
         private Clock _clock;
 
@@ -28,7 +28,8 @@ namespace MegaBuy.Scene
         {
             _clock = GameState.Clock;
             _clickUi.Add(_branch);
-            _overlay = new OverlayUI(_branch);
+            _overlay = new Overlay();
+            _branch.Add(_overlay.Branch);
             _pad = new Pad(_branch);
             GameState.Pad = _pad;
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadVisible = true, this));

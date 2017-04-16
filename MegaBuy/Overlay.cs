@@ -9,22 +9,23 @@ using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Temp
 {
-    public class OverlayUI : IVisualAutomaton
+    public class Overlay : IVisualAutomaton
     {
         private readonly Transform2 _transform = Transform2.Zero;
         private readonly ClockUI _clockUi;
         private readonly TogglePad _togglePad;
         private readonly MoneyUI _moneyUI;
-        private readonly ClickUIBranch _branch;
 
-        public OverlayUI(ClickUIBranch parentBranch)
+        public ClickUIBranch Branch { get; set; }
+
+        public Overlay()
         {
-            // @todo #1 update toggle button colors and label colors
-            _branch = new ClickUIBranch("Overlay", (int)ClickUIPriorities.Overlay);
-            parentBranch.Add(_branch);
+            // @todo #1 update toggle button colors
+            Branch = new ClickUIBranch("Overlay", (int)ClickUIPriorities.Overlay);
             _clockUi = new ClockUI();
-            _togglePad = new TogglePad(_branch);
+            _togglePad = new TogglePad();
             _moneyUI = new MoneyUI();
+            Branch.Add(_togglePad.Branch);
         }
 
         public void Update(TimeSpan delta)
@@ -36,7 +37,7 @@ namespace MegaBuy.Temp
         public void Draw(Transform2 parentTransform)
         {
             var absoluteTransform = parentTransform + _transform;
-            _branch.ParentLocation = absoluteTransform.Location;
+            Branch.ParentLocation = absoluteTransform.Location;
             _clockUi.Draw(absoluteTransform);
             _togglePad.Draw(absoluteTransform);
             _moneyUI.Draw(absoluteTransform);
