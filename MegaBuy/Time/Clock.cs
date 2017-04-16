@@ -1,11 +1,14 @@
 ﻿using System;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 
 namespace MegaBuy.Time
 {
     public sealed class Clock : IAutomaton
     {
         private readonly Timer _timer;
+
+        private float _currentRate = 1.0f;
 
         private int _day;
         private int _hour;
@@ -14,18 +17,25 @@ namespace MegaBuy.Time
         public string Time => $"{_hour:D2}:{_minute:D2}";
         
         public Clock()
-            : this(80, 8, 0) { }
+            : this(400, 8, 0) { }
 
         public Clock(int msPerMinute, int hour, int minute)
         {
             _timer = new Timer(IncrementMinute, msPerMinute);
             _hour = hour;
             _minute = minute;
+            World.Subscribe(EventSubscription.Create<TimeRateChanged>(ChangeRate, this));
         }
 
         public void Update(TimeSpan delta)
         {
-            _timer.Update(delta);
+            var relativeTimePassed = TimeSpan.FromMilliseconds(delta.TotalMilliseconds * _currentRate);
+            _timer.Update(relativeTimePassed);
+        }
+
+        private void ChangeRate(TimeRateChanged rateChanged)
+        {
+            _currentRate *= rateChanged.Factor;
         }
 
         private void IncrementMinute()
