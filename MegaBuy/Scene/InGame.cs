@@ -20,7 +20,7 @@ namespace MegaBuy.Scene
     public class InGame : IScene
     {
         private readonly double _speed = 3.0;
-        private readonly Transform2 _mapTransform = new Transform2(new Vector2(175, -20), Rotation2.None, 2);
+        private readonly Transform2 _mapTransform = new Transform2(new Vector2(225, 25), Rotation2.None, 2);
 
         private ClickUI _clickUi = new ClickUI(1600, 900);
         private ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
@@ -49,7 +49,7 @@ namespace MegaBuy.Scene
             _map = ApartmentMapFactory.Create();
             _sleep = new SelectSleepDurationUI();
             GameState.PlayerCharacter = new PlayerCharacter(_map, 
-                new Transform2(new Vector2(TileSize.Size.Width * 11, TileSize.Size.Height * 6)));
+                new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));

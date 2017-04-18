@@ -35,13 +35,9 @@ namespace MegaBuy
             return new SceneFactory(new Dictionary<string, Func<IScene>>
             {
                 { "Logo", () => new FadingInScene(new LogoScene()) },
-                { "Room", () => new Room() },
-                { "ILovePolitics", () => new ILovePolitics() },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "Redesign", () => new InGame() },
-                { "Blank", () => new Blank() },
-                { "TTest", () => new TimTest() },
                 { "Evicted", () => new Evicted() },
                 { "Fired", () => new Fired() },
                 { "HeartAttack", () => new HeartAttack() },
