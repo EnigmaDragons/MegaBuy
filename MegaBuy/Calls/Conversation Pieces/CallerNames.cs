@@ -19,7 +19,11 @@ namespace MegaBuy.Calls.Conversation_Pieces
             "Lilliam Watrous",
             "Lorilee Faulken",
             "Liniya Kupshcheva",
-            "Gemma Hunter"
+            "Gemma Hunter",
+            "Ash Jacobson",
+            "Mark Dennison",
+            "Serra Rhonas",
+            "Eli Daniels"
         };
 
         public static string Random => names.Random();
