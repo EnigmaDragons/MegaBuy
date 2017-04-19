@@ -4,6 +4,7 @@ using MegaBuy.Calls;
 using MegaBuy.Foods;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
+using MegaBuy.Rents;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -65,7 +66,8 @@ namespace MegaBuy.Pads
                 return new FoodApp();
             if (app.Equals(App.Policies))
                 return new PoliciesApp();
-            // TODO: Add Rent App
+            if (app.Equals(App.Rent))
+                return new RentApp();
             // TODO: Add Notifation App
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }

@@ -15,8 +15,9 @@ namespace MegaBuy.Apartment
 
         public bool RentPaidToday { get; private set; } = false;
 
+        public decimal RentAmount => _currentRent.Amount();
         public string RentDue => "24:00";
-        public string RentAmount => _currentRent.Amount().ToString("0.##");
+        public string RentAmountStr => _currentRent.Amount().ToString("0.##");
 
         public Landlord(Rent rent, PlayerAccount acct)
         {
