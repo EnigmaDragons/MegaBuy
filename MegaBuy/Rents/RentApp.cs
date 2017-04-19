@@ -1,4 +1,6 @@
 ﻿using System;
+using MegaBuy.Apartment;
+using MegaBuy.Money.Accounts;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -15,6 +17,8 @@ namespace MegaBuy.Rents
         private readonly ImageLabel _paymentDueBy;
         private readonly ImageTextButton _payButton;
         private readonly ImageLabel _disabledPayButton;
+        private readonly PlayerAccount _playerAccount;
+        private readonly Landlord _landlord;
 
         private bool _canPayRent;
 
@@ -23,6 +27,8 @@ namespace MegaBuy.Rents
         
         public RentApp()
         {
+            _playerAccount = GameState.PlayerAccount;
+            _landlord = GameState.Landlord;
             Branch = new ClickUIBranch("Rent App", (int)ClickUIPriorities.Pad);
             _amountDue = new ImageLabel("", "Images/UI/label", new Transform2(new Vector2(-(Sizes.Label.Width / 2), 0), Sizes.Label));
             _paymentDueBy = new ImageLabel("", "Images/UI/label", new Transform2(new Vector2(-(Sizes.Label.Width / 2), Sizes.Label.Height + Sizes.Margin), Sizes.Label));
@@ -32,14 +38,14 @@ namespace MegaBuy.Rents
 
         public void Update(TimeSpan delta)
         {
-            _amountDue.Text = $"Amount Due: {GameState.Landlord.RentAmountStr}";
-            _paymentDueBy.Text = $"Payment Due By: {GameState.Landlord.RentDue}";
-            if (!_canPayRent && GameState.PlayerAccount.Amount() >= GameState.Landlord.RentAmount && !GameState.Landlord.RentPaidToday)
+            _amountDue.Text = $"Amount Due: {_landlord.RentAmountStr}";
+            _paymentDueBy.Text = $"Payment Due By: {_landlord.RentDue}";
+            if (!_canPayRent && _playerAccount.Amount() >= _landlord.RentAmount && !_landlord.RentPaidToday)
             {
                 Branch.Add(_payButton);
                 _canPayRent = true;
             }
-            if (_canPayRent && GameState.PlayerAccount.Amount() < GameState.Landlord.RentAmount && GameState.Landlord.RentPaidToday)
+            if (_canPayRent && _playerAccount.Amount() < _landlord.RentAmount && _landlord.RentPaidToday)
             {
                 Branch.Remove(_payButton);
                 _canPayRent = false;
@@ -48,13 +54,13 @@ namespace MegaBuy.Rents
 
         public void Draw(Transform2 parentTransform)
         {
-            if (GameState.Landlord.RentPaidToday)
+            if (_landlord.RentPaidToday)
                 return;
             var absoluteTransform = parentTransform + _transform;
             Branch.ParentLocation = absoluteTransform.Location;
             _amountDue.Draw(absoluteTransform);
             _paymentDueBy.Draw(absoluteTransform);
-            if (GameState.PlayerAccount.Amount() >= GameState.Landlord.RentAmount)
+            if (_playerAccount.Amount() >= _landlord.RentAmount)
                 _payButton.Draw(absoluteTransform);
             else
                 _disabledPayButton.Draw(absoluteTransform);

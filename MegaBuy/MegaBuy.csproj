@@ -51,7 +51,7 @@
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
-    <Compile Include="Notifications\Old\NotificationApp.cs" />
+    <Compile Include="Notifications\NotificationApp.cs" />
     <Compile Include="Rents\RentApp.cs" />
     <Compile Include="Player\Energy\PreparingForBed.cs" />
     <Compile Include="Player\Energy\SelectSleepDurationUI.cs" />
@@ -139,7 +139,7 @@
     <Compile Include="Rents\Rent.cs" />
     <Compile Include="Rents\RentIncreased.cs" />
     <Compile Include="Rents\RentPaid.cs" />
-    <Compile Include="Notifications\Old\NotificationUI.cs" />
+    <Compile Include="Notifications\NotificationUI.cs" />
     <Compile Include="Notifications\PlayerNotification.cs" />
     <Compile Include="Scene\Menu.cs" />
     <Compile Include="Scene\InGame.cs" />
@@ -432,6 +432,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\button-disable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\notification.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\pad-background.png">

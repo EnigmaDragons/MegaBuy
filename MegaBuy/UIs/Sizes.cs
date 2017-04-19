@@ -14,5 +14,6 @@ namespace MegaBuy.UIs
         public static Size2 Messenger = new Size2(300, 600);
         public static Size2 Star = new Size2(150, 150);
         public static Size2 Item = new Size2(200, 200);
+        public static Size2 Notification = new Size2(1550, 90);
     }
 }
