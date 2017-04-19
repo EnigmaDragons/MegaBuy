@@ -1,4 +1,5 @@
-﻿using MegaBuy.Money.Amounts;
+﻿using System;
+using MegaBuy.Money.Amounts;
 using MonoDragons.Core.Engine;
 
 namespace MegaBuy.Money.Accounts
@@ -13,6 +14,13 @@ namespace MegaBuy.Money.Accounts
         public PlayerAccount(decimal initial)
         {
             _amount = initial;
+        }
+
+        public void PaySalary(IAmount amount)
+        {
+            _amount += amount.Amount();
+            World.Publish(new SalaryPaymentOccured(amount));
+            World.Publish(new MoneyDeposited());
         }
 
         public void Add(IAmount amount)
@@ -30,5 +38,7 @@ namespace MegaBuy.Money.Accounts
         {
             return _amount;
         }
+
+        
     }
 }

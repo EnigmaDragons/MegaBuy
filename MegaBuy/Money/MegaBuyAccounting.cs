@@ -53,7 +53,7 @@ namespace MegaBuy.Money
 
         private void WorkDayEnded()
         {
-            _playerAccount.Add(_dayPayment);
+            _playerAccount.PaySalary(_dayPayment);
             World.Publish(new PlayerNotification("MegaBuy", $"You have been paid MBit - {_dayPayment.Amount()}"));
             _dayPayment = new DayPayment();
             _numMistakesInCurrentDay = 0;

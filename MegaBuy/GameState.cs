@@ -38,6 +38,7 @@ namespace MegaBuy
             Landlord = new Landlord(new Rent(50), PlayerAccount);
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
+            AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
