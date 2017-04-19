@@ -44,6 +44,7 @@
     <Compile Include="Foods\FoodApp.cs" />
     <Compile Include="Foods\FoodPage.cs" />
     <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
+    <Compile Include="Money\Amounts\PayPenalty.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
