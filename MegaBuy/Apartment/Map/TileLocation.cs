@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
+using System;
 
 namespace MegaBuy.Apartment.Map
 {
@@ -72,12 +73,12 @@ namespace MegaBuy.Apartment.Map
 
         private static int GetRow(Transform2 transform)
         {
-            return (int)(transform.ToScale(1).Location.Y / TileSize.Int);
+            return (int)Math.Round(transform.ToScale(1).Location.Y / TileSize.Int);
         }
 
         private static int GetColumn(Transform2 transform)
         {
-            return (int)(transform.ToScale(1).Location.X / TileSize.Int);
+            return (int)Math.Round(transform.ToScale(1).Location.X / TileSize.Int);
         }
 
         private static Transform2 MakeTransform(int column, int row)
