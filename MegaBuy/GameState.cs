@@ -32,7 +32,7 @@ namespace MegaBuy
             CharName = "player";
             ActivePolicies = new ActivePolicies();
             Enumerable.Range(1, 26).ForEach(x => ActivePolicies.Add(new Policy($"Policy #{x}")));
-            Clock = new Clock();
+            Clock = new Clock(100, 8, 0);
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);

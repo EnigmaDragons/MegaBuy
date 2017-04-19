@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms.VisualStyles;
 using MegaBuy.Calls;
 using MegaBuy.Foods;
-using MegaBuy.Notifications.Old;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
-using MegaBuy.Temp;
+using MegaBuy.Rents;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -68,6 +66,8 @@ namespace MegaBuy.Pads
                 return new FoodApp();
             if (app.Equals(App.Policies))
                 return new PoliciesApp();
+            if (app.Equals(App.Rent))
+                return new RentApp();
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }
