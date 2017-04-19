@@ -14,11 +14,12 @@ namespace MegaBuy.Calls.Conversation_Pieces
             "Shad Holbach",
             "Jonas Rhyne",
             "Darrell Riordan",
-            "Annelle Ryen",
+            "Anelle Ryen",
             "Heidy Slayton",
             "Lilliam Watrous",
             "Lorilee Faulken",
-            "Liniya Kupshcheva"
+            "Liniya Kupshcheva",
+            "Gemma Hunter"
         };
 
         public static string Random => names.Random();

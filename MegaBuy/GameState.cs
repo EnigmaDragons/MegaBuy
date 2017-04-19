@@ -41,7 +41,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
-            World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
+            //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
 
         private static void AddSingleInstanceSubscription(object obj)
