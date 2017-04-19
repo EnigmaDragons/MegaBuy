@@ -9,6 +9,11 @@ namespace MegaBuy.Policies
 
         public int Count => _policies.Count;
 
+        public void Add(IEnumerable<Policy> policies)
+        {
+            _policies.AddRange(policies);
+        }
+
         public void Add(Policy policy)
         {
             _policies.Add(policy);
