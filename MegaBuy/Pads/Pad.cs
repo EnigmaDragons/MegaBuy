@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Foods;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
 using MegaBuy.Rents;
+using MegaBuy.Shopping;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -62,8 +62,8 @@ namespace MegaBuy.Pads
         {
             if (app.Equals(App.Call))
                 return new CallApp();
-            if (app.Equals(App.Food))
-                return new FoodApp();
+            if (app.Equals(App.Shopping))
+                return new ShoppingApp();
             if (app.Equals(App.Policies))
                 return new PoliciesApp();
             if (app.Equals(App.Rent))

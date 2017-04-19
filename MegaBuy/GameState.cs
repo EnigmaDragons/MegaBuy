@@ -2,7 +2,6 @@
 using System.Linq;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
-using MegaBuy.Foods;
 using MegaBuy.JobRoles.Referrer;
 using MegaBuy.Money;
 using MegaBuy.Save;
@@ -39,10 +38,9 @@ namespace MegaBuy
             Landlord = new Landlord(new Rent(50), PlayerAccount);
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
-            AddSingleInstanceSubscription(new FoodEmporium(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
-            World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
+            //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
 
         private static void AddSingleInstanceSubscription(object obj)
