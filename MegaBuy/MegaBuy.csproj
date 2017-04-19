@@ -41,10 +41,14 @@
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
+    <Compile Include="Money\Amounts\Tax.cs" />
+    <Compile Include="Money\PaymentOccured.cs" />
+    <Compile Include="Money\GovernmentTaxes.cs" />
+    <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
+    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
-    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
     <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="Money\Amounts\PayPenalty.cs" />
@@ -123,7 +127,6 @@
     <Compile Include="Pads\TogglePad.cs" />
     <Compile Include="Shopping\ItemCost.cs" />
     <Compile Include="Shopping\ShoppingItemUI.cs" />
-    <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Player\Hungers\Hungry.cs" />
     <Compile Include="Player\Hungers\NotHungry.cs" />
     <Compile Include="Player\Hungers\VeryHungry.cs" />

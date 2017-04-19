@@ -1,4 +1,5 @@
 ﻿
+using System;
 using MegaBuy.Money.Amounts;
 
 namespace MegaBuy.Money.Accounts
@@ -10,6 +11,11 @@ namespace MegaBuy.Money.Accounts
         protected SimpleAccount(decimal initial)
         {
             _amount = initial;
+        }
+
+        public void PaySalary(IAmount amount)
+        {
+            _amount += amount.Amount();
         }
 
         public void Add(IAmount amount)
@@ -26,5 +32,7 @@ namespace MegaBuy.Money.Accounts
         {
             return _amount;
         }
+
+        
     }
 }
