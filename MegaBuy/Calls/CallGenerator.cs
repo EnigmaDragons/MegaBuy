@@ -1,6 +1,6 @@
-﻿using MegaBuy.Calls.PositionBasedCall;
-using MegaBuy.Calls.Rules;
+﻿using MegaBuy.Calls.Rules;
 using System;
+using MegaBuy.JobRoles.Referrer;
 
 namespace MegaBuy.Calls
 {
@@ -21,7 +21,7 @@ namespace MegaBuy.Calls
         public Call GenerateCall()
         {
             if (_position == JobRole.ReferrerLevel1)
-                return ReferrerLevel1.NewCall();
+                return ReferrerLevel1Calls.NewCall();
             throw new Exception();
         }
     }

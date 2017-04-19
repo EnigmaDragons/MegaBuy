@@ -11,6 +11,7 @@ namespace MegaBuy.Calls.Callers
     {
         public CallerPatience Patience = CallerStartingPatience.New;
         public string Name { get; }
+        public Map<string, string> Traits { get; }
 
         private readonly int _patienceLossRateMs;
         private int _gracePeriods;
@@ -25,6 +26,7 @@ namespace MegaBuy.Calls.Callers
 
         public Caller(string name, int patienceLossRateMs)
         {
+            Traits = new Map<string, string>();
             Name = name;
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
@@ -57,6 +59,11 @@ namespace MegaBuy.Calls.Callers
         private void SocialMistakeOccurred(SocialMistakeOccurred mistake)
         {
             Patience.ReduceBy(mistake.PatiencePenalty);
+        }
+
+        public bool TraitMatches(string trait, string value)
+        {
+            return Traits.ContainsKey(trait) && Traits[trait].Equals(value);
         }
     }
 }

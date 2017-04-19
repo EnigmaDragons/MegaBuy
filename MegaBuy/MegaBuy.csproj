@@ -39,19 +39,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Apartment\Landlord.cs" />
+    <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
     <Compile Include="Foods\FoodApp.cs" />
     <Compile Include="Foods\FoodPage.cs" />
+    <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
     <Compile Include="Notifications\Old\NotificationApp.cs" />
+    <Compile Include="Rents\RentApp.cs" />
     <Compile Include="Player\Energy\PreparingForBed.cs" />
     <Compile Include="Player\Energy\SelectSleepDurationUI.cs" />
     <Compile Include="Player\Energy\WentToBed.cs" />
     <Compile Include="Policies\PoliciesApp.cs" />
     <Compile Include="Policies\PolicyPageUI.cs" />
-    <Compile Include="Rents\Old\RentApp.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel1Policies.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />
     <Compile Include="Calls\Callers\Caller.cs" />
@@ -62,14 +65,14 @@
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
-    <Compile Include="Calls\Options\ReferToCareers.cs" />
-    <Compile Include="Calls\Options\ReferToReturns.cs" />
-    <Compile Include="Calls\PositionBasedCall\ReferrerLevel2.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToCareers.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToReturns.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel2Calls.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="Calls\PositionBasedCall\ReferrerLevel1.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel1Calls.cs" />
     <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
@@ -81,8 +84,8 @@
     <Compile Include="Calls\AgentCurrentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\Events\AgentCallStatusChanged.cs" />
-    <Compile Include="Calls\Options\ReferToInfo.cs" />
-    <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToInfo.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\Messages\ScriptLine.cs" />
@@ -421,6 +424,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\PAD\orderfood-pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\button-disable.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\pad-background.png">

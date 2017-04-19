@@ -3,6 +3,7 @@ using System.Linq;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
 using MegaBuy.Foods;
+using MegaBuy.JobRoles.Referrer;
 using MegaBuy.Money;
 using MegaBuy.Save;
 using MegaBuy.Time;
@@ -31,7 +32,7 @@ namespace MegaBuy
         {
             CharName = "player";
             ActivePolicies = new ActivePolicies();
-            Enumerable.Range(1, 26).ForEach(x => ActivePolicies.Add(new Policy($"Policy #{x}")));
+            ActivePolicies.Add(ReferrerLevel1Policies.Policies);
             Clock = new Clock();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
