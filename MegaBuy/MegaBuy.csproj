@@ -40,8 +40,12 @@
   <ItemGroup>
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
-    <Compile Include="Foods\FoodApp.cs" />
-    <Compile Include="Foods\FoodPage.cs" />
+    <Compile Include="Shopping\Food\FoodEaten.cs" />
+    <Compile Include="Shopping\IItem.cs" />
+    <Compile Include="Shopping\IShoppingCompany.cs" />
+    <Compile Include="Shopping\Food\SampleFoodCompanyItemOrdered.cs" />
+    <Compile Include="Shopping\Food\SampleFoodCompany.cs" />
+    <Compile Include="Shopping\ShoppingApp.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
@@ -91,7 +95,6 @@
     <Compile Include="Endings\Fired.cs" />
     <Compile Include="Endings\HeartAttack.cs" />
     <Compile Include="Player\Energy\Awaken.cs" />
-    <Compile Include="Foods\FoodEaten.cs" />
     <Compile Include="Player\Hungers\HungerRecovery.cs" />
     <Compile Include="Player\Energy\NotTired.cs" />
     <Compile Include="Player\Energy\PlayerEnergy.cs" />
@@ -112,13 +115,12 @@
     <Compile Include="Pads\PadClosed.cs" />
     <Compile Include="Pads\PadOpened.cs" />
     <Compile Include="Calls\ReadyUI.cs" />
+    <Compile Include="Shopping\ShoppingCompanyUI.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
-    <Compile Include="Foods\FoodCost.cs" />
-    <Compile Include="Foods\FoodEmporium.cs" />
-    <Compile Include="Foods\FoodOptionUI.cs" />
-    <Compile Include="Foods\FoodOrdered.cs" />
-    <Compile Include="Foods\Food.cs" />
+    <Compile Include="Shopping\ItemCost.cs" />
+    <Compile Include="Shopping\ShoppingItemUI.cs" />
+    <Compile Include="Shopping\Food\Food.cs" />
     <Compile Include="Player\Hungers\Hungry.cs" />
     <Compile Include="Player\Hungers\NotHungry.cs" />
     <Compile Include="Player\Hungers\VeryHungry.cs" />
@@ -187,6 +189,9 @@
   <ItemGroup>
     <Content Include="Content\Credits.txt" />
     <Content Include="Content\Effects\light-effect.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Companies\sample-food-company.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">
@@ -330,7 +335,7 @@
     <Content Include="Content\Images\Customers\shade-corwin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Food\value-burger.png">
+    <Content Include="Content\Images\Items\value-burger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\burger.png">

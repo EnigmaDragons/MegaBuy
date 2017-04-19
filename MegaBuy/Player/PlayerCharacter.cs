@@ -4,6 +4,7 @@ using MegaBuy.Apartment.Map;
 using MegaBuy.Foods;
 using MegaBuy.Player.Energy;
 using MegaBuy.Player.Hungers;
+using MegaBuy.Shopping;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -53,12 +54,6 @@ namespace MegaBuy.Player
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
             Input.On(Control.A, Interact);
-            World.Subscribe(EventSubscription.Create<FoodOrdered>(FoodOrdered, this));
-        }
-
-        private void FoodOrdered(FoodOrdered order)
-        {
-            World.Publish(new FoodEaten(order.Food));
         }
 
         private void Interact()
