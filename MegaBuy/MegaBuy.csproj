@@ -39,13 +39,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Apartment\Landlord.cs" />
+    <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
-    <Compile Include="Shopping\Food\FoodEaten.cs" />
+    <Compile Include="Shopping\Foods\FoodEaten.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
-    <Compile Include="Shopping\Food\SampleFoodCompanyItemOrdered.cs" />
-    <Compile Include="Shopping\Food\SampleFoodCompany.cs" />
+    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
+    <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Player\Energy\WentToBed.cs" />
     <Compile Include="Policies\PoliciesApp.cs" />
     <Compile Include="Policies\PolicyPageUI.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel1Policies.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />
     <Compile Include="Calls\Callers\Caller.cs" />
@@ -66,14 +68,14 @@
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
-    <Compile Include="Calls\Options\ReferToCareers.cs" />
-    <Compile Include="Calls\Options\ReferToReturns.cs" />
-    <Compile Include="Calls\PositionBasedCall\ReferrerLevel2.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToCareers.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToReturns.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel2Calls.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="Calls\PositionBasedCall\ReferrerLevel1.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel1Calls.cs" />
     <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
@@ -85,8 +87,8 @@
     <Compile Include="Calls\AgentCurrentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\Events\AgentCallStatusChanged.cs" />
-    <Compile Include="Calls\Options\ReferToInfo.cs" />
-    <Compile Include="Calls\Options\ReferToTroubleShooting.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToInfo.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\Messages\ScriptLine.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Pads\TogglePad.cs" />
     <Compile Include="Shopping\ItemCost.cs" />
     <Compile Include="Shopping\ShoppingItemUI.cs" />
-    <Compile Include="Shopping\Food\Food.cs" />
+    <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Player\Hungers\Hungry.cs" />
     <Compile Include="Player\Hungers\NotHungry.cs" />
     <Compile Include="Player\Hungers\VeryHungry.cs" />
@@ -179,12 +181,15 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SharpDX.MediaFoundation, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Credits.txt" />
@@ -192,6 +197,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Companies\sample-food-company.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\gemma-hunter.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">
@@ -326,7 +334,7 @@
     <Content Include="Content\Images\Customers\liniya-kupshcheva.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\lorilee-faulknen.jpg">
+    <Content Include="Content\Images\Customers\lorilee-faulken.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\shad-holbach.jpg">

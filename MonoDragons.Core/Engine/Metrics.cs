@@ -35,10 +35,13 @@ namespace MonoDragons.Core.Engine
         public void Draw(Transform2 parentTransform)
         {
 #if DEBUG
+            var memory = AppDomain.MonitoringSurvivedProcessMemorySize;
+            var exponent = memory.ToString().Length - 2;
+            memory = (int)Math.Round(memory / Math.Pow(10, exponent));
             var color = Color.Yellow;
             UI.DrawText($"FPS: {_framesPerSecond}", new Vector2(0, 0), color);
             UI.DrawText($"UPS: {_updatesPerSecond}", new Vector2(0, 40), color);
-            UI.DrawText($"RAM: {AppDomain.MonitoringSurvivedProcessMemorySize}", new Vector2(0, 80), color);
+            UI.DrawText($"RAM: {memory}e{exponent}", new Vector2(0, 80), color);
             UI.DrawText($"Sub: {World.CurrentEventSubscriptionCount}", new Vector2(0, 120), color);
             UI.DrawText($"Scn: {Resources.CurrentSceneDisposableCount}", new Vector2(0, 160), color);
             _framesThisSecond++;

@@ -1,14 +1,13 @@
-﻿
-namespace MegaBuy.Calls.Messages
+﻿namespace MegaBuy.Calls.Messages
 {
     public sealed class ScriptLine
     {
-        public string CharacterName { get; }
+        public CallRole Role { get; }
         public string Text { get; }
 
-        public ScriptLine(string characterName, string text)
+        public ScriptLine(CallRole callRole, string text)
         {
-            CharacterName = characterName;
+            Role = callRole;
             Text = text;
         }
     }

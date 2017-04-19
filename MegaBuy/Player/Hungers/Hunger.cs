@@ -2,8 +2,8 @@
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Foods;
 using MegaBuy.Shopping;
+using MegaBuy.Shopping.Foods;
 
 namespace MegaBuy.Player.Hungers
 {

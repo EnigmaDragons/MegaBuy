@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Foods;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
 using MegaBuy.Rents;
@@ -69,6 +68,7 @@ namespace MegaBuy.Pads
                 return new PoliciesApp();
             if (app.Equals(App.Rent))
                 return new RentApp();
+            // TODO: Add Notifation App
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

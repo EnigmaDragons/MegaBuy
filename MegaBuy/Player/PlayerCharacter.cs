@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Apartment.Map;
-using MegaBuy.Foods;
 using MegaBuy.Player.Energy;
 using MegaBuy.Player.Hungers;
 using MegaBuy.Shopping;
@@ -65,7 +64,7 @@ namespace MegaBuy.Player
         {
             _dir = dir;
             if (!dir.Equals(Direction.None))
-                _transform = _transform + new Transform2(dir.ToRotation());
+                _transform.Rotation = _dir.ToRotation();
 
             if (!dir.HDir.Equals(HorizontalDirection.None))
                 _facing = dir.HDir.ToString();

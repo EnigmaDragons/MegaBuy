@@ -2,7 +2,7 @@
 using System.Linq;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
-using MegaBuy.Foods;
+using MegaBuy.JobRoles.Referrer;
 using MegaBuy.Money;
 using MegaBuy.Save;
 using MegaBuy.Time;
@@ -31,8 +31,8 @@ namespace MegaBuy
         {
             CharName = "player";
             ActivePolicies = new ActivePolicies();
-            Enumerable.Range(1, 26).ForEach(x => ActivePolicies.Add(new Policy($"Policy #{x}")));
-            Clock = new Clock(100, 8, 0);
+            ActivePolicies.Add(ReferrerLevel1Policies.Policies);
+            Clock = new Clock();
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
@@ -40,7 +40,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
-            World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
+            //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
 
         private static void AddSingleInstanceSubscription(object obj)

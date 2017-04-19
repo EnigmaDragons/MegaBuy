@@ -46,7 +46,7 @@ namespace MegaBuy.Calls.Messages
 
         private void AddMessages(Script script)
         {
-            script.ForEach(y => AddMessage(y.Text, y.CharacterName.Equals("player", StringComparison.OrdinalIgnoreCase)));
+            script.ForEach(y => AddMessage(y.Text, y.Role.Equals(CallRole.Player)));
         }
 
         private void AddMessage(string text, bool isPlayer)
