@@ -5,7 +5,7 @@ namespace MegaBuy.Pads.Apps
     {
         None,
         Call,
-        Food,
+        Shopping,
         Notification,
         Account,
         Rent,

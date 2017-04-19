@@ -41,9 +41,13 @@
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
-    <Compile Include="Foods\FoodApp.cs" />
-    <Compile Include="Foods\FoodPage.cs" />
+    <Compile Include="Shopping\Foods\FoodEaten.cs" />
+    <Compile Include="Shopping\IItem.cs" />
+    <Compile Include="Shopping\IShoppingCompany.cs" />
+    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
+    <Compile Include="Shopping\ShoppingApp.cs" />
     <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
+    <Compile Include="Money\Amounts\PayPenalty.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
@@ -94,7 +98,6 @@
     <Compile Include="Endings\Fired.cs" />
     <Compile Include="Endings\HeartAttack.cs" />
     <Compile Include="Player\Energy\Awaken.cs" />
-    <Compile Include="Foods\FoodEaten.cs" />
     <Compile Include="Player\Hungers\HungerRecovery.cs" />
     <Compile Include="Player\Energy\NotTired.cs" />
     <Compile Include="Player\Energy\PlayerEnergy.cs" />
@@ -115,13 +118,12 @@
     <Compile Include="Pads\PadClosed.cs" />
     <Compile Include="Pads\PadOpened.cs" />
     <Compile Include="Calls\ReadyUI.cs" />
+    <Compile Include="Shopping\ShoppingCompanyUI.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
-    <Compile Include="Foods\FoodCost.cs" />
-    <Compile Include="Foods\FoodEmporium.cs" />
-    <Compile Include="Foods\FoodOptionUI.cs" />
-    <Compile Include="Foods\FoodOrdered.cs" />
-    <Compile Include="Foods\Food.cs" />
+    <Compile Include="Shopping\ItemCost.cs" />
+    <Compile Include="Shopping\ShoppingItemUI.cs" />
+    <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Player\Hungers\Hungry.cs" />
     <Compile Include="Player\Hungers\NotHungry.cs" />
     <Compile Include="Player\Hungers\VeryHungry.cs" />
@@ -195,13 +197,60 @@
     <Content Include="Content\Effects\light-effect.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\ash-jacobson.jpg" />
-    <Content Include="Content\Images\Customers\eli-daniels.jpg" />
+    <Content Include="Content\Images\Character\fd1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fd2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fd3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fl1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fl2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fr1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fr2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fr3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fu1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fu2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\fu3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Companies\sample-food-company.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\ash-jacobson.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\eli-daniels.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Customers\gemma-hunter.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\mark-dennison.jpg" />
-    <Content Include="Content\Images\Customers\serra-rhonas.jpg" />
+    <Content Include="Content\Images\Customers\mark-dennison.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\serra-rhonas.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -301,18 +350,6 @@
     <Content Include="Content\Images\Map\2\wall789.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Character\d1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\Character\l1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\Character\r1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\Character\u1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Images\Customers\anelle-ryen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -343,7 +380,7 @@
     <Content Include="Content\Images\Customers\shade-corwin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Food\value-burger.png">
+    <Content Include="Content\Images\Items\value-burger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\burger.png">

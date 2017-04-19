@@ -25,7 +25,7 @@ namespace MegaBuy.Pads
             _branch = new ClickUIBranch("Menu Bar", (int)ClickUIPriorities.Pad);
             parentBranch.Add(_branch);
             _callApp = ImageTextButtonFactory.Create("Calls", new Vector2(Sizes.Margin, Sizes.Margin), () => ChangeApp(App.Call));
-            _foodApp = ImageTextButtonFactory.Create("Food", new Vector2(Sizes.Margin * 2 + Sizes.Button.Width, Sizes.Margin), () => ChangeApp(App.Food));
+            _foodApp = ImageTextButtonFactory.Create("Shopping", new Vector2(Sizes.Margin * 2 + Sizes.Button.Width, Sizes.Margin), () => ChangeApp(App.Shopping));
             _notificationApp = ImageTextButtonFactory.Create("Notification", new Vector2(Sizes.Margin * 3 + Sizes.Button.Width * 2, Sizes.Margin), () => ChangeApp(App.Notification));
             _rentApp = ImageTextButtonFactory.Create("Rent", new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin), () => ChangeApp(App.Rent));
             _policiesApp = ImageTextButtonFactory.Create("Policies", new Vector2(Sizes.Margin * 5 + Sizes.Button.Width * 4, Sizes.Margin), () => ChangeApp(App.Policies));

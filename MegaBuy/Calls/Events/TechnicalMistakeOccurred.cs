@@ -1,17 +1,16 @@
-﻿using MegaBuy.Money;
-using MegaBuy.Money.Amounts;
+﻿using MegaBuy.Money.Amounts;
 using MegaBuy.Policies;
 
 namespace MegaBuy.Calls.Events
 {
-    public struct TechnicalMistakeOccurred
+    public class TechnicalMistakeOccurred
     {
         public IAmount PayPenalty { get; }
         public Policy Policy { get; }
 
-        public TechnicalMistakeOccurred(IAmount parPenalty, Policy policy)
+        public TechnicalMistakeOccurred(IAmount payPenalty, Policy policy)
         {
-            PayPenalty = parPenalty;
+            PayPenalty = payPenalty;
             Policy = policy;
         }
     }

@@ -2,7 +2,8 @@
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Foods;
+using MegaBuy.Shopping;
+using MegaBuy.Shopping.Foods;
 
 namespace MegaBuy.Player.Hungers
 {
@@ -25,7 +26,7 @@ namespace MegaBuy.Player.Hungers
 
         private void EatFood(FoodEaten foodEaten)
         {
-            _hunger -= foodEaten.Food.Recovery.Amount;
+            _hunger -= foodEaten.Food.HungerRecovery.Amount;
         }
 
         private void IncreaseHunger(MinuteChanged hourChanged)

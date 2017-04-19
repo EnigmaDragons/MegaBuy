@@ -1,6 +1,6 @@
-﻿namespace MegaBuy.Foods
+﻿namespace MegaBuy.Shopping.Foods
 {
-    public sealed class FoodEaten
+    public class FoodEaten
     {
         public Food Food { get; }
 
