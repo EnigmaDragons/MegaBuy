@@ -18,10 +18,11 @@ namespace MonoDragons.Core.Engine
         public void Update(TimeSpan delta)
         {
             _elapsedMs += delta.TotalMilliseconds;
-            if (!(_elapsedMs > _intervalMs)) return;
-
-            _task();
-            _elapsedMs -= _intervalMs;
+            while (_elapsedMs > _intervalMs)
+            {
+                _task();
+                _elapsedMs -= _intervalMs;
+            }
         }
     }
 }
