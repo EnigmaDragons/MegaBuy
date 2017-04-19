@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Calls;
+using MegaBuy.Calls.Rules;
 
 namespace MegaBuy.Policies
 {
@@ -36,6 +38,11 @@ namespace MegaBuy.Policies
                 .Skip(startingIndex - 1)
                 .Take(count)
                 .ToList();
+        }
+
+        public List<Policy> GetViolations(CallResolution resolution, Call call)
+        {
+            return _policies.Where(x => !x.MeetsPolicy(resolution, call)).ToList();
         }
     }
 }
