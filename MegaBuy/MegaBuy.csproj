@@ -48,13 +48,13 @@
     <Compile Include="Pads\Apps\IApp.cs" />
     <Compile Include="Pads\Apps\NoneApp.cs" />
     <Compile Include="Notifications\Old\NotificationApp.cs" />
+    <Compile Include="Rents\RentApp.cs" />
     <Compile Include="Player\Energy\PreparingForBed.cs" />
     <Compile Include="Player\Energy\SelectSleepDurationUI.cs" />
     <Compile Include="Player\Energy\WentToBed.cs" />
     <Compile Include="Policies\PoliciesApp.cs" />
     <Compile Include="Policies\PolicyPageUI.cs" />
     <Compile Include="JobRoles\Referrer\ReferrerLevel1Policies.cs" />
-    <Compile Include="Rents\Old\RentApp.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />
     <Compile Include="Calls\Callers\Caller.cs" />
@@ -418,6 +418,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\PAD\orderfood-pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\button-disable.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\pad-background.png">

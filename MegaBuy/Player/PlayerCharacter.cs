@@ -70,7 +70,7 @@ namespace MegaBuy.Player
         {
             _dir = dir;
             if (!dir.Equals(Direction.None))
-                _transform = _transform + new Transform2(dir.ToRotation());
+                _transform.Rotation = _dir.ToRotation();
 
             if (!dir.HDir.Equals(HorizontalDirection.None))
                 _facing = dir.HDir.ToString();

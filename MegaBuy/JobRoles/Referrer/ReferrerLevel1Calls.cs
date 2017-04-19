@@ -24,7 +24,7 @@ namespace MegaBuy.JobRoles.Referrer
 
         private static readonly Func<Call>[] _calls = {
             () => Create((c, s) => c.CallerSays("I want to return this dumb " + s.Product + "!"), CallResolution.ReferToReturns),
-            () => Create((c, s) => c.CallerSays(s.Product + " want to be returned. It " + Problems.description[s.Problem] + "."), CallResolution.ReferToReturns),
+            () => Create((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.description[s.Problem] + "."), CallResolution.ReferToReturns),
             () => Create((c, s) => c.CallerSays("I need help. My " + s.Product + " " + Problems.description[s.Problem] + "."), CallResolution.ReferToTroubleshooting),
             () => Create(c => c.CallerSays("How much can I sell my " + Products.Random + " for?"), CallResolution.ReferToInfo),
             () => Create(c => c.CallerSays("MY " + Products.Random.ToUpper() + " DOESN'T WORK AND I NEED HELP RIGHT NOW!!!"), CallResolution.ReferToTroubleshooting),
