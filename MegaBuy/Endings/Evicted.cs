@@ -14,11 +14,12 @@ namespace MegaBuy.Endings
         public void Update(TimeSpan delta)
         {
         }
-
-        // @todo #1 Design Evicted Game Over Scene appearance
+        
         public void Draw()
         {
-            UI.DrawText("You have been evicted for failure to pay your rent!", Vector2.Zero, Color.White);
+            UI.DrawCentered("Images/Endings/evicted", new Vector2(1600, 900));
+            UI.DrawCenteredWithOffset("Images/Endings/gameover", new Vector2(0, -100));
+            UI.DrawTextCentered("You've been evicted", new Rectangle(0, 100, 1600, 800), Color.LightGray);
         }
     }
 }

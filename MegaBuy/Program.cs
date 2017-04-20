@@ -38,7 +38,7 @@ namespace MegaBuy
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
                 { "Redesign", () => new InGame() },
-                { "Evicted", () => new Evicted() },
+                { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new Fired() },
                 { "HeartAttack", () => new HeartAttack() },
             });

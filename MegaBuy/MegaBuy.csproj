@@ -254,6 +254,12 @@
     <Content Include="Content\Images\Customers\serra-rhonas.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Endings\evicted.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Endings\gameover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

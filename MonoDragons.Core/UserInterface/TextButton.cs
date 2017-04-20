@@ -51,11 +51,8 @@ namespace MonoDragons.Core.UserInterface
 
         public void Draw(Transform2 parentTransform)
         {
-            var str = DefaultFont.Font.MeasureString(_text);
-            var x = parentTransform.Location.X + Area.X + ((Area.Width - str.X)/2);
-            var y = parentTransform.Location.Y + Area.Y + ((Area.Height - str.Y) / 2);
-            World.Draw(_rect, new Vector2(Area.X + parentTransform.Location.X, Area.Y + parentTransform.Location.Y));
-            UI.DrawText(_text, new Vector2(x, y), Color.White);
+            World.Draw(_rect, parentTransform.Location + Area.Location.ToVector2());
+            UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White);
         }
     }
 }
