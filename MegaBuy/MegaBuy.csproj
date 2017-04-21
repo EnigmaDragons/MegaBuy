@@ -56,6 +56,7 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="Player\CharacterSex.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
-    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
+    <Compile Include="Shopping\Foods\McKingJrs.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Pads\PadClosed.cs" />
     <Compile Include="Pads\PadOpened.cs" />
     <Compile Include="Calls\ReadyUI.cs" />
+    <Compile Include="Shopping\ShoppingCompanyOptionUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyUI.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
@@ -247,6 +249,45 @@
     <Content Include="Content\Images\Character\fu3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Character\md1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\md2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\md3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\ml1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\ml2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\ml3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mr1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mr2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mr3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mu1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mu2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Character\mu3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Companies\mcking-jrs.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Companies\sample-food-company.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -266,6 +307,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Endings\evicted.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Endings\fired.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Endings\gameover.png">
@@ -532,6 +576,9 @@
     <Content Include="Content\Images\UI\hunger-quarter.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\label-large.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\label-small.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -611,7 +658,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
-    <Folder Include="Player\Thoughts\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">

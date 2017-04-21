@@ -1,12 +1,12 @@
-﻿using MonoDragons.Core.Engine;
-using MonoDragons.Core.UserInterface;
+﻿using System.Collections.Generic;
 
 namespace MegaBuy.Shopping
 {
-    public interface IShoppingCompany : IVisual
+    public interface IShoppingCompany
     {
         string Name { get; }
         string Description { get; }
-        ClickUIBranch Branch { get; }
+        List<IItem> Items { get; }
+        void Buy(IItem item);
     }
 }

@@ -45,7 +45,7 @@ namespace MegaBuy.Pads
             World.Draw("Images/UI/pad-background", new Transform2(absoluteTransform.Location, new Size2(1600, 900)));
             _menuBar.Draw(absoluteTransform);
             _currentApp.Draw(absoluteTransform + new Transform2(new Vector2(0, 125)));
-            World.Draw("Images/UI/line-vertical", absoluteTransform + new Transform2(new Vector2(0, 757), Sizes.VerticalLine));
+            World.Draw("Images/UI/line-vertical", absoluteTransform + new Transform2(new Vector2(0, 827), Sizes.VerticalLine));
         }
 
         public void OpenApp(App app)

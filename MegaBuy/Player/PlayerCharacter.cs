@@ -44,9 +44,9 @@ namespace MegaBuy.Player
         private bool IsMoving => _dir.HDir != HorizontalDirection.None || _dir.VDir != VerticalDirection.None;
         private string AnimState => $"{_facing}-{IsMoving}";
 
-        public PlayerCharacter(ICharSpace charSpace, Transform2 startingLocation)
+        public PlayerCharacter(CharacterSex sex, ICharSpace charSpace, Transform2 startingLocation)
         {
-            _anims = new PlayerCharacterAnimations();
+            _anims = new PlayerCharacterAnimations(sex);
             _components.Add(new Hunger());
             _components.Add(new PlayerEnergy());
             _transform = startingLocation;

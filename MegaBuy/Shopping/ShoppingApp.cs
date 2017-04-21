@@ -13,39 +13,35 @@ namespace MegaBuy.Shopping
     {
         private readonly List<IShoppingCompany> _companies = new List<IShoppingCompany>
         {
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
+            new McKingJrs(),
         };
+
         private readonly Transform2 _transform = new Transform2(new Vector2(350, Sizes.Margin));
-        private readonly List<ShoppingCompanyUI> _companyUIs = new List<ShoppingCompanyUI>();
+        private readonly List<ShoppingCompanyOptionUI> _companyOptionUIs = new List<ShoppingCompanyOptionUI>();
         private readonly ClickUIBranch _companiesBranch;
         private readonly ImageTextButton _return;
 
         private bool _isSelectingCompany = true;
-        private IShoppingCompany _currentCompany;
+        private ShoppingCompanyUI _currentCompany;
 
         public App Type => App.Shopping;
-        public ClickUIBranch Branch { get; private set; }
+        public ClickUIBranch Branch { get; }
 
         public ShoppingApp()
         {
             Branch = new ClickUIBranch("Item App", (int)ClickUIPriorities.Pad);
             _companiesBranch = new ClickUIBranch("Companies", (int)ClickUIPriorities.Pad);
             Branch.Add(_companiesBranch);
+
             for (var i = 0; i < _companies.Count; i++)
             {
                 var company = _companies[i];
-                var option = new ShoppingCompanyUI(company, i, () => NavigateToCompany(company));
-                _companyUIs.Add(option);
+                var companyUI = new ShoppingCompanyUI(company);
+                var option = new ShoppingCompanyOptionUI(company, i, () => NavigateToCompany(companyUI));
+                _companyOptionUIs.Add(option);
                 _companiesBranch.Add(option.Branch);
             }
-            _return = ImageTextButtonFactory.Create("Return", new Vector2(500, 0), NavigateToCompanySelection);
+            _return = ImageTextButtonFactory.Create("Return", new Vector2(925, 580), NavigateToCompanySelection);
         }
 
         public void Update(TimeSpan delta)
@@ -57,7 +53,7 @@ namespace MegaBuy.Shopping
             var absoluteTransform = parentTransform + _transform;
             Branch.ParentLocation = absoluteTransform.Location;
             if (_isSelectingCompany)
-                _companyUIs.ForEach(x => x.Draw(absoluteTransform));
+                _companyOptionUIs.ForEach(x => x.Draw(absoluteTransform));
             else
             {
                 _currentCompany.Draw(absoluteTransform);
@@ -65,7 +61,7 @@ namespace MegaBuy.Shopping
             }
         }
 
-        private void NavigateToCompany(IShoppingCompany company)
+        private void NavigateToCompany(ShoppingCompanyUI company)
         {
             _currentCompany = company;
             Branch.Remove(_companiesBranch);
