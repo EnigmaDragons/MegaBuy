@@ -23,7 +23,7 @@ namespace MegaBuy.Money
 
         public void Update(TimeSpan delta)
         {
-            _label.Text = $"MBit - {_account.Amount()}";
+            _label.Text = $" - {_account.Amount()}";
         }
 
         public void Draw(Transform2 parentTransform)

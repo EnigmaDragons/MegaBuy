@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
-using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
 using MegaBuy.JobRoles.Referrer.Options;
 using MonoDragons.Core.Common;
@@ -19,9 +18,7 @@ namespace MegaBuy.JobRoles.Referrer
             new ReferToTroubleshooting(),
             new EscalateCall(),
         };
-
-        private static string Player => GameState.CharName;
-
+        
         private static readonly Func<Call>[] _calls = {
             () => Create((c, s) => c.CallerSays("I want to return this dumb " + s.Product + "!"), CallResolution.ReferToReturns),
             () => Create((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.description[s.Problem] + "."), CallResolution.ReferToReturns),
