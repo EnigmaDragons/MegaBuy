@@ -55,7 +55,7 @@ namespace MegaBuy.Scene
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
             World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
             World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
-            World.Subscribe(EventSubscription.Create<CollapsedFromExhaustion>((e) => WentToBed(), this));
+            World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => WentToBed(), this));
         }
 
         private void Awaken(Awaken obj)

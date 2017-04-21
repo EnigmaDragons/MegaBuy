@@ -56,7 +56,7 @@ namespace MegaBuy.Player
             Input.On(Control.A, Interact);
             World.Subscribe(EventSubscription.Create<WentToBed>((e) => _isSleeping = true, this));
             World.Subscribe(EventSubscription.Create<Awaken>((e) => _isSleeping = false, this));
-            World.Subscribe(EventSubscription.Create<CollapsedFromExhaustion>((e) => _isSleeping = true, this));
+            World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => _isSleeping = true, this));
         }
 
         private void Interact()
