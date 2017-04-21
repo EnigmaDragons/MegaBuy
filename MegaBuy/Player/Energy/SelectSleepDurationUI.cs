@@ -5,6 +5,7 @@ using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using System;
 
 namespace MegaBuy.Player.Energy
 {
@@ -13,11 +14,13 @@ namespace MegaBuy.Player.Energy
         private readonly ColoredRectangle _backdrop;
         private readonly Label _question;
         private readonly List<ImageTextButton> _hourDurationOptions = new List<ImageTextButton>();
+        private readonly Action _cancel;
 
         public ClickUIBranch Branch { get; }
 
-        public SelectSleepDurationUI()
+        public SelectSleepDurationUI(Action cancel)
         {
+            _cancel = cancel;
             Branch = new ClickUIBranch("Select Sleep Duration", (int)ClickUIPriorities.Room);
             _question = new Label {Transform = new Transform2(Sizes.Label), Text="How long would you like to sleep?"};
             _backdrop = new ColoredRectangle {Color = Color.Yellow, Transform = new Transform2(new Size2(600, 300))};
@@ -33,6 +36,8 @@ namespace MegaBuy.Player.Energy
                 new Transform2(new Vector2(400, 100), Sizes.Button), () => GoToSleep(2)));
             _hourDurationOptions.Add(new ImageTextButton("1", "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
                 new Transform2(new Vector2(400, 175), Sizes.Button), () => GoToSleep(1)));
+            _hourDurationOptions.Add(new ImageTextButton("Cancel", "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
+                new Transform2(new Vector2(400, 15), Sizes.Button), () => _cancel()));
             _hourDurationOptions.ForEach(x => Branch.Add(x));
         }
 
