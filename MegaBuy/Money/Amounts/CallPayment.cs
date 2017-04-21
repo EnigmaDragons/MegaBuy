@@ -4,10 +4,10 @@ namespace MegaBuy.Money.Amounts
 {
     public sealed class CallPayment : IAmount
     {
-        private readonly IPerCallRate _callRate;
+        private readonly IAmount _callRate;
         private readonly CallRating _rating;
 
-        public CallPayment(IPerCallRate callRate, CallRating rating) 
+        public CallPayment(IAmount callRate, CallRating rating) 
         {
             _callRate = callRate;
             _rating = rating;

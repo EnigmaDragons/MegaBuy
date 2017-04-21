@@ -40,13 +40,27 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\EscalateCall.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToCareers.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToInfo.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToOrders.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToReturns.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
+    <Compile Include="MegaBuyCorporation\PromotionOption.cs" />
+    <Compile Include="Money\Amounts\PerCallRate.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPerCallRates.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPolicies.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyAccounting.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyEmployment.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\ActivePolicies.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
     <Compile Include="Endings\GameOverScene.cs" />
-    <Compile Include="JobRoles\Referrer\Options\ReferToOrders.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel2Policies.cs" />
     <Compile Include="Money\Amounts\Tax.cs" />
     <Compile Include="Money\GovernmentTaxes.cs" />
     <Compile Include="Money\SalaryPaymentOccured.cs" />
@@ -62,7 +76,6 @@
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
-    <Compile Include="JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="Money\Amounts\PayPenalty.cs" />
     <Compile Include="Pads\Apps\App.cs" />
     <Compile Include="Pads\Apps\IApp.cs" />
@@ -72,9 +85,6 @@
     <Compile Include="Player\Energy\PreparingForBed.cs" />
     <Compile Include="Player\Energy\SelectSleepDurationUI.cs" />
     <Compile Include="Player\Energy\WentToBed.cs" />
-    <Compile Include="Policies\PoliciesApp.cs" />
-    <Compile Include="Policies\PolicyPageUI.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel1Policies.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />
     <Compile Include="Calls\Callers\Caller.cs" />
@@ -85,14 +95,11 @@
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
-    <Compile Include="JobRoles\Referrer\Options\ReferToCareers.cs" />
-    <Compile Include="JobRoles\Referrer\Options\ReferToReturns.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel2Calls.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel1Calls.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerCalls.cs" />
     <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
@@ -104,8 +111,6 @@
     <Compile Include="Calls\AgentCurrentCallStatus.cs" />
     <Compile Include="Calls\AgentCallStatus.cs" />
     <Compile Include="Calls\Events\AgentCallStatusChanged.cs" />
-    <Compile Include="JobRoles\Referrer\Options\ReferToInfo.cs" />
-    <Compile Include="JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
     <Compile Include="Calls\Messages\ScriptLine.cs" />
@@ -147,7 +152,6 @@
     <Compile Include="Money\Amounts\Fee.cs" />
     <Compile Include="Endings\Starved.cs" />
     <Compile Include="Rents\IRent.cs" />
-    <Compile Include="Money\MegaBuyAccounting.cs" />
     <Compile Include="Player\Hungers\Hunger.cs" />
     <Compile Include="Player\Hungers\HungerUI.cs" />
     <Compile Include="Money\MoneyDeposited.cs" />
@@ -166,21 +170,17 @@
     <Compile Include="Apartment\Map\TileLocation.cs" />
     <Compile Include="Apartment\Map\TileSize.cs" />
     <Compile Include="Apartment\Map\TileWalker.cs" />
-    <Compile Include="Money\Rules\Day1PerCallRate.cs" />
     <Compile Include="Money\Accounts\PlayerAccount.cs" />
     <Compile Include="Money\Amounts\CallPayment.cs" />
     <Compile Include="Money\Accounts\DayPayment.cs" />
     <Compile Include="Money\Accounts\IAccount.cs" />
     <Compile Include="Money\Amounts\IAmount.cs" />
-    <Compile Include="Money\Amounts\IPerCallRate.cs" />
     <Compile Include="Money\Accounts\SimpleAccount.cs" />
     <Compile Include="Money\Amounts\SimpleAmount.cs" />
     <Compile Include="Player\ICharSpace.cs" />
     <Compile Include="Player\Movement.cs" />
     <Compile Include="Player\PlayerCharacter.cs" />
     <Compile Include="Player\PlayerCharacterAnimations.cs" />
-    <Compile Include="Policies\ActivePolicies.cs" />
-    <Compile Include="Policies\Policy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Time\DayEnded.cs" />

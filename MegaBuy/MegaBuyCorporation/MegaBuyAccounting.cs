@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using MegaBuy.Calls;
 using MegaBuy.Calls.Events;
 using MegaBuy.Money.Accounts;
 using MegaBuy.Money.Amounts;
-using MegaBuy.Money.Rules;
 using MegaBuy.Notifications;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 
 namespace MegaBuy.Money
 {
@@ -15,23 +14,26 @@ namespace MegaBuy.Money
     {
         private readonly IAccount _playerAccount;
 
-        private IPerCallRate _currentRate;
+        private PerCallRate _currentRate;
         private DayPayment _dayPayment;
-
-        private int _numMistakesInCurrentDay;
 
         private readonly List<int> _pendingPayments;
 
-        public MegaBuyAccounting(IAccount playerAccount)
+        public MegaBuyAccounting(IAccount playerAccount, PerCallRate payment)
         {
             _playerAccount = playerAccount;
-            _currentRate = new Day1PerCallRate();
+            _currentRate = payment;
             _pendingPayments = new List<int>();
             _dayPayment = new DayPayment();
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallSucceeded>(CallSucceeded, this));
             World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
+        }
+
+        public void ChangePaymentPlans(PerCallRate payment)
+        {
+            _currentRate = payment;
         }
 
         private void CallSucceeded(CallSucceeded call)
@@ -56,16 +58,12 @@ namespace MegaBuy.Money
             _playerAccount.PaySalary(_dayPayment);
             World.Publish(new PlayerNotification("MegaBuy", $"You have been paid MBit - {_dayPayment.Amount()}"));
             _dayPayment = new DayPayment();
-            _numMistakesInCurrentDay = 0;
         }
 
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred mistake)
         {
             _dayPayment.Remove(mistake.PayPenalty);
             World.Publish(new PlayerNotification("MegaBuy", $"{mistake.PayPenalty.Amount()} MBit penalty. You violated policy: {mistake.Policy.Text}"));
-            _numMistakesInCurrentDay++;
-            if (_numMistakesInCurrentDay == 7)
-                World.NavigateToScene("Fired");
         }
     }
 }

@@ -91,7 +91,7 @@ namespace MegaBuy.Player.Energy
 
         private void IncreaseEnergyRestfulSleep()
         {
-            _energy += Convert.ToDecimal(_energyPerHourSlept) / 60;
+            _energy = Math.Max(_energy + Convert.ToDecimal(_energyPerHourSlept) / 60, 75);
             _energyChanged = true;
             if (_currentHour.Equals(_hourToAwake) && _currentMinute.Equals(_minuteToAwake))
                 Awaken();
@@ -104,11 +104,10 @@ namespace MegaBuy.Player.Energy
             if (_energy < 0)
                 World.NavigateToScene("HeartAttack");
             else if (_energy <= 25)
-            {
-                World.Publish(new VeryTired());
                 CollapseFromExhaustion();
-            }
-            else if (_energy <= 60)
+            else if (_energy <= 35)
+                World.Publish(new VeryTired());
+            else if (_energy <= 50)
                 World.Publish(new Tired());
             else
                 World.Publish(new NotTired());

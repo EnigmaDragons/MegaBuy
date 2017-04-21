@@ -13,6 +13,8 @@ using MegaBuy.Player;
 using MegaBuy.Policies;
 using MegaBuy.Rents;
 using MonoDragons.Core.Common;
+using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
+using MegaBuy.MegaBuyCorporation;
 
 namespace MegaBuy
 {
@@ -31,13 +33,14 @@ namespace MegaBuy
         {
             CharName = "player";
             ActivePolicies = new ActivePolicies();
-            ActivePolicies.Add(ReferrerLevel1Policies.Policies);
+            ActivePolicies.Add(ReferrerPolicies.Level1Policies);
             Clock = new Clock(400, 8, 0);
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
             AddSingleInstanceSubscription(new CallQueue());
-            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
+            AddSingleInstanceSubscription(new MegaBuyEmployment());
+            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReferrerPerCallRates.Level1PerCallRate));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             World.Publish(new DayStarted(0));
