@@ -13,15 +13,9 @@ namespace MegaBuy.Shopping
     {
         private readonly List<IShoppingCompany> _companies = new List<IShoppingCompany>
         {
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
-            new SampleFoodCompany(),
+            new McKingJrs(),
         };
+
         private readonly Transform2 _transform = new Transform2(new Vector2(350, Sizes.Margin));
         private readonly List<ShoppingCompanyUI> _companyUIs = new List<ShoppingCompanyUI>();
         private readonly ClickUIBranch _companiesBranch;
@@ -31,7 +25,7 @@ namespace MegaBuy.Shopping
         private IShoppingCompany _currentCompany;
 
         public App Type => App.Shopping;
-        public ClickUIBranch Branch { get; private set; }
+        public ClickUIBranch Branch { get; }
 
         public ShoppingApp()
         {
