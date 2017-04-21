@@ -528,6 +528,9 @@
     <Content Include="Content\Images\UI\hunger-quarter.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\label-small.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\notification.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
