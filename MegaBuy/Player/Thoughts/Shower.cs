@@ -1,8 +1,10 @@
-﻿namespace MegaBuy.Player.Thoughts
+﻿using MonoDragons.Core.Common;
+
+namespace MegaBuy.Player.Thoughts
 {
-    public class Shower
+    public sealed class Shower
     {
-        public string[] ShowerThoughts =
+        private readonly string[] _thoughts =
         {
             "Fuck showers!",
             "I'm way too lazy to bother with cleanliness...",
@@ -10,5 +12,10 @@
             "Not enough time for that crap.",
             "Nope!"
         };
+
+        public string GetThought()
+        {
+            return _thoughts[Rng.Int(0, _thoughts.Length)];
+        }
     }
 }

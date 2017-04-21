@@ -48,6 +48,7 @@
     <Compile Include="Player\Thoughts\Events\TakingShower.cs" />
     <Compile Include="Player\Thoughts\Outside.cs" />
     <Compile Include="Player\Thoughts\Shower.cs" />
+    <Compile Include="Player\Thoughts\ThoughtsUI.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
     <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />

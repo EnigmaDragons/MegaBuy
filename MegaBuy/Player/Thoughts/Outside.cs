@@ -1,8 +1,10 @@
-﻿namespace MegaBuy.Player.Thoughts
+﻿using MonoDragons.Core.Common;
+
+namespace MegaBuy.Player.Thoughts
 {
     public sealed class Outside
     {
-        public string[] OutsideThoughts =
+        private readonly string[] _thoughts =
         {
             "Fuck outside!",
             "I'm too tired to go outside.",
@@ -14,5 +16,10 @@
             "Isn't there some TV to watch?",
             "Maybe I should take a shower instead..."
         };
+
+        public string GetThought()
+        {
+            return _thoughts[Rng.Int(0, _thoughts.Length)];
+        }
     }
 }
