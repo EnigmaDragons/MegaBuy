@@ -45,6 +45,7 @@
     <Compile Include="Money\GovernmentTaxes.cs" />
     <Compile Include="Money\SalaryPaymentOccured.cs" />
     <Compile Include="Player\Thoughts\Events\GoingOutside.cs" />
+    <Compile Include="Player\Thoughts\Events\TakingShower.cs" />
     <Compile Include="Player\Thoughts\Outside.cs" />
     <Compile Include="Player\Thoughts\Shower.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
