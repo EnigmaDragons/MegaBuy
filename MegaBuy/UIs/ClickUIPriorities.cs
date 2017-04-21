@@ -4,7 +4,8 @@
     {
         Base = 0,
         Overlay = 1,
-        Pad = 2,
-        Room = 3,
+        Thoughts = 2,
+        Pad = 3,
+        Room = 4,
     }
 }
