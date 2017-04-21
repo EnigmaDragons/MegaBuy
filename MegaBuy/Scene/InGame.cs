@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Drawing.Design;
 using MegaBuy.Apartment;
 using MegaBuy.Apartment.Map;
-using MegaBuy.Money;
 using MegaBuy.Pads;
 using MegaBuy.Player;
 using MegaBuy.Player.Energy;
+using MegaBuy.Player.Thoughts;
 using MegaBuy.Temp;
 using MegaBuy.Time;
 using MegaBuy.UIs;
@@ -22,8 +21,8 @@ namespace MegaBuy.Scene
         private readonly double _speed = 3.0;
         private readonly Transform2 _mapTransform = new Transform2(new Vector2(225, 25), Rotation2.None, 2);
 
-        private ClickUI _clickUi = new ClickUI(1600, 900);
-        private ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
+        private readonly ClickUI _clickUi = new ClickUI(1600, 900);
+        private readonly ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
         private Overlay _overlay;
         private Pad _pad;
         private Clock _clock;
@@ -47,23 +46,27 @@ namespace MegaBuy.Scene
             _pad = new Pad(_branch);
             GameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
-            _sleep = new SelectSleepDurationUI();
+            _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
             GameState.PlayerCharacter = new PlayerCharacter(_map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
+            World.Subscribe(EventSubscription.Create<HadAThought>(Thinks, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
-            World.Subscribe(EventSubscription.Create<WentToBed>(WentToBed, this));
+            World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
             World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
+            World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => WentToBed(), this));
         }
 
         private void Awaken(Awaken obj)
         {
             _isSleeping = false;
+            _clickUi.Add(_branch);
         }
 
-        private void WentToBed(WentToBed obj)
+        private void WentToBed()
         {
+            _clickUi.Remove(_branch);
             _preparingForBed = false;
             _clickUi.Remove(_sleep.Branch);
             _isSleeping = true;
@@ -73,6 +76,12 @@ namespace MegaBuy.Scene
         {
             _preparingForBed = true;
             _clickUi.Add(_sleep.Branch);
+        }
+
+        private void Thinks(HadAThought thought)
+        {
+            var ui = new ThoughtUI(thought.Thought);
+            _branch.Add(ui.Branch);
         }
 
         public void Update(TimeSpan delta)

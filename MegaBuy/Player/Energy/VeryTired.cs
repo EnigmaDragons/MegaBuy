@@ -1,7 +1,7 @@
 ﻿
 namespace MegaBuy.Player.Energy
 {
-    public struct CollapsedFromExhaustion
+    public struct VeryTired
     {
     }
 }

@@ -32,7 +32,7 @@ namespace MegaBuy
             CharName = "player";
             ActivePolicies = new ActivePolicies();
             ActivePolicies.Add(ReferrerLevel1Policies.Policies);
-            Clock = new Clock();
+            Clock = new Clock(400, 8, 0);
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);

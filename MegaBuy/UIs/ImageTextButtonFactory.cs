@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -16,6 +12,13 @@ namespace MegaBuy.UIs
             return new ImageTextButton(text, 
                 "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press", 
                 new Transform2(location, Sizes.Button), onClick);
+        }
+
+        public static ImageTextButton CreateTrapazoid(string text, Vector2 location, Action onClick)
+        {
+            return new ImageTextButton(text,
+                "Images/UI/button-trapazoid", "Images/UI/button-trapazoid-hover", "Images/UI/button-trapazoid-press",
+                new Transform2(location, Sizes.PadToggle), onClick);
         }
     }
 }

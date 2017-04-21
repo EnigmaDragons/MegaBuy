@@ -51,7 +51,7 @@ namespace MegaBuy.Player.Energy
         private void CollapseFromExhaustion()
         {
             _isExhausted = true;
-            World.Publish(new CollapsedFromExhaustion());
+            World.Publish(new CollapsedWithExhaustion());
             Sleep();
         }
 
@@ -104,7 +104,12 @@ namespace MegaBuy.Player.Energy
             if (_energy < 0)
                 World.NavigateToScene("HeartAttack");
             else if (_energy <= 25)
+            {
+                World.Publish(new VeryTired());
                 CollapseFromExhaustion();
+            }
+            else if (_energy <= 60)
+                World.Publish(new Tired());
             else
                 World.Publish(new NotTired());
             _energyChanged = false;

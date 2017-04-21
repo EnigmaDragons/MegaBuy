@@ -1,4 +1,6 @@
-﻿using MegaBuy.Player.Hungers;
+﻿using MegaBuy.Player.Energy;
+using MegaBuy.UIs;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -8,19 +10,19 @@ namespace MegaBuy.Player.Hungers
 {
     public sealed class HungerUI : IVisual
     {
-        private readonly ImageBox _icon;
+        private readonly Transform2 _transform = new Transform2(new Vector2(1600 - Sizes.SmallMargin - Sizes.OverlayIcon.Width, 900 - Sizes.SmallMargin - Sizes.OverlayIcon.Height));
+        private string _hunger = "hunger-full";
 
-        public HungerUI(ImageBox icon)
+        public HungerUI()
         {
-            _icon = icon;
-            World.SubscribeForScene(EventSubscription.Create<NotHungry>(x => _icon.Clear(), this));
-            World.SubscribeForScene(EventSubscription.Create<Hungry>(x => _icon.SetImage("Images/Icons/food"), this));
-            World.SubscribeForScene(EventSubscription.Create<VeryHungry>(x => _icon.SetImage("Images/Icons/food-red"), this));
+            World.Subscribe(EventSubscription.Create<NotHungry>(x => _hunger = "hunger-full", this));
+            World.Subscribe(EventSubscription.Create<Hungry>(x => _hunger = "hunger-half", this));
+            World.Subscribe(EventSubscription.Create<VeryHungry>(x => _hunger = "hunger-empty", this));
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            _icon.Draw(parentTransform);
+            World.Draw("Images/UI/" + _hunger, parentTransform + _transform + new Transform2(Sizes.OverlayIcon));
         }
     }
 }
