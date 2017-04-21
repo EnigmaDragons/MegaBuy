@@ -16,7 +16,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("Redesign", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("InGame", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -37,10 +37,10 @@ namespace MegaBuy
                 { "Logo", () => new FadingInScene(new LogoScene()) },
                 { "MainMenu", () => new Menu() },
                 { "Starved", () => new Starved() },
-                { "Redesign", () => new InGame() },
+                { "InGame", () => new InGame() },
                 { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new Fired() },
-                { "HeartAttack", () => new HeartAttack() },
+                { "HeartAttack", () => new FadingInScene(new HeartAttack()) },
             });
         }
     }

@@ -1,8 +1,9 @@
-﻿using MegaBuy.Calls.Events;
+﻿using MegaBuy.Calls;
+using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 
-namespace MegaBuy.Calls.Options
+namespace MegaBuy.JobRoles.Referrer.Options
 {
     public sealed class ReferToTroubleshooting : ICallOption
     {

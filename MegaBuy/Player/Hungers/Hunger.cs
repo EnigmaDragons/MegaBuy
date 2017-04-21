@@ -31,9 +31,9 @@ namespace MegaBuy.Player.Hungers
 
         private void IncreaseHunger(MinuteChanged hourChanged)
         {
-            if(_hunger + _hungerPerHour / 60 >= Math.Ceiling(_hunger))
+            if(_hunger + (decimal)_hungerPerHour / 60 >= Math.Ceiling(_hunger))
                 _hungerChanged = true;
-            _hunger += _hungerPerHour / 60;
+            _hunger += (decimal)_hungerPerHour / 60;
         }
 
         public void Update(TimeSpan delta)

@@ -10,19 +10,17 @@ namespace MegaBuy.Pads
 {
     public class TogglePad : IVisual
     {
-        private readonly Transform2 _transform = new Transform2(new Vector2(600, 850));
-        private readonly ImageButton _open;
-        private readonly ImageButton _close;
+        private readonly Transform2 _transform = new Transform2(new Vector2(800 - Sizes.PadToggle.Width / 2, 900 - Sizes.SmallMargin - Sizes.PadToggle.Height));
+        private readonly ImageTextButton _open;
+        private readonly ImageTextButton _close;
         public ClickUIBranch Branch { get; set; }
 
         private IVisual _current;
 
         public TogglePad()
         {
-            _open = new ImageButton("Images/UI/open", "Images/UI/open-hover", "Images/UI/open-press", 
-                new Transform2(Sizes.PadToggle), () => World.Publish(new PadOpened()));
-            _close = new ImageButton("Images/UI/close", "Images/UI/close-hover", "Images/UI/close-press", 
-                new Transform2(Sizes.PadToggle), () => World.Publish(new PadClosed()));
+            _open = ImageTextButtonFactory.CreateTrapazoid("Open", Vector2.Zero, () => World.Publish(new PadOpened()));
+            _close = ImageTextButtonFactory.CreateTrapazoid("Close", Vector2.Zero, () => World.Publish(new PadClosed()));
             Branch = new ClickUIBranch("Toggle Pad", (int)ClickUIPriorities.Overlay);
             _current = _open;
             Branch.Add(_open);

@@ -46,24 +46,27 @@ namespace MegaBuy.Scene
             _pad = new Pad(_branch);
             GameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
-            _sleep = new SelectSleepDurationUI();
+            _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
             GameState.PlayerCharacter = new PlayerCharacter(_map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
             World.Subscribe(EventSubscription.Create<HadAThought>(Thinks, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
-            World.Subscribe(EventSubscription.Create<WentToBed>(WentToBed, this));
+            World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
             World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
+            World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => WentToBed(), this));
         }
 
         private void Awaken(Awaken obj)
         {
             _isSleeping = false;
+            _clickUi.Add(_branch);
         }
 
-        private void WentToBed(WentToBed obj)
+        private void WentToBed()
         {
+            _clickUi.Remove(_branch);
             _preparingForBed = false;
             _clickUi.Remove(_sleep.Branch);
             _isSleeping = true;
