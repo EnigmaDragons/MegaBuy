@@ -21,8 +21,10 @@ namespace MegaBuy.Calls
         public Call GenerateCall()
         {
             if (_position == JobRole.ReferrerLevel1)
-                return ReferrerLevel1Calls.NewCall();
-            throw new Exception();
+                return ReferrerCalls.NewLevel1Call();
+            if (_position == JobRole.ReferrerLevel2)
+                return ReferrerCalls.NewLevel2Call();
+            throw new Exception("Unknown Job Role");
         }
     }
 }

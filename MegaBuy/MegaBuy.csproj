@@ -80,12 +80,11 @@
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
     <Compile Include="JobRoles\Referrer\Options\ReferToCareers.cs" />
     <Compile Include="JobRoles\Referrer\Options\ReferToReturns.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel2Calls.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel1Calls.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerCalls.cs" />
     <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
