@@ -47,7 +47,7 @@ namespace MegaBuy.Scene
             GameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
             _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
-            GameState.PlayerCharacter = new PlayerCharacter(_map, 
+            GameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
