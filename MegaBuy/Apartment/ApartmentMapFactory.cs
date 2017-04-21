@@ -1,6 +1,6 @@
-﻿
-using MegaBuy.Apartment.Map;
+﻿using MegaBuy.Apartment.Map;
 using MegaBuy.Player.Energy;
+using MegaBuy.Player.Thoughts.Events;
 using MonoDragons.Core.Engine;
 
 namespace MegaBuy.Apartment
@@ -9,8 +9,8 @@ namespace MegaBuy.Apartment
     {
         public static ApartmentMap Create()
         {
-            var width = 8;
-            var height = 8;
+            const int width = 8;
+            const int height = 8;
 
             var map = new ApartmentMap();
             map.Add(new TileWalker(1, width, 1, height).Get(x => new Tile("2/floor", x, false, 0)));
@@ -30,8 +30,8 @@ namespace MegaBuy.Apartment
             
             map.Add(new Tile("2/laundry2", new TileLocation(2, 4), false, 1));
             
-            map.Add(new Tile("2/door-top", new TileLocation(width - 1, 0), false, 2));
-            map.Add(new Tile("2/door-bot", new TileLocation(width - 1, 1), false, 2));
+            map.Add(new Tile("2/door-top", new TileLocation(width - 1, 0), false,() => World.Publish(new GoingOutside()),  2));
+            map.Add(new Tile("2/door-bot", new TileLocation(width - 1, 1), false,() => World.Publish(new GoingOutside()),  2));
             map.Add(new Tile("2/security1", new TileLocation(width - 2, 1), false, 2));
 
             map.Add(new Tile("2/boxofstims", new TileLocation(1, height - 2), true, 2));
