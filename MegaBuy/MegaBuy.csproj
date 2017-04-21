@@ -133,6 +133,7 @@
     <Compile Include="Pads\PadClosed.cs" />
     <Compile Include="Pads\PadOpened.cs" />
     <Compile Include="Calls\ReadyUI.cs" />
+    <Compile Include="Shopping\ShoppingCompanyOptionUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyUI.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
