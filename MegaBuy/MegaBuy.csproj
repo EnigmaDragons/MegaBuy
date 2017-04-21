@@ -571,6 +571,9 @@
     <Content Include="Content\Images\UI\hunger-quarter.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\label-large.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\label-small.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -650,7 +653,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
-    <Folder Include="Player\Thoughts\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">

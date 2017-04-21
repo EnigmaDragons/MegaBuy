@@ -26,6 +26,7 @@ namespace MegaBuy.Scene
         private Overlay _overlay;
         private Pad _pad;
         private Clock _clock;
+        private ThoughtUI _thoughts;
 
         private bool _isPadOpen;
         private ApartmentMap _map;
@@ -49,9 +50,10 @@ namespace MegaBuy.Scene
             _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
             GameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
+            _thoughts = new ThoughtUI();
+            _branch.Add(_thoughts.Branch);
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
-            World.Subscribe(EventSubscription.Create<HadAThought>(Thinks, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
             World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
             World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
@@ -78,12 +80,6 @@ namespace MegaBuy.Scene
             _clickUi.Add(_sleep.Branch);
         }
 
-        private void Thinks(HadAThought thought)
-        {
-            var ui = new ThoughtUI(thought.Thought);
-            _branch.Add(ui.Branch);
-        }
-
         public void Update(TimeSpan delta)
         {
             _map.Update(delta);
@@ -108,6 +104,7 @@ namespace MegaBuy.Scene
             _map.Draw(_mapTransform);
             GameState.PlayerCharacter.Draw(_mapTransform);
             _pad.Draw(new Transform2(new Vector2(0, _padLocation)));
+            _thoughts.Draw(Transform2.Zero);
             _overlay.Draw(Transform2.Zero);
 
             if (_preparingForBed)
