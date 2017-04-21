@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
-using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
+using MegaBuy.JobRoles.Referrer.Options;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.JobRoles.Referrer
@@ -13,10 +13,12 @@ namespace MegaBuy.JobRoles.Referrer
     {
         private static readonly List<ICallOption> RoleOptions = new List<ICallOption>
         {
+            new ReferToOrders(),
             new ReferToTroubleshooting(),
             new ReferToInfo(),
             new ReferToReturns(),
             new ReferToCareers(),
+            new EscalateCall(),
         };
 
         private static readonly Func<Call>[] _calls = {

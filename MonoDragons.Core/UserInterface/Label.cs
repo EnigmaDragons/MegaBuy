@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using System;
 
@@ -29,10 +27,8 @@ namespace MonoDragons.Core.UserInterface
 
         public void Draw(Transform2 parentTransform)
         {
-            var position = parentTransform + Transform;
             _background.Draw(parentTransform);
-            var size = Resources.Load<SpriteFont>(Font).MeasureString(Text);
-            UI.DrawText(Text, new Vector2(position.Location.X + (position.Size.Width / 2) - (size.X / 2), position.Location.Y + (position.Size.Height / 2) - (size.Y / 2)), TextColor, Font);
+            UI.DrawTextCentered(Text, new Rectangle((parentTransform.Location + Transform.Location).ToPoint(), Transform.Size.ToPoint()), TextColor, Font);
         }
 
         public void Dispose()

@@ -8,6 +8,7 @@ namespace MegaBuy.Calls.Rules
         ReferToTroubleshooting,
         ReferToReturns,
         ReferToCareers,
+        ReferToOrders,
         EscalateCall,
     }
 }
