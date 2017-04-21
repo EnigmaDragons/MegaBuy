@@ -42,6 +42,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Audio\MusicPlayer.cs" />
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ISubscription.cs" />
     <Compile Include="Common\ISubject.cs" />
@@ -125,6 +126,10 @@
     <Compile Include="UserInterface\UI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\MegaBuy\packages\NAudio.1.8.0\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\MegaBuy\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>

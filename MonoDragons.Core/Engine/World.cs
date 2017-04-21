@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using MonoDragons.Core.Audio;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Memory;
@@ -17,6 +18,7 @@ namespace MonoDragons.Core.Engine
 {
     public static class World
     {
+        private static readonly MusicPlayer _musicPlayer = new MusicPlayer();
         private static readonly Events _events = new Events();
         private static readonly Events _persistentEvents = new Events();
         private static readonly List<EventSubscription> _eventSubs = new List<EventSubscription>();
@@ -49,8 +51,7 @@ namespace MonoDragons.Core.Engine
 
         public static void PlayMusic(string songName)
         {
-            MediaPlayer.Stop();
-            MediaPlayer.Play(Resources.Load<Song>(songName));
+            _musicPlayer.PlaySong(songName);
         }
 
         public static void NavigateToScene(string sceneName)

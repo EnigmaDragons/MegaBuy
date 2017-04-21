@@ -14,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -41,6 +43,8 @@
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
+    <Compile Include="JobRoles\Referrer\Options\ReferToOrders.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerLevel2Policies.cs" />
     <Compile Include="Money\Amounts\Tax.cs" />
     <Compile Include="Money\GovernmentTaxes.cs" />
     <Compile Include="Money\SalaryPaymentOccured.cs" />
@@ -187,7 +191,6 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="SharpDX.MediaFoundation, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -555,6 +558,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\open.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\maintheme.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
