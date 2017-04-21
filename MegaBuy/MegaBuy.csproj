@@ -58,7 +58,7 @@
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
-    <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
+    <Compile Include="Shopping\Foods\McKingJrs.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
@@ -87,12 +87,11 @@
     <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
     <Compile Include="JobRoles\Referrer\Options\ReferToCareers.cs" />
     <Compile Include="JobRoles\Referrer\Options\ReferToReturns.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel2Calls.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="JobRoles\Referrer\ReferrerLevel1Calls.cs" />
+    <Compile Include="JobRoles\Referrer\ReferrerCalls.cs" />
     <Compile Include="Calls\Rules\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
@@ -245,6 +244,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Character\fu3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Companies\mcking-jrs.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Companies\sample-food-company.jpg">
