@@ -37,7 +37,8 @@ namespace MegaBuy.Player
         // Interaction
         private readonly ColoredRectangle _interactRect = new ColoredRectangle {Color = Color.FromNonPremultiplied(255, 0, 0, 100)};
         private TileLocation _interactLocation;
-        
+
+        private bool _isSleeping = false;
         private Direction _dir;
         private string _facing = "Down";
         private bool IsMoving => _dir.HDir != HorizontalDirection.None || _dir.VDir != VerticalDirection.None;
@@ -53,25 +54,32 @@ namespace MegaBuy.Player
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
             Input.On(Control.A, Interact);
+            World.Subscribe(EventSubscription.Create<WentToBed>((e) => _isSleeping = true, this));
+            World.Subscribe(EventSubscription.Create<Awaken>((e) => _isSleeping = false, this));
+            World.Subscribe(EventSubscription.Create<CollapsedFromExhaustion>((e) => _isSleeping = true, this));
         }
 
         private void Interact()
         {
-            _charSpace.Interact(_interactLocation);
+            if(!_isSleeping)
+                _charSpace.Interact(_interactLocation);
         }
 
         private void UpdatePhysics(Direction dir)
         {
-            _dir = dir;
-            if (!dir.Equals(Direction.None))
-                _transform.Rotation = _dir.ToRotation();
+            if (!_isSleeping)
+            {
+                _dir = dir;
+                if (!dir.Equals(Direction.None))
+                    _transform.Rotation = _dir.ToRotation();
 
-            if (!dir.HDir.Equals(HorizontalDirection.None))
-                _facing = dir.HDir.ToString();
-            if (!dir.VDir.Equals(VerticalDirection.None))
-                _facing = dir.VDir.ToString();
+                if (!dir.HDir.Equals(HorizontalDirection.None))
+                    _facing = dir.HDir.ToString();
+                if (!dir.VDir.Equals(VerticalDirection.None))
+                    _facing = dir.VDir.ToString();
 
-            UpdateAnimState();
+                UpdateAnimState();
+            }
         }
 
         public void Update(TimeSpan delta)
