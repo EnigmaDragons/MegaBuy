@@ -43,6 +43,7 @@
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
+    <Compile Include="Endings\GameOverScene.cs" />
     <Compile Include="JobRoles\Referrer\Options\ReferToOrders.cs" />
     <Compile Include="JobRoles\Referrer\ReferrerLevel2Policies.cs" />
     <Compile Include="Money\Amounts\Tax.cs" />
@@ -261,6 +262,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Endings\gameover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Endings\heartattack.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">

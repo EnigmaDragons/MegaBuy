@@ -40,7 +40,7 @@ namespace MegaBuy
                 { "InGame", () => new InGame() },
                 { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new Fired() },
-                { "HeartAttack", () => new HeartAttack() },
+                { "HeartAttack", () => new FadingInScene(new HeartAttack()) },
             });
         }
     }
