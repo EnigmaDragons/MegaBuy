@@ -308,6 +308,9 @@
     <Content Include="Content\Images\Endings\evicted.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Endings\fired.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Endings\gameover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

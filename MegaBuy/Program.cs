@@ -39,7 +39,7 @@ namespace MegaBuy
                 { "Starved", () => new Starved() },
                 { "InGame", () => new InGame() },
                 { "Evicted", () => new FadingInScene(new Evicted()) },
-                { "Fired", () => new Fired() },
+                { "Fired", () => new FadingInScene(new Fired()) },
                 { "HeartAttack", () => new FadingInScene(new HeartAttack()) },
             });
         }
