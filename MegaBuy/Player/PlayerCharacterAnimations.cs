@@ -7,22 +7,25 @@ namespace MegaBuy.Player
     {
         private static string path = "Images/Character/";
 
-        public PlayerCharacterAnimations()
-            : base(Get(), "Up-False") { }
+        public PlayerCharacterAnimations(CharacterSex sex)
+            : base(Get(sex), "Up-False") { }
 
-        private static Map<string, Animation> Get()
+        private static Map<string, Animation> Get(CharacterSex sex)
         {
-            var downFalse = new Animation(180, $"{path}fd1");
-            var downTrue = new Animation(180, $"{path}fd1", $"{path}fd2", $"{path}fd3");
+            var sexChar = sex.ToString().ToLower()[0];
+            var pre = path + sexChar;
 
-            var leftFalse = new Animation(180, $"{path}fl1");
-            var leftTrue = new Animation(180, $"{path}fl1", $"{path}fl2", $"{path}fl3");
+            var downFalse = new Animation(180, $"{pre}d1");
+            var downTrue = new Animation(180, $"{pre}d1", $"{pre}d2", $"{pre}d1", $"{pre}d3");
 
-            var rightFalse = new Animation(180, $"{path}fr1");
-            var rightTrue = new Animation(180, $"{path}fr1", $"{path}fr2", $"{path}fr3");
+            var leftFalse = new Animation(180, $"{pre}l1");
+            var leftTrue = new Animation(180, $"{pre}l1", $"{pre}l2", $"{pre}l1", $"{pre}l3");
 
-            var upFalse = new Animation(180, $"{path}fu1");
-            var upTrue = new Animation(180, $"{path}fu1", $"{path}fu2", $"{path}fu3");
+            var rightFalse = new Animation(180, $"{pre}r1");
+            var rightTrue = new Animation(180, $"{pre}r1", $"{pre}r2", $"{pre}r1", $"{pre}r3");
+
+            var upFalse = new Animation(180, $"{pre}u1");
+            var upTrue = new Animation(180, $"{pre}u1", $"{pre}u2", $"{pre}u1", $"{pre}u3");
 
             var animStates = new Map<string, Animation>
             {
