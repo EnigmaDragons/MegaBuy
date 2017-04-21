@@ -1,37 +1,38 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using MegaBuy.Shopping.Foods;
 using MegaBuy.UIs;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Shopping
 {
-    public class ShoppingCompanyUI : IVisual
+    public class ShoppingCompanyUI
     {
-        private readonly Transform2 _transform;
-        private readonly string _name;
-        private readonly ImageTextButton _button;
+        public ClickUIBranch Branch { get; }
 
-        public ClickUIBranch Branch { get; private set; }
+        private readonly IShoppingCompany _company;
+        private readonly Transform2 _transform = Transform2.Zero;
+        private readonly List<ShoppingItemUI> _itemsUI = new List<ShoppingItemUI>();
 
-        public ShoppingCompanyUI(IShoppingCompany item, int i, Action whenBought)
+        public ShoppingCompanyUI(IShoppingCompany company)
         {
-            Branch = new ClickUIBranch(item.Name, (int)ClickUIPriorities.Pad);
-            var x = (i % 4) * (Sizes.Item.Width + Sizes.Margin);
-            var y = (i / 4) * (Sizes.Item.Height + Sizes.Margin * 2 + Sizes.Button.Height);
-            _name = item.Name;
-            _transform = new Transform2(new Vector2((int)x, (int)y));
-            _button = ImageTextButtonFactory.Create("SHOP", new Vector2(0, Sizes.Item.Height + Sizes.Margin), whenBought);
-            Branch.Add(_button);
+            Branch = new ClickUIBranch("McKing Jr's", (int)ClickUIPriorities.Pad);
+            _company = company;
+            for (var i = 0; i < _company.Items.Count; i++)
+            {
+                var item = _company.Items[i];
+                var option = new ShoppingItemUI(item, i, () => _company.Buy(item));
+                _itemsUI.Add(option);
+                Branch.Add(option.Branch);
+            }
         }
 
         public void Draw(Transform2 parentTransform)
         {
             var absoluteTransform = parentTransform + _transform;
             Branch.ParentLocation = absoluteTransform.Location;
-            World.Draw("Images/Companies/" + _name.ToLower().Replace(" ", "-").Replace("'", ""), absoluteTransform + new Transform2(Sizes.Item));
-            _button.Draw(absoluteTransform);
+            _itemsUI.ForEach(x => x.Draw(absoluteTransform));
         }
     }
 }
