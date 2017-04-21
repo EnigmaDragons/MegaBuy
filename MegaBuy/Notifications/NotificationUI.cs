@@ -22,8 +22,8 @@ namespace MegaBuy.Notifications
             {
                 BackgroundColor = Color.Transparent,
                 TextColor = Color.White,
+                Transform = new Transform2(new Vector2(Sizes.Margin, 0), new Size2(Sizes.Notification.Width - Sizes.Button.Width - Sizes.Margin * 2, 90)),
                 Text = $"{notification.Time} - {notification.Sender} - {notification.Message}",
-                Transform = new Transform2(new Vector2(Sizes.Margin, 0), new Size2(Sizes.Notification.Width - Sizes.Button.Width - Sizes.Margin * 2, 90))
             };
             _button = ImageTextButtonFactory.Create("Dismiss", new Vector2(Sizes.Notification.Width - Sizes.Margin - Sizes.Button.Width, Sizes.SmallMargin), () => items.Remove(this));
             Branch.Add(_button);
