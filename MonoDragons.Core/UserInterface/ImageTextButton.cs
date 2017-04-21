@@ -10,6 +10,8 @@ namespace MonoDragons.Core.UserInterface
         private readonly ImageButton _button;
         private readonly Label _label;
 
+        public string Text { set { _label.Text = value; } }
+
         public ImageTextButton(string text, string basic, string hover, string press, Transform2 transform, Action onClick) : base(transform.ToRectangle())
         {
             _button = new ImageButton(basic, hover, press, transform, onClick);

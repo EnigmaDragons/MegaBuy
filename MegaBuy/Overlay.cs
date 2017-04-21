@@ -1,6 +1,8 @@
 ﻿using System;
 using MegaBuy.Money;
 using MegaBuy.Pads;
+using MegaBuy.Player.Energy;
+using MegaBuy.Player.Hungers;
 using MegaBuy.Time;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -16,6 +18,8 @@ namespace MegaBuy.Temp
         private readonly ClockUI _clockUi;
         private readonly TogglePad _togglePad;
         private readonly MoneyUI _moneyUI;
+        private readonly EnergyUI _energyUI;
+        private readonly HungerUI _hungerUI;
 
         public ClickUIBranch Branch { get; set; }
 
@@ -26,6 +30,8 @@ namespace MegaBuy.Temp
             _clockUi = new ClockUI();
             _togglePad = new TogglePad();
             _moneyUI = new MoneyUI();
+            _energyUI = new EnergyUI();
+            _hungerUI = new HungerUI();
             Branch.Add(_togglePad.Branch);
         }
 
@@ -42,6 +48,8 @@ namespace MegaBuy.Temp
             _clockUi.Draw(absoluteTransform);
             _togglePad.Draw(absoluteTransform);
             _moneyUI.Draw(absoluteTransform);
+            _energyUI.Draw(absoluteTransform);
+            _hungerUI.Draw(absoluteTransform);
         }
     }
 }

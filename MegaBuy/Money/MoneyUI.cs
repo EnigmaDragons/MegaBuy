@@ -11,7 +11,7 @@ namespace MegaBuy.Money
 {
     public class MoneyUI : IVisualAutomaton
     {
-        private readonly Transform2 _transform = new Transform2(new Vector2(1200 - Sizes.Margin, 800 - Sizes.Margin));
+        private readonly Transform2 _transform = new Transform2(new Vector2(1600 - Sizes.SmallMargin - Sizes.Label.Width - Sizes.OverlayIcon.Width - Sizes.Margin, 900 - Sizes.SmallMargin - Sizes.Label.Height));
         private readonly PlayerAccount _account;
         private readonly Label _label;
 

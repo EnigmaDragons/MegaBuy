@@ -10,7 +10,7 @@ namespace MegaBuy.Time
 {
     public class ClockUI : IVisualAutomaton
     {
-        private readonly Transform2 _transform = new Transform2(new Vector2(Sizes.Margin, 800 - Sizes.Margin));
+        private readonly Transform2 _transform = new Transform2(new Vector2(Sizes.SmallMargin + Sizes.OverlayIcon.Width + Sizes.Margin, 900 - Sizes.SmallMargin - Sizes.Label.Height));
         private readonly Clock _clock;
         private readonly Label _label;
 
