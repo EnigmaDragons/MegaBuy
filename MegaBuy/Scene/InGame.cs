@@ -4,7 +4,7 @@ using MegaBuy.Apartment.Map;
 using MegaBuy.Pads;
 using MegaBuy.Player;
 using MegaBuy.Player.Energy;
-using MegaBuy.Player.Thoughts.Events;
+using MegaBuy.Player.Thoughts;
 using MegaBuy.Temp;
 using MegaBuy.Time;
 using MegaBuy.UIs;
@@ -51,8 +51,7 @@ namespace MegaBuy.Scene
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
-            World.Subscribe(EventSubscription.Create<GoingOutside>(GoOutside, this));
-            World.Subscribe(EventSubscription.Create<TakingShower>(TakeShower, this));
+            World.Subscribe(EventSubscription.Create<HadAThought>(Thinks, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
             World.Subscribe(EventSubscription.Create<WentToBed>(WentToBed, this));
             World.Subscribe(EventSubscription.Create<Awaken>(Awaken, this));
@@ -76,14 +75,10 @@ namespace MegaBuy.Scene
             _clickUi.Add(_sleep.Branch);
         }
 
-        private void TakeShower(TakingShower obj)
+        private void Thinks(HadAThought thought)
         {
-            throw new NotImplementedException();
-        }
-
-        private void GoOutside(GoingOutside obj)
-        {
-            throw new NotImplementedException();
+            var ui = new ThoughtUI(thought.Thought);
+            _branch.Add(ui.Branch);
         }
 
         public void Update(TimeSpan delta)

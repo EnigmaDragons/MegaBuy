@@ -2,9 +2,9 @@
 
 namespace MegaBuy.Player.Thoughts
 {
-    public sealed class Shower
+    public static class Shower
     {
-        private readonly string[] _thoughts =
+        private static readonly string[] _thoughts =
         {
             "Fuck showers!",
             "I'm way too lazy to bother with cleanliness...",
@@ -13,9 +13,9 @@ namespace MegaBuy.Player.Thoughts
             "Nope!"
         };
 
-        public string GetThought()
+        public static string GetThought()
         {
-            return _thoughts[Rng.Int(0, _thoughts.Length)];
+            return _thoughts.Random();
         }
     }
 }

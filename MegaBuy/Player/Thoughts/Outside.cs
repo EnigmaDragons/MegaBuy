@@ -2,9 +2,9 @@
 
 namespace MegaBuy.Player.Thoughts
 {
-    public sealed class Outside
+    public static class Outside
     {
-        private readonly string[] _thoughts =
+        private static readonly string[] _thoughts =
         {
             "Fuck outside!",
             "I'm too tired to go outside.",
@@ -17,9 +17,9 @@ namespace MegaBuy.Player.Thoughts
             "Maybe I should take a shower instead..."
         };
 
-        public string GetThought()
+        public static string GetThought()
         {
-            return _thoughts[Rng.Int(0, _thoughts.Length)];
+            return _thoughts.Random();
         }
     }
 }

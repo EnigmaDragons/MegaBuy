@@ -38,17 +38,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Player\Thoughts\HadAThought.cs" />
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
     <Compile Include="Calls\Ratings\RatingUI.cs" />
     <Compile Include="Money\Amounts\Tax.cs" />
     <Compile Include="Money\GovernmentTaxes.cs" />
     <Compile Include="Money\SalaryPaymentOccured.cs" />
-    <Compile Include="Player\Thoughts\Events\GoingOutside.cs" />
-    <Compile Include="Player\Thoughts\Events\TakingShower.cs" />
     <Compile Include="Player\Thoughts\Outside.cs" />
     <Compile Include="Player\Thoughts\Shower.cs" />
-    <Compile Include="Player\Thoughts\ThoughtsUI.cs" />
+    <Compile Include="Player\Thoughts\ThoughtUI.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
     <Compile Include="Shopping\Foods\SampleFoodCompany.cs" />
@@ -575,6 +574,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
+    <Folder Include="Player\Thoughts\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">
