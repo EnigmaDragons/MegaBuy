@@ -19,7 +19,7 @@ namespace MegaBuy.Scene
     public class InGame : IScene
     {
         private readonly double _speed = 3.0;
-        private readonly Transform2 _mapTransform = new Transform2(new Vector2(225, 25), Rotation2.None, 2);
+        private readonly Transform2 _mapTransform = new Transform2(new Vector2(256, 64), Rotation2.None, 2);
 
         private readonly ClickUI _clickUi = new ClickUI(1600, 900);
         private readonly ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
