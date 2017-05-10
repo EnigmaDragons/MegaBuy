@@ -30,7 +30,7 @@ namespace MegaBuy.Shopping
         {
             var absoluteTransform = parentTransform + _transform;
             Branch.ParentLocation = absoluteTransform.Location;
-            World.Draw("Images/Items/" + _name.ToLower().Replace(" ", "-"), absoluteTransform + new Transform2(Sizes.Item));
+            World.Draw("Images/Items/" + _name.ToLower().Replace(" ", "-").Replace(".", ""), absoluteTransform + new Transform2(Sizes.Item));
             _button.Draw(absoluteTransform);
         }
     }
