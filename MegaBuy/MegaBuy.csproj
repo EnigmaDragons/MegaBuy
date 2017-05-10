@@ -40,13 +40,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DevView.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToCareers.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToInfo.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToOrders.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToReturns.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionOption.cs" />
+    <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
+    <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
+    <Compile Include="MegaBuyCorporation\PromotionOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPerCallRates.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPolicies.cs" />
@@ -101,7 +104,7 @@
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerCalls.cs" />
-    <Compile Include="Calls\Rules\JobRole.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoles\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
     <Compile Include="Calls\Messages\Script.cs" />
@@ -547,6 +550,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\caller-info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\darkness.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\energy-3quarters.png">
