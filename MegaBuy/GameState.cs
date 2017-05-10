@@ -2,7 +2,6 @@
 using System.Linq;
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
-using MegaBuy.JobRoles.Referrer;
 using MegaBuy.Money;
 using MegaBuy.Save;
 using MegaBuy.Time;

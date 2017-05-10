@@ -23,7 +23,7 @@ namespace MegaBuy.Shopping
             var x = (i%4) * (Sizes.Item.Width + Sizes.Margin);
             var y = (i/4) * (Sizes.Item.Height + Sizes.Margin * 2 + Sizes.Button.Height);
             _transform = new Transform2(new Vector2((int)x, (int)y));
-            _productDetails = new ImageWithDescription("Images/Items/" + item.Name.ToLower().Replace(" ", "-"), item.Description, new Transform2(Sizes.Item));
+            _productDetails = new ImageWithDescription("Images/Items/" + item.Name.ToLower().Replace(" ", "-").Replace(".", ""), item.Description, new Transform2(Sizes.Item));
             _label = new Label
             {
                 BackgroundColor = Color.Transparent,

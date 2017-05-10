@@ -40,13 +40,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Calls\Callers\Traits.cs" />
+    <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="DevView.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\EscalateCall.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToCareers.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToInfo.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToOrders.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToReturns.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
     <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
     <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
     <Compile Include="MegaBuyCorporation\PromotionOffered.cs" />
@@ -321,6 +317,24 @@
     <Content Include="Content\Images\Endings\heartattack.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Items\deli-kingwich.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\ham-sub-royale.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\jr-burrito.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\prince-burger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\mctaco.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\value-dog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -451,7 +465,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Items\value-burger.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\burger.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

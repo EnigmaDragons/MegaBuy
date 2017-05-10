@@ -33,7 +33,7 @@ namespace MegaBuy
             var button3 = ImageTextButtonFactory.Create("Referer 3", new Vector2(Sizes.Margin*3 + Sizes.Button.Width*2, Sizes.Margin),
                 () => Promote(JobRole.ReferrerLevel3));
             _buttons.Add(button3);
-            Input.On(Control.Select, Show);
+            Input.On(Control.Select, Toggle);
         }
 
         public void Draw(Transform2 parentTransform)
@@ -42,6 +42,14 @@ namespace MegaBuy
                 return;
             World.Draw("Images/UI/darkness", Vector2.Zero);
             _buttons.ForEach(x => x.Draw(parentTransform + _transform));
+        }
+
+        private void Toggle()
+        {
+            if (!_visible)
+                Show();
+            else
+                Hide();
         }
 
         private void Show()
