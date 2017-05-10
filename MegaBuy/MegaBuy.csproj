@@ -546,6 +546,9 @@
     <Content Include="Content\Images\UI\button-trapazoid.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\UI\caller-info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\UI\energy-3quarters.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
