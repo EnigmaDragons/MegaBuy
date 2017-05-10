@@ -40,6 +40,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\EscalateCall.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToCareers.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToInfo.cs" />

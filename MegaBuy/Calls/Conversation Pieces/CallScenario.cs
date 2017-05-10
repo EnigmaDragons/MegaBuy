@@ -1,11 +1,10 @@
-﻿
-using MegaBuy.Calls.Callers;
-using MegaBuy.Calls.Messages;
+﻿using MegaBuy.Calls.Callers;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
     public class CallScenario
     {
+        // @todo #1 don't assume there is exactly 1 product problem.
         public string Player { get; set; }
         public Caller Caller { get; set; }
         public string Product { get; set; }
