@@ -1,6 +1,6 @@
 ﻿using MegaBuy.Calls.Rules;
 using System;
-using MegaBuy.JobRoles.Referrer;
+using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 
 namespace MegaBuy.Calls
 {

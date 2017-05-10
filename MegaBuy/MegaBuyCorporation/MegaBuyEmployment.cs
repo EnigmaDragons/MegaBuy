@@ -23,6 +23,8 @@ namespace MegaBuy.MegaBuyCorporation
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
+            World.Subscribe(EventSubscription.Create<PromotionAccepted>(x => AcceptPromotion(x.JobRole), this));
+            World.Subscribe(EventSubscription.Create<PromotionDeclined>(x => DeclinePromotion(), this));
         }
 
         private void CallResolved(CallResolved obj)
@@ -50,8 +52,7 @@ namespace MegaBuy.MegaBuyCorporation
             {
                 World.Publish(new PlayerNotification("MegaBuy",
                     "You have been performing excellently. Since you have been doing so good you will be offered a promotion!"));
-                World.Publish(new PromotionOption("", JobRole.ReferrerLevel2,
-                    () => AcceptPromotion(JobRole.ReferrerLevel2), () => DeclinePromotion()));
+                World.Publish(new PromotionOffered("", JobRole.ReferrerLevel2));
             }
         }
 

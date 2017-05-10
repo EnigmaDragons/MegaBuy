@@ -25,6 +25,7 @@ namespace MegaBuy
         {
             return new KeyboardController(new Map<Keys, Control>
             {
+                { Keys.OemTilde, Control.Select },
                 { Keys.Enter, Control.Start },
                 { Keys.V, Control.A },
                 { Keys.O, Control.X }
