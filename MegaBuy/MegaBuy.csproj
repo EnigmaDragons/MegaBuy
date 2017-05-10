@@ -40,12 +40,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\EscalateCall.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToCareers.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToInfo.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToOrders.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToReturns.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\Options\ReferToTroubleShooting.cs" />
+    <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="MegaBuyCorporation\PromotionOption.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
     <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPerCallRates.cs" />
