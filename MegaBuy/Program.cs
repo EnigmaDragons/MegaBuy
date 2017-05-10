@@ -7,6 +7,7 @@ using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Navigation;
+using MonoDragons.Core.Render;
 
 namespace MegaBuy
 {
@@ -16,7 +17,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("InGame", new ScreenSettings(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new MainGame("MegaBuy", "InGame", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 

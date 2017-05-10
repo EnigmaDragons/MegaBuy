@@ -1,20 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 namespace MonoDragons.Core.PhysicsEngine
 {
-    public struct BoxCollider
+    public sealed class BoxCollider
     {
-        public Rectangle Rectangle { get; }
+        public bool IsBlocking { get; set; } = true;
+        public Transform2 Transform { get; set; }
 
-        public BoxCollider(Transform2 transform, Size2 size)
-            : this(new Rectangle(transform.Location.ToPoint(), size.ToPoint())) { }
-
-        public BoxCollider(Transform2 transform, Point size)
-            : this(new Rectangle(transform.Location.ToPoint(), size)) { }
-
-        public BoxCollider(Rectangle rect)
+        public BoxCollider(Transform2 transform)
         {
-            Rectangle = rect;
+            Transform = transform;
         }
     }
 }

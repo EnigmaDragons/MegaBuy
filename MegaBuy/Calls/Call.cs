@@ -29,7 +29,7 @@ namespace MegaBuy.Calls
             Script = script;
             _correctResolution = correctResolution;
             Options = options;
-            World.SubscribeForScene(EventSubscription.Create<CallResolved>(ResolveCall, this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(ResolveCall, this));
         }
 
         public void Update(TimeSpan delta)

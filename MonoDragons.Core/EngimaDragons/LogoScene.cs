@@ -22,7 +22,7 @@ namespace MonoDragons.Core.EngimaDragons
                 return;
 
             _transitionComplete = true;
-            World.NavigateToScene("MainMenu");
+            World.NavigateToScene("Intro");
         }
 
         public async void Update(TimeSpan delta)
@@ -37,7 +37,7 @@ namespace MonoDragons.Core.EngimaDragons
 
         public void Draw()
         {
-            UserInterface.UI.DrawCentered("Images/Logo/enigmadragons");
+            UserInterface.UI.DrawCentered("Images/Logo/enigmadragons-presents");
         }
     }
 }

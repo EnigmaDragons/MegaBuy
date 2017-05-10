@@ -10,5 +10,10 @@ namespace MegaBuy.Calls.Rules
         ReferToCareers,
         ReferToOrders,
         EscalateCall,
+        ReferToLegal,
+        ReferToAccounting,
+        ReferToRecommendations,
+        ReferToFeedback,
+        ReferToGeneralist
     }
 }

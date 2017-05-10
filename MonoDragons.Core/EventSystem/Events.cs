@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MonoDragons.Core.Engine;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MonoDragons.Core.EventSystem
@@ -13,11 +15,11 @@ namespace MonoDragons.Core.EventSystem
 
         public void Publish<T>(T payload)
         {
-            var eventType = typeof(T);
-            if (!_eventActions.ContainsKey(eventType))
-                return;
-            foreach (var action in _eventActions[eventType].ToList())
-                ((Action<T>)action)(payload);
+            var eventType = payload.GetType();
+            if (_eventActions.ContainsKey(eventType))
+                foreach (var action in _eventActions[eventType].ToList())
+                    try { ((Action<object>)action)(payload); }
+                    catch (Exception ex) { Debug.WriteLine("Exception unhandled in events:" + ex.ToString()); Hack.TheGame.Exit(); }
         }
 
         public void Subscribe(EventSubscription subscription)

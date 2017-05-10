@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using System.Diagnostics;
 
 namespace MonoDragons.Core.Engine
 {
@@ -59,12 +60,14 @@ namespace MonoDragons.Core.Engine
 
         private void CheckForProcessTrouble()
         {
+            _frameRateTroubleCount = _framesPerSecond < 12 ? _frameRateTroubleCount + 1 : 0;
             if (_framesPerSecond < 12)
-                _frameRateTroubleCount++;
-            else
-                _frameRateTroubleCount = 0;
+                Debug.WriteLine("Framerate Warning: Framerate = " + _framesPerSecond);
             if (_frameRateTroubleCount > 4)
+            {
+                Debug.WriteLine("Framerate Exception: Exiting Program.");
                 Hack.TheGame.Exit();
+            }
         }
     }
 }
