@@ -40,6 +40,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="DevView.cs" />
     <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
@@ -680,6 +681,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
+    <Folder Include="MegaBuyCorporation\JobRoles\Referrer\Options\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">

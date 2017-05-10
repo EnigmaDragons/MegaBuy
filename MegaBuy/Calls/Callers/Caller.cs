@@ -4,6 +4,7 @@ using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using System.Collections.Generic;
 
 namespace MegaBuy.Calls.Callers
 {
@@ -11,22 +12,19 @@ namespace MegaBuy.Calls.Callers
     {
         public CallerPatience Patience = CallerStartingPatience.New;
         public string Name { get; }
-        public Map<string, string> Traits { get; }
+        public Dictionary<string, string> Traits { get; }
 
         private readonly int _patienceLossRateMs;
         private int _gracePeriods;
 
         private double _elapsedMs;
 
-        public Caller()
-            : this(CallerNames.Random, PatienceLevel.Random) { }
+        public Caller(int patienceLossRateMs, Dictionary<string, string> traits)
+            : this(CallerNames.Random, patienceLossRateMs, traits) { }
 
-        public Caller(string name)
-            : this(name, PatienceLevel.Random) { }
-
-        public Caller(string name, int patienceLossRateMs)
+        public Caller(string name, int patienceLossRateMs, Dictionary<string, string> traits)
         {
-            Traits = new Map<string, string>();
+            Traits = traits;
             Name = name;
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
