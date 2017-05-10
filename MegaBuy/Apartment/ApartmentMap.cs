@@ -49,8 +49,8 @@ namespace MegaBuy.Apartment
             if (moveBy.Equals(Vector2.Zero))
                 return transform;
 
-            var proposedLocation = new Rectangle(collider.Rectangle.Location + moveBy.ToPoint(), collider.Rectangle.Size);
-            if (_tiles.Where(x => x.IsBlocking).Any(x => proposedLocation.Intersects(x.Collider.Rectangle)))
+            var proposedLocation = collider.Transform + moveBy;
+            if (_tiles.Where(x => x.IsBlocking).Any(x => proposedLocation.Intersects(x.Collider.Transform)))
                 return transform;
             return transform + moveBy;
         }

@@ -29,7 +29,7 @@ namespace MegaBuy.Player
         private float moveSpeed = 0.12f;
 
         // Collision
-        private BoxCollider Collider => new BoxCollider(_transform + new Vector2(5, 22), new Size2(22, 10));
+        private BoxCollider Collider => new BoxCollider(_transform.WithSize(new Size2(22, 10)) + new Vector2(5, 22));
 
         // Animations
         private readonly Animations _anims;

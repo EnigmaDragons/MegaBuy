@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Audio;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -20,9 +21,9 @@ namespace MegaBuy.Scene
                 new Transform2(new Vector2(800 - 100, 750 - 22),
                 new Size2(200, 44)), () => World.NavigateToScene("InGame"));
 
-            _ui = new ClickUI(1600, 900);
+            _ui = new ClickUI();
             _ui.Add(_btn);
-            World.PlayMusic("Music/maintheme");
+            Audio.PlayMusic("Music/maintheme");
         }
 
         public void Update(TimeSpan delta)

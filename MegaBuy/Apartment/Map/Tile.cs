@@ -26,7 +26,7 @@ namespace MegaBuy.Apartment.Map
             IsBlocking = blocking;
             Layer = layer;
             Interact = onInteract;
-            Collider = new BoxCollider(Transform, new Point(TileSize.Int, TileSize.Int));
+            Collider = new BoxCollider(Transform);
         }
 
         public virtual void Update(TimeSpan delta)
