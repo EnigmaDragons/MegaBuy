@@ -13,7 +13,7 @@ using MonoDragons.Core.Navigation;
 
 namespace MonoDragons.Core.Engine
 {
-    public class MainGame : Game, INavigation
+    public class NeedlesslyComplexMainGame : Game, INavigation
     {
         private readonly string _startingViewName;
         private readonly GraphicsDeviceManager _graphics;
@@ -30,21 +30,23 @@ namespace MonoDragons.Core.Engine
         private Size2 _defaultScreenSize;
         private Texture2D _black;
 
-        public MainGame(string title, string startingViewName, Size2 defaultGameSize, SceneFactory sceneFactory, IController controller)
+
+        // @todo #1 fix this so we config everything before the game
+        public NeedlesslyComplexMainGame(string title, string startingViewName, Size2 defaultGameSize, SceneFactory sceneFactory, IController controller)
             : this(title, startingViewName, sceneFactory, controller)
         {
             _areScreenSettingsPreCalculated = false;
             _defaultScreenSize = defaultGameSize;
         }
 
-        public MainGame(string title, string startingViewName, Display screenSettings, SceneFactory sceneFactory, IController controller)
+        public NeedlesslyComplexMainGame(string title, string startingViewName, Display screenSettings, SceneFactory sceneFactory, IController controller)
             : this(title, startingViewName, sceneFactory, controller)
         {
             _areScreenSettingsPreCalculated = true;
             _display = screenSettings;
         }
 
-        private MainGame(string title, string startingViewName, SceneFactory sceneFactory, IController controller)
+        private NeedlesslyComplexMainGame(string title, string startingViewName, SceneFactory sceneFactory, IController controller)
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -60,6 +62,10 @@ namespace MonoDragons.Core.Engine
 
         protected override void Initialize()
         {
+            InitDisplayIfNeeded();
+            // @todo #1 Bug: Update the GraphicsDeviceManager in the constructor, to avoid the window being mispositioned and visibly changing size
+            _display.Apply(_graphics);
+            Window.Position = new Point(0, 0); // Delete this once the above issue is fixed 
             IsMouseVisible = true;
             _sprites = new SpriteBatch(GraphicsDevice);
             Resources.Init(this);
@@ -68,11 +74,8 @@ namespace MonoDragons.Core.Engine
             _ecs.Register(new ControlHandler());
             _ecs.Register(new DirectionHandler());
             _black = new RectangleTexture(new Rectangle(new Point(0, 0), new Point(1, 1)), Color.Black).Create();
-            InitDisplayIfNeeded();
             World.Init(this, this, _sprites, _display);
             UI.Init(this, _sprites, _display);
-            _display.Apply(_graphics);
-            Window.Position = new Point(0, 0);
             base.Initialize();
         }
 

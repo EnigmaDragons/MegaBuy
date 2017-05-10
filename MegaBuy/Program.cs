@@ -17,7 +17,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new MainGame("MegaBuy", "InGame", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new NeedlesslyComplexMainGame("MegaBuy", "InGame", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 

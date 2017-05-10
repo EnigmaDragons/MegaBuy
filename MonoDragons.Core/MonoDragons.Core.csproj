@@ -82,7 +82,7 @@
     <Compile Include="Engine\IScene.cs" />
     <Compile Include="Engine\IAutomaton.cs" />
     <Compile Include="Engine\IVisual.cs" />
-    <Compile Include="Engine\MainGame.cs" />
+    <Compile Include="Engine\NeedlesslyComplexMainGame.cs" />
     <Compile Include="Engine\Map.cs" />
     <Compile Include="Engine\SceneContents.cs" />
     <Compile Include="Engine\SceneFactory.cs" />
