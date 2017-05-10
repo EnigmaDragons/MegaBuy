@@ -3,9 +3,10 @@
     public enum ClickUIPriorities
     {
         Base = 0,
-        Overlay = 1,
+        Room = 1,
         Thoughts = 2,
         Pad = 3,
-        Room = 4,
+        Overlay = 4,
+        Dev = 5,
     }
 }

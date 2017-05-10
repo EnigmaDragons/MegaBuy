@@ -23,6 +23,7 @@ namespace MegaBuy.Scene
 
         private readonly ClickUI _clickUi = new ClickUI();
         private readonly ClickUIBranch _branch = new ClickUIBranch("Game", (int)ClickUIPriorities.Base);
+        private DevView _dev;
         private Overlay _overlay;
         private Pad _pad;
         private Clock _clock;
@@ -52,6 +53,8 @@ namespace MegaBuy.Scene
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             _thoughts = new ThoughtUI();
             _branch.Add(_thoughts.Branch);
+            _dev = new DevView();
+            _branch.Add(_dev.Branch);
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
             World.Subscribe(EventSubscription.Create<PreparingForBed>(PrepareForBed, this));
@@ -106,6 +109,7 @@ namespace MegaBuy.Scene
             _pad.Draw(new Transform2(new Vector2(0, _padLocation)));
             _thoughts.Draw(Transform2.Zero);
             _overlay.Draw(Transform2.Zero);
+            _dev.Draw(Transform2.Zero);
 
             if (_preparingForBed)
                 _sleep.Draw(new Transform2(new Vector2(400, 300)));
