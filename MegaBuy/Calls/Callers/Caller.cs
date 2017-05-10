@@ -63,5 +63,20 @@ namespace MegaBuy.Calls.Callers
         {
             return Traits.ContainsKey(trait) && Traits[trait].Equals(value);
         }
+
+        public bool IsAtMost(string trait, int value)
+        {
+            return Traits.ContainsKey(trait) && int.Parse(Traits[trait]) <= value;
+        }
+
+        public bool IsAtLeast(string trait, int value)
+        {
+            return Traits.ContainsKey(trait) && int.Parse(Traits[trait]) >= value;
+        }
+
+        public bool HasTrait(string trait)
+        {
+            return Traits.ContainsKey(trait) && Traits[trait] == "true";
+        }
     }
 }

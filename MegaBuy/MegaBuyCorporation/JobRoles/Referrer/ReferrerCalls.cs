@@ -7,13 +7,11 @@ using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Common;
-using MonoDragons.Core.Engine;
-using System.Collections;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls.Callers;
 
 namespace MegaBuy.MegaBuyCorporation.JobRoles.Referrer
 {
+    // @todo #1 Set traits for calls.
     public class ReferrerCalls
     {
         private static readonly List<ICallOption> Level1Options = new List<ICallOption>
