@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -27,7 +28,7 @@ namespace MonoDragons.Core.Text
         {
             var sb = new StringBuilder();
             var lineWidth = 0f;
-            var words = text.Split();
+            var words = text.Split().Where(x => !x.Equals(""));
             foreach (var word in words)
             {
                 var wordAndSpace = word + " ";
