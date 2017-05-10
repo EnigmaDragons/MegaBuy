@@ -27,8 +27,8 @@ namespace MegaBuy.Calls.Messages
                 BackgroundColor = isPlayer ? Colors.Secondary : Colors.Primary,
                 TextColor = Color.White,
                 Font = "Fonts/arial",
-                Text = newMessage,
                 Transform = new Transform2(position, new Size2((int)size.X + 10, (int)size.Y + 10)),
+                Text = message,
             };
         }
 

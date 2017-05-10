@@ -14,14 +14,14 @@ namespace MegaBuy.Calls.Callers
     public class CallerUi : IVisual
     {
         private readonly Transform2 _transform = new Transform2(new Vector2(1350 - Sizes.Margin, Sizes.Margin));
-        private readonly Label _name;
+        private readonly Label _info;
         
         private string _caller;
         private bool _isInCall = false;
 
         public CallerUi()
         {
-            _name = new Label
+            _info = new Label
             {
                 BackgroundColor = Color.Transparent,
                 Font = "Fonts/arial",
@@ -41,7 +41,7 @@ namespace MegaBuy.Calls.Callers
             if (_isInCall)
             {
                 World.Draw("Images/Customers/" + _caller, parentTransform + _transform + new Transform2(new Vector2(5, 5), new Size2(240, 400)));
-                _name.Draw(absoluteTransform);
+                _info.Draw(absoluteTransform);
             }
             
         }
@@ -54,7 +54,7 @@ namespace MegaBuy.Calls.Callers
         private void StartCall(Call call)
         {
             _isInCall = true;
-            _name.Text = "Name: " + call.Caller.Name + "\n" + string.Join("", call.Caller.Traits.Select(x => x.Key + ": " + x.Value + "\n"));
+            _info.Text = "Name: " + call.Caller.Name + "\n" + string.Join("", call.Caller.Traits.Select(x => x.Key + ": " + x.Value + "\n"));
             _caller = call.Caller.Name.ToLower().Replace(" ", "-");
         }
 
