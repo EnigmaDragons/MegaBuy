@@ -9,7 +9,13 @@ namespace MegaBuy.Shopping.Foods
         public string Description => "We make the foods you crave!";
         public List<IItem> Items { get; } = new List<IItem>
         {
-            new Food("Value Burger", "Do you want a burger but can't afford a real one? Well we can assure you this Value \"Burger\" tastes just like the real thing.", new ItemCost(5), 25),
+            // @todo #1 Add clever item descriptions
+            new Food("Value Dog", new ItemCost(10), 5, ""),
+            new Food("Jr. Burrito", new ItemCost(15), 8, ""),
+            new Food("Prince Burger", new ItemCost(40), 22, ""),
+            new Food("Deli KingWich", new ItemCost(32), 18, ""),
+            new Food("McTaco", new ItemCost(24), 13, ""),
+            new Food("Ham Sub Royale", new ItemCost(50), 30, ""),
         };
 
         public void Buy(IItem item)
