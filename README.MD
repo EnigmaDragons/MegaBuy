@@ -6,6 +6,14 @@ Set in the near future where mega-corporations rule the world and the gap betwee
 
 ----
 
+5/11/17
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen14.jpg)
+
+![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen15.jpg)
+
+----
+
 4/20/17
 
 ![screenshot](https://github.com/EnigmaDragons/MegaBuy/blob/master/Screenshots/screen13.jpg)
