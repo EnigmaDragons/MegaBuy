@@ -32,7 +32,8 @@ namespace MegaBuy.Calls
         {
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
             Branch.Add(_ready.Branch);
-            World.Subscribe(EventSubscription.Create<CallConnecting>(x => StartConnecting(), this));
+            World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(x => StartConnecting(x), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
         }
 
@@ -54,10 +55,16 @@ namespace MegaBuy.Calls
             }
         }
 
-        private void StartConnecting()
+        private void StartConnecting(AgentCallStatusChanged status)
         {
+            if (status.Status != AgentCallStatus.Available)
+                return;
             _isCalling = true;
             Branch.Remove(_ready.Branch);
+        }
+
+        private void StartCall()
+        {
             Branch.Add(_callOptions.Branch);
         }
 

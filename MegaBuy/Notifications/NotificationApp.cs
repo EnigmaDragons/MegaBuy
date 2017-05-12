@@ -44,7 +44,7 @@ namespace MegaBuy.Notifications.Old
             var absoluteTransform = parentTransform + _transform;
             Branch.Location = absoluteTransform.Location;
             for (var i = 0; i < _notifications.Count; i++)
-                _notifications[i].Draw(absoluteTransform + new Transform2(new Vector2(0, i * (90 + Sizes.Margin))));
+                _notifications[i].Draw(absoluteTransform + new Transform2(new Vector2(0, Sizes.Margin + i * (90 + Sizes.SmallMargin))));
         }
     }
 }
