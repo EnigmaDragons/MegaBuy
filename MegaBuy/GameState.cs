@@ -15,6 +15,7 @@ using MegaBuy.Rents;
 using MonoDragons.Core.Common;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.MegaBuyCorporation;
+using MegaBuy.MegaBuyCorporation.Policies;
 
 namespace MegaBuy
 {
