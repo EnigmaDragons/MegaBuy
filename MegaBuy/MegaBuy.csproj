@@ -43,6 +43,7 @@
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="DevView.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
     <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
@@ -610,6 +611,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\pad-background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\policy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\star-empty.png">

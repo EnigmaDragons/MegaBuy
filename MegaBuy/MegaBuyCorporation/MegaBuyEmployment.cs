@@ -8,6 +8,8 @@ using MegaBuy.Notifications;
 using MegaBuy.Money;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls;
+using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Policies;
 using MegaBuy.Jobs;
 using MegaBuy.Jobs.Referrer;
 
@@ -64,8 +66,9 @@ namespace MegaBuy.MegaBuyCorporation
             {
                 var accounting = (MegaBuyAccounting)GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
                 accounting.ChangePaymentPlans(ReferrerPerCallRates.Level2PerCallRate);
-                GameState.ActivePolicies = new Policies.ActivePolicies();
+                GameState.ActivePolicies = new ActivePolicies();
                 GameState.ActivePolicies.Add(ReferrerPolicies.Level2Policies);
+                World.Publish(new PolicyChanged());
                 var queue = (CallQueue)GameState.SingleInstanceSubscriptions[typeof(CallQueue)];
                 queue.ChangePlayerRole(role);
             }
