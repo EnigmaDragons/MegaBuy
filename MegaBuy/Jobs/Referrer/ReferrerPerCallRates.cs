@@ -6,5 +6,6 @@ namespace MegaBuy.Jobs.Referrer
     {
         public static readonly PerCallRate Level1PerCallRate = new PerCallRate(2);
         public static readonly PerCallRate Level2PerCallRate = new PerCallRate(100);
+        public static readonly PerCallRate Level3PerCallRate = new PerCallRate(0);
     }
 }
