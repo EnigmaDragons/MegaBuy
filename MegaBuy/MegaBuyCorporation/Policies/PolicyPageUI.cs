@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.MegaBuyCorporation;
+using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Policies
 {
-    // @todo #TEST Make Policy Pages look nice
     public sealed class PolicyPageUI : IVisual
     {
-        private readonly ColoredRectangle _pageRect;
-        private readonly ActivePolicies _policies;
         private readonly int _pagePolicyIndex;
         private readonly int _pagePolicyCount;
 
-        private readonly List<string> _policyTexts = new List<string>();
+        private readonly List<IVisual> _policyTexts = new List<IVisual>();
 
+        private ActivePolicies _policies;
 
         public bool CanTravelBack => _pagePolicyIndex > 0;
         public bool CanTravelNext => _pagePolicyIndex + _pagePolicyCount < _policies.Count;
@@ -26,17 +28,17 @@ namespace MegaBuy.Policies
 
         public PolicyPageUI(ActivePolicies policies, int pagePolicyIndex, int pagePolicyCount)
         {
-            _policies = policies;
             _pagePolicyIndex = pagePolicyIndex;
             _pagePolicyCount = pagePolicyCount;
-            _pageRect = new ColoredRectangle {  Color = Color.Blue, Transform = new Transform2(new Vector2(0, 20), new Size2(1600, 600)) };
-            UpdatePolicyTexts();
+            UpdatePolicies();
+            World.Subscribe(EventSubscription.Create<PolicyChanged>(x => UpdatePolicies(), this));
         }
 
-        private void UpdatePolicyTexts()
+        private void UpdatePolicies()
         {
+            _policies = GameState.ActivePolicies;
             _policyTexts.Clear();
-            _policyTexts.AddRange(_policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount));
+            _policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount).ForEach(x => _policyTexts.Add(new ImageLabel(x, "Images/UI/Policy", new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.Button.Height, Sizes.Margin), Sizes.Policy))));
         }
 
         public PolicyPageUI GetNextPage()
@@ -51,9 +53,8 @@ namespace MegaBuy.Policies
 
         public void Draw(Transform2 parentTransform)
         {
-            _pageRect.Draw(parentTransform);
             for (var i = 0; i < _policyTexts.Count; i++)
-                UI.DrawText(_policyTexts[i], new Vector2(50, 40 + (i * 50)) + parentTransform.Location, Color.White);
+                _policyTexts[i].Draw(new Transform2(new Vector2(0, i * (Sizes.Policy.Height + Sizes.SmallMargin))) + parentTransform.Location);
         }
     }
 }

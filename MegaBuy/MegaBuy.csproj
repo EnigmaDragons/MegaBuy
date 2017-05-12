@@ -43,12 +43,14 @@
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="DevView.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
+    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
     <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
     <Compile Include="MegaBuyCorporation\PromotionOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPerCallRates.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerPolicies.cs" />
+    <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
+    <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyAccounting.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyEmployment.cs" />
     <Compile Include="MegaBuyCorporation\Policies\ActivePolicies.cs" />
@@ -99,8 +101,8 @@
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
     <Compile Include="Calls\Conversation Pieces\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\Referrer\ReferrerCalls.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoles\JobRole.cs" />
+    <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
+    <Compile Include="Jobs\JobRole.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
     <Compile Include="Calls\Messages\Script.cs" />
@@ -609,6 +611,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\pad-background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\policy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\star-empty.png">

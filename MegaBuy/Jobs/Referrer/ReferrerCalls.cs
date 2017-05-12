@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls;
+using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Common;
-using MegaBuy.Calls.Callers;
 
-namespace MegaBuy.MegaBuyCorporation.JobRoles.Referrer
+namespace MegaBuy.Jobs.Referrer
 {
     // @todo #1 Set traits for calls.
     public class ReferrerCalls

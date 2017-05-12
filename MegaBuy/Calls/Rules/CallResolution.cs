@@ -14,6 +14,9 @@ namespace MegaBuy.Calls.Rules
         ReferToAccounting,
         ReferToRecommendations,
         ReferToFeedback,
-        ReferToGeneralist
+        ReferToGeneralist,
+        ApproveReturn,
+        ApproveReplacement,
+        Reject,
     }
 }

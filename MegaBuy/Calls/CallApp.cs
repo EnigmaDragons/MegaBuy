@@ -23,6 +23,8 @@ namespace MegaBuy.Calls
         private readonly CallOptionsUI _callOptions = new CallOptionsUI();
         private readonly RatingUI _rating = new RatingUI();
 
+        private Call _call;
+        private bool _isInCall = false;
         private bool _isCalling = false;
 
         public ClickUIBranch Branch { get; private set; }
@@ -32,13 +34,16 @@ namespace MegaBuy.Calls
         {
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
             Branch.Add(_ready.Branch);
-            World.Subscribe(EventSubscription.Create<CallConnecting>(x => StartConnecting(), this));
+            World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(x => StartConnecting(x), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
         }
 
         public void Update(TimeSpan delta)
         {
             _messenger.Update(delta);
+            if (_isInCall)
+                _call.Update(delta);
         }
 
         public void Draw(Transform2 parentTransform)
@@ -54,16 +59,25 @@ namespace MegaBuy.Calls
             }
         }
 
-        private void StartConnecting()
+        private void StartConnecting(AgentCallStatusChanged status)
         {
+            if (status.Status != AgentCallStatus.Available)
+                return;
             _isCalling = true;
             Branch.Remove(_ready.Branch);
+        }
+
+        private void StartCall(Call call)
+        {
+            _call = call;
+            _isInCall = true;
             Branch.Add(_callOptions.Branch);
         }
 
         private void EndCall()
         {
             _isCalling = false;
+            _isInCall = false;
             Branch.Remove(_callOptions.Branch);
             Branch.Add(_ready.Branch);
         }
