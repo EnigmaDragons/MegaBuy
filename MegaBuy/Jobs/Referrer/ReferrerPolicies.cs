@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Rules;
-using MegaBuy.Policies;
+using MegaBuy.MegaBuyCorporation.Policies;
 
 namespace MegaBuy.Jobs.Referrer
 {

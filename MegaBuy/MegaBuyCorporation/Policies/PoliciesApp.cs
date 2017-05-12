@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;

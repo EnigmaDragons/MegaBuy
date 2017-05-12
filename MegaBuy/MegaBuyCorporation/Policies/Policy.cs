@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Rules;
 
-namespace MegaBuy.Policies
+namespace MegaBuy.MegaBuyCorporation.Policies
 {
     public sealed class Policy
     {
-        private readonly CallResolution _resolution;
+        private readonly List<CallResolution> _resolutions;
         private readonly Predicate<Caller> _condition;
 
         public string Text { get; }
 
         public Policy(string text, CallResolution resolution, Predicate<Caller> condition)
+            : this(text, condition, resolution) { }
+
+        public Policy(string text, Predicate<Caller> condition, params CallResolution[] resolutions)
         {
-            _resolution = resolution;
+            _resolutions = resolutions.ToList();
             _condition = condition;
             Text = text;
         }
@@ -26,7 +31,7 @@ namespace MegaBuy.Policies
 
         private bool Applies(CallResolution resolution)
         {
-            return resolution.Equals(_resolution) || resolution.Equals(CallResolution.Any);
+            return resolution.Equals(CallResolution.Any) || _resolutions.Contains(resolution);
         }
     }
 }

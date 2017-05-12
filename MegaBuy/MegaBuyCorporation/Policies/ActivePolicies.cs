@@ -3,7 +3,7 @@ using System.Linq;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Rules;
 
-namespace MegaBuy.Policies
+namespace MegaBuy.MegaBuyCorporation.Policies
 {
     public sealed class ActivePolicies
     {
