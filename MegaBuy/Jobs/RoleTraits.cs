@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Jobs.Referrer;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
+using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Policies;
 
 namespace MegaBuy.Jobs
