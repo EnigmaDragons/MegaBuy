@@ -14,7 +14,6 @@ namespace MegaBuy.Shopping
         private readonly Label _label;
         private readonly ImageTextButton _button;
 
-
         public ClickUIBranch Branch { get; private set; }
 
         public ShoppingItemUI(IItem item, int i, Action whenBought)
