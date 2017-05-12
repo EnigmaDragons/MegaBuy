@@ -7,7 +7,7 @@
         public string Message { get; }
 
         public PlayerNotification(string sender, string message)
-            : this (GameState.Clock.Time, sender, message) { }
+            : this (CurrentGameState.GameState.Clock.Time, sender, message) { }
 
         private PlayerNotification(string time, string sender, string message)
         {

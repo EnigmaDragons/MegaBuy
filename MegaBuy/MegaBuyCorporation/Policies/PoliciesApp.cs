@@ -11,6 +11,7 @@ namespace MegaBuy.Policies
     public sealed class PoliciesApp : IApp
     {
         private readonly Transform2 _transform = Transform2.Zero;
+        private readonly GameState _gameState;
 
         private readonly ImageTextButton _backButton;
         private readonly ImageTextButton _nextButton;
@@ -21,8 +22,9 @@ namespace MegaBuy.Policies
 
         public PoliciesApp()
         {
+            _gameState = CurrentGameState.GameState;
             Branch = new ClickUIBranch("Policies App", (int)ClickUIPriorities.Pad);
-            _pageUi = new PolicyPageUI(GameState.ActivePolicies, 0, 7);
+            _pageUi = new PolicyPageUI(_gameState.ActivePolicies, 0, 7);
             _backButton = ImageTextButtonFactory.CreateRotated("<<", new Vector2(Sizes.Margin, 275), NavigateBack);
             _nextButton = ImageTextButtonFactory.CreateRotated(">>", new Vector2(1600 - Sizes.SideButton.Width - Sizes.Margin, 275), NavigateForward);
             UpdateNavButtons();

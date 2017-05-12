@@ -9,11 +9,14 @@ namespace MegaBuy.Endings
     {
         private readonly string _image;
         private readonly string _gameOverReason;
+        private readonly ClickUI _clickUI;
 
         protected GameOverScene(string image, string gameOverReason)
         {
             _image = image;
             _gameOverReason = gameOverReason;
+            _clickUI = new ClickUI();
+            _clickUI.Add(new ScreenClickable(() => { CurrentGameState.GameState = new GameState(); World.NavigateToScene("MainMenu"); }));
         }
 
         public void Init()
@@ -22,6 +25,7 @@ namespace MegaBuy.Endings
 
         public void Update(TimeSpan delta)
         {
+            _clickUI.Update(delta);
         }
 
         public void Draw()

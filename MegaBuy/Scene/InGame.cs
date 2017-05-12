@@ -32,6 +32,7 @@ namespace MegaBuy.Scene
         private bool _isPadOpen;
         private ApartmentMap _map;
         private int _padLocation;
+        private GameState _gameState = CurrentGameState.GameState;
 
         // Sleep
         private bool _preparingForBed;
@@ -41,15 +42,15 @@ namespace MegaBuy.Scene
         public void Init()
         {
             _padLocation = 900;
-            _clock = GameState.Clock;
+            _clock = _gameState.Clock;
             _clickUi.Add(_branch);
             _overlay = new Overlay();
             _branch.Add(_overlay.Branch);
             _pad = new Pad(_branch);
-            GameState.Pad = _pad;
+            _gameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
             _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
-            GameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
+            _gameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             _thoughts = new ThoughtUI();
             _branch.Add(_thoughts.Branch);
@@ -86,7 +87,7 @@ namespace MegaBuy.Scene
         public void Update(TimeSpan delta)
         {
             _map.Update(delta);
-            GameState.PlayerCharacter.Update(delta);
+            _gameState.PlayerCharacter.Update(delta);
             _padLocation = _isPadOpen
                 ? (int) Math.Max(_padLocation - delta.TotalMilliseconds * _speed, 0)
                 : (int) Math.Min(_padLocation + delta.TotalMilliseconds * _speed, 900);
@@ -105,7 +106,7 @@ namespace MegaBuy.Scene
             }
 
             _map.Draw(_mapTransform);
-            GameState.PlayerCharacter.Draw(_mapTransform);
+            _gameState.PlayerCharacter.Draw(_mapTransform);
             _pad.Draw(new Transform2(new Vector2(0, _padLocation)));
             _thoughts.Draw(Transform2.Zero);
             _overlay.Draw(Transform2.Zero);
