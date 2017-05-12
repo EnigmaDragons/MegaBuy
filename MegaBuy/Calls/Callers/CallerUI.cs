@@ -24,7 +24,6 @@ namespace MegaBuy.Calls.Callers
             _info = new Label
             {
                 BackgroundColor = Color.Transparent,
-                Font = "Fonts/arial",
                 TextColor = Color.White,
                 Transform = new Transform2(new Vector2(0, 400 + Sizes.Margin), new Size2(250, 260))
             };

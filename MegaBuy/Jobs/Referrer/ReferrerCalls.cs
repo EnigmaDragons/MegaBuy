@@ -11,6 +11,7 @@ using MonoDragons.Core.Common;
 
 namespace MegaBuy.Jobs.Referrer
 {
+    // @todo #1 Set traits for calls.
     public class ReferrerCalls
     {
         private static readonly List<ICallOption> Level1Options = new List<ICallOption>

@@ -8,7 +8,7 @@ namespace MegaBuy.Calls.Callers
         {
         }
 
-        public static Traits None = new Traits(new Dictionary<string, string> { { "OpenOrder", "false" }, { "IsCustomer", "false" }, { "IsCallingAboutPurchase", "false" }, { "IsSupplierEmployee", "false" } });
+        public static Traits None = new Traits(new Dictionary<string, string>());
 
         public static Traits Create(params KeyValuePair<string, object>[] setTraits)
         {
