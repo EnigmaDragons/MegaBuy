@@ -28,6 +28,7 @@ namespace MegaBuy.Policies
 
         public PolicyPageUI(ActivePolicies policies, int pagePolicyIndex, int pagePolicyCount)
         {
+            _policies = policies;
             _pagePolicyIndex = pagePolicyIndex;
             _pagePolicyCount = pagePolicyCount;
             UpdatePolicies();
@@ -36,9 +37,8 @@ namespace MegaBuy.Policies
 
         private void UpdatePolicies()
         {
-            _policies = GameState.ActivePolicies;
             _policyTexts.Clear();
-            _policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount).ForEach(x => _policyTexts.Add(new ImageLabel(x, "Images/UI/Policy", new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.Button.Height, Sizes.Margin), Sizes.Policy))));
+            _policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount).ForEach(x => _policyTexts.Add(new ImageLabel(x, "Images/UI/Policy", new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin), Sizes.Policy))));
         }
 
         public PolicyPageUI GetNextPage()

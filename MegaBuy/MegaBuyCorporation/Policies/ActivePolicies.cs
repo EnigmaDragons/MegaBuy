@@ -44,5 +44,10 @@ namespace MegaBuy.Policies
         {
             return _policies.Where(x => !x.MeetsPolicy(resolution, call)).ToList();
         }
+
+        public void Clear()
+        {
+            _policies.Clear();
+        }
     }
 }
