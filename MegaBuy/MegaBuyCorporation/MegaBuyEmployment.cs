@@ -17,12 +17,17 @@ namespace MegaBuy.MegaBuyCorporation
 {
     public class MegaBuyEmployment
     {
+        private readonly ActivePolicies _policies;
+
         private int _numMistakesInCurrentDay;
         private int _numResolvedCallsInCurrentDay;
         private JobRole role;
 
-        public MegaBuyEmployment()
+        public MegaBuyEmployment() : this(GameState.ActivePolicies) {}
+
+        public MegaBuyEmployment(ActivePolicies policies)
         {
+            _policies = policies;
             role = JobRole.ReferrerLevel1;
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
@@ -62,16 +67,13 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(JobRole role)
         {
-            if (role == JobRole.ReferrerLevel2)
-            {
-                var accounting = (MegaBuyAccounting)GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
-                accounting.ChangePaymentPlans(ReferrerPerCallRates.Level2PerCallRate);
-                GameState.ActivePolicies = new ActivePolicies();
-                GameState.ActivePolicies.Add(ReferrerPolicies.Level2Policies);
-                World.Publish(new PolicyChanged());
-                var queue = (CallQueue)GameState.SingleInstanceSubscriptions[typeof(CallQueue)];
-                queue.ChangePlayerRole(role);
-            }
+            var accounting = (MegaBuyAccounting)GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
+            accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
+            _policies.Clear();
+            _policies.Add(RoleTraits.Policies[role]);
+            World.Publish(new PolicyChanged());
+            var queue = (CallQueue)GameState.SingleInstanceSubscriptions[typeof(CallQueue)];
+            queue.ChangePlayerRole(role);
         }
 
         private void DeclinePromotion()

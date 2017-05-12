@@ -21,11 +21,11 @@ namespace MegaBuy.UIs
                 new Transform2(location, Sizes.PadToggle), onClick);
         }
 
-        public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick, Rotation2 rotation)
+        public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick)
         {
             return new ImageTextButton(text,
-                "Images/UI/button-press", "Images/UI/button", "Images/UI/button-hover",
-                new Transform2(location, rotation, Sizes.Button, 1), onClick);
+                "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
+                new Transform2(location, Sizes.SideButton), onClick);
         }
     }
 }

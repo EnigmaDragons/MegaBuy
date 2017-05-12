@@ -13,6 +13,7 @@ namespace MegaBuy.UIs
         public static Size2 LargeLabel = new Size2(600, 200);
         public static Size2 PadToggle = new Size2(400, 50);
         public static Size2 Button = new Size2(200, 70);
+        public static Size2 SideButton = new Size2(70, 200);
         public static Size2 Messenger = new Size2(300, 600);
         public static Size2 Star = new Size2(150, 150);
         public static Size2 Item = new Size2(200, 200);
