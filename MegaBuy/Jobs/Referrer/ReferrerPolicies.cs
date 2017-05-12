@@ -1,10 +1,10 @@
-﻿using MegaBuy.Calls.Callers;
+﻿using System;
+using System.Collections.Generic;
+using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Rules;
 using MegaBuy.Policies;
-using System;
-using System.Collections.Generic;
 
-namespace MegaBuy.MegaBuyCorporation.JobRoles.Referrer
+namespace MegaBuy.Jobs.Referrer
 {
     public static class ReferrerPolicies
     {

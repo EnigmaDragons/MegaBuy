@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms.VisualStyles;
 using MegaBuy.Calls.Rules;
+using MegaBuy.Jobs;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;

@@ -14,6 +14,7 @@ namespace MegaBuy.Calls.Rules
         ReferToAccounting,
         ReferToRecommendations,
         ReferToFeedback,
-        ReferToGeneralist
+        ReferToGeneralist,
+        // @todo #1 Add ReturnSpecialist Resolution Options
     }
 }

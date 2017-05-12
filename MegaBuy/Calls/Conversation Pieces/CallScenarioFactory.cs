@@ -3,6 +3,7 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Jobs;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {

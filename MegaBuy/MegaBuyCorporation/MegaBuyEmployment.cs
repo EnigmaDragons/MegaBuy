@@ -8,6 +8,8 @@ using MegaBuy.Notifications;
 using MegaBuy.Money;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls;
+using MegaBuy.Jobs;
+using MegaBuy.Jobs.Referrer;
 
 namespace MegaBuy.MegaBuyCorporation
 {

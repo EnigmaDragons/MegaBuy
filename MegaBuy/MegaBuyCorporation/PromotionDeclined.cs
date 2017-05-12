@@ -1,4 +1,5 @@
 ﻿using MegaBuy.Calls.Rules;
+using MegaBuy.Jobs;
 
 namespace MegaBuy.MegaBuyCorporation
 {

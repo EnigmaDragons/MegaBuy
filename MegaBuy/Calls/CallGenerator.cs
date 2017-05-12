@@ -1,5 +1,7 @@
 ﻿using MegaBuy.Calls.Rules;
 using System;
+using MegaBuy.Jobs;
+using MegaBuy.Jobs.Referrer;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 
 namespace MegaBuy.Calls
