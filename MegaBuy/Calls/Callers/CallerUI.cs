@@ -27,7 +27,6 @@ namespace MegaBuy.Calls.Callers
                 TextColor = Color.White,
                 Transform = new Transform2(new Vector2(0, 400 + Sizes.Margin), new Size2(250, 260))
             };
-            World.Subscribe(EventSubscription.Create<CallConnecting>(x => StartConnecting(), this));
             World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
         }
@@ -42,12 +41,6 @@ namespace MegaBuy.Calls.Callers
                 World.Draw("Images/Customers/" + _caller, parentTransform + _transform + new Transform2(new Vector2(5, 5), new Size2(240, 400)));
                 _info.Draw(absoluteTransform);
             }
-            
-        }
-
-        private void StartConnecting()
-        {
-            
         }
 
         private void StartCall(Call call)
