@@ -59,6 +59,7 @@
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Player\CharacterSex.cs" />
+    <Compile Include="Player\Energy\EnergyRecovery.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
     <Compile Include="Apartment\Landlord.cs" />
     <Compile Include="Calls\Messages\CallRole.cs" />
@@ -324,10 +325,19 @@
     <Content Include="Content\Images\Endings\heartattack.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Items\blueberry-cheesecake.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\chocolate-cookie.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Items\deli-kingwich.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Items\ham-sub-royale.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\giant-ice-cream-sandwich.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Items\jr-burrito.png">
@@ -339,7 +349,16 @@
     <Content Include="Content\Images\Items\mctaco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Items\strawberry-mini-cake.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\strawberry-roll.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Items\value-dog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Items\vanilla-cupcake.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\2\bed-bot.png">

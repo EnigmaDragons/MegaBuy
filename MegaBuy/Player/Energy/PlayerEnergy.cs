@@ -31,6 +31,12 @@ namespace MegaBuy.Player.Energy
             _energyPerHourSlept = energyPerHourSlept;
             World.Subscribe(EventSubscription.Create<MinuteChanged>(MinuteChanged, this));
             World.Subscribe(EventSubscription.Create<WentToBed>(WentToBed, this));
+            World.Subscribe(EventSubscription.Create<EnergyRecovery>(EnergyRecovered, this));
+        }
+
+        private void EnergyRecovered(EnergyRecovery obj)
+        {
+            _energy = Math.Max(100, Math.Min(0, _energy + obj.Amount)); 
         }
 
         private void WentToBed(WentToBed wentoToBed)
