@@ -15,6 +15,8 @@ namespace MegaBuy.Calls.Rules
         ReferToRecommendations,
         ReferToFeedback,
         ReferToGeneralist,
-        // @todo #1 Add ReturnSpecialist Resolution Options
+        ApproveReturn,
+        ApproveReplacement,
+        Reject,
     }
 }
