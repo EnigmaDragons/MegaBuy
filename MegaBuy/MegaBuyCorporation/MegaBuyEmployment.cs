@@ -10,6 +10,8 @@ using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Policies;
+using MegaBuy.Jobs;
+using MegaBuy.Jobs.Referrer;
 
 namespace MegaBuy.MegaBuyCorporation
 {

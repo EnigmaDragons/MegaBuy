@@ -1,6 +1,6 @@
-﻿using MegaBuy.Money.Amounts;
+﻿using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 
-namespace MegaBuy.MegaBuyCorporation.JobRoles.Referrer
+namespace MegaBuy.Jobs.Referrer
 {
     public static class ReferrerPerCallRates
     {
