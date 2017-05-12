@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MegaBuy.MegaBuyCorporation;
-using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -9,7 +7,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.Policies
+namespace MegaBuy.MegaBuyCorporation.Policies
 {
     public sealed class PolicyPageUI : IVisual
     {

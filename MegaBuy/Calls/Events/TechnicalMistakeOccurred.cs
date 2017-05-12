@@ -1,5 +1,5 @@
-﻿using MegaBuy.Money.Amounts;
-using MegaBuy.Policies;
+﻿using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Money.Amounts;
 
 namespace MegaBuy.Calls.Events
 {
