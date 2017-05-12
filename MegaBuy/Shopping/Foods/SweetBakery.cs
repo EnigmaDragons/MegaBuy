@@ -5,6 +5,7 @@ namespace MegaBuy.Shopping.Foods
 {
     public sealed class SweetBakery : IShoppingCompany
     {
+        private readonly GameState _gameState = CurrentGameState.GameState;
         public string Name => "Sweet Bakery";
         public string Description => "The newest old-fashioned sugary delights that you need to feel like your normal self.";
 
@@ -28,7 +29,7 @@ namespace MegaBuy.Shopping.Foods
         {
             var food = (Food)item;
             World.Publish(new FoodEaten(food));
-            GameState.PlayerAccount.Remove(food.Cost);
+            _gameState.PlayerAccount.Remove(food.Cost);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace MegaBuy.Shopping.Foods
 {
     public class McKingJrs : IShoppingCompany
     {
+        private readonly GameState _gameState = CurrentGameState.GameState;
         public string Name => "McKing Jr's";
         public string Description => "We make the foods you crave!";
         public List<IItem> Items { get; } = new List<IItem>
@@ -22,7 +23,7 @@ namespace MegaBuy.Shopping.Foods
         {
             var food = (Food) item;
             World.Publish(new FoodEaten(food));
-            GameState.PlayerAccount.Remove(food.Cost);
+            _gameState.PlayerAccount.Remove(food.Cost);
         }
     }
 }

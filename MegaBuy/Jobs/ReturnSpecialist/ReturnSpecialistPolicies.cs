@@ -13,8 +13,10 @@ namespace MegaBuy.Jobs.ReturnSpecialist
 
         private static readonly Predicate<Caller> Any = x => true;
         private static readonly Predicate<Caller> ItemWasPurchasedAtMegaBuy = x => x.TraitMatches("ItemWasPurchasedAt", "MegaBuy");
-        private static readonly Predicate<Caller> ItemIsBrokenAndIsWithin60Days = x => x.HasTrait("ItemIsBroken");
-        private static readonly Predicate<Caller> ItemIsNotBrokenAndIsWithin30Days = x => !x.HasTrait("ItemIsBroken");
+        private static readonly Predicate<Caller> ItemIsBrokenAndIsWithin60Days = x => x.HasTrait("ItemIsBroken")
+            && x.IsAtMost("ItemWasDeliveredAt", 60);
+        private static readonly Predicate<Caller> ItemIsNotBrokenAndIsWithin30Days = x => !x.HasTrait("ItemIsBroken")
+            && x.IsAtMost("ItemWasDeliveredAt", 30);
         private static readonly Predicate<Caller> ReplacementIsInStock = x => x.HasTrait("ItemIsReplacable");
         private static readonly Predicate<Caller> ItemNotSoldAsIs = x => !x.HasTrait("ItemWasSoldAsIs");
         
