@@ -4,6 +4,7 @@ namespace MegaBuy.Calls.Rules
     public enum CallResolution
     {
         Any,
+        CallerHangUp,
         ReferToInfo,
         ReferToTroubleshooting,
         ReferToReturns,
