@@ -24,8 +24,8 @@ namespace MegaBuy.Jobs.Referrer
         
         private static readonly List<Func<Call>> Level1Calls = new List<Func<Call>> {
             () => CreateLvl1((c, s) => c.CallerSays("I want to return this dumb " + s.Product + "!"), CallResolution.ReferToReturns, Traits.None),
-            () => CreateLvl1((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.description[s.Problem] + "."), CallResolution.ReferToReturns, Traits.None),
-            () => CreateLvl1((c, s) => c.CallerSays("I need help. My " + s.Product + " " + Problems.description[s.Problem] + "."), CallResolution.ReferToTroubleshooting, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.Description[s.Problem] + "."), CallResolution.ReferToReturns, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays("I need help. My " + s.Product + " " + Problems.Description[s.Problem] + "."), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("How much can I sell my " + Products.Random + " for?"), CallResolution.ReferToInfo, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("MY " + Products.Random.ToUpper() + " DOESN'T WORK AND I NEED HELP RIGHT NOW!!!"), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("Can I speak with accounting?"), CallResolution.EscalateCall, Traits.None),

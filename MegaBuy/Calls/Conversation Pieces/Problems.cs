@@ -4,7 +4,7 @@ namespace MegaBuy.Calls.Conversation_Pieces
 {
     public class Problems
     {
-        public static Dictionary<Problem, string> description = new Dictionary<Problem, string>
+        public static Dictionary<Problem, string> Description = new Dictionary<Problem, string>
         {
             { Problem.DoesntRun, "can't run" },
             { Problem.DoesntTurnOn, "doesn't turn on" },
