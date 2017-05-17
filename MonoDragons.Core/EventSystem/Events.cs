@@ -13,7 +13,7 @@ namespace MonoDragons.Core.EventSystem
 
         public int SubscriptionCount => _eventActions.Sum(e => e.Value.Count);
 
-        public void Publish<T>(T payload)
+        public void Publish(object payload)
         {
             var eventType = payload.GetType();
             if (_eventActions.ContainsKey(eventType))
