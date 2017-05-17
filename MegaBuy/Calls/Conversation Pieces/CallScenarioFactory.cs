@@ -14,7 +14,7 @@ namespace MegaBuy.Calls.Conversation_Pieces
             var product = Products.Random;
             return new CallScenario
             {
-                Player = GameState.CharName,
+                Player = CurrentGameState.GameState.CharName,
                 Caller = new Caller(patienceLossRateMs, traits),
                 Product = product,
                 Problem = Products.GetProblemFor(product)

@@ -4,6 +4,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MegaBuy.Shopping;
 using MegaBuy.Shopping.Foods;
+using MegaBuy.Player.Energy;
 
 namespace MegaBuy.Player.Hungers
 {
@@ -11,6 +12,7 @@ namespace MegaBuy.Player.Hungers
     {
         private readonly int _hungerPerHour;
 
+        private bool _isSleeping = false;
         private bool _hungerChanged;
         private decimal _hunger;
 
@@ -22,6 +24,8 @@ namespace MegaBuy.Player.Hungers
             _hungerPerHour = hungerPerHour;
             World.Subscribe(EventSubscription.Create<MinuteChanged>(IncreaseHunger, this));
             World.Subscribe(EventSubscription.Create<FoodEaten>(EatFood, this));
+            World.Subscribe(EventSubscription.Create<WentToBed>((w) => _isSleeping = true, this));
+            World.Subscribe(EventSubscription.Create<Awaken>((a) => _isSleeping = false, this));
         }
 
         private void EatFood(FoodEaten foodEaten)
@@ -29,11 +33,11 @@ namespace MegaBuy.Player.Hungers
             _hunger -= foodEaten.Food.HungerRecovery.Amount;
         }
 
-        private void IncreaseHunger(MinuteChanged hourChanged)
+        private void IncreaseHunger(MinuteChanged minuteChanged)
         {
-            if(_hunger + (decimal)_hungerPerHour / 60 >= Math.Ceiling(_hunger))
+            if(_hunger + (decimal)_hungerPerHour / 60 / (_isSleeping ? 6 : 1) >= Math.Ceiling(_hunger))
                 _hungerChanged = true;
-            _hunger += (decimal)_hungerPerHour / 60;
+            _hunger += (decimal)_hungerPerHour / 60 / (_isSleeping ? 6 : 1);
         }
 
         public void Update(TimeSpan delta)

@@ -19,6 +19,7 @@ namespace MegaBuy.Rents
         private readonly ImageLabel _disabledPayButton;
         private readonly PlayerAccount _playerAccount;
         private readonly Landlord _landlord;
+        private readonly GameState _gameState;
 
         private bool _canPayRent;
 
@@ -27,8 +28,9 @@ namespace MegaBuy.Rents
         
         public RentApp()
         {
-            _playerAccount = GameState.PlayerAccount;
-            _landlord = GameState.Landlord;
+            _gameState = CurrentGameState.GameState;
+            _playerAccount = _gameState.PlayerAccount;
+            _landlord = _gameState.Landlord;
             Branch = new ClickUIBranch("Rent App", (int)ClickUIPriorities.Pad);
             _amountDue = new ImageLabel("", "Images/UI/label", new Transform2(new Vector2(-(Sizes.Label.Width / 2), 0), Sizes.Label));
             _paymentDueBy = new ImageLabel("", "Images/UI/label", new Transform2(new Vector2(-(Sizes.Label.Width / 2), Sizes.Label.Height + Sizes.Margin), Sizes.Label));

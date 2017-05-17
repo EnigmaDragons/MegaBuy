@@ -19,18 +19,18 @@ using MegaBuy.MegaBuyCorporation.Policies;
 
 namespace MegaBuy
 {
-    public static class GameState
+    public class GameState
     {
-        public static string CharName { get; set; }
-        public static Clock Clock { get; set; }
-        public static PlayerCharacter PlayerCharacter { get; set; }
-        public static PlayerAccount PlayerAccount { get; set; }
-        public static Pad Pad { get; set; }
-        public static Map<Type, object> SingleInstanceSubscriptions { get; set; }
-        public static Landlord Landlord { get; set; }
-        public static ActivePolicies ActivePolicies { get; set; }
+        public string CharName { get; set; }
+        public Clock Clock { get; set; }
+        public PlayerCharacter PlayerCharacter { get; set; }
+        public PlayerAccount PlayerAccount { get; set; }
+        public Pad Pad { get; set; }
+        public Map<Type, object> SingleInstanceSubscriptions { get; set; }
+        public Landlord Landlord { get; set; }
+        public ActivePolicies ActivePolicies { get; set; }
 
-        static GameState()
+        public GameState()
         {
             CharName = "player";
             ActivePolicies = new ActivePolicies();
@@ -40,7 +40,7 @@ namespace MegaBuy
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
             AddSingleInstanceSubscription(new CallQueue());
-            AddSingleInstanceSubscription(new MegaBuyEmployment());
+            AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReferrerPerCallRates.Level1PerCallRate));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
@@ -48,12 +48,12 @@ namespace MegaBuy
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
 
-        private static void AddSingleInstanceSubscription(object obj)
+        private void AddSingleInstanceSubscription(object obj)
         {
             SingleInstanceSubscriptions.Add(obj.GetType(), obj);
         }
 
-        public static object GetSaveData()
+        public object GetSaveData()
         {
             return new
             {

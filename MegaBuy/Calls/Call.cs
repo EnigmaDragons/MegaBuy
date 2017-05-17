@@ -25,7 +25,7 @@ namespace MegaBuy.Calls
 
         public Call(Caller caller, Script script, CallResolution correctResolution, List<ICallOption> options)
         {
-            _activePolicies = GameState.ActivePolicies;
+            _activePolicies = CurrentGameState.GameState.ActivePolicies;
             Caller = caller;
             Script = script;
             _correctResolution = correctResolution;

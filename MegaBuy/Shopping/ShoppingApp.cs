@@ -14,6 +14,7 @@ namespace MegaBuy.Shopping
         private readonly List<IShoppingCompany> _companies = new List<IShoppingCompany>
         {
             new McKingJrs(),
+            new SweetBakery(),
         };
 
         private readonly Transform2 _transform = new Transform2(new Vector2(350, Sizes.Margin));

@@ -13,7 +13,7 @@ namespace MegaBuy.Save
 
         public void Save(string saveName)
         {
-            _io.Save(saveName, GameState.GetSaveData());
+            _io.Save(saveName, CurrentGameState.GameState.GetSaveData());
         }
 
         public void Load(string saveName)

@@ -12,16 +12,13 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         private const CallResolution Replace = CallResolution.ApproveReplacement;
 
         private static readonly Predicate<Caller> Any = x => true;
-        // @todo #1 Backend: Wire in the ability to compare target item to purchase history
-        private static readonly Predicate<Caller> ItemWasPurchasedAtMegaBuy = x => true;
-        // @todo #1 Backend: Wire in the ability to check item condition
-        // @todo #1 Backend: Wire in the ability to check days since item purchase
-        private static readonly Predicate<Caller> ItemIsBrokenAndIsWithin60Days = x => true;
-        private static readonly Predicate<Caller> ItemIsNotBrokenAndIsWithin30Days = x => true;
-        // @todo #1 Backend: Wire in the ability to check company product stock for target item
-        private static readonly Predicate<Caller> ReplacementIsInStock = x => true;
-        // @todo #1 Backend: Wire in the ability to check target item condition
-        private static readonly Predicate<Caller> ItemNotSoldAsIs = x => true;
+        private static readonly Predicate<Caller> ItemWasPurchasedAtMegaBuy = x => x.TraitMatches("ItemWasPurchasedAt", "MegaBuy");
+        private static readonly Predicate<Caller> ItemIsBrokenAndIsWithin60Days = x => x.HasTrait("ItemIsBroken")
+            && x.IsAtMost("ItemWasDeliveredAt", 60);
+        private static readonly Predicate<Caller> ItemIsNotBrokenAndIsWithin30Days = x => !x.HasTrait("ItemIsBroken")
+            && x.IsAtMost("ItemWasDeliveredAt", 30);
+        private static readonly Predicate<Caller> ReplacementIsInStock = x => x.HasTrait("ItemIsReplacable");
+        private static readonly Predicate<Caller> ItemNotSoldAsIs = x => !x.HasTrait("ItemWasSoldAsIs");
         
         public static List<Policy> Level1 = new List<Policy>
         {
