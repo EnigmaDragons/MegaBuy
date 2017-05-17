@@ -61,6 +61,10 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\Data\PromoCodes.cs" />
+    <Compile Include="PurchaseHistories\Data\Provider.cs" />
+    <Compile Include="PurchaseHistories\Data\Providers.cs" />
+    <Compile Include="PurchaseHistories\Nullifier.cs" />
     <Compile Include="PurchaseHistories\Purchase.cs" />
     <Compile Include="PurchaseHistories\PurchaseHistory.cs" />
     <Compile Include="Player\CharacterSex.cs" />

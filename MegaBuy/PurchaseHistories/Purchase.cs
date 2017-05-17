@@ -1,25 +1,66 @@
 ﻿using System;
-using MegaBuy.Money.Amounts;
+using System.Collections.Generic;
+using System.Globalization;
+using MegaBuy.Calls.Conversation_Pieces;
+using MegaBuy.PurchaseHistories.Data;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy.PurchaseHistories
 {
     public class Purchase
     {
-        public DateTime Date { get; }
-        public string OrderID { get; }
-        public string ProductID { get; }
-        public string ProductName { get; }
-        public string ProviderName { get; }
-        public string ProviderID { get; }
-        public IAmount TotalCost { get; }
-        public IAmount ItemPrice { get; }
-        public string ShippingAddress { get; }
-        public string AddressOwner { get; }
-        public bool isDelivered { get; }
-        public string PromoCode { get; }
-        public bool SoldAsIs { get; }
-        public bool WasReturned { get; }
-        public DateTime? DeliverDateTime { get; }
-        public DateTime? ReturnDateTime { get; }
+        public string Date { get; private set; }
+        public string OrderID { get; private set; }
+        public string ProductID { get; private set; }
+        public string ProductName { get; private set; }
+        public string ProviderID { get; private set; }
+        public string ProviderName { get; private set; }
+        public string TotalCost { get; private set; }
+        public string ItemPrice { get; private set; }
+        public string ShippingAddress { get; private set; }
+        public string AddressOwner { get; private set; }
+        public string IsDelivered { get; private set; }
+        public string PromoCode { get; private set; }
+        public string SoldAsIs { get; private set; }
+        public string WasReturned { get; private set; }
+        public string DeliverDateTime { get; private set; }
+        public string ReturnDateTime { get; private set; }
+
+        public static IEnumerable<Purchase> CreateInfinite(DateTime lastDate)
+        {
+            for (var date = lastDate; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20))) 
+                yield return Create(date);
+        }
+
+        public static Purchase Create(DateTime purchaseDate)
+        {
+            var provider = Providers.Random;
+            var price = 100.00m;
+            return new Purchase
+            {
+                Date = purchaseDate.ToString(CultureInfo.InvariantCulture),
+                OrderID = CreateId().RandomlyNullify(),
+                ProductID = CreateId().RandomlyNullify(),
+                ProductName = Products.Random,
+                ProviderID = provider.Id.RandomlyNullify(),
+                ProviderName = provider.Name.RandomlyNullify(),
+                PromoCode = PromoCodes.Random.RandomlyNullify(),
+                SoldAsIs = Rng.Bool().ToString(),
+                IsDelivered = Rng.Bool().ToString(),
+                WasReturned = false.ToString().RandomlyNullify(),
+                ReturnDateTime = "NULL",
+                // @todo #1 Refine the following data values
+                ItemPrice = price.ToString(CultureInfo.InvariantCulture),
+                TotalCost = (price * Rng.Int(1, 5)).ToString(CultureInfo.InvariantCulture).RandomlyNullify(),
+                ShippingAddress = "NULL",
+                AddressOwner = "NULL",
+                DeliverDateTime = "NULL",
+            };
+        }
+
+        private static string CreateId()
+        {
+            return Guid.NewGuid().ToString();
+        }
     }
 }

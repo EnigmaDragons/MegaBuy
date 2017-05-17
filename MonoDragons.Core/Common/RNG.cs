@@ -8,6 +8,16 @@ namespace MonoDragons.Core.Common
     {
         private static readonly Random Instance = new Random(Guid.NewGuid().GetHashCode());
 
+        public static bool Bool()
+        {
+            return Int(1) == 1;
+        }
+
+        public static int Int()
+        {
+            return Int(int.MaxValue);
+        }
+
         public static int Int(int max)
         {
             return Instance.Next(max);
