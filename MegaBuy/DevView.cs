@@ -34,6 +34,9 @@ namespace MegaBuy
             var button3 = ImageTextButtonFactory.Create("Referer 3", new Vector2(Sizes.Margin*3 + Sizes.Button.Width*2, Sizes.Margin),
                 () => Promote(JobRole.ReferrerLevel3));
             _buttons.Add(button3);
+            var button4 = ImageTextButtonFactory.Create("Return Specialist 1", new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin),
+                () => Promote(JobRole.ReturnSpecialistLevel1));
+            _buttons.Add(button4);
             Input.On(Control.Select, Toggle);
         }
 

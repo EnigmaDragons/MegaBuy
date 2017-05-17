@@ -41,7 +41,7 @@ namespace MegaBuy.Shopping
                 _companyOptionUIs.Add(option);
                 _companiesBranch.Add(option.Branch);
             }
-            _return = ImageTextButtonFactory.Create("Return", new Vector2(925, 580), NavigateToCompanySelection);
+            _return = ImageTextButtonFactory.Create("Return", new Vector2(1000, 625), NavigateToCompanySelection);
         }
 
         public void Update(TimeSpan delta)

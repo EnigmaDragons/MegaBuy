@@ -5,7 +5,6 @@ using MegaBuy.Player.Energy;
 using MegaBuy.Player.Hungers;
 using MegaBuy.Time;
 using MegaBuy.UIs;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
