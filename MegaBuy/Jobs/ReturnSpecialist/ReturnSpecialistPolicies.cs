@@ -29,5 +29,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             new Policy("No item may be replaced, if the item is not in stock", ReplacementIsInStock, Replace),
             new Policy("Items sold \"As-Is\" may not returned", ItemNotSoldAsIs, ReturnOrReplace),
         };
+
+        // @todo #1 Create ReturnSpecialist Level 2 policies
     }
 }
