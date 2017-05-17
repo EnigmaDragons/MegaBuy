@@ -44,12 +44,13 @@
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
     <Compile Include="DevView.cs" />
+    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\RoleTraits.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionOffered.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleAccepted.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleDeclined.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />

@@ -3,12 +3,14 @@ using MegaBuy.Jobs;
 
 namespace MegaBuy.MegaBuyCorporation
 {
-    public class PromotionAccepted
+    public class JobRoleOffered
     {
         public JobRole JobRole { get; }
+        public string Message { get; }
 
-        public PromotionAccepted(JobRole jobRole)
+        public JobRoleOffered(string message, JobRole jobRole)
         {
+            Message = message;
             JobRole = jobRole;
         }
     }

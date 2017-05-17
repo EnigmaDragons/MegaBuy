@@ -1,13 +1,12 @@
-﻿using MegaBuy.Calls.Rules;
-using MegaBuy.Jobs;
+﻿using MegaBuy.Jobs;
 
 namespace MegaBuy.MegaBuyCorporation
 {
-    public class PromotionDeclined
+    public class JobRoleDeclined
     {
         public JobRole JobRole { get; }
 
-        public PromotionDeclined(JobRole jobRole)
+        public JobRoleDeclined(JobRole jobRole)
         {
             JobRole = jobRole;
         }

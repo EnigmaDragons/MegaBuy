@@ -68,7 +68,7 @@ namespace MegaBuy
         private void Promote(JobRole role)
         {
             Hide();
-            World.Publish(new PromotionAccepted(role));
+            World.Publish(new JobRoleAccepted(role));
         }
     }
 }
