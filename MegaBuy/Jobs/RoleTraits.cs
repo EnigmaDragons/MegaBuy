@@ -39,6 +39,7 @@ namespace MegaBuy.Jobs
             { JobRole.ReferrerLevel1, () => ReferrerCalls.NewLevel1Call() },
             { JobRole.ReferrerLevel2, () => ReferrerCalls.NewLevel2Call() },
             { JobRole.ReferrerLevel3, () => ReferrerCalls.NewLevel3Call() },
+            { JobRole.ReturnSpecialistLevel1, () => ReturnSpecialistCalls.NewLevel1Call() },
         };
     }
 }

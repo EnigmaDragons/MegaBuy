@@ -15,13 +15,14 @@ namespace MegaBuy.Jobs.ReturnSpecialist
 
         public ReturnSpecialistUI()
         {
-            _purchaseHistory = ImageTextButtonFactory.Create("Purchases", new Vector2(200, 500), () => World.Publish(new AppChanged(App.PurchaseHistory)));
+            _purchaseHistory = ImageTextButtonFactory.Create("Purchases", new Vector2(700, 500), () => World.Publish(new AppChanged(App.PurchaseHistory)));
             Branch = new ClickUIBranch("Return Specialist", (int)ClickUIPriorities.Pad);
             Branch.Add(_purchaseHistory);
         }
 
         public void Draw(Transform2 parentTransform)
         {
+            Branch.Location = parentTransform.Location;
             _purchaseHistory.Draw(parentTransform);
         }
     }

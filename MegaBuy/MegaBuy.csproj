@@ -46,14 +46,15 @@
     <Compile Include="DevView.cs" />
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\Referrer\ReferrerUI.cs" />
+    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
     <Compile Include="Jobs\RoleTraits.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionAccepted.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionDeclined.cs" />
-    <Compile Include="MegaBuyCorporation\PromotionOffered.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleAccepted.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleDeclined.cs" />
+    <Compile Include="MegaBuyCorporation\JobRoleOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
+    <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
     <Compile Include="Shopping\Foods\McKingJrs.cs" />

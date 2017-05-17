@@ -40,6 +40,7 @@ namespace MegaBuy.Calls
             World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(x => StartConnecting(x), this));
             World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
+            World.Subscribe(EventSubscription.Create<JobRoleAccepted>(Promote, this));
         }
 
         public void Update(TimeSpan delta)
@@ -88,7 +89,7 @@ namespace MegaBuy.Calls
             Branch.Add(_ready.Branch);
         }
 
-        private void Promote(PromotionAccepted promotion)
+        private void Promote(JobRoleAccepted promotion)
         {
             // @ todo #1 Make promotions call safe
             //currently with this new code i wrote it will cause a crash if one were to be promoted during a call
