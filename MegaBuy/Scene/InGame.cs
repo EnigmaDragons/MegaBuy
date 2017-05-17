@@ -49,7 +49,8 @@ namespace MegaBuy.Scene
             _pad = new Pad(_branch);
             _gameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
-            _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Add(_sleep.Branch); });
+            _branch.Add(_map.Branch);
+            _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Remove(_sleep.Branch); });
             _gameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             _thoughts = new ThoughtUI();

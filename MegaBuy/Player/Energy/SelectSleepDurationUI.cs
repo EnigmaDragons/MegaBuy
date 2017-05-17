@@ -20,7 +20,7 @@ namespace MegaBuy.Player.Energy
         public SelectSleepDurationUI(Action cancel)
         {
             _cancel = cancel;
-            Branch = new ClickUIBranch("Select Sleep Duration", (int)ClickUIPriorities.Room);
+            Branch = new ClickUIBranch("Select Sleep Duration", (int)ClickUIPriorities.Sleep);
             _question = new Label {Transform = new Transform2(Sizes.Label), Text="How long would you like to sleep?"};
             _backdrop = new ColoredRectangle {Color = Color.Yellow, Transform = new Transform2(new Size2(600, 300))};
             _hourDurationOptions.Add(new ImageTextButton("10", "Images/UI/button", "Images/UI/button-hover", "Images/UI/button-press",
