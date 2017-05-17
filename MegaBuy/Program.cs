@@ -17,7 +17,7 @@ namespace MegaBuy
         [STAThread]
         static void Main()
         {
-            using (var game = new NeedlesslyComplexMainGame("MegaBuy", "InGame", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            using (var game = new NeedlesslyComplexMainGame("MegaBuy", "MainMenu", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
                 game.Run();
         }
 
@@ -38,8 +38,9 @@ namespace MegaBuy
             {
                 { "Logo", () => new FadingInScene(new LogoScene()) },
                 { "MainMenu", () => new Menu() },
-                { "Starved", () => new Starved() },
+                { "CharacterCreation", () => new CharacterCreation() },
                 { "InGame", () => new InGame() },
+                { "Starved", () => new Starved() },
                 { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new FadingInScene(new Fired()) },
                 { "HeartAttack", () => new FadingInScene(new HeartAttack()) },

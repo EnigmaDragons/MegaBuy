@@ -75,6 +75,7 @@
     <Compile Include="Player\Energy\CollapsedWithExhaustion.cs" />
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
+    <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
     <Compile Include="Shopping\Foods\McKingJrs.cs" />
