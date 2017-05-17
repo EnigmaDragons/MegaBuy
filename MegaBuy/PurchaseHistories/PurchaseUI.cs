@@ -14,9 +14,10 @@ namespace MegaBuy.PurchaseHistories
 
         public PurchaseUI(Purchase purchase)
         {
-            AddLabel(new Transform2(new Vector2(15, 15), new Size2(670, 25)), "14", purchase.ProductName ?? "null");
-            AddLabel(new Transform2(new Vector2(680, 15), new Size2(335, 25)), "ten", "Product ID: " + purchase.ProductID ?? "null");
-            AddLabel(new Transform2(new Vector2(1020, 15), new Size2(330, 25)), "twelve", "Ordered On: " + purchase.Date.ToString(DateFormat));
+            AddLabel(new Transform2(new Vector2(15, 15), new Size2(400, 25)), "14", purchase.ProductName ?? "null");
+            AddLabel(new Transform2(new Vector2(425, 15), new Size2(400, 25)), "ten", "Product ID: " + purchase.ProductID ?? "null");
+            AddLabel(new Transform2(new Vector2(835, 15), new Size2(400, 25)), "twelve", "Ordered On: " + purchase.Date.ToString(DateFormat));
+            AddLabel(new Transform2(new Vector2(835, 45), new Size2(400, 25)), "ten", "Order ID: " + purchase.OrderID ?? "null");
         }
 
         public void Draw(Transform2 parentTransform)
