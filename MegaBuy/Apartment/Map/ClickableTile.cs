@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Apartment.Map
 {
-    public class Tile
+    public class ClickableTile : ClickableUIElement
     {
         public string TextureName { get; }
         public TileLocation Location { get; }
@@ -15,10 +16,11 @@ namespace MegaBuy.Apartment.Map
         public BoxCollider Collider { get; } 
         public Action Interact { get; }
         
-        public Tile(string textureName, TileLocation location, bool blocking, int layer = 0)
+        public ClickableTile(string textureName, TileLocation location, bool blocking, int layer = 0)
             : this (textureName, location, blocking, () => { }, layer) { }
 
-        public Tile(string textureName, TileLocation location, bool blocking, Action onInteract, int layer = 0)
+        public ClickableTile(string textureName, TileLocation location, bool blocking, Action onInteract, int layer = 0)
+            : base(location.Transform.ToRectangle())
         {
             TextureName = "Images/Map/" + textureName;
             Location = location;
@@ -36,6 +38,23 @@ namespace MegaBuy.Apartment.Map
         public virtual void Draw(Transform2 parentTransform)
         {
             World.Draw(TextureName, parentTransform + Transform);
+        }
+
+        public override void OnReleased()
+        {
+
+        }
+
+        public override void OnEntered()
+        {
+        }
+
+        public override void OnExitted()
+        {
+        }
+
+        public override void OnPressed()
+        {
         }
     }
 }

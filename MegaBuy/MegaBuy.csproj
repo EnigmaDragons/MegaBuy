@@ -179,7 +179,7 @@
     <Compile Include="Calls\Ratings\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
     <Compile Include="Apartment\ApartmentMap.cs" />
-    <Compile Include="Apartment\Map\Tile.cs" />
+    <Compile Include="Apartment\Map\ClickableTile.cs" />
     <Compile Include="Apartment\Map\TileLocation.cs" />
     <Compile Include="Apartment\Map\TileSize.cs" />
     <Compile Include="Apartment\Map\TileWalker.cs" />
