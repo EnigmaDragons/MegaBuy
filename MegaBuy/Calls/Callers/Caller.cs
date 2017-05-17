@@ -5,6 +5,8 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using MegaBuy.Money.Amounts;
+using MegaBuy.Calls.Ratings;
 
 namespace MegaBuy.Calls.Callers
 {
@@ -37,7 +39,7 @@ namespace MegaBuy.Calls.Callers
             _elapsedMs += delta.TotalMilliseconds;
             UpdatePatience();
             if (Patience.Value == 0)
-                World.Publish(new CallFailed());
+                World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
 
         private void UpdatePatience()

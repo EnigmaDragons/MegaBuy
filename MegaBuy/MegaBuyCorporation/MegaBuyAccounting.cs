@@ -7,6 +7,7 @@ using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
+using System;
 
 namespace MegaBuy.Money
 {
@@ -29,6 +30,12 @@ namespace MegaBuy.Money
             World.Subscribe(EventSubscription.Create<CallSucceeded>(CallSucceeded, this));
             World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
+            World.Subscribe(EventSubscription.Create<CallFailed>(CallFailed, this));
+        }
+
+        private void CallFailed(CallFailed call)
+        {
+            _dayPayment.Remove(call.PayPenalty);
         }
 
         public void ChangePaymentPlans(PerCallRate payment)
@@ -43,8 +50,11 @@ namespace MegaBuy.Money
 
         private void CallRated(CallRated rated)
         {
-            _pendingPayments.Remove(rated.CallId);
-            _dayPayment.Add(new CallPayment(_currentRate, rated.Rating));
+            if (_pendingPayments.Contains(rated.CallId))
+            {
+                _pendingPayments.Remove(rated.CallId);
+                _dayPayment.Add(new CallPayment(_currentRate, rated.Rating));
+            }
         }
 
         private void HourChanged(HourChanged hourChanged)

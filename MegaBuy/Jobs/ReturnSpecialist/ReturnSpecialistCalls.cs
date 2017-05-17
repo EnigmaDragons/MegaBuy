@@ -18,6 +18,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             new CallResolutionOption(CallResolution.Reject, "Reject Request"),
         };
 
+        // @todo #1 Refine these scenarios to work nicely with Purchase History
         private static readonly List<Func<Call>> Level1Calls = new List<Func<Call>>
         {
             () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.Product}!"), CallResolution.ApproveReturn),
@@ -49,6 +50,11 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         private static Script InitScript()
         {
             return new Script { { CallRole.Player, Introductions.Random() } };
+        }
+
+        public static Call NewLevel1Call()
+        {
+            return Level1Calls.Random().Invoke();
         }
     }
 }

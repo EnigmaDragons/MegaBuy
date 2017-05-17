@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MegaBuy.UIs;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
@@ -13,7 +14,7 @@ namespace MegaBuy.PurchaseHistories
 
         public void Draw(Transform2 parentTransform)
         {
-            World.Draw("Images/UI/purchase", Vector2.Zero);
+            World.Draw("Images/UI/purchase", parentTransform + new Transform2(Sizes.Purchase));
         }
     }
 }
