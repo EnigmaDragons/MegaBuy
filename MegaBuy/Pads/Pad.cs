@@ -74,7 +74,14 @@ namespace MegaBuy.Pads
             if (app.Equals(App.Notification))
                 return new NotificationApp();
             if (app.Equals(App.PurchaseHistory))
-                return new PurchaseHistory(new List<Purchase> { new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase()});
+                return new PurchaseHistory(new List<Purchase> {
+                    new Purchase()
+                    {
+                        ProductName = "Carl's Maximizing Vapirizer",
+                        ProductID = "adf983ij23r9dsf9we",
+                        Date = DateTime.Now,
+                    },
+                    new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase()});
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

@@ -16,7 +16,7 @@ namespace MegaBuy.OrderHistories
         private readonly List<IVisual> _visuals = new List<IVisual>();
 
         private readonly IEnumerator<Purchase> _purchaseSupplier;
-        private readonly List<PurchaseUI> _purchases = new List<PurchaseUI>();
+        private readonly List<PurchaseUI> _purchaseUIs = new List<PurchaseUI>();
         private readonly int _ordersPerPage = 3;
 
         private int _index = 0;
@@ -53,10 +53,10 @@ namespace MegaBuy.OrderHistories
 
         private void RetrieveNeededPurchases()
         {
-            while (_purchases.Count < _index + _ordersPerPage)
+            while (_purchaseUIs.Count < _index + _ordersPerPage)
             {
                 _purchaseSupplier.MoveNext();
-                _purchases.Add(new PurchaseUI(_purchaseSupplier.Current));
+                _purchaseUIs.Add(new PurchaseUI(_purchaseSupplier.Current));
             }
         }
 
@@ -66,8 +66,9 @@ namespace MegaBuy.OrderHistories
 
         public void Draw(Transform2 parentTransform)
         {
+            Branch.ParentLocation = parentTransform.Location;
             _visuals.ForEach(x => x.Draw(parentTransform));
-            var currentlyViewingPurchases = _purchases.GetRange(_index, _ordersPerPage);
+            var currentlyViewingPurchases = _purchaseUIs.GetRange(_index, _ordersPerPage);
             for (int i = 0; i < currentlyViewingPurchases.Count; i++)
                 currentlyViewingPurchases[i].Draw(parentTransform + new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin + i * (Sizes.Purchase.Height + Sizes.Margin))));
         }
