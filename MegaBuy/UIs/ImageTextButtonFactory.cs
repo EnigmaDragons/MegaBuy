@@ -27,5 +27,12 @@ namespace MegaBuy.UIs
                 "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
                 new Transform2(location, Sizes.SideButton), onClick);
         }
+
+        public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick, Func<bool> isVisible)
+        {
+            return new ImageTextButton(text,
+                "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
+                new Transform2(location, Sizes.SideButton), onClick, isVisible);
+        }
     }
 }
