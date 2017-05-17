@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -12,10 +13,10 @@ namespace MegaBuy.PurchaseHistories
 {
     public class PurchaseHistory : IApp
     {
-        private readonly List<IVisual> _visuals;
+        private readonly List<IVisual> _visuals = new List<IVisual>();
 
         private readonly IEnumerator<Purchase> _purchaseSupplier;
-        private readonly List<PurchaseUI> _purchases;
+        private readonly List<PurchaseUI> _purchases = new List<PurchaseUI>();
         private readonly int _ordersPerPage = 3;
 
         private int _index = 0;
@@ -39,6 +40,7 @@ namespace MegaBuy.PurchaseHistories
             _visuals.Add(backButton);
             _visuals.Add(forwardButton);
             _visuals.Add(returnButton);
+            RetrieveNeededPurchases();
         }
 
         private void NavigateBack()
@@ -49,6 +51,11 @@ namespace MegaBuy.PurchaseHistories
         private void NavigateForward()
         {
             _index += _ordersPerPage;
+            RetrieveNeededPurchases();
+        }
+
+        private void RetrieveNeededPurchases()
+        {
             while (_purchases.Count < _index + _ordersPerPage)
             {
                 _purchaseSupplier.MoveNext();
@@ -65,7 +72,7 @@ namespace MegaBuy.PurchaseHistories
             _visuals.ForEach(x => x.Draw(parentTransform));
             var currentlyViewingPurchases = _purchases.GetRange(_index, _ordersPerPage);
             for (int i = 0; i < currentlyViewingPurchases.Count; i++)
-                currentlyViewingPurchases[i].Draw(parentTransform);
+                currentlyViewingPurchases[i].Draw(parentTransform + new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin + i * (Sizes.Purchase.Height + Sizes.Margin))));
         }
     }
 }

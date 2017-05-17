@@ -161,6 +161,7 @@
     <Compile Include="UserInterface\ScreenClickable.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\SingleImageButton.cs" />
+    <Compile Include="UserInterface\TextBox.cs" />
     <Compile Include="UserInterface\TextButton.cs" />
     <Compile Include="UserInterface\TextClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />

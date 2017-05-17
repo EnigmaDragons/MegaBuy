@@ -87,7 +87,7 @@ namespace MonoDragons.Core.Engine
         }
 
         //[DebuggerStepThrough]
-        public static void Publish<T>(T payload)
+        public static void Publish(object payload)
         {
             Debug.WriteLine(payload.GetType());
             _events.Publish(payload);

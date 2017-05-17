@@ -9,9 +9,14 @@ namespace MegaBuy.UIs
     {
         public static ImageTextButton Create(string text, Vector2 location, Action onClick)
         {
-            return new ImageTextButton(text, 
+            return Create(text, location, onClick, () => true);
+        }
+
+        public static ImageTextButton Create(string text, Vector2 location, Action onClick, Func<bool> isVisible)
+        {
+            return new ImageTextButton(text,
                 "Images/UI/button-press", "Images/UI/button", "Images/UI/button-hover",
-                new Transform2(location, Sizes.Button), onClick);
+                new Transform2(location, Sizes.Button), onClick, isVisible);
         }
 
         public static ImageTextButton CreateTrapazoid(string text, Vector2 location, Action onClick)
@@ -23,9 +28,7 @@ namespace MegaBuy.UIs
 
         public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick)
         {
-            return new ImageTextButton(text,
-                "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
-                new Transform2(location, Sizes.SideButton), onClick);
+            return CreateRotated(text, location, onClick, () => true);
         }
 
         public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick, Func<bool> isVisible)

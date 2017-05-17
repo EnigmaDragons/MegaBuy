@@ -18,7 +18,6 @@ namespace MegaBuy.MegaBuyCorporation
     public class MegaBuyEmployment
     {
         private readonly ActivePolicies _policies;
-        private readonly GameState _gameState;
 
         private int _numMistakesInCurrentDay;
         private int _numResolvedCallsInCurrentDay;
@@ -26,7 +25,6 @@ namespace MegaBuy.MegaBuyCorporation
         
         public MegaBuyEmployment(ActivePolicies policies)
         {
-            _gameState = CurrentGameState.GameState;
             _policies = policies;
             role = JobRole.ReferrerLevel1;
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
@@ -67,12 +65,13 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(JobRole role)
         {
-            var accounting = (MegaBuyAccounting)_gameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
+            // @ todo #1 fix current game state so it exists before this object is initialized
+            var accounting = (MegaBuyAccounting)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
             accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
             _policies.Clear();
             _policies.Add(RoleTraits.Policies[role]);
             World.Publish(new PolicyChanged());
-            var queue = (CallQueue)_gameState.SingleInstanceSubscriptions[typeof(CallQueue)];
+            var queue = (CallQueue)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(CallQueue)];
             queue.ChangePlayerRole(role);
         }
 
