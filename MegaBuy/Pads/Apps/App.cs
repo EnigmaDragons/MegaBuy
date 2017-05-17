@@ -9,6 +9,7 @@ namespace MegaBuy.Pads.Apps
         Notification,
         Account,
         Rent,
-        Policies
+        Policies,
+        PurchaseHistory
     }
 }

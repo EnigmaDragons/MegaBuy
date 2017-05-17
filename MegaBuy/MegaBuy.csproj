@@ -44,6 +44,7 @@
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
     <Compile Include="DevView.cs" />
+    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\RoleTraits.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\Purchase.cs" />
+    <Compile Include="PurchaseHistories\PurchaseHistory.cs" />
     <Compile Include="Player\CharacterSex.cs" />
     <Compile Include="Player\Energy\EnergyRecovery.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Player\Energy\CollapsedWithExhaustion.cs" />
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
+    <Compile Include="PurchaseHistories\PurchaseUI.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
@@ -649,6 +653,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\policy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\purchase.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\star-empty.png">

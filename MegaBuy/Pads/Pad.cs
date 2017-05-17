@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Notifications.Old;
+using MegaBuy.OrderHistories;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
+using MegaBuy.PurchaseHistories;
 using MegaBuy.Rents;
 using MegaBuy.Shopping;
 using MegaBuy.UIs;
@@ -71,6 +73,8 @@ namespace MegaBuy.Pads
                 return new RentApp();
             if (app.Equals(App.Notification))
                 return new NotificationApp();
+            if (app.Equals(App.PurchaseHistory))
+                return new PurchaseHistory(new List<Purchase> { new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase(), new Purchase()});
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }
