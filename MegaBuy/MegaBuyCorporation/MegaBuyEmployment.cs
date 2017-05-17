@@ -18,7 +18,7 @@ namespace MegaBuy.MegaBuyCorporation
     public class MegaBuyEmployment
     {
         private readonly ActivePolicies _policies;
-        private readonly GameState _gameState;
+        private GameState _gameState;
 
         private int _numMistakesInCurrentDay;
         private int _numResolvedCallsInCurrentDay;
@@ -67,6 +67,8 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(JobRole role)
         {
+            // @ todo #1 fix current game state so it exists before this object is initialized
+            _gameState = CurrentGameState.GameState;
             var accounting = (MegaBuyAccounting)_gameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
             accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
             _policies.Clear();

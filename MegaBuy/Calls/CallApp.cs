@@ -4,6 +4,8 @@ using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Ratings;
+using MegaBuy.Jobs;
+using MegaBuy.MegaBuyCorporation;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Temp;
 using MegaBuy.UIs;
@@ -23,6 +25,7 @@ namespace MegaBuy.Calls
         private readonly CallOptionsUI _callOptions = new CallOptionsUI();
         private readonly RatingUI _rating = new RatingUI();
 
+        private IVisualControl _roleUI = RoleTraits.Controls[JobRole.ReferrerLevel1];
         private Call _call;
         private bool _isInCall = false;
         private bool _isCalling = false;
@@ -52,6 +55,7 @@ namespace MegaBuy.Calls
             _messenger.Draw(absoluteTransform);
             _caller.Draw(absoluteTransform);
             _callOptions.Draw(absoluteTransform);
+            _roleUI.Draw(absoluteTransform);
             if (!_isCalling)
             {
                 _ready.Draw(absoluteTransform);
@@ -72,6 +76,7 @@ namespace MegaBuy.Calls
             _call = call;
             _isInCall = true;
             Branch.Add(_callOptions.Branch);
+            Branch.Add(_roleUI.Branch);
         }
 
         private void EndCall()
@@ -79,7 +84,16 @@ namespace MegaBuy.Calls
             _isCalling = false;
             _isInCall = false;
             Branch.Remove(_callOptions.Branch);
+            Branch.Remove(_roleUI.Branch);
             Branch.Add(_ready.Branch);
+        }
+
+        private void Promote(PromotionAccepted promotion)
+        {
+            // @ todo #1 Make promotions call safe
+            //currently with this new code i wrote it will cause a crash if one were to be promoted during a call
+            //this could be done by not allowing promotions during calls, store the promotion until end of call, or end the call they are currently in 
+            _roleUI = RoleTraits.Controls[promotion.JobRole];
         }
     }
 }

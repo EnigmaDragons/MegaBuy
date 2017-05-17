@@ -86,7 +86,6 @@ namespace MegaBuy.Jobs.Referrer
             () => CreateLvl3((c, s) => c.CallerSays("Can you help me schedule a corporate party?"), CallResolution.ReferToGeneralist, Traits.None),
             () => CreateLvl3((c, s) => c.CallerSays("Let me speak with your lawyers"), CallResolution.ReferToLegal, Traits.None),
             // @ todo #1 Create 8 more Referrer Level 3 call scripts
-
         };
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
