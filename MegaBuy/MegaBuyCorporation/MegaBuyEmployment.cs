@@ -65,6 +65,7 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(JobRole role)
         {
+            // @ todo #1 fix current game state so it exists before this object is initialized
             var accounting = (MegaBuyAccounting)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
             accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
             _policies.Clear();

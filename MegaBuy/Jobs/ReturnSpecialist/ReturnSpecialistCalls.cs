@@ -51,5 +51,10 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         {
             return new Script { { CallRole.Player, Introductions.Random() } };
         }
+
+        public static Call NewLevel1Call()
+        {
+            return Level1Calls.Random().Invoke();
+        }
     }
 }
