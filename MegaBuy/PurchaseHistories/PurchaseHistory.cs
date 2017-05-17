@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Pads.Apps;
-using MegaBuy.PurchaseHistories;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.OrderHistories
+namespace MegaBuy.PurchaseHistories
 {
     public class PurchaseHistory : IApp
     {
@@ -23,6 +23,9 @@ namespace MegaBuy.OrderHistories
 
         public App Type => App.PurchaseHistory;
         public ClickUIBranch Branch { get; }
+
+        public PurchaseHistory()
+            : this(Purchase.CreateInfinite(new DateTime(2020 + Rng.Int(1, 40), Rng.Int(1, 13), Rng.Int(1, 29)))) { }
 
         public PurchaseHistory(IEnumerable<Purchase> purchaseSupplier)
         {

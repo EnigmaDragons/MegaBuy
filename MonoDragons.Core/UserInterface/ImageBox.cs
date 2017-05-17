@@ -7,11 +7,14 @@ namespace MonoDragons.Core.UserInterface
     {
         private readonly Transform2 _transform;
 
-        private string _image = "none";
+        private string _image;
 
-        public ImageBox(Transform2 transform)
+        public ImageBox(Transform2 transform) : this(transform, "none") {}
+
+        public ImageBox(Transform2 transform, string name)
         {
             _transform = transform;
+            _image = name;
         }
 
         public void SetImage(string name)
