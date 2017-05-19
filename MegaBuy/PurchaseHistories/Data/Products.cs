@@ -1,28 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls.Conversation_Pieces;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.PurchaseHistories.Data
 {
-    public sealed class Products
+    public static class Products
     {
-        private static readonly Dictionary<string, ProductCategory[]> Prods = new Dictionary<string, ProductCategory[]>
+        private static readonly List<Product> Prods = new List<Product>
         {
-            { "Hopper", new [] { ProductCategory.Machine } },
-            { "PAD XMB-9700", new [] { ProductCategory.Machine } },
-            { "Electro-Coffee-ator", new [] { ProductCategory.Machine } },
-            { "Ghandi Gun", new [] { ProductCategory.Weapon } },
-            { "MagMaster 30X", new [] { ProductCategory.Weapon } },
-            { "PQK 72", new [] { ProductCategory.Weapon } },
-            { "Fillmore the Flying Puppy", new [] { ProductCategory.Entertainment } },
-            { "Terminator XVII", new [] { ProductCategory.Entertainment } },
-            { "The Clone Uprising", new [] { ProductCategory.Entertainment } },
-            { "Matrix Analyzer", new [] { ProductCategory.Software } },
-            { "Data Raven", new [] { ProductCategory.Software } },
-            { "Ice Ice Firewall", new [] { ProductCategory.Software } },
-            { "Mini-Micro-Mega-DataMaster", new [] { ProductCategory.Software } },
+            Make("Hopper", 275693.45m, ProductCategory.Machine),
+            Make("PAD XMB-9700", 1654.14m, ProductCategory.Machine),
+            Make("Electro-Coffee-ator", 151.15m, ProductCategory.Machine),
+            Make("Ghandi Gun", 2123.72m, ProductCategory.Weapon),
+            Make("MagMaster 30X", 3045.61m, ProductCategory.Weapon),
+            Make("PQK 72", 2898.14m, ProductCategory.Weapon),
+            Make("Fillmore the Flying Puppy", 63.84m, ProductCategory.Entertainment),
+            Make("Terminator XVII", 74.44m, ProductCategory.Entertainment),
+            Make("The Clone Uprising", 86.18m, ProductCategory.Entertainment),
+            Make("Matrix Analyzer", 882.37m, ProductCategory.Software),
+            Make("Data Raven", 195.72m, ProductCategory.Software),
+            Make("Ice Ice Firewall", 416.25m, ProductCategory.Software),
+            Make("Mini-Micro-Mega-DataMaster", 373.68m, ProductCategory.Software),
         };
+
+        private static Product Make(string name, decimal price, ProductCategory category)
+        {
+            return new Product(Guid.NewGuid().ToString(), name, price, category);
+        }
 
         private static readonly Dictionary<ProductCategory, Problem[]> Operations = new Dictionary<ProductCategory, Problem[]>
         {
@@ -34,13 +40,13 @@ namespace MegaBuy.PurchaseHistories.Data
 
         public static List<Problem> GetProblems(string product)
         {
-            return Prods[product]
-                .SelectMany(x => Operations[x])
+            return Prods.Where(x => x.Name.Equals(product))
+                .SelectMany(x => Operations[x.Category])
                 .Distinct()
                 .ToList();
         }
 
-        public static string Random => Prods.Random().Key;
+        public static Product Random => Prods.Random();
 
         public static Problem GetProblemFor(string product)
         {
