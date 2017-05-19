@@ -7,6 +7,8 @@ using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
+using MegaBuy.PurchaseHistories;
+using MegaBuy.PurchaseHistories.Data;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.Jobs.Referrer

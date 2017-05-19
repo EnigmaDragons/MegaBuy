@@ -1,6 +1,8 @@
 ﻿using MegaBuy.Calls.Callers;
 using System.Collections.Generic;
 using MegaBuy.Jobs;
+using MegaBuy.PurchaseHistories;
+using MegaBuy.PurchaseHistories.Data;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {

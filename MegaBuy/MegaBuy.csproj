@@ -64,6 +64,7 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\Data\Product.cs" />
     <Compile Include="PurchaseHistories\Data\PromoCodes.cs" />
     <Compile Include="PurchaseHistories\Data\Provider.cs" />
     <Compile Include="PurchaseHistories\Data\Providers.cs" />
@@ -113,10 +114,10 @@
     <Compile Include="Calls\Events\CallResolved.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
-    <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
+    <Compile Include="PurchaseHistories\Data\ProductCategory.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
-    <Compile Include="Calls\Conversation Pieces\Products.cs" />
+    <Compile Include="PurchaseHistories\Data\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
     <Compile Include="Jobs\JobRole.cs" />

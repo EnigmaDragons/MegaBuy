@@ -1,8 +1,9 @@
 ﻿
-namespace MegaBuy.Calls.Conversation_Pieces
+namespace MegaBuy.PurchaseHistories.Data
 {
     public enum ProductCategory
     {
+        Unknown,
         Machine,
         Weapon,
         Entertainment,

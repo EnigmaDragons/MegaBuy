@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MegaBuy.Calls.Conversation_Pieces;
 using MonoDragons.Core.Common;
 
-namespace MegaBuy.Calls.Conversation_Pieces
+namespace MegaBuy.PurchaseHistories.Data
 {
-    public class Products
+    public sealed class Products
     {
         private static readonly Dictionary<string, ProductCategory[]> Prods = new Dictionary<string, ProductCategory[]>
         {
