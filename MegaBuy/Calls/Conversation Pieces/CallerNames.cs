@@ -23,7 +23,14 @@ namespace MegaBuy.Calls.Conversation_Pieces
             "Ash Jacobson",
             "Mark Dennison",
             "Serra Rhonas",
-            "Eli Daniels"
+            "Eli Daniels",
+            "Alice Shaw",
+            "Jada Keilt",
+            "Amanda Feifer",
+            "Jay Michaels",
+            "Merida Kingsley",
+
+
         };
 
         public static string Random => names.Random();
