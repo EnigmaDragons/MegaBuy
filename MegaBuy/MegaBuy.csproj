@@ -214,6 +214,7 @@
     <Compile Include="Time\MinuteChanged.cs" />
     <Compile Include="UIs\ClickUIPriorities.cs" />
     <Compile Include="UIs\Colors.cs" />
+    <Compile Include="UIs\DateFormat.cs" />
     <Compile Include="UIs\ImageTextButtonFactory.cs" />
     <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />

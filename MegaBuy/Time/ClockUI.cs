@@ -13,6 +13,7 @@ namespace MegaBuy.Time
         private readonly Transform2 _transform = new Transform2(new Vector2(Sizes.SmallMargin + Sizes.OverlayIcon.Width + Sizes.Margin, 900 - Sizes.SmallMargin - Sizes.SmallLabel.Height));
         private readonly Clock _clock;
         private readonly Label _label;
+        // @todo #1 Display DateTime in ClockUI
 
         public ClockUI()
         {

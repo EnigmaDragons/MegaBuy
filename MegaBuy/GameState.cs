@@ -34,7 +34,7 @@ namespace MegaBuy
             CharName = "player";
             ActivePolicies = new ActivePolicies();
             ActivePolicies.Add(ReferrerPolicies.Level1Policies);
-            Clock = new Clock(400, 8, 0);
+            Clock = new Clock(400, new DateTime(2328, 7, 16, 8, 0, 0));
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
@@ -43,7 +43,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
-            World.Publish(new DayStarted(0));
+            World.Publish(new DayStarted(new DateTime(2328, 7, 16)));
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
