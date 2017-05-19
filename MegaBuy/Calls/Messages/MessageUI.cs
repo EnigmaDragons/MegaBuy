@@ -16,14 +16,14 @@ namespace MegaBuy.Calls.Messages
 
         public MessageUI(string message, int maxWidth, bool isPlayer)
         {
-            var font = Resources.Load<SpriteFont>("Fonts/arial");
+            var font = Resources.Load<SpriteFont>("Fonts/12");
             var newMessage = WrapText(font, message, maxWidth - 10);
             var size = font.MeasureString(newMessage);
             var position = isPlayer ? new Vector2(maxWidth - size.X - 10, 0) : new Vector2(0, 0);
             Height = (int)size.Y + 10;
             _label = new Label
             {
-                Font = "Fonts/arial",
+                Font = "Fonts/12",
                 BackgroundColor = isPlayer ? Colors.Secondary : Colors.Primary,
                 TextColor = Color.White,
                 Transform = new Transform2(position, new Size2((int)size.X + 10, (int)size.Y + 10)),
