@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -11,7 +10,7 @@ using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.PurchaseHistories
 {
-    public class PurchaseHistory : IApp
+    public class AdvancedPurchaseHistory : IApp
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
 
@@ -24,10 +23,10 @@ namespace MegaBuy.PurchaseHistories
         public App Type => App.PurchaseHistory;
         public ClickUIBranch Branch { get; }
 
-        public PurchaseHistory()
+        public AdvancedPurchaseHistory()
             : this(Purchase.CreateInfinite(new DateTime(2020 + Rng.Int(1, 40), Rng.Int(1, 13), Rng.Int(1, 29)))) { }
 
-        public PurchaseHistory(IEnumerable<Purchase> purchaseSupplier)
+        public AdvancedPurchaseHistory(IEnumerable<Purchase> purchaseSupplier)
         {
             _purchaseSupplier = purchaseSupplier.GetEnumerator();
             Branch = new ClickUIBranch("Purchase History", (int)ClickUIPriorities.Pad);
@@ -63,10 +62,6 @@ namespace MegaBuy.PurchaseHistories
             }
         }
 
-        public void Update(TimeSpan delta)
-        {
-        }
-
         public void Draw(Transform2 parentTransform)
         {
             Branch.ParentLocation = parentTransform.Location;
@@ -74,6 +69,10 @@ namespace MegaBuy.PurchaseHistories
             var currentlyViewingPurchases = _purchaseUIs.GetRange(_index, _ordersPerPage);
             for (int i = 0; i < currentlyViewingPurchases.Count; i++)
                 currentlyViewingPurchases[i].Draw(parentTransform + new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin + i * (Sizes.Purchase.Height + Sizes.Margin))));
+        }
+
+        public void Update(TimeSpan delta)
+        {
         }
     }
 }

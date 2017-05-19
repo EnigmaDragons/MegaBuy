@@ -1,12 +1,9 @@
 ﻿using System;
-using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
-using MegaBuy.Money.Amounts;
-using MegaBuy.Calls.Ratings;
 
 namespace MegaBuy.Calls.Callers
 {

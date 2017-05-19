@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using MegaBuy.Temp;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,10 +23,11 @@ namespace MegaBuy.Calls.Messages
             Height = (int)size.Y + 10;
             _label = new Label
             {
+                Font = "Fonts/arial",
                 BackgroundColor = isPlayer ? Colors.Secondary : Colors.Primary,
                 TextColor = Color.White,
                 Transform = new Transform2(position, new Size2((int)size.X + 10, (int)size.Y + 10)),
-                Text = message,
+                RawText = newMessage,
             };
         }
 
