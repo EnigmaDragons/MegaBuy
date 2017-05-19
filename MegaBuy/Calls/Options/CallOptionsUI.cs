@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Calls.Events;
-using MegaBuy.Temp;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -28,7 +28,7 @@ namespace MegaBuy.Calls.Options
         {
             var absolutePosition = parentTransform + _transform;
             Branch.ParentLocation = absolutePosition.Location;
-            _buttons.ForEach(x => x.Draw(absolutePosition));
+            _buttons.ToList().ForEach(x => x.Draw(absolutePosition));
         }
 
         private void StartCall(Call call)
