@@ -125,8 +125,7 @@ namespace MonoDragons.Core.UserInterface
 
         private bool IsSameElement(MouseState mouse)
         {
-            return new Rectangle(_current.Area.Location + _current.ParentLocation.ToPoint(), _current.Area.Size)
-                .Contains(ScaleMousePosition(mouse));
+            return ReferenceEquals(_current, GetElement(mouse));
         }
 
         private static bool WasReleased(MouseState mouse)

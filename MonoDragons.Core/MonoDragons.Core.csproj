@@ -139,6 +139,7 @@
     <Compile Include="Text\IWrapText.cs" />
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
+    <Compile Include="UserInterface\HorizontalAlignment.cs" />
     <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\ClickUIBranch.cs" />
     <Compile Include="UserInterface\ColoredCone.cs" />
@@ -214,26 +215,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fonts\ten.ttf">
+    <Content Include="Content\Fonts\10.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fonts\ten.spritefont">
+    <Content Include="Content\Fonts\10.spritefont">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fonts\twelve.ttf">
+    <Content Include="Content\Fonts\12.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\twelve.spritefont">
+    <Content Include="Content\Fonts\12.spritefont">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\ten.xnb">
+    <Content Include="Content\Fonts\10.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\twelve.xnb">
+    <Content Include="Content\Fonts\12.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -249,6 +250,34 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\14.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\16.spritefont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\16.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\18.spritefont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\18.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\16.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\18.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

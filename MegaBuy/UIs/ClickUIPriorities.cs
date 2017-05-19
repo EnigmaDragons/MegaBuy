@@ -4,9 +4,10 @@
     {
         Base = 0,
         Room = 1,
-        Thoughts = 2,
-        Pad = 3,
-        Overlay = 4,
-        Dev = 5,
+        Sleep = 2,
+        Thoughts = 3,
+        Pad = 4,
+        Overlay = 5,
+        Dev = 6,
     }
 }
