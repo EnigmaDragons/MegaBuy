@@ -10,7 +10,7 @@ namespace MonoDragons.Core.Common
 
         public static bool Bool()
         {
-            return Int(1) == 1;
+            return Int(2) == 1;
         }
 
         public static int Int()

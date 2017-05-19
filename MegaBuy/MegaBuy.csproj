@@ -187,7 +187,7 @@
     <Compile Include="Calls\Ratings\CallRating.cs" />
     <Compile Include="Calls\Rules\CallRatingPaymentMultipliers.cs" />
     <Compile Include="Apartment\ApartmentMap.cs" />
-    <Compile Include="Apartment\Map\Tile.cs" />
+    <Compile Include="Apartment\Map\ClickableTile.cs" />
     <Compile Include="Apartment\Map\TileLocation.cs" />
     <Compile Include="Apartment\Map\TileSize.cs" />
     <Compile Include="Apartment\Map\TileWalker.cs" />
@@ -614,6 +614,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\caller-info.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\checkbox-checked.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\checkbox-unchecked.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\darkness.png">

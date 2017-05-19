@@ -20,10 +20,10 @@ namespace MegaBuy.PurchaseHistories
         public string ItemPrice { get; private set; }
         public string ShippingAddress { get; private set; }
         public string AddressOwner { get; private set; }
-        public string IsDelivered { get; private set; }
+        public bool IsDelivered { get; private set; }
         public string PromoCode { get; private set; }
-        public string SoldAsIs { get; private set; }
-        public string WasReturned { get; private set; }
+        public bool SoldAsIs { get; private set; }
+        public bool WasReturned { get; private set; }
         public string DeliverDateTime { get; private set; }
         public string ReturnDateTime { get; private set; }
 
@@ -48,9 +48,8 @@ namespace MegaBuy.PurchaseHistories
                 ProviderID = provider.Id.RandomlyNullify(),
                 ProviderName = provider.Name.RandomlyNullify(),
                 PromoCode = PromoCodes.Random.RandomlyNullify(),
-                SoldAsIs = Rng.Bool().ToString(),
-                IsDelivered = Rng.Bool().ToString(),
-                WasReturned = false.ToString().RandomlyNullify(),
+                SoldAsIs = Rng.Bool(),
+                WasReturned = false,
                 ReturnDateTime = "NULL",
                 // @todo #1 Refine the following data values
                 ProductCategory = "NULL",
@@ -58,7 +57,8 @@ namespace MegaBuy.PurchaseHistories
                 TotalCost = (price * Rng.Int(1, 5)).ToString(CultureInfo.InvariantCulture).RandomlyNullify(),
                 ShippingAddress = "NULL",
                 AddressOwner = "NULL",
-                DeliverDateTime = "NULL",
+                DeliverDateTime = purchaseDate.ToString(DateFormat),
+                IsDelivered = true,
             };
         }
 

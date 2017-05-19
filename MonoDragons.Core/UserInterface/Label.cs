@@ -15,6 +15,7 @@ namespace MonoDragons.Core.UserInterface
 
         public string Font { get; set; } = DefaultFont.Name;
         public Color TextColor { get; set; } = Color.White;
+        public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Center;
 
         public Transform2 Transform
         {
@@ -43,7 +44,7 @@ namespace MonoDragons.Core.UserInterface
         public void Draw(Transform2 parentTransform)
         {
             _background.Draw(parentTransform);
-            UI.DrawTextCentered(Text, new Rectangle((parentTransform.Location + Transform.Location).ToPoint(), Transform.Size.ToPoint()), TextColor, Font);
+            UI.DrawTextAligned(Text, new Rectangle((parentTransform.Location + Transform.Location).ToPoint(), Transform.Size.ToPoint()), TextColor, Font, HorizontalAlignment);
         }
 
         public void Dispose()

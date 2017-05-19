@@ -7,21 +7,27 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
+using MegaBuy.UIs;
 
 namespace MegaBuy.Apartment
 {
     public class ApartmentMap : IVisualAutomaton, ICharSpace
     {
-        private readonly List<Tile> _tiles = new List<Tile>();
+        private readonly List<ClickableTile> _tiles = new List<ClickableTile>();
 
-        public void Add(Tile tile)
+        public ClickUIBranch Branch { get; private set; } = new ClickUIBranch("room", (int)ClickUIPriorities.Room);
+
+        public void Add(ClickableTile tile)
         {
             _tiles.Add(tile);
+            Branch.Add(tile);
         }
 
-        public void Add(IEnumerable<Tile> tiles)
+        public void Add(IEnumerable<ClickableTile> tiles)
         {
             _tiles.AddRange(tiles);
+            tiles.ForEach((t) => Branch.Add(t));
         }
 
         public bool Exist(TileLocation loc)
@@ -29,7 +35,7 @@ namespace MegaBuy.Apartment
             return _tiles.Any(x => x.Location.Equals(loc));
         }
 
-        public List<Tile> Get(TileLocation loc)
+        public List<ClickableTile> Get(TileLocation loc)
         {
             return _tiles.Where(x => x.Location.Equals(loc)).ToList();
         }
@@ -41,6 +47,8 @@ namespace MegaBuy.Apartment
 
         public void Draw(Transform2 parentTransform)
         {
+            Branch.ParentLocation = parentTransform.Location;
+            Branch.Scale = parentTransform.Scale;
             _tiles.OrderBy(x => x.Layer).ForEach(x => x.Draw(parentTransform));
         }
 

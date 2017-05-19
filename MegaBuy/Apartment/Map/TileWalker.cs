@@ -26,7 +26,7 @@ namespace MegaBuy.Apartment.Map
                     .Select(y => new TileLocation(x, y)));
         }
 
-        public IEnumerable<Tile> Get(Func<TileLocation, Tile> func)
+        public IEnumerable<ClickableTile> Get(Func<TileLocation, ClickableTile> func)
         {
             return GetTiles().Select(func);
         }
