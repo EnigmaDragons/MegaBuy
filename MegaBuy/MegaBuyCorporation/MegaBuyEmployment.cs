@@ -59,7 +59,6 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(Job role)
         {
-            // @todo #1 fix current game state so it exists before this object is initialized
             _policies.Clear();
             _policies.Add(JobTraits.Policies[role]);
             World.Publish(new PolicyChanged());
