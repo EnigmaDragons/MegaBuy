@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Notifications.Old;
+using MegaBuy.Notifications;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
 using MegaBuy.PurchaseHistories;
