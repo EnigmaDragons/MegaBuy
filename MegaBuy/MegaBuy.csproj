@@ -40,6 +40,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Calls\Callers\CallerNames.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
@@ -64,12 +65,15 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\Data\AddressOwners.cs" />
+    <Compile Include="PurchaseHistories\Data\Product.cs" />
     <Compile Include="PurchaseHistories\Data\PromoCodes.cs" />
     <Compile Include="PurchaseHistories\Data\Provider.cs" />
     <Compile Include="PurchaseHistories\Data\Providers.cs" />
+    <Compile Include="PurchaseHistories\Data\ShippingAddresses.cs" />
     <Compile Include="PurchaseHistories\Nullifier.cs" />
     <Compile Include="PurchaseHistories\Purchase.cs" />
-    <Compile Include="PurchaseHistories\PurchaseHistory.cs" />
+    <Compile Include="PurchaseHistories\AdvancedPurchaseHistory.cs" />
     <Compile Include="Player\CharacterSex.cs" />
     <Compile Include="Player\Energy\EnergyRecovery.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
+    <Compile Include="PurchaseHistories\SimplePurchaseHistory.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
@@ -113,10 +118,9 @@
     <Compile Include="Calls\Events\CallResolved.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
-    <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
+    <Compile Include="PurchaseHistories\Data\ProductCategory.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
-    <Compile Include="Calls\Conversation Pieces\CallerNames.cs" />
-    <Compile Include="Calls\Conversation Pieces\Products.cs" />
+    <Compile Include="PurchaseHistories\Data\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
     <Compile Include="Jobs\JobRole.cs" />

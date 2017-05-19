@@ -1,6 +1,6 @@
 ﻿using MonoDragons.Core.Common;
 
-namespace MegaBuy.Calls.Conversation_Pieces
+namespace MegaBuy.Calls.Callers
 {
     public class CallerNames
     {
@@ -29,8 +29,6 @@ namespace MegaBuy.Calls.Conversation_Pieces
             "Amanda Feifer",
             "Jay Michaels",
             "Merida Kingsley",
-
-
         };
 
         public static string Random => names.Random();

@@ -7,6 +7,8 @@ using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
+using MegaBuy.PurchaseHistories;
+using MegaBuy.PurchaseHistories.Data;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.Jobs.Referrer
@@ -27,7 +29,7 @@ namespace MegaBuy.Jobs.Referrer
             () => CreateLvl1((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.Description[s.Problem] + "."), CallResolution.ReferToReturns, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("I need help. My " + s.Product + " " + Problems.Description[s.Problem] + "."), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("How much can I sell my " + Products.Random + " for?"), CallResolution.ReferToInfo, Traits.None),
-            () => CreateLvl1((c, s) => c.CallerSays("MY " + Products.Random.ToUpper() + " DOESN'T WORK AND I NEED HELP RIGHT NOW!!!"), CallResolution.ReferToTroubleshooting, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays("MY " + Products.Random.Name.ToUpper() + " DOESN'T WORK AND I NEED HELP RIGHT NOW!!!"), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("Can I speak with accounting?"), CallResolution.EscalateCall, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("I want to file an official complaint!"), CallResolution.EscalateCall, Traits.None),
             () => {

@@ -1,17 +1,12 @@
-﻿using System;
-using MegaBuy.Calls.Events;
+﻿using MegaBuy.Calls.Events;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Calls.Rules;
 using MegaBuy.Notifications;
 using MegaBuy.Money;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls;
 using MegaBuy.MegaBuyCorporation.Policies;
-using MegaBuy.Policies;
 using MegaBuy.Jobs;
-using MegaBuy.Jobs.Referrer;
 
 namespace MegaBuy.MegaBuyCorporation
 {
@@ -65,7 +60,7 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void AcceptPromotion(JobRole role)
         {
-            // @ todo #1 fix current game state so it exists before this object is initialized
+            // @todo #1 fix current game state so it exists before this object is initialized
             var accounting = (MegaBuyAccounting)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
             accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
             _policies.Clear();

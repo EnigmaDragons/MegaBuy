@@ -91,7 +91,7 @@ namespace MegaBuy.Calls
 
         private void Promote(JobRoleAccepted promotion)
         {
-            // @ todo #1 Make promotions call safe
+            // @todo #1 Make promotions call safe
             //currently with this new code i wrote it will cause a crash if one were to be promoted during a call
             //this could be done by not allowing promotions during calls, store the promotion until end of call, or end the call they are currently in 
             _roleUI = RoleTraits.Controls[promotion.JobRole];

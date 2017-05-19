@@ -1,6 +1,7 @@
 ﻿using MegaBuy.Calls.Callers;
 using System.Collections.Generic;
 using MegaBuy.Jobs;
+using MegaBuy.PurchaseHistories.Data;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
@@ -17,8 +18,8 @@ namespace MegaBuy.Calls.Conversation_Pieces
             return new CallScenario
             {
                 Caller = new Caller(patienceLossRateMs, traits),
-                Product = product,
-                Problem = Products.GetProblemFor(product)
+                Product = product.Name,
+                Problem = Products.GetProblemFor(product.Name)
             };
         }
     }
