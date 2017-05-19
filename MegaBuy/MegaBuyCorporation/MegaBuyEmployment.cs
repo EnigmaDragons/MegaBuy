@@ -1,17 +1,11 @@
-﻿using System;
-using MegaBuy.Calls.Events;
+﻿using MegaBuy.Calls.Events;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Calls.Rules;
 using MegaBuy.Notifications;
-using MegaBuy.Money;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Calls;
 using MegaBuy.MegaBuyCorporation.Policies;
-using MegaBuy.Policies;
 using MegaBuy.Jobs;
-using MegaBuy.Jobs.Referrer;
 
 namespace MegaBuy.MegaBuyCorporation
 {
@@ -21,17 +15,17 @@ namespace MegaBuy.MegaBuyCorporation
 
         private int _numMistakesInCurrentDay;
         private int _numResolvedCallsInCurrentDay;
-        private JobRole role;
+        private Job role;
         
         public MegaBuyEmployment(ActivePolicies policies)
         {
             _policies = policies;
-            role = JobRole.ReferrerLevel1;
+            role = Job.ReturnSpecialistLevel1;
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
-            World.Subscribe(EventSubscription.Create<JobRoleAccepted>(x => AcceptPromotion(x.JobRole), this));
-            World.Subscribe(EventSubscription.Create<JobRoleDeclined>(x => DeclinePromotion(), this));
+            World.Subscribe(EventSubscription.Create<JobAccepted>(x => AcceptPromotion(x.Job), this));
+            World.Subscribe(EventSubscription.Create<JobDeclined>(x => DeclinePromotion(), this));
         }
 
         private void CallResolved(CallResolved obj)
@@ -55,24 +49,19 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void OfferPromotion()
         {
-            if(role == JobRole.ReferrerLevel1)
+            if(role == Job.ReferrerLevel1)
             {
                 World.Publish(new PlayerNotification("MegaBuy",
                     "You have been performing excellently. Since you have been doing so good you will be offered a promotion!"));
-                World.Publish(new JobRoleOffered("", JobRole.ReferrerLevel2));
+                World.Publish(new JobRoleOffered("", Job.ReferrerLevel2));
             }
         }
 
-        private void AcceptPromotion(JobRole role)
+        private void AcceptPromotion(Job role)
         {
-            // @ todo #1 fix current game state so it exists before this object is initialized
-            var accounting = (MegaBuyAccounting)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(MegaBuyAccounting)];
-            accounting.ChangePaymentPlans(RoleTraits.Rates[role]);
             _policies.Clear();
-            _policies.Add(RoleTraits.Policies[role]);
+            _policies.Add(JobTraits.Policies[role]);
             World.Publish(new PolicyChanged());
-            var queue = (CallQueue)CurrentGameState.GameState.SingleInstanceSubscriptions[typeof(CallQueue)];
-            queue.ChangePlayerRole(role);
         }
 
         private void DeclinePromotion()

@@ -46,16 +46,17 @@
     <Compile Include="CurrentGameState.cs" />
     <Compile Include="DevView.cs" />
     <Compile Include="IVisualControl.cs" />
+    <Compile Include="Jobs\JobChanged.cs" />
     <Compile Include="Jobs\Referrer\ReferrerUI.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
-    <Compile Include="Jobs\RoleTraits.cs" />
+    <Compile Include="Jobs\JobTraits.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoleAccepted.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoleDeclined.cs" />
-    <Compile Include="MegaBuyCorporation\JobRoleOffered.cs" />
+    <Compile Include="Jobs\JobAccepted.cs" />
+    <Compile Include="Jobs\JobDeclined.cs" />
+    <Compile Include="Jobs\JobOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
     <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />
@@ -65,9 +66,12 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\Data\AddressOwners.cs" />
+    <Compile Include="PurchaseHistories\Data\Product.cs" />
     <Compile Include="PurchaseHistories\Data\PromoCodes.cs" />
     <Compile Include="PurchaseHistories\Data\Provider.cs" />
     <Compile Include="PurchaseHistories\Data\Providers.cs" />
+    <Compile Include="PurchaseHistories\Data\ShippingAddresses.cs" />
     <Compile Include="PurchaseHistories\Nullifier.cs" />
     <Compile Include="PurchaseHistories\Purchase.cs" />
     <Compile Include="PurchaseHistories\AdvancedPurchaseHistory.cs" />
@@ -115,12 +119,12 @@
     <Compile Include="Calls\Events\CallResolved.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenario.cs" />
     <Compile Include="Calls\Conversation Pieces\CallScenarioFactory.cs" />
-    <Compile Include="Calls\Conversation Pieces\ProductCategory.cs" />
+    <Compile Include="PurchaseHistories\Data\ProductCategory.cs" />
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
-    <Compile Include="Calls\Conversation Pieces\Products.cs" />
+    <Compile Include="PurchaseHistories\Data\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
     <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
-    <Compile Include="Jobs\JobRole.cs" />
+    <Compile Include="Jobs\Job.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
     <Compile Include="Calls\Messages\Script.cs" />
@@ -210,6 +214,7 @@
     <Compile Include="Time\MinuteChanged.cs" />
     <Compile Include="UIs\ClickUIPriorities.cs" />
     <Compile Include="UIs\Colors.cs" />
+    <Compile Include="UIs\DateFormat.cs" />
     <Compile Include="UIs\ImageTextButtonFactory.cs" />
     <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />
@@ -313,20 +318,35 @@
     <Content Include="Content\Images\Companies\sweet-bakery.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Customers\alice-shaw.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\amanda-feifer.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Customers\ash-jacobson.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\eli-daniels.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\gemma-hunter.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\jada-keilt.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\jay-michaels.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\mark-dennison.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\merida-kingsley.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\serra-rhonas.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Endings\evicted.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -476,34 +496,34 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\anelle-ryen.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\dalton-bowdoin.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\darrell-riordan.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\heidy-slayton.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\jonas-rhyne.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\lilliam-watrous.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\liniya-kupshcheva.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\lorilee-faulken.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\shad-holbach.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\shade-corwin.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Items\value-burger.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -512,13 +532,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\chaos-theory.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\noise.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\nothing.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\dismiss.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

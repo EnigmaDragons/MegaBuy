@@ -1,7 +1,7 @@
 ﻿
 namespace MegaBuy.Jobs
 {
-    public enum JobRole
+    public enum Job
     {
         ReferrerLevel1,
         ReferrerLevel2,

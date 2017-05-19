@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Calls.Events;
+using MegaBuy.Jobs;
+using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Money.Accounts;
 using MegaBuy.Money.Amounts;
 using MegaBuy.Notifications;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
-using System;
 
-namespace MegaBuy.Money
+namespace MegaBuy.MegaBuyCorporation
 {
     public sealed class MegaBuyAccounting
     {
@@ -31,16 +31,17 @@ namespace MegaBuy.Money
             World.Subscribe(EventSubscription.Create<CallRated>(CallRated, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
             World.Subscribe(EventSubscription.Create<CallFailed>(CallFailed, this));
+            World.Subscribe(EventSubscription.Create<JobChanged>(JobRoleChanged, this));
+        }
+
+        private void JobRoleChanged(JobChanged job)
+        {
+            _currentRate = JobTraits.Rates[job.Job];
         }
 
         private void CallFailed(CallFailed call)
         {
             _dayPayment.Remove(call.PayPenalty);
-        }
-
-        public void ChangePaymentPlans(PerCallRate payment)
-        {
-            _currentRate = payment;
         }
 
         private void CallSucceeded(CallSucceeded call)

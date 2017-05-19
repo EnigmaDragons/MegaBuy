@@ -1,13 +1,14 @@
-﻿
+﻿using System;
+
 namespace MegaBuy.Time
 {
     public sealed class DayStarted
     {
-        public int DayNumber { get; }
+        public DateTime Date { get; }
 
-        public DayStarted(int dayNumber)
+        public DayStarted(DateTime date)
         {
-            DayNumber = dayNumber;
+            Date = date;
         }
     }
 }

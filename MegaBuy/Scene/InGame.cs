@@ -32,7 +32,7 @@ namespace MegaBuy.Scene
         private bool _isPadOpen;
         private ApartmentMap _map;
         private int _padLocation;
-        private GameState _gameState = CurrentGameState.GameState;
+        private GameState _gameState = CurrentGameState.State;
 
         // Sleep
         private bool _preparingForBed;

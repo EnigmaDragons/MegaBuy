@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.PurchaseHistories.Data;
+using MegaBuy.UIs;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.PurchaseHistories
@@ -26,9 +26,7 @@ namespace MegaBuy.PurchaseHistories
         public bool WasReturned { get; private set; }
         public string DeliverDateTime { get; private set; }
         public string ReturnDateTime { get; private set; }
-
-        private const string DateFormat = "yyyy/MM/dd";
-
+        
         public static IEnumerable<Purchase> CreateInfinite(DateTime lastDate)
         {
             for (var date = lastDate; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20))) 
@@ -37,28 +35,28 @@ namespace MegaBuy.PurchaseHistories
 
         public static Purchase Create(DateTime purchaseDate)
         {
+            var product = Products.Random;
             var provider = Providers.Random;
-            var price = 100.00m;
+            var wasDelivered = Rng.Int(0, 100) < 98;
             return new Purchase
             {
-                Date = purchaseDate.ToString(DateFormat),
+                Date = purchaseDate.ToString(DateFormat.Get),
                 OrderID = CreateId().RandomlyNullify(),
-                ProductID = CreateId().RandomlyNullify(),
-                ProductName = Products.Random,
+                ProductID = product.Id.RandomlyNullify(),
+                ProductName = product.Name,
+                ProductCategory = product.Category.ToString().RandomlyNullify(),
                 ProviderID = provider.Id.RandomlyNullify(),
                 ProviderName = provider.Name.RandomlyNullify(),
                 PromoCode = PromoCodes.Random.RandomlyNullify(),
-                SoldAsIs = Rng.Bool(),
-                WasReturned = false,
+                SoldAsIs = Rng.Int(0, 100) < 33,
+                WasReturned = Rng.Int(0, 100) < 12,
                 ReturnDateTime = "NULL",
-                // @todo #1 Refine the following data values
-                ProductCategory = "NULL",
-                ItemPrice = price.ToString(CultureInfo.InvariantCulture),
-                TotalCost = (price * Rng.Int(1, 5)).ToString(CultureInfo.InvariantCulture).RandomlyNullify(),
-                ShippingAddress = "NULL",
-                AddressOwner = "NULL",
-                DeliverDateTime = purchaseDate.ToString(DateFormat),
-                IsDelivered = true,
+                AddressOwner = AddressOwners.Random.RandomlyNullify(),
+                ItemPrice = product.Price.ToString(CultureInfo.InvariantCulture),
+                TotalCost = (product.Price * Rng.Int(2, 5)).ToString(CultureInfo.InvariantCulture).RandomlyNullify(),
+                ShippingAddress = ShippingAddresses.Random.RandomlyNullify(),
+                DeliverDateTime = (wasDelivered ? purchaseDate.ToString(DateFormat.Get) : "NULL").RandomlyNullify(),
+                IsDelivered = wasDelivered,
             };
         }
 

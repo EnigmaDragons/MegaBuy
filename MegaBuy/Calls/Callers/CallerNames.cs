@@ -4,11 +4,9 @@ namespace MegaBuy.Calls.Callers
 {
     public class CallerNames
     {
-        // @todo #1 Add 5 new callers (names + art)
+        // @todo #1 Add 5 new male callers (names + art)
         private static string[] names = 
         {
-            "Chaos Theory",
-            "Noise",
             "Dalton Bowdoin",
             "Shade Corwin",
             "Shad Holbach",
@@ -24,7 +22,11 @@ namespace MegaBuy.Calls.Callers
             "Mark Dennison",
             "Serra Rhonas",
             "Eli Daniels",
-
+            "Alice Shaw",
+            "Jada Keilt",
+            "Amanda Feifer",
+            "Jay Michaels",
+            "Merida Kingsley",
         };
 
         public static string Random => names.Random();

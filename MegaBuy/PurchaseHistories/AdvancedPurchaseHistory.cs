@@ -24,7 +24,7 @@ namespace MegaBuy.PurchaseHistories
         public ClickUIBranch Branch { get; }
 
         public AdvancedPurchaseHistory()
-            : this(Purchase.CreateInfinite(new DateTime(2020 + Rng.Int(1, 40), Rng.Int(1, 13), Rng.Int(1, 29)))) { }
+            : this(Purchase.CreateInfinite(CurrentGameState.State.Clock.DateTime)) { }
 
         public AdvancedPurchaseHistory(IEnumerable<Purchase> purchaseSupplier)
         {
