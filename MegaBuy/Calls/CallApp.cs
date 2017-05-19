@@ -7,7 +7,6 @@ using MegaBuy.Calls.Ratings;
 using MegaBuy.Jobs;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.Pads.Apps;
-using MegaBuy.Temp;
 using MegaBuy.UIs;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -25,7 +24,7 @@ namespace MegaBuy.Calls
         private readonly CallOptionsUI _callOptions = new CallOptionsUI();
         private readonly RatingUI _rating = new RatingUI();
 
-        private IVisualControl _roleUI = RoleTraits.Controls[JobRole.ReferrerLevel1];
+        private IVisualControl _roleUI;
         private Call _call;
         private bool _isInCall = false;
         private bool _isCalling = false;
@@ -34,13 +33,17 @@ namespace MegaBuy.Calls
         public App Type => App.Call;
 
         public CallApp()
+            : this(CurrentGameState.State.Job) { }
+
+        public CallApp(Job job)
         {
+            _roleUI = JobTraits.Controls[job];
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
             Branch.Add(_ready.Branch);
             World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(x => StartConnecting(x), this));
             World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
-            World.Subscribe(EventSubscription.Create<JobRoleAccepted>(Promote, this));
+            World.Subscribe(EventSubscription.Create<JobChanged>(Promote, this));
         }
 
         public void Update(TimeSpan delta)
@@ -89,12 +92,12 @@ namespace MegaBuy.Calls
             Branch.Add(_ready.Branch);
         }
 
-        private void Promote(JobRoleAccepted promotion)
+        private void Promote(JobChanged job)
         {
             // @todo #1 Make promotions call safe
             //currently with this new code i wrote it will cause a crash if one were to be promoted during a call
             //this could be done by not allowing promotions during calls, store the promotion until end of call, or end the call they are currently in 
-            _roleUI = RoleTraits.Controls[promotion.JobRole];
+            _roleUI = JobTraits.Controls[job.Job];
         }
     }
 }

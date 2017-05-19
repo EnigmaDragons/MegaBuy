@@ -28,7 +28,7 @@ namespace MegaBuy.Rents
         
         public RentApp()
         {
-            _gameState = CurrentGameState.GameState;
+            _gameState = CurrentGameState.State;
             _playerAccount = _gameState.PlayerAccount;
             _landlord = _gameState.Landlord;
             Branch = new ClickUIBranch("Rent App", (int)ClickUIPriorities.Pad);

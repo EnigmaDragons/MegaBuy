@@ -16,7 +16,7 @@ namespace MegaBuy.Endings
             _image = image;
             _gameOverReason = gameOverReason;
             _clickUI = new ClickUI();
-            _clickUI.Add(new ScreenClickable(() => { CurrentGameState.GameState = new GameState(); World.NavigateToScene("MainMenu"); }));
+            _clickUI.Add(new ScreenClickable(() => { CurrentGameState.State = new GameState(); World.NavigateToScene("MainMenu"); }));
         }
 
         public void Init()

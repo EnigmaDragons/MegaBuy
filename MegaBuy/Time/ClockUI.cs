@@ -16,7 +16,7 @@ namespace MegaBuy.Time
 
         public ClockUI()
         {
-            _clock = CurrentGameState.GameState.Clock;
+            _clock = CurrentGameState.State.Clock;
             _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Transform = new Transform2(Sizes.SmallLabel) };
         }
 

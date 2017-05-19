@@ -5,7 +5,7 @@ namespace MegaBuy.Shopping.Foods
 {
     public sealed class SweetBakery : IShoppingCompany
     {
-        private readonly GameState _gameState = CurrentGameState.GameState;
+        private readonly GameState _gameState = CurrentGameState.State;
         public string Name => "Sweet Bakery";
         public string Description => "The newest old-fashioned sugary delights that you need to feel like your normal self.";
 

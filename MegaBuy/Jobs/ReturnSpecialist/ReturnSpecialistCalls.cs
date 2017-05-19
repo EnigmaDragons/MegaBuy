@@ -33,7 +33,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReturnSpecialistLevel1, PatienceLevel.Random);
+            var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level1Options);

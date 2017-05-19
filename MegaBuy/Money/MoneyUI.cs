@@ -17,7 +17,7 @@ namespace MegaBuy.Money
 
         public MoneyUI()
         {
-            _account = CurrentGameState.GameState.PlayerAccount;
+            _account = CurrentGameState.State.PlayerAccount;
             _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Transform = new Transform2(Sizes.SmallLabel) };
         }
 

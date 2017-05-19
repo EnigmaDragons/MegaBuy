@@ -3,31 +3,31 @@ using MegaBuy.Calls.Events;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Calls.Rules;
 using MegaBuy.Jobs;
 
 namespace MegaBuy.Calls
 {
     public sealed class CallQueue
     {
-        private CallGenerator generator;
+        private readonly CallGenerator _generator;
 
         public CallQueue()
         {
             World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(PlayerAvailable, this));
-            generator = new CallGenerator(JobRole.ReferrerLevel1);
+            World.Subscribe(EventSubscription.Create<JobChanged>(JobChanged, this));
+            _generator = new CallGenerator(Job.ReturnSpecialistLevel1);
         }
 
         private async void PlayerAvailable(AgentCallStatusChanged statusChanged)
         {
             if (!statusChanged.Status.Equals(AgentCallStatus.Available)) return;
             await Task.Delay(Rng.Int(0, 5) * 1000);
-            World.Publish(new CallStarted(generator.GenerateCall()));
+            World.Publish(new CallStarted(_generator.GenerateCall()));
         }
 
-        public void ChangePlayerRole(JobRole role)
+        private void JobChanged(JobChanged job)
         {
-            generator.PositionChanged(role);
+            _generator.PositionChanged(job.Job);
         }
     }
 }

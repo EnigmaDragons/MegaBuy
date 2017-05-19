@@ -92,7 +92,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel1, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel1, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level1Options);
@@ -100,7 +100,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl2(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel2, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel2, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level2Options);
@@ -108,7 +108,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl3(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel3, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel3, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level3Options);
