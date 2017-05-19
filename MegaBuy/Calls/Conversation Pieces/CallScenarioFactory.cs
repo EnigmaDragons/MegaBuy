@@ -18,7 +18,7 @@ namespace MegaBuy.Calls.Conversation_Pieces
             return new CallScenario
             {
                 Caller = new Caller(patienceLossRateMs, traits),
-                Product = product.Name,
+                Product = product,
                 Problem = Products.GetProblemFor(product.Name)
             };
         }

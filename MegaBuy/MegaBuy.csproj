@@ -91,6 +91,7 @@
     <Compile Include="Player\Energy\CollapsedWithExhaustion.cs" />
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
+    <Compile Include="PurchaseHistories\PurchaseHistory.cs" />
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
     <Compile Include="PurchaseHistories\SimplePurchaseHistory.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />

@@ -18,6 +18,7 @@ namespace MegaBuy
 {
     public class GameState
     {
+        public DateTime DateTime => Clock.DateTime;
         public string CharName { get; set; }
         public Clock Clock { get; set; }
         public PlayerCharacter PlayerCharacter { get; set; }

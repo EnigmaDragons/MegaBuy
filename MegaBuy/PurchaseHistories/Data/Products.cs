@@ -23,6 +23,9 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Data Raven", 195.72m, ProductCategory.Software),
             Make("Ice Ice Firewall", 416.25m, ProductCategory.Software),
             Make("Mini-Micro-Mega-DataMaster", 373.68m, ProductCategory.Software),
+            // @todo #1 Add 10 more products
+            // @todo #1 Add another 10 more products
+            // @todo #1 Add an additional 10 more products
         };
 
         private static Product Make(string name, decimal price, ProductCategory category)
@@ -51,6 +54,11 @@ namespace MegaBuy.PurchaseHistories.Data
         public static Problem GetProblemFor(string product)
         {
             return GetProblems(product).Random();
+        }
+
+        public static Product RandomExcept(string productName)
+        {
+            return Prods.Where(x => x.Name != productName).ToList().Random();
         }
     }
 }

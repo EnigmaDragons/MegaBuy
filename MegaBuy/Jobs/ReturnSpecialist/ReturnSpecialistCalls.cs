@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Options;
 using MegaBuy.Calls.Rules;
+using MegaBuy.PurchaseHistories;
 using MonoDragons.Core.Common;
 
 namespace MegaBuy.Jobs.ReturnSpecialist
@@ -17,18 +19,17 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             new CallResolutionOption(CallResolution.ApproveReplacement, "Approve Replacement"),
             new CallResolutionOption(CallResolution.Reject, "Reject Request"),
         };
-
-        // @todo #1 Refine these scenarios to work nicely with Purchase History
+        
         private static readonly List<Func<Call>> Level1Calls = new List<Func<Call>>
         {
-            () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.Product}!"), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"Can I get a replacement for {s.Product}? Mine is dead."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.Product}."), CallResolution.Reject),
-            () => CreateLvl1((c, s) => c.CallerSays($"This {s.Product} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"My {s.Product} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship your this pair of broken sandals."), CallResolution.Reject),
-            () => CreateLvl1((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.Product}. Take it back!"), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.Product}."), CallResolution.ApproveReplacement),
+            () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.ProductName}!"), CallResolution.ApproveReturn),
+            () => CreateLvl1((c, s) => c.CallerSays($"Can I get a replacement for {s.ProductName}? Mine is dead."), CallResolution.ApproveReplacement),
+            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.Reject),
+            () => CreateLvl1((c, s) => c.CallerSays($"This {s.ProductName} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
+            () => CreateLvl1((c, s) => c.CallerSays($"My {s.ProductName} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
+            () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
+            () => CreateLvl1((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.ProductName}. Take it back!"), CallResolution.ApproveReturn),
+            () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
         };
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption)
@@ -36,7 +37,20 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var script = InitScript();
             scriptBuilder(script, scenario);
-            return new Call(scenario.Caller, script, correctOption, Level1Options);
+            var purchase = Purchase.Create(DateWithinDays(30));
+            if (correctOption == CallResolution.ApproveReturn)
+                purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, false, false);
+            if (correctOption == CallResolution.ApproveReplacement)
+                purchase = Purchase.Create(DateWithinDays(60), scenario.Product, true, false, false);
+            if (correctOption == CallResolution.Reject)
+                purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, true, false);
+            Debug.WriteLine($"CallResolution: {correctOption} for {purchase.ProductName}");
+            return new Call(scenario.Caller, script, correctOption, Level1Options, new PurchaseHistory(purchase));
+        }
+
+        private static DateTime DateWithinDays(int days)
+        {
+            return CurrentGameState.State.DateTime.AddDays(-Rng.Int(days));
         }
 
         private static readonly List<string> Introductions = new List<string>()
