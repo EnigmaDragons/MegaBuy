@@ -4,11 +4,9 @@ namespace MegaBuy.Calls.Callers
 {
     public class CallerNames
     {
-        // @todo #1 Add 5 new callers (names + art)
+        // @todo #1 Add 5 new male callers (names + art)
         private static string[] names = 
         {
-            "Chaos Theory",
-            "Noise",
             "Dalton Bowdoin",
             "Shade Corwin",
             "Shad Holbach",
