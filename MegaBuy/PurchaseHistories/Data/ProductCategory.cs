@@ -9,6 +9,7 @@ namespace MegaBuy.PurchaseHistories.Data
         Entertainment,
         Software,
         Apparel,
-        Decor
+        Decor,
+        Food,
     }
 }

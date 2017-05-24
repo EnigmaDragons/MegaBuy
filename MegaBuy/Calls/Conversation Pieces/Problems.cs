@@ -16,7 +16,9 @@ namespace MegaBuy.Calls.Conversation_Pieces
             { Problem.RunsSlowly, "takes forever to launch" },
             { Problem.Crashes, "crashes constantly" },
             { Problem.DoesNotFit, "doesn't fit" },
-            { Problem.WrongStyle, "isn't my style" }
+            { Problem.WrongStyle, "isn't my style" },
+            { Problem.IsSpoiled, "is spoiled" },
+            { Problem.DoesNotTasteGood, "tastes terrible" },
         };
     }
 
@@ -33,5 +35,7 @@ namespace MegaBuy.Calls.Conversation_Pieces
         Crashes,
         DoesNotFit,
         WrongStyle,
+        IsSpoiled,
+        DoesNotTasteGood
     }
 }
