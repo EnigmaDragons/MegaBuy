@@ -32,6 +32,9 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
         };
 
+        // @todo #1: Content: Create ReturnSpecialistLevel2 Calls
+
+        // @todo #1: Backend: Randomize whether the requested action is correct or not
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption)
         {
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
