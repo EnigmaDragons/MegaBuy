@@ -26,6 +26,7 @@ namespace MegaBuy.Calls
 
         private IVisualControl _roleUI;
         private Call _call;
+        private IVisualControl _callRoleUI;
         private bool _isInCall = false;
         private bool _isCalling = false;
 
@@ -38,6 +39,7 @@ namespace MegaBuy.Calls
         public CallApp(Job job)
         {
             _roleUI = JobTraits.Controls[job];
+            _callRoleUI = _roleUI;
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
             Branch.Add(_ready.Branch);
             World.Subscribe(EventSubscription.Create<AgentCallStatusChanged>(x => StartConnecting(x), this));
@@ -59,7 +61,7 @@ namespace MegaBuy.Calls
             _messenger.Draw(absoluteTransform);
             _caller.Draw(absoluteTransform);
             _callOptions.Draw(absoluteTransform);
-            _roleUI.Draw(absoluteTransform);
+            _callRoleUI.Draw(absoluteTransform);
             if (!_isCalling)
             {
                 _ready.Draw(absoluteTransform);
@@ -71,16 +73,18 @@ namespace MegaBuy.Calls
         {
             if (status.Status != AgentCallStatus.Available)
                 return;
+            _callRoleUI = _roleUI;
             _isCalling = true;
             Branch.Remove(_ready.Branch);
         }
 
         private void StartCall(Call call)
         {
+            
             _call = call;
             _isInCall = true;
             Branch.Add(_callOptions.Branch);
-            Branch.Add(_roleUI.Branch);
+            Branch.Add(_callRoleUI.Branch);
         }
 
         private void EndCall()
@@ -88,15 +92,12 @@ namespace MegaBuy.Calls
             _isCalling = false;
             _isInCall = false;
             Branch.Remove(_callOptions.Branch);
-            Branch.Remove(_roleUI.Branch);
+            Branch.Remove(_callRoleUI.Branch);
             Branch.Add(_ready.Branch);
         }
 
         private void Promote(JobChanged job)
         {
-            // @todo #1 Make promotions call safe
-            //currently with this new code i wrote it will cause a crash if one were to be promoted during a call
-            //this could be done by not allowing promotions during calls, store the promotion until end of call, or end the call they are currently in 
             _roleUI = JobTraits.Controls[job.Job];
         }
     }
