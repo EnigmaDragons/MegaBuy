@@ -7,6 +7,8 @@ namespace MegaBuy.PurchaseHistories.Data
         Machine,
         Weapon,
         Entertainment,
-        Software
+        Software,
+        Apparel,
+        Decor
     }
 }
