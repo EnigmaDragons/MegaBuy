@@ -23,7 +23,16 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Data Raven", 195.72m, ProductCategory.Software),
             Make("Ice Ice Firewall", 416.25m, ProductCategory.Software),
             Make("Mini-Micro-Mega-DataMaster", 373.68m, ProductCategory.Software),
-            // @todo #1 Add 10 more products
+            Make("The Wonder Society", 55.15m, ProductCategory.Entertainment),
+            Make("Suction Cup MicroCam", 668.39m, ProductCategory.Machine),
+            Make("Oil-Tanned Calfskin Leather Wristband", 263.17m, ProductCategory.Apparel),
+            Make("Synthsteel Fruit Press", 1253.84m, ProductCategory.Machine),
+            Make("Billionaire Alpha Romance", 61.97m, ProductCategory.Entertainment),
+            Make("Sailboat Reflections Painting", 2615.19m, ProductCategory.Decor),
+            Make("NetCorp Beverage Tumbler", 241.85m, ProductCategory.Decor),
+            Make("MaxBass Auds", 216.74m, ProductCategory.Machine),
+            Make("Vibram #1276 NeoKicks", 787.42m, ProductCategory.Apparel),
+            Make("Black Shoulder Bag", 313.37m, ProductCategory.Apparel),
             // @todo #1 Add another 10 more products
             // @todo #1 Add an additional 10 more products
         };
@@ -38,7 +47,9 @@ namespace MegaBuy.PurchaseHistories.Data
             { ProductCategory.Machine, new[] {Problem.DoesntRun, Problem.DoesntTurnOn, Problem.IsDefective } },
             { ProductCategory.Weapon, new[] {Problem.Jams, Problem.IsDefective} },
             { ProductCategory.Entertainment, new[] {Problem.TerribleExperience} },
-            { ProductCategory.Software, new[] {Problem.IsDefective, Problem.IsBuggy, Problem.HasSpyware, Problem.RunsSlowly, Problem.Crashes} }
+            { ProductCategory.Software, new[] {Problem.IsDefective, Problem.IsBuggy, Problem.HasSpyware, Problem.RunsSlowly, Problem.Crashes} },
+            { ProductCategory.Apparel, new[] {Problem.IsDefective, Problem.DoesNotFit, Problem.WrongStyle} },
+            { ProductCategory.Decor, new[] {Problem.IsDefective, Problem.WrongStyle} },
         };
 
         public static List<Problem> GetProblems(string product)
