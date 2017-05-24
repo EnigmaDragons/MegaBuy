@@ -7,9 +7,11 @@ namespace MegaBuy.UIs
         public static int MessageMargin = 10;
         public static int SmallMargin = 10;
         public static int Margin = 25;
+        public static int LargeMargin = 60;
         public static Size2 VerticalLine = new Size2(1600, 10);
         public static Size2 Label = new Size2(300, 100);
         public static Size2 SmallLabel = new Size2(150, 50);
+        public static Size2 MediumLabel = new Size2(250, 50);
         public static Size2 LargeLabel = new Size2(600, 200);
         public static Size2 PadToggle = new Size2(400, 50);
         public static Size2 Button = new Size2(200, 70);
