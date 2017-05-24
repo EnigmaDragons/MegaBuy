@@ -21,6 +21,7 @@ namespace MegaBuy.UIs
         public static Size2 OverlayIcon = new Size2(50, 50);
         public static Size2 CallerInfo = new Size2(250, 260);
         public static Size2 Policy = new Size2(1360, 90);
-        public static Size2 Purchase = new Size2(1360, 215);
+        public static Size2 PurchaseSummary = new Size2(1360, 50);
+        public static Size2 Purchase = new Size2(1360, 600);
     }
 }

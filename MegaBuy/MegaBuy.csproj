@@ -71,9 +71,9 @@
     <Compile Include="PurchaseHistories\Data\Provider.cs" />
     <Compile Include="PurchaseHistories\Data\Providers.cs" />
     <Compile Include="PurchaseHistories\Data\ShippingAddresses.cs" />
+    <Compile Include="PurchaseHistories\PurchaseInspected.cs" />
     <Compile Include="PurchaseHistories\Nullifier.cs" />
     <Compile Include="PurchaseHistories\Purchase.cs" />
-    <Compile Include="PurchaseHistories\AdvancedPurchaseHistory.cs" />
     <Compile Include="Player\CharacterSex.cs" />
     <Compile Include="Player\Energy\EnergyRecovery.cs" />
     <Compile Include="Player\Thoughts\HadAThought.cs" />
@@ -90,8 +90,12 @@
     <Compile Include="Player\Energy\CollapsedWithExhaustion.cs" />
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
+    <Compile Include="PurchaseHistories\PurchaseDetailUI.cs" />
+    <Compile Include="PurchaseHistories\PurchaseHistory.cs" />
+    <Compile Include="PurchaseHistories\PurchasesListed.cs" />
+    <Compile Include="PurchaseHistories\PurchaseSummaryUI.cs" />
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
-    <Compile Include="PurchaseHistories\SimplePurchaseHistory.cs" />
+    <Compile Include="PurchaseHistories\PurchasesUI.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
@@ -319,8 +323,13 @@
     <Content Include="Content\Images\Customers\alice-shaw.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\amanda-feifer.jpg" />
+    <Content Include="Content\Images\Customers\amanda-feifer.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Customers\ash-jacobson.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\cheri-waters.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\eli-daniels.jpg">
@@ -329,13 +338,34 @@
     <Content Include="Content\Images\Customers\gemma-hunter.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\jada-keilt.jpg" />
-    <Content Include="Content\Images\Customers\jay-michaels.jpg" />
+    <Content Include="Content\Images\Customers\ginger-hayward.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\jada-keilt.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\jay-michaels.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Customers\mark-dennison.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\merida-kingsley.jpg" />
+    <Content Include="Content\Images\Customers\merida-kingsley.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\samantha-powell.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Customers\serra-rhonas.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\shelly-conway.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\victoria-shanters.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\winry-robinson.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Endings\evicted.jpg">
@@ -678,6 +708,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\policy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\purchase-summary-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\purchase-summary-press.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\UI\purchase-summary.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\purchase.png">

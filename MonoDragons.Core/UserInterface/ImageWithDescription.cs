@@ -20,7 +20,7 @@ namespace MonoDragons.Core.UserInterface
                 BackgroundColor = Color.FromNonPremultiplied(32, 32, 32, 150),
                 TextColor = Color.White,
                 Transform = transform,
-                Font = "Fonts/twelve",
+                Font = "Fonts/12",
                 Text = description
             };
             _transform = transform;

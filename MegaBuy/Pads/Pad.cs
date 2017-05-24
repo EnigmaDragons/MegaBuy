@@ -73,7 +73,7 @@ namespace MegaBuy.Pads
             if (app.Equals(App.Notification))
                 return new NotificationApp();
             if (app.Equals(App.PurchaseHistory))
-                return new AdvancedPurchaseHistory();
+                return new PurchaseHistory();
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }
