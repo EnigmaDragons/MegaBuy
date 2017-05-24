@@ -8,7 +8,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.Notifications.Old
+namespace MegaBuy.Notifications
 {
     public sealed class NotificationApp : IApp
     {

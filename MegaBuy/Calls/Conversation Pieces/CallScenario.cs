@@ -1,4 +1,5 @@
 ﻿using MegaBuy.Calls.Callers;
+using MegaBuy.PurchaseHistories.Data;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
@@ -6,7 +7,8 @@ namespace MegaBuy.Calls.Conversation_Pieces
     {
         // @todo #1 don't assume there is exactly 1 product problem.
         public Caller Caller { get; set; }
-        public string Product { get; set; }
+        public Product Product { get; set; }
         public Problem Problem { get; set; }
+        public string ProductName => Product.Name;
     }
 }

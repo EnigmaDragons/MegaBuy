@@ -22,7 +22,7 @@ namespace MegaBuy.Policies
 
         public PoliciesApp()
         {
-            _gameState = CurrentGameState.GameState;
+            _gameState = CurrentGameState.State;
             Branch = new ClickUIBranch("Policies App", (int)ClickUIPriorities.Pad);
             _pageUi = new PolicyPageUI(_gameState.ActivePolicies, 0, 7);
             _backButton = ImageTextButtonFactory.CreateRotated("<<", new Vector2(Sizes.Margin, 275), NavigateBack);

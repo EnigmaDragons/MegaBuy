@@ -1,4 +1,5 @@
 ﻿using System;
+using MegaBuy.UIs;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 
@@ -9,21 +10,21 @@ namespace MegaBuy.Time
         private readonly Timer _timer;
 
         private float _currentRate = 1.0f;
-
-        private int _day;
-        private int _hour;
-        private int _minute;
-
-        public string Time => $"{_hour:D2}:{_minute:D2}";
         
-        public Clock()
-            : this(400, 8, 0) { }
+        private int Hour => DateTime.Hour;
+        private int Minute => DateTime.Minute;
 
-        public Clock(int msPerMinute, int hour, int minute)
+        public string Time => $"{Hour:D2}:{Minute:D2}";
+        public string Date => DateTime.ToString(DateFormat.Get);
+        public DateTime DateTime { get; private set; }
+
+        public Clock(DateTime start)
+            : this(400, start) { }
+
+        public Clock(int msPerMinute, DateTime start)
         {
+            DateTime = start;
             _timer = new Timer(IncrementMinute, msPerMinute);
-            _hour = hour;
-            _minute = minute;
             World.Subscribe(EventSubscription.Create<TimeRateChanged>(ChangeRate, this));
         }
 
@@ -40,25 +41,21 @@ namespace MegaBuy.Time
 
         private void IncrementMinute()
         {
-            if (_minute == 59)
-                IncrementHour();
-            _minute = (_minute + 1) % 60;
-            World.Publish(new MinuteChanged(_hour, _minute));
-        }
+            var min = Minute;
+            var hour = Hour;
+            DateTime = DateTime.AddMinutes(1);
 
-        private void IncrementHour()
-        {
-            if (_hour == 23)
+            World.Publish(new MinuteChanged(Hour, Minute));
+            if (hour == 23 && min == 59)
                 IncrementDay();
-            _hour = (_hour + 1) % 24;
-            World.Publish(new HourChanged(_hour));
+            if (min == 59)
+                World.Publish(new HourChanged(Hour));
         }
 
         private void IncrementDay()
         {
-            World.Publish(new DayEnded(_day));
-            _day++;
-            World.Publish(new DayStarted(_day));
+            World.Publish(new DayEnded());
+            World.Publish(new DayStarted(DateTime));
         }
     }
 }

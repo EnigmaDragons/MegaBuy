@@ -7,18 +7,18 @@ namespace MegaBuy.Calls.Conversation_Pieces
 {
     public static class CallScenarioFactory
     {
-        public static CallScenario Create(JobRole jobRole, int patienceLossRateMs)
+        public static CallScenario Create(Job job, int patienceLossRateMs)
         {
-            return Create(jobRole, patienceLossRateMs, new Dictionary<string, string>());
+            return Create(job, patienceLossRateMs, new Dictionary<string, string>());
         }
 
-        public static CallScenario Create(JobRole jobRole, int patienceLossRateMs, Dictionary<string, string> traits)
+        public static CallScenario Create(Job job, int patienceLossRateMs, Dictionary<string, string> traits)
         {
             var product = Products.Random;
             return new CallScenario
             {
                 Caller = new Caller(patienceLossRateMs, traits),
-                Product = product.Name,
+                Product = product,
                 Problem = Products.GetProblemFor(product.Name)
             };
         }

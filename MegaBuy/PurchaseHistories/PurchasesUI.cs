@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls.Events;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,7 @@ namespace MegaBuy.PurchaseHistories
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
 
-        private readonly IEnumerator<Purchase> _purchaseSupplier;
+        private IEnumerator<Purchase> _purchaseSupplier;
         private readonly List<PurchaseSummaryUI> _purchaseUIs = new List<PurchaseSummaryUI>();
         private readonly int _ordersPerPage = 10;
         private readonly ClickUIBranch _parentBranch;
@@ -25,12 +26,9 @@ namespace MegaBuy.PurchaseHistories
         private bool _isListing = true;
 
         public PurchasesUI(ClickUIBranch parentBranch)
-            : this(Purchase.CreateInfinite(new DateTime(2020 + Rng.Int(1, 40), Rng.Int(1, 13), Rng.Int(1, 29))), parentBranch) { }
-
-        public PurchasesUI(IEnumerable<Purchase> purchaseSupplier, ClickUIBranch parentBranch)
         {
             _parentBranch = parentBranch;
-            _purchaseSupplier = purchaseSupplier.GetEnumerator();
+            _purchaseSupplier = CurrentPurchaseHistory.PurchaseHistory.GetEnumerator();
             _branch = new ClickUIBranch("Purchases", (int)ClickUIPriorities.Pad);
             _parentBranch.Add(_branch);
             var backButton = ImageTextButtonFactory.CreateRotated("<<", new Vector2(Sizes.Margin, 275), NavigateBack, () => _index != 0);
@@ -44,6 +42,8 @@ namespace MegaBuy.PurchaseHistories
             _visuals.Add(returnButton);
             World.Subscribe(EventSubscription.Create<PurchaseInspected>(x => Inspect(), this));
             World.Subscribe(EventSubscription.Create<PurchasesListed>(x => ListPurchases(), this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(), this));
             RetrieveNeededPurchases();
             AddCurrentPurchaseSummaries();
         }
@@ -107,9 +107,20 @@ namespace MegaBuy.PurchaseHistories
                 currentlyViewingPurchases[i].Draw(parentTransform + new Transform2(new Vector2(0, Sizes.Margin + i * (Sizes.PurchaseSummary.Height + Sizes.SmallMargin))));
         }
 
-        public void Dispose()
+        public void EndCall()
         {
-            World.Unsubscribe(this);
+            RemoveCurrentPurchaseSummaries();
+            _isListing = false;
+            _index = 0;
+            _purchaseUIs.Clear();
+        }
+
+        public void StartCall()
+        {
+            _purchaseSupplier = CurrentPurchaseHistory.PurchaseHistory.GetEnumerator();
+            RetrieveNeededPurchases();
+            AddCurrentPurchaseSummaries();
+            _isListing = true;
         }
     }
 }

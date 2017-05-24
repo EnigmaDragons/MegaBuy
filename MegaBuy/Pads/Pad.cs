@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Calls;
-using MegaBuy.Notifications.Old;
+using MegaBuy.Notifications;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
 using MegaBuy.PurchaseHistories;
@@ -73,7 +73,7 @@ namespace MegaBuy.Pads
             if (app.Equals(App.Notification))
                 return new NotificationApp();
             if (app.Equals(App.PurchaseHistory))
-                return new PurchaseHistory();
+                return new PurchaseHistoryApp();
             throw new KeyNotFoundException($"Unknown App Type {app}");
         }
     }

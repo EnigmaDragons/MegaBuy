@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MegaBuy
+﻿namespace MegaBuy
 {
     public static class CurrentGameState
     {
-        public static GameState GameState = new GameState();
+        public static GameState State = new GameState();
     }
 }

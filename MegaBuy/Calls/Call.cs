@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Messages;
@@ -8,7 +7,6 @@ using MegaBuy.Calls.Ratings;
 using MegaBuy.Calls.Rules;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Money.Amounts;
-using MegaBuy.Policies;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 
@@ -25,7 +23,7 @@ namespace MegaBuy.Calls
 
         public Call(Caller caller, Script script, CallResolution correctResolution, List<ICallOption> options)
         {
-            _activePolicies = CurrentGameState.GameState.ActivePolicies;
+            _activePolicies = CurrentGameState.State.ActivePolicies;
             Caller = caller;
             Script = script;
             _correctResolution = correctResolution;

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MegaBuy.Pads.Apps;
+﻿using System.Collections.Generic;
+using MegaBuy.Calls.Events;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -30,6 +26,7 @@ namespace MegaBuy.PurchaseHistories
             _visuals.Add(returnButton);
             _branch.Add(returnButton);
             World.Subscribe(EventSubscription.Create<PurchaseInspected>(x => Inspect(x.Purchase), this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(x => Dispose(), this));
         }
 
         public void Draw(Transform2 parentTransform)
@@ -57,7 +54,8 @@ namespace MegaBuy.PurchaseHistories
 
         public void Dispose()
         {
-            World.Unsubscribe(this);
+            _isInspecting = false;
+            _parentBranch.Remove(_branch);
         }
     }
 }

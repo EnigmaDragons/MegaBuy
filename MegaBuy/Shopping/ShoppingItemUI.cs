@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using MegaBuy.Money.Amounts;
+using MegaBuy.Money.Accounts;
 
 namespace MegaBuy.Shopping
 {
@@ -13,11 +15,15 @@ namespace MegaBuy.Shopping
         private readonly ImageWithDescription _productDetails;
         private readonly Label _label;
         private readonly ImageTextButton _button;
+        private readonly ImageLabel _disabledButton;
+        private readonly PlayerAccount _playerAccount;
+        private readonly decimal _amount;
 
         public ClickUIBranch Branch { get; private set; }
 
         public ShoppingItemUI(IItem item, int i, Action whenBought)
         {
+            _playerAccount = CurrentGameState.State.PlayerAccount;
             Branch = new ClickUIBranch(item.Name, (int)ClickUIPriorities.Pad);
             var x = (i%4) * (Sizes.Item.Width + Sizes.Margin);
             var y = (i/4) * (Sizes.Item.Height + Sizes.Margin * 2 + Sizes.Button.Height);
@@ -31,7 +37,10 @@ namespace MegaBuy.Shopping
                 Transform = new Transform2(new Vector2(0, Sizes.Item.Height + 5), new Size2(Sizes.Item.Width, 30)),
                 RawText = item.Name + " - $" + item.Cost.Amount()
             };
-            _button = ImageTextButtonFactory.Create("Buy", new Vector2(0, Sizes.Item.Height + Sizes.SmallMargin + 30), whenBought);
+            _amount = item.Cost.Amount(); 
+            _button = ImageTextButtonFactory.Create("Buy", new Vector2(0, Sizes.Item.Height + Sizes.SmallMargin + 30),
+                () => { if (_playerAccount.Amount() >= _amount) whenBought(); });
+            _disabledButton = new ImageLabel("Buy", "Images/UI/button-disable", new Transform2(new Vector2(0, Sizes.Item.Height + Sizes.SmallMargin + 30), Sizes.Button));
             Branch.Add(_button);
             Branch.Add(_productDetails);
         }
@@ -42,7 +51,10 @@ namespace MegaBuy.Shopping
             Branch.ParentLocation = absoluteTransform.Location;
             _productDetails.Draw(absoluteTransform);
             _label.Draw(absoluteTransform);
-            _button.Draw(absoluteTransform);
+            if (_playerAccount.Amount() >= _amount)
+                _button.Draw(absoluteTransform);
+            else
+                _disabledButton.Draw(absoluteTransform);
         }
     }
 }

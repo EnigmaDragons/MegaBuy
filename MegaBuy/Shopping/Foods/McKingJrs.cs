@@ -5,7 +5,7 @@ namespace MegaBuy.Shopping.Foods
 {
     public class McKingJrs : IShoppingCompany
     {
-        private readonly GameState _gameState = CurrentGameState.GameState;
+        private readonly GameState _gameState = CurrentGameState.State;
         public string Name => "McKing Jr's";
         public string Description => "We make the foods you crave!";
         public List<IItem> Items { get; } = new List<IItem>

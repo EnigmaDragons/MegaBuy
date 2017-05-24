@@ -47,6 +47,9 @@
     <Compile Include="Audio\DisposingFileReader.cs" />
     <Compile Include="Audio\LoopingFileReader.cs" />
     <Compile Include="Audio\DampeningSampleProvider.cs" />
+    <Compile Include="Engine\IControl.cs" />
+    <Compile Include="Engine\ISpatialVisual.cs" />
+    <Compile Include="Engine\IVisualControl.cs" />
     <Compile Include="Inputs\Controls.cs" />
     <Compile Include="Characters\Health.cs" />
     <Compile Include="Characters\Mortal.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Engine\SceneContents.cs" />
     <Compile Include="Engine\SceneFactory.cs" />
     <Compile Include="PhysicsEngine\BoxCollision.cs" />
+    <Compile Include="Engine\ISpatial.cs" />
     <Compile Include="PhysicsEngine\Motion2.cs" />
     <Compile Include="PhysicsEngine\MotionSystem.cs" />
     <Compile Include="PhysicsEngine\PhysicsSystems.cs" />
@@ -149,6 +153,7 @@
     <Compile Include="UserInterface\ImageLabel.cs" />
     <Compile Include="UserInterface\ImageTextButton.cs" />
     <Compile Include="UserInterface\ImageWithDescription.cs" />
+    <Compile Include="Engine\IVIsualAutomatonControl.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
@@ -160,6 +165,7 @@
     <Compile Include="UserInterface\NoneClickableUIElement.cs" />
     <Compile Include="UserInterface\OffsetClickableUIElement.cs" />
     <Compile Include="UserInterface\ScreenClickable.cs" />
+    <Compile Include="UserInterface\ScrollableElements.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\SingleImageButton.cs" />
     <Compile Include="UserInterface\TextBox.cs" />

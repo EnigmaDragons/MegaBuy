@@ -15,6 +15,10 @@ namespace MegaBuy.Calls.Conversation_Pieces
             { Problem.HasSpyware, "infected my system with spyware" },
             { Problem.RunsSlowly, "takes forever to launch" },
             { Problem.Crashes, "crashes constantly" },
+            { Problem.DoesNotFit, "doesn't fit" },
+            { Problem.WrongStyle, "isn't my style" },
+            { Problem.IsSpoiled, "is spoiled" },
+            { Problem.DoesNotTasteGood, "tastes terrible" },
         };
     }
 
@@ -29,5 +33,9 @@ namespace MegaBuy.Calls.Conversation_Pieces
         HasSpyware,
         RunsSlowly,
         Crashes,
+        DoesNotFit,
+        WrongStyle,
+        IsSpoiled,
+        DoesNotTasteGood
     }
 }

@@ -25,9 +25,9 @@ namespace MegaBuy.Jobs.Referrer
         };
         
         private static readonly List<Func<Call>> Level1Calls = new List<Func<Call>> {
-            () => CreateLvl1((c, s) => c.CallerSays("I want to return this dumb " + s.Product + "!"), CallResolution.ReferToReturns, Traits.None),
-            () => CreateLvl1((c, s) => c.CallerSays(s.Product + " needs to be returned. It " + Problems.Description[s.Problem] + "."), CallResolution.ReferToReturns, Traits.None),
-            () => CreateLvl1((c, s) => c.CallerSays("I need help. My " + s.Product + " " + Problems.Description[s.Problem] + "."), CallResolution.ReferToTroubleshooting, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays("I want to return this dumb " + s.ProductName + "!"), CallResolution.ReferToReturns, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays(s.ProductName + " needs to be returned. It " + Problems.Description[s.Problem] + "."), CallResolution.ReferToReturns, Traits.None),
+            () => CreateLvl1((c, s) => c.CallerSays("I need help. My " + s.ProductName + " " + Problems.Description[s.Problem] + "."), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("How much can I sell my " + Products.Random + " for?"), CallResolution.ReferToInfo, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("MY " + Products.Random.Name.ToUpper() + " DOESN'T WORK AND I NEED HELP RIGHT NOW!!!"), CallResolution.ReferToTroubleshooting, Traits.None),
             () => CreateLvl1((c, s) => c.CallerSays("Can I speak with accounting?"), CallResolution.EscalateCall, Traits.None),
@@ -55,11 +55,11 @@ namespace MegaBuy.Jobs.Referrer
         {
             () => CreateLvl2((c, s) => c.CallerSays("I wish to apply for the new Senior Vice Product Executive position."), CallResolution.ReferToCareers, Traits.None),
             () => CreateLvl2((c, s) => c.CallerSays("Do you have any job openings?"), CallResolution.ReferToCareers, Traits.None),
-            () => CreateLvl2((c, s) => c.CallerSays($"My {s.Product} hasn't arrived yet."), CallResolution.ReferToOrders, Traits.None),
+            () => CreateLvl2((c, s) => c.CallerSays($"My {s.ProductName} hasn't arrived yet."), CallResolution.ReferToOrders, Traits.None),
             () => CreateLvl2((c, s) => c.CallerSays("I think I accidentally ordered something by mistake."), CallResolution.ReferToOrders, Traits.None),
-            () => CreateLvl2((c, s) => c.CallerSays($"How many copies of {s.Product} did I order?"), CallResolution.ReferToOrders, Traits.None),
-            () => CreateLvl2((c, s) => c.CallerSays($"I want to buy {s.Product}."), CallResolution.EscalateCall, Traits.None),
-            () => CreateLvl2((c, s) => c.CallerSays($"When will you get more {s.Product} in stock?"), CallResolution.ReferToInfo, Traits.None),
+            () => CreateLvl2((c, s) => c.CallerSays($"How many copies of {s.ProductName} did I order?"), CallResolution.ReferToOrders, Traits.None),
+            () => CreateLvl2((c, s) => c.CallerSays($"I want to buy {s.ProductName}."), CallResolution.EscalateCall, Traits.None),
+            () => CreateLvl2((c, s) => c.CallerSays($"When will you get more {s.ProductName} in stock?"), CallResolution.ReferToInfo, Traits.None),
             () => CreateLvl2((c, s) => c.CallerSays($"I just moved. I need to change my delivery address"), CallResolution.ReferToOrders, Traits.None),
         }).ToList();
         
@@ -92,7 +92,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel1, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel1, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level1Options);
@@ -100,7 +100,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl2(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel2, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel2, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level2Options);
@@ -108,7 +108,7 @@ namespace MegaBuy.Jobs.Referrer
 
         private static Call CreateLvl3(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption, Dictionary<string, string> map)
         {
-            var scenario = CallScenarioFactory.Create(JobRole.ReferrerLevel3, PatienceLevel.Random, map);
+            var scenario = CallScenarioFactory.Create(Job.ReferrerLevel3, PatienceLevel.Random, map);
             var script = InitScript();
             scriptBuilder(script, scenario);
             return new Call(scenario.Caller, script, correctOption, Level3Options);
