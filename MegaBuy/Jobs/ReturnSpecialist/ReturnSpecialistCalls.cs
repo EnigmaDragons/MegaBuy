@@ -31,10 +31,10 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
             () => CreateLvl1((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.ProductName}. Take it back!"), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
-            // @todo #1: Content: Write 4 more scripts
+            // @todo #1 Content: Write 4 more scripts
         };
 
-        // @todo #1: Content: Create ReturnSpecialistLevel2 Calls
+        // @todo #1 Content: Create ReturnSpecialistLevel2 Calls
 
         private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
@@ -63,7 +63,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
                 numAttempts++;
                 purchase = Purchase.Create(DateWithinDays(90), scenario.Product);
                 scenario.Target = new Optional<Purchase>(purchase);
-                // @todo #1: Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
+                // @todo #1 Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
                 var call = new Call(script, scenario, correctResolution, Level1Options);
                 var violations = policies.GetViolations(correctResolution, call);
                 call.Dispose();

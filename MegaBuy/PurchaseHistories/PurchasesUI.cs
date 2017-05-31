@@ -26,8 +26,8 @@ namespace MegaBuy.PurchaseHistories
         private int _index = 0;
         private bool _isListing = true;
 
-        // @todo #1: HOT BUG: Inject this with the Current Call Purchase History
-        // @todo #1: Backend: Needs to work with a finite history
+        // @todo #1 HOT BUG: Inject this with the Current Call Purchase History
+        // @todo #1 Backend: Needs to work with a finite history
         public PurchasesUI(ClickUIBranch parentBranch)
         {
             _parentBranch = parentBranch;
