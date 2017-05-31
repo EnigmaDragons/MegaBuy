@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using MegaBuy.PurchaseHistories.Data;
 using MegaBuy.UIs;
@@ -11,6 +10,7 @@ namespace MegaBuy.PurchaseHistories
     public class Purchase
     {
         private readonly DateTime _purchaseDate;
+        private readonly decimal _itemPrice;
 
         public string Date { get; private set; }
         public string OrderID { get; private set; }
@@ -30,9 +30,20 @@ namespace MegaBuy.PurchaseHistories
         public string DeliverDateTime { get; private set; }
         public string ReturnDateTime { get; private set; }
 
-        public Purchase(DateTime purchaseDate)
+        public Purchase(DateTime purchaseDate, decimal itemPrice)
         {
             _purchaseDate = purchaseDate;
+            _itemPrice = itemPrice;
+        }
+
+        public bool PurchasedAfter(DateTime dt)
+        {
+            return _purchaseDate > dt;
+        }
+
+        public bool PurchasedWithinLast(int numDays)
+        {
+            return PurchasedAfter(CurrentGameState.State.DateTime.AddDays(-numDays));
         }
 
         public static IEnumerable<Purchase> CreateInfinite()
@@ -81,7 +92,7 @@ namespace MegaBuy.PurchaseHistories
         public static Purchase Create(DateTime purchaseDate, Product product, bool wasDelivered, bool wasSoldAsIs, bool wasReturned)
         {
             var provider = Providers.Random;
-            return new Purchase(purchaseDate)
+            return new Purchase(purchaseDate, product.Price)
             {
                 Date = purchaseDate.ToString(DateFormat.Get),
                 OrderID = CreateId().RandomlyNullify(),
@@ -106,6 +117,11 @@ namespace MegaBuy.PurchaseHistories
         private static string CreateId()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        public bool PriceIsLessThan(int amount)
+        {
+            return _itemPrice < amount;
         }
     }
 }

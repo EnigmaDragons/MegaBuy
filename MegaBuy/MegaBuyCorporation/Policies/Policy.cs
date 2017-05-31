@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls;
-using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Rules;
 
 namespace MegaBuy.MegaBuyCorporation.Policies
@@ -10,14 +9,14 @@ namespace MegaBuy.MegaBuyCorporation.Policies
     public sealed class Policy
     {
         private readonly List<CallResolution> _resolutions;
-        private readonly Predicate<Caller> _condition;
+        private readonly Predicate<Call> _condition;
 
         public string Text { get; }
 
-        public Policy(string text, CallResolution resolution, Predicate<Caller> condition)
+        public Policy(string text, CallResolution resolution, Predicate<Call> condition)
             : this(text, condition, resolution) { }
 
-        public Policy(string text, Predicate<Caller> condition, params CallResolution[] resolutions)
+        public Policy(string text, Predicate<Call> condition, params CallResolution[] resolutions)
         {
             _resolutions = resolutions.ToList();
             _condition = condition;
@@ -26,7 +25,7 @@ namespace MegaBuy.MegaBuyCorporation.Policies
 
         public bool MeetsPolicy(CallResolution resolution, Call call)
         {
-            return !Applies(resolution) || _condition(call.Caller);
+            return !Applies(resolution) || _condition(call);
         }
 
         private bool Applies(CallResolution resolution)

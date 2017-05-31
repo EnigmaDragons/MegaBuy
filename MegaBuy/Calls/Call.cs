@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using MegaBuy.Calls.Callers;
+using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Events;
 using MegaBuy.Calls.Messages;
 using MegaBuy.Calls.Ratings;
 using MegaBuy.Calls.Rules;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Money.Amounts;
+using MegaBuy.PurchaseHistories;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 
@@ -18,14 +21,18 @@ namespace MegaBuy.Calls
         private readonly ActivePolicies _activePolicies;
 
         public List<ICallOption> Options { get; }
-        public Caller Caller { get; }
         public Script Script { get; }
+        public CallScenario Scenario { get; }
 
-        public Call(Caller caller, Script script, CallResolution correctResolution, List<ICallOption> options)
+        public Caller Caller => Scenario.Caller;
+        public IEnumerable<Purchase> Purchases => Scenario.Purchases;
+        public Optional<Purchase> Purchase => Scenario.Target;
+
+        public Call(Script script, CallScenario scenario, CallResolution correctResolution, List<ICallOption> options)
         {
             _activePolicies = CurrentGameState.State.ActivePolicies;
-            Caller = caller;
             Script = script;
+            Scenario = scenario;
             _correctResolution = correctResolution;
             Options = options;
             World.Subscribe(EventSubscription.Create<CallResolved>(ResolveCall, this));

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls;
 using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Rules;
 using MegaBuy.MegaBuyCorporation.Policies;
@@ -8,13 +9,13 @@ namespace MegaBuy.Jobs.Referrer
 {
     public static class ReferrerPolicies
     {
-        private static readonly Predicate<Caller> Any = x => true;
-        private static readonly Predicate<Caller> HasOpenOrder = x => x.HasTrait("OpenOrder");
-        private static readonly Predicate<Caller> IsCustomer = x => x.HasTrait("IsCustomer");
-        private static readonly Predicate<Caller> IsCallingAboutPurchase = x => x.HasTrait("IsCallingAboutPurchase");
-        private static readonly Predicate<Caller> IsSupplierEmployee = x => x.HasTrait("IsSupplierEmployee");
-        private static readonly Func<Caller, int, bool> HasPurchasedInLastXDays = (c, x) => c.IsAtMost("MostRecentPurchaseTimeIs", x);
-        private static readonly Func<Caller, int, bool> HasCreditScoreAtLeastX = (c, x) => c.IsAtLeast("CreditScoreIs", x);
+        private static readonly Predicate<Call> Any = x => true;
+        private static readonly Predicate<Call> HasOpenOrder = x => x.Caller.HasTrait("OpenOrder");
+        private static readonly Predicate<Call> IsCustomer = x => x.Caller.HasTrait("IsCustomer");
+        private static readonly Predicate<Call> IsCallingAboutPurchase = x => x.Caller.HasTrait("IsCallingAboutPurchase");
+        private static readonly Predicate<Call> IsSupplierEmployee = x => x.Caller.HasTrait("IsSupplierEmployee");
+        private static readonly Func<Call, int, bool> HasPurchasedInLastXDays = (c, x) => c.Caller.IsAtMost("MostRecentPurchaseTimeIs", x);
+        private static readonly Func<Call, int, bool> HasCreditScoreAtLeastX = (c, x) => c.Caller.IsAtLeast("CreditScoreIs", x);
 
         public static readonly List<Policy> Level1Policies = new List<Policy>
         {

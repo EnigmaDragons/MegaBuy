@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls;
 using MegaBuy.Calls.Events;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
@@ -28,7 +29,7 @@ namespace MegaBuy.PurchaseHistories
         public PurchasesUI(ClickUIBranch parentBranch)
         {
             _parentBranch = parentBranch;
-            _purchaseSupplier = CurrentPurchaseHistory.PurchaseHistory.GetEnumerator();
+            _purchaseSupplier = new List<Purchase>().GetEnumerator();
             _branch = new ClickUIBranch("Purchases", (int)ClickUIPriorities.Pad);
             _parentBranch.Add(_branch);
             var backButton = ImageTextButtonFactory.CreateRotated("<<", new Vector2(Sizes.Margin, 275), NavigateBack, () => _index != 0);
@@ -43,7 +44,7 @@ namespace MegaBuy.PurchaseHistories
             World.Subscribe(EventSubscription.Create<PurchaseInspected>(x => Inspect(), this));
             World.Subscribe(EventSubscription.Create<PurchasesListed>(x => ListPurchases(), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => EndCall(), this));
-            World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => StartCall(x), this));
             RetrieveNeededPurchases();
             AddCurrentPurchaseSummaries();
         }
@@ -115,9 +116,9 @@ namespace MegaBuy.PurchaseHistories
             _purchaseUIs.Clear();
         }
 
-        public void StartCall()
+        public void StartCall(Call call)
         {
-            _purchaseSupplier = CurrentPurchaseHistory.PurchaseHistory.GetEnumerator();
+            _purchaseSupplier = call.Scenario.Purchases.GetEnumerator();
             RetrieveNeededPurchases();
             AddCurrentPurchaseSummaries();
             _isListing = true;
