@@ -13,6 +13,7 @@ using MegaBuy.Player;
 using MegaBuy.Rents;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Shopping;
 
 namespace MegaBuy
 {
@@ -44,6 +45,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
+            AddSingleInstanceSubscription(new FoodDelivery());
             World.Publish(new DayStarted(new DateTime(2328, 7, 16)));
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development

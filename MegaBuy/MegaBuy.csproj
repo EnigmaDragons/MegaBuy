@@ -99,12 +99,16 @@
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
     <Compile Include="PurchaseHistories\PurchasesUI.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
+    <Compile Include="Shopping\FoodDelivery.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
+    <Compile Include="Shopping\Foods\FoodDelivered.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
+    <Compile Include="Shopping\Foods\FoodOrdered.cs" />
     <Compile Include="Shopping\Foods\McKingJrs.cs" />
     <Compile Include="Shopping\Foods\SweetBakery.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
+    <Compile Include="Shopping\ScheduledFoodDelivery.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
     <Compile Include="Money\Amounts\PayPenalty.cs" />
     <Compile Include="Pads\Apps\App.cs" />
