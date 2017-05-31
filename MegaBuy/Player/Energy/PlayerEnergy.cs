@@ -51,7 +51,6 @@ namespace MegaBuy.Player.Energy
             _isExhausted = false;
             World.Publish(new TimeRateChanged(1f / TimeRateFactorWhileSleeping));
             World.Publish(new Awaken());
-            // @todo #1 Game Scene needs so subscribe to Sleep/Waking states
         }
 
         private void CollapseFromExhaustion()

@@ -2,8 +2,7 @@
 
 namespace MonoDragons.Core.Engine
 {
-    public interface ISpatial
+    public interface ISpatialVisualControl : ISpatial, IVisual, IControl
     {
-        Transform2 Transform { get; }
     }
 }

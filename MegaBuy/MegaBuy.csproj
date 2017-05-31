@@ -66,6 +66,11 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
+    <Compile Include="ReturnCalls\Callers\ReturnsCallReadyUI.cs" />
+    <Compile Include="ReturnCalls\ReturnCallApp.cs" />
+    <Compile Include="ReturnCalls\Messages\ReturnsCallMessengerUI.cs" />
+    <Compile Include="ReturnCalls\Messages\ReturnsMessageUI.cs" />
     <Compile Include="PurchaseHistories\CurrentPurchaseHistory.cs" />
     <Compile Include="PurchaseHistories\Data\AddressOwners.cs" />
     <Compile Include="PurchaseHistories\Data\Product.cs" />

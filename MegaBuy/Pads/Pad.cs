@@ -6,6 +6,7 @@ using MegaBuy.Pads.Apps;
 using MegaBuy.Policies;
 using MegaBuy.PurchaseHistories;
 using MegaBuy.Rents;
+using MegaBuy.ReturnCalls;
 using MegaBuy.Shopping;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -63,7 +64,7 @@ namespace MegaBuy.Pads
         private IApp MakeApp(App app)
         {
             if (app.Equals(App.Call))
-                return new CallApp();
+                return new ReturnCallApp();
             if (app.Equals(App.Shopping))
                 return new ShoppingApp();
             if (app.Equals(App.Policies))

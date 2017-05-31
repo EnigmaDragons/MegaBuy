@@ -5,12 +5,13 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public class ImageTextButton : ClickableUIElement, IVisual
+    public class ImageTextButton : ClickableUIElement, ISpatialVisual
     {
         private readonly ImageButton _button;
         private readonly Label _label;
         private readonly Func<bool> _isVisible;
 
+        public Transform2 Transform => new Transform2(Area);
         public string Text { set { _label.Text = value; } }
 
         public ImageTextButton(string text, string basic, string hover, string press, Transform2 transform, Action onClick)

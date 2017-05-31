@@ -49,6 +49,7 @@
     <Compile Include="Audio\DampeningSampleProvider.cs" />
     <Compile Include="Engine\IControl.cs" />
     <Compile Include="Engine\ISpatialVisual.cs" />
+    <Compile Include="Engine\ISpatialVisualControl.cs" />
     <Compile Include="Engine\IVisualControl.cs" />
     <Compile Include="Inputs\Controls.cs" />
     <Compile Include="Characters\Health.cs" />
@@ -143,6 +144,11 @@
     <Compile Include="Text\IWrapText.cs" />
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
+    <Compile Include="UserInterface\Layouts\ConcreteDefinition.cs" />
+    <Compile Include="UserInterface\Layouts\Definition.cs" />
+    <Compile Include="UserInterface\Layouts\ShareDefintion.cs" />
+    <Compile Include="UserInterface\Layouts\SizeType.cs" />
+    <Compile Include="UserInterface\Layouts\GridLayout.cs" />
     <Compile Include="UserInterface\HorizontalAlignment.cs" />
     <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\ClickUIBranch.cs" />
@@ -155,6 +161,7 @@
     <Compile Include="UserInterface\ImageWithDescription.cs" />
     <Compile Include="Engine\IVIsualAutomatonControl.cs" />
     <Compile Include="UserInterface\Label.cs" />
+    <Compile Include="UserInterface\Layouts\Layout.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="UserInterface\ClickableUIElement.cs" />
