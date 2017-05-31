@@ -1,4 +1,5 @@
-﻿using MegaBuy.Shopping.Foods;
+﻿using MegaBuy.Notifications;
+using MegaBuy.Shopping.Foods;
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -21,7 +22,8 @@ namespace MegaBuy.Shopping
         {
             if(--_minutesTilDelivery == 0)
             {
-                new FoodDelivered(_food);
+                World.Publish(new PlayerNotification("FedNext", "Food Delivered!"));
+                World.Publish(new FoodDelivered(_food));
                 World.Unsubscribe(this);
             }
         }
