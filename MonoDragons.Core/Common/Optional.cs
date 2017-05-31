@@ -33,7 +33,7 @@ namespace MonoDragons.Core.Common
 
         public bool IsFalse(Predicate<T> condition)
         {
-            return HasValue && condition(_value);
+            return HasValue && !condition(_value);
         }
     }
 }

@@ -28,6 +28,11 @@ namespace MegaBuy.MegaBuyCorporation.Policies
             return !Applies(resolution) || _condition(call);
         }
 
+        public override string ToString()
+        {
+            return Text;
+        }
+
         private bool Applies(CallResolution resolution)
         {
             return resolution.Equals(CallResolution.Any) || _resolutions.Contains(resolution);

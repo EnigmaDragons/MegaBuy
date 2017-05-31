@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace MegaBuy.Calls.Callers
 {
-    public sealed class Caller : IAutomaton
+    public sealed class Caller : IAutomaton, IDisposable
     {
         public CallerPatience Patience = CallerStartingPatience.New;
         public string Name { get; }
@@ -76,6 +76,11 @@ namespace MegaBuy.Calls.Callers
         public bool HasTrait(string trait)
         {
             return Traits.ContainsKey(trait) && Traits[trait] == "true";
+        }
+
+        public void Dispose()
+        {
+            World.Unsubscribe(this);
         }
     }
 }

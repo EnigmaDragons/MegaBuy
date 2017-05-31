@@ -32,6 +32,9 @@ namespace MegaBuy.Pads
             _menuBar = new MenuBar(_branch);
             _currentApp = new NoneApp();
             World.Subscribe(EventSubscription.Create<AppChanged>(x => OpenApp(x.App), this));
+            // @todo #1: Fix the state transfer architecture
+            OpenApp(App.PurchaseHistory);
+            OpenApp(App.Call);
         }
 
         public void Update(TimeSpan delta)

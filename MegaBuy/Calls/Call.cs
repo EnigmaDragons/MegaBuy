@@ -15,7 +15,7 @@ using MonoDragons.Core.EventSystem;
 
 namespace MegaBuy.Calls
 {
-    public sealed class Call : IAutomaton
+    public sealed class Call : IAutomaton, IDisposable
     {
         private readonly CallResolution _correctResolution;
         private readonly ActivePolicies _activePolicies;
@@ -58,6 +58,12 @@ namespace MegaBuy.Calls
                 World.Publish(new CallFailed(new Fee(2)));
                 World.Publish(new CallRated(GetHashCode(), new CallRating(1)));
             }
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            Caller.Dispose();
             World.Unsubscribe(this);
         }
     }

@@ -83,12 +83,17 @@ namespace MegaBuy.PurchaseHistories
 
         public static Purchase Create(DateTime purchaseDate)
         {
+            return Create(purchaseDate, Products.Random);
+        }
+
+        public static Purchase Create(DateTime purchaseDate, Product product)
+        {
             var wasSoldAsIs = Rng.Int(0, 100) < 16;
             var wasDelivered = Rng.Int(0, 100) < 98;
             var wasReturned = Rng.Int(0, 100) < 12;
             return Create(purchaseDate, Products.Random, wasDelivered, wasSoldAsIs, wasReturned);
         }
-        
+
         public static Purchase Create(DateTime purchaseDate, Product product, bool wasDelivered, bool wasSoldAsIs, bool wasReturned)
         {
             var provider = Providers.Random;
