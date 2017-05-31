@@ -5,11 +5,11 @@ namespace MegaBuy.Calls.Rules
 {
     public static class PatienceLevel
     {
-        public static int VeryPatient = 3000;
-        public static int Patient = 2500;
-        public static int Average = 2000;
-        public static int Impatient = 1500;
-        public static int VeryImpatient = 1000;
+        public static int VeryPatient = 6000;
+        public static int Patient = 5000;
+        public static int Average = 4000;
+        public static int Impatient = 3000;
+        public static int VeryImpatient = 2000;
 
         private static readonly List<int> RandomOptions = new List<int> {VeryImpatient, Patient, Average, Impatient, VeryImpatient};
 

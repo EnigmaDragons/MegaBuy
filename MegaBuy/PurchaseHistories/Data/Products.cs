@@ -23,6 +23,7 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("MagMaster 30X", 3045.61m, ProductCategory.Weapon),
             Make("PQK 72", 2898.14m, ProductCategory.Weapon),
             Make("Gerber Ghoststrike Blade Knife", 964.12m, ProductCategory.Weapon),
+            Make("The Vindicator 900X", 1973.82m, ProductCategory.Weapon),
 
             Make("Fillmore the Flying Puppy", 63.84m, ProductCategory.Entertainment),
             Make("Terminator XVII", 74.44m, ProductCategory.Entertainment),
@@ -32,6 +33,7 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Hitonili Plays Nihongai", 162.67m, ProductCategory.Entertainment),
             Make("Colours", 74.12m, ProductCategory.Entertainment),
             Make("Psychokinesis and Mental States", 101.46m, ProductCategory.Entertainment),
+            Make("Tropical Arcology Infrastructure", 131.79m, ProductCategory.Entertainment),
 
             Make("Matrix Analyzer", 882.37m, ProductCategory.Software),
             Make("Data Raven", 195.72m, ProductCategory.Software),
@@ -41,15 +43,23 @@ namespace MegaBuy.PurchaseHistories.Data
 
             Make("Sailboat Reflections Painting", 2615.19m, ProductCategory.Decor),
             Make("NetCorp Beverage Tumbler", 241.85m, ProductCategory.Decor),
+            Make("Liberated Minds Hopper Sticker", 65.89m, ProductCategory.Decor),
+            Make("Vintage Orange Sheer Window Scarf", 312.83m, ProductCategory.Decor),
 
             Make("Oil-Tanned Calfskin Leather Wristband", 263.17m, ProductCategory.Apparel),
             Make("Vibram #1276 NeoKicks", 787.42m, ProductCategory.Apparel),
             Make("Black Shoulder Bag", 313.37m, ProductCategory.Apparel),
             Make("Kissy Kissy Buckaroo Bodysuit", 1262.83m, ProductCategory.Apparel),
             Make("Kiplin Sabiens Sports Series Shirt", 215.38m, ProductCategory.Apparel),
+            Make("Lucky Gemstone Necklace", 184.13m, ProductCategory.Apparel),
+            Make("Lightup Snowflake Princess Sunglaesses", 70.14m, ProductCategory.Apparel),
 
             Make("Hillshire Cove Fruit Basket", 374.42m, ProductCategory.Food),
-            // @todo #1 Add an additional 10 more products
+            Make("Chocolate Coconut Voodoo Bar", 22.17m, ProductCategory.Food),
+            Make("5 lbs. Gummy Palm Trees", 53.14m, ProductCategory.Food),
+            Make("Premium Grated Parmesan", 120.54m, ProductCategory.Food),
+            Make("Honeydew-Tomato Marinade Seasoning", 28.03m, ProductCategory.Food),
+            // @todo #1 Add 10 more products
         };
 
         private static Product Make(string name, decimal price, ProductCategory category)

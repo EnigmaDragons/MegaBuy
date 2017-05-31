@@ -27,8 +27,14 @@ namespace MegaBuy.Calls.Callers
             "Amanda Feifer",
             "Jay Michaels",
             "Merida Kingsley",
+            "Ginger Hayward",
+            "Cheri Waters",
+            "Victoria Shanters",
+            "Winry Robinson",
+            "Samantha Powell",
+            "Shelly Conway",
         };
-
+                       
         public static string Random => names.Random();
     }
 }

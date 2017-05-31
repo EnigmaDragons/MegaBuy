@@ -24,7 +24,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         {
             () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.ProductName}!"), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"Can I get a replacement for {s.ProductName}? Mine is dead."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.Reject),
+            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"This {s.ProductName} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"My {s.ProductName} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
             () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
@@ -33,22 +33,24 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         };
 
         // @todo #1: Content: Create ReturnSpecialistLevel2 Calls
-
-        // @todo #1: Backend: Randomize whether the requested action is correct or not
-        private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption)
+        
+        private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
+            var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var script = InitScript();
             scriptBuilder(script, scenario);
+            // @todo #1: Backend: Build purchases based on policies, instead of human knowledge
             var purchase = Purchase.Create(DateWithinDays(30));
-            if (correctOption == CallResolution.ApproveReturn)
+            if (correctResolution == CallResolution.ApproveReturn)
                 purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, false, false);
-            if (correctOption == CallResolution.ApproveReplacement)
+            if (correctResolution == CallResolution.ApproveReplacement)
                 purchase = Purchase.Create(DateWithinDays(60), scenario.Product, true, false, false);
-            if (correctOption == CallResolution.Reject)
+            if (correctResolution == CallResolution.Reject)
                 purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, true, false);
-            Debug.WriteLine($"CallResolution: {correctOption} for {purchase.ProductName}");
-            return new Call(scenario.Caller, script, correctOption, Level1Options, new PurchaseHistory(purchase));
+            Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
+            CurrentPurchaseHistory.PurchaseHistory = Purchase.CreateInfiniteWith(purchase);
+            return new Call(scenario.Caller, script, correctResolution, Level1Options);
         }
 
         private static DateTime DateWithinDays(int days)
