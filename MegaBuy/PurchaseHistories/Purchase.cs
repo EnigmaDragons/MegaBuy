@@ -48,20 +48,20 @@ namespace MegaBuy.PurchaseHistories
 
         public static IEnumerable<Purchase> CreateInfinite()
         {
-            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20)))
+            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20)))
                 yield return Create(date);
         }
 
         public static IEnumerable<Purchase> CreateInfinite(DateTime lastDate)
         {
-            for (var date = lastDate; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20))) 
+            for (var date = lastDate; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20))) 
                 yield return Create(date);
         }
 
         public static IEnumerable<Purchase> CreateInfiniteWith(Purchase purchase)
         {
             bool displayedPurchase = false;
-            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20)))
+            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20)))
             {
                 if (purchase._purchaseDate.Date.Equals(date.Date) && !displayedPurchase)
                 {
