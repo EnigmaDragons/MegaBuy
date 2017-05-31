@@ -2,7 +2,6 @@
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
 using MegaBuy.Jobs;
-using MegaBuy.Jobs.Referrer;
 using MegaBuy.Money;
 using MegaBuy.Save;
 using MegaBuy.Time;
@@ -14,6 +13,7 @@ using MegaBuy.Rents;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Shopping;
+using MegaBuy.Jobs.ReturnSpecialist;
 
 namespace MegaBuy
 {
@@ -35,12 +35,12 @@ namespace MegaBuy
             Job = Job.ReturnSpecialistLevel1;
             CharName = "player";
             ActivePolicies = new ActivePolicies();
-            ActivePolicies.Add(ReferrerPolicies.Level1Policies);
+            ActivePolicies.Add(ReturnSpecialistPolicies.Level1);
             Clock = new Clock(400, new DateTime(2328, 7, 16, 8, 0, 0));
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
-            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReferrerPerCallRates.Level1PerCallRate));
+            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReturnSpecialistPerCallRates.Level1PerCallRate));
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));

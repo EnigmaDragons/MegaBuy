@@ -47,7 +47,6 @@
     <Compile Include="DevView.cs" />
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerUI.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
@@ -58,8 +57,6 @@
     <Compile Include="Jobs\JobDeclined.cs" />
     <Compile Include="Jobs\JobOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyAccounting.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyEmployment.cs" />
     <Compile Include="MegaBuyCorporation\Policies\ActivePolicies.cs" />
@@ -131,7 +128,6 @@
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="PurchaseHistories\Data\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
