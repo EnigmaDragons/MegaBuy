@@ -47,7 +47,6 @@
     <Compile Include="DevView.cs" />
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerUI.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
@@ -58,8 +57,6 @@
     <Compile Include="Jobs\JobDeclined.cs" />
     <Compile Include="Jobs\JobOffered.cs" />
     <Compile Include="Money\Amounts\PerCallRate.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerPerCallRates.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerPolicies.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyAccounting.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyEmployment.cs" />
     <Compile Include="MegaBuyCorporation\Policies\ActivePolicies.cs" />
@@ -71,7 +68,6 @@
     <Compile Include="ReturnCalls\ReturnCallApp.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsCallMessengerUI.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsMessageUI.cs" />
-    <Compile Include="PurchaseHistories\CurrentPurchaseHistory.cs" />
     <Compile Include="PurchaseHistories\Data\AddressOwners.cs" />
     <Compile Include="PurchaseHistories\Data\Product.cs" />
     <Compile Include="PurchaseHistories\Data\PromoCodes.cs" />
@@ -104,12 +100,16 @@
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
     <Compile Include="PurchaseHistories\PurchasesUI.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
+    <Compile Include="Shopping\FoodDelivery.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
+    <Compile Include="Shopping\Foods\FoodDelivered.cs" />
     <Compile Include="Shopping\Foods\FoodEaten.cs" />
+    <Compile Include="Shopping\Foods\FoodOrdered.cs" />
     <Compile Include="Shopping\Foods\McKingJrs.cs" />
     <Compile Include="Shopping\Foods\SweetBakery.cs" />
     <Compile Include="Shopping\IItem.cs" />
     <Compile Include="Shopping\IShoppingCompany.cs" />
+    <Compile Include="Shopping\ScheduledFoodDelivery.cs" />
     <Compile Include="Shopping\ShoppingApp.cs" />
     <Compile Include="Money\Amounts\PayPenalty.cs" />
     <Compile Include="Pads\Apps\App.cs" />
@@ -133,7 +133,6 @@
     <Compile Include="Calls\Rules\PatienceLevel.cs" />
     <Compile Include="PurchaseHistories\Data\Products.cs" />
     <Compile Include="Calls\Conversation Pieces\Problems.cs" />
-    <Compile Include="Jobs\Referrer\ReferrerCalls.cs" />
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
@@ -785,6 +784,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\maintheme.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Notification.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

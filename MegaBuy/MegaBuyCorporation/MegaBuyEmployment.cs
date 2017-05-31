@@ -49,19 +49,15 @@ namespace MegaBuy.MegaBuyCorporation
 
         private void OfferPromotion()
         {
-            if(role == Job.ReferrerLevel1)
-            {
-                World.Publish(new PlayerNotification("MegaBuy",
-                    "You have been performing excellently. Since you have been doing so good you will be offered a promotion!"));
-                World.Publish(new JobRoleOffered("", Job.ReferrerLevel2));
-            }
         }
 
         private void AcceptPromotion(Job role)
         {
             _policies.Clear();
             _policies.Add(JobTraits.Policies[role]);
+            World.Publish(new PlayerNotification("MegaBuy", "Congrats on gaining " + role.ToString() + "."));
             World.Publish(new PolicyChanged());
+            World.Publish(new JobChanged(role));
         }
 
         private void DeclinePromotion()

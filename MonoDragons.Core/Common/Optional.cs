@@ -25,5 +25,15 @@ namespace MonoDragons.Core.Common
             _value = value;
             HasValue = value != null;
         }
+
+        public bool IsTrue(Predicate<T> condition)
+        {
+            return HasValue && condition(_value);
+        }
+
+        public bool IsFalse(Predicate<T> condition)
+        {
+            return HasValue && !condition(_value);
+        }
     }
 }

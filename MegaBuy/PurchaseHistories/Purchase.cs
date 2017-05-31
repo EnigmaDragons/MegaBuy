@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using MegaBuy.PurchaseHistories.Data;
 using MegaBuy.UIs;
@@ -11,6 +10,7 @@ namespace MegaBuy.PurchaseHistories
     public class Purchase
     {
         private readonly DateTime _purchaseDate;
+        private readonly decimal _itemPrice;
 
         public string Date { get; private set; }
         public string OrderID { get; private set; }
@@ -30,27 +30,38 @@ namespace MegaBuy.PurchaseHistories
         public string DeliverDateTime { get; private set; }
         public string ReturnDateTime { get; private set; }
 
-        public Purchase(DateTime purchaseDate)
+        public Purchase(DateTime purchaseDate, decimal itemPrice)
         {
             _purchaseDate = purchaseDate;
+            _itemPrice = itemPrice;
+        }
+
+        public bool PurchasedAfter(DateTime dt)
+        {
+            return _purchaseDate > dt;
+        }
+
+        public bool PurchasedWithinLast(int numDays)
+        {
+            return PurchasedAfter(CurrentGameState.State.DateTime.AddDays(-numDays));
         }
 
         public static IEnumerable<Purchase> CreateInfinite()
         {
-            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20)))
+            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20)))
                 yield return Create(date);
         }
 
         public static IEnumerable<Purchase> CreateInfinite(DateTime lastDate)
         {
-            for (var date = lastDate; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20))) 
+            for (var date = lastDate; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20))) 
                 yield return Create(date);
         }
 
         public static IEnumerable<Purchase> CreateInfiniteWith(Purchase purchase)
         {
             bool displayedPurchase = false;
-            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue; date = date.AddHours(-Rng.Int(1, 20)))
+            for (var date = CurrentGameState.State.DateTime; date > DateTime.MinValue.AddDays(1); date = date.AddHours(-Rng.Int(1, 20)))
             {
                 if (purchase._purchaseDate.Date.Equals(date.Date) && !displayedPurchase)
                 {
@@ -72,16 +83,21 @@ namespace MegaBuy.PurchaseHistories
 
         public static Purchase Create(DateTime purchaseDate)
         {
+            return Create(purchaseDate, Products.Random);
+        }
+
+        public static Purchase Create(DateTime purchaseDate, Product product)
+        {
             var wasSoldAsIs = Rng.Int(0, 100) < 16;
             var wasDelivered = Rng.Int(0, 100) < 98;
             var wasReturned = Rng.Int(0, 100) < 12;
             return Create(purchaseDate, Products.Random, wasDelivered, wasSoldAsIs, wasReturned);
         }
-        
+
         public static Purchase Create(DateTime purchaseDate, Product product, bool wasDelivered, bool wasSoldAsIs, bool wasReturned)
         {
             var provider = Providers.Random;
-            return new Purchase(purchaseDate)
+            return new Purchase(purchaseDate, product.Price)
             {
                 Date = purchaseDate.ToString(DateFormat.Get),
                 OrderID = CreateId().RandomlyNullify(),
@@ -106,6 +122,11 @@ namespace MegaBuy.PurchaseHistories
         private static string CreateId()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        public bool PriceIsLessThan(int amount)
+        {
+            return _itemPrice < amount;
         }
     }
 }

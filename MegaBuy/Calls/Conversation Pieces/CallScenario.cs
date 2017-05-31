@@ -1,14 +1,20 @@
-﻿using MegaBuy.Calls.Callers;
+﻿using System.Collections.Generic;
+using MegaBuy.Calls.Callers;
+using MegaBuy.PurchaseHistories;
 using MegaBuy.PurchaseHistories.Data;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy.Calls.Conversation_Pieces
 {
     public class CallScenario
     {
-        // @todo #1 don't assume there is exactly 1 product problem.
         public Caller Caller { get; set; }
         public Product Product { get; set; }
         public Problem Problem { get; set; }
+        public Optional<Purchase> Target { get; set; } 
+        public IEnumerable<Purchase> Purchases { get; set; }
         public string ProductName => Product.Name;
+        // @todo #1 Frontend: Display number in stock. Maybe should be attached to purchase
+        public int NumInStock { get; set; } = 1;
     }
 }

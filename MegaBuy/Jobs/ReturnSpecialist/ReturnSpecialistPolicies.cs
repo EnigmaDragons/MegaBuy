@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MegaBuy.Calls.Callers;
+using MegaBuy.Calls;
 using MegaBuy.Calls.Rules;
 using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.PurchaseHistories.Data;
 
 namespace MegaBuy.Jobs.ReturnSpecialist
 {
@@ -10,22 +11,21 @@ namespace MegaBuy.Jobs.ReturnSpecialist
     {
         private static readonly CallResolution[] ReturnOrReplace = {CallResolution.ApproveReplacement, CallResolution.ApproveReturn};
         private const CallResolution Replace = CallResolution.ApproveReplacement;
-
-        // @todo #1 Backend: Change these Caller Predicates to Product or Call Predicates
-        private static readonly Predicate<Caller> Any = x => true;
-        private static readonly Predicate<Caller> ItemWasPurchasedAtMegaBuy = x => x.TraitMatches("ItemWasPurchasedAt", "MegaBuy");
-        private static readonly Predicate<Caller> ItemIsBrokenAndIsWithin60Days = x => x.HasTrait("ItemIsBroken")
-            && x.IsAtMost("ItemWasDeliveredAt", 60);
-        private static readonly Predicate<Caller> ItemIsNotBrokenAndIsWithin30Days = x => !x.HasTrait("ItemIsBroken")
-            && x.IsAtMost("ItemWasDeliveredAt", 30);
-        private static readonly Predicate<Caller> ReplacementIsInStock = x => x.HasTrait("ItemIsReplacable");
-        private static readonly Predicate<Caller> ItemNotSoldAsIs = x => !x.HasTrait("ItemWasSoldAsIs");
-
-        // @todo #1 Backend: Plug in logic for Level 2 predicates
-        private static readonly Predicate<Caller> ItemWasDelivered = x => true;
-        private static readonly Predicate<Caller> IfSoftwareIsWithin15Days = x => true;
-        private static readonly Predicate<Caller> ItemCostsLessThanFiftyThousand = x => true;
-        private static readonly Predicate<Caller> IfWeaponHasShippingAddress = x => true;
+        
+        private static readonly Predicate<Call> Any = x => true;
+        private static readonly Predicate<Call> ItemWasPurchasedAtMegaBuy = x => x.Purchase.HasValue;
+        // @todo #1 Backend: Design logic for checking broken
+        private static readonly Predicate<Call> ItemIsBrokenAndIsWithin60Days = x => x.Purchase.IsTrue(y => y.PurchasedWithinLast(60));
+        private static readonly Predicate<Call> ItemIsNotBrokenAndIsWithin30Days = x => x.Purchase.IsTrue(y => y.PurchasedWithinLast(30));
+        private static readonly Predicate<Call> ReplacementIsInStock = x => x.Scenario.NumInStock > 0;
+        private static readonly Predicate<Call> ItemNotSoldAsIs = x => x.Purchase.IsFalse(y => y.SoldAsIs);
+        
+        private static readonly Predicate<Call> ItemWasDelivered = x => x.Purchase.IsTrue(y => y.IsDelivered);
+        private static readonly Predicate<Call> IfSoftwareIsWithin15Days = 
+            x => x.Purchase.IsTrue(y => y.ProductCategory == ProductCategory.Software.ToString() && y.PurchasedWithinLast(15));
+        private static readonly Predicate<Call> ItemCostsLessThanFiftyThousand = x => x.Purchase.IsTrue(y => y.PriceIsLessThan(50000));
+        private static readonly Predicate<Call> IfWeaponHasShippingAddress = 
+            x => x.Purchase.IsTrue(y => y.ProductCategory == ProductCategory.Weapon.ToString() && y.ShippingAddress != "NULL");
 
         public static List<Policy> Level1 = new List<Policy>
         {

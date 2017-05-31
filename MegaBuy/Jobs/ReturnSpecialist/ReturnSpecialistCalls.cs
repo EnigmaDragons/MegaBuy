@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
@@ -24,32 +25,56 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         {
             () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.ProductName}!"), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"Can I get a replacement for {s.ProductName}? Mine is dead."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.Reject),
+            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"This {s.ProductName} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"My {s.ProductName} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
             () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
             () => CreateLvl1((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.ProductName}. Take it back!"), CallResolution.ApproveReturn),
             () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
+            // @todo #1 Content: Write 4 more scripts
         };
 
-        // @todo #1: Content: Create ReturnSpecialistLevel2 Calls
+        // @todo #1 Content: Create ReturnSpecialistLevel2 Calls
 
-        // @todo #1: Backend: Randomize whether the requested action is correct or not
-        private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution correctOption)
+        private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
+            var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var script = InitScript();
             scriptBuilder(script, scenario);
-            var purchase = Purchase.Create(DateWithinDays(30));
-            if (correctOption == CallResolution.ApproveReturn)
-                purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, false, false);
-            if (correctOption == CallResolution.ApproveReplacement)
-                purchase = Purchase.Create(DateWithinDays(60), scenario.Product, true, false, false);
-            if (correctOption == CallResolution.Reject)
-                purchase = Purchase.Create(DateWithinDays(30), scenario.Product, true, true, false);
-            Debug.WriteLine($"CallResolution: {correctOption} for {purchase.ProductName}");
-            CurrentPurchaseHistory.PurchaseHistory = Purchase.CreateInfiniteWith(purchase);
-            return new Call(scenario.Caller, script, correctOption, Level1Options);
+
+            var purchase = CreatePurchase(scenario, script, correctResolution);
+
+            Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
+            var history = Purchase.CreateInfiniteWith(purchase).Where(x => x.PurchasedWithinLast(90));
+            scenario.Purchases = history;
+            scenario.Target = new Optional<Purchase>(purchase);
+            return new Call(script, scenario, correctResolution, Level1Options);
+        }
+
+        private static Purchase CreatePurchase(CallScenario scenario, Script script, CallResolution correctResolution)
+        {
+            var policies = CurrentGameState.State.ActivePolicies;
+
+            Purchase purchase;
+            int numAttempts = 0;
+            while (true)
+            {
+                numAttempts++;
+                purchase = Purchase.Create(DateWithinDays(90), scenario.Product);
+                scenario.Target = new Optional<Purchase>(purchase);
+                // @todo #1 Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
+                var call = new Call(script, scenario, correctResolution, Level1Options);
+                var violations = policies.GetViolations(correctResolution, call);
+                call.Dispose();
+                if (correctResolution == CallResolution.Reject && violations.Any())
+                    break;
+                if (!violations.Any())
+                    break;
+            }
+
+            Debug.WriteLine($"Created target purchase in {numAttempts} attempts");
+            return purchase;
         }
 
         private static DateTime DateWithinDays(int days)
