@@ -2,7 +2,6 @@
 using MegaBuy.Apartment;
 using MegaBuy.Calls;
 using MegaBuy.Jobs;
-using MegaBuy.Jobs.Referrer;
 using MegaBuy.Jobs.ReturnSpecialist;
 using MegaBuy.Money;
 using MegaBuy.Save;
@@ -14,6 +13,7 @@ using MegaBuy.Player;
 using MegaBuy.Rents;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Shopping;
 
 namespace MegaBuy
 {
@@ -40,11 +40,12 @@ namespace MegaBuy
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
-            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReferrerPerCallRates.Level1PerCallRate));
+            AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount, ReturnSpecialistPerCallRates.Level1PerCallRate));
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
+            AddSingleInstanceSubscription(new FoodDelivery());
             World.Publish(new DayStarted(new DateTime(2328, 7, 16)));
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development

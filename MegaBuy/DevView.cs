@@ -22,15 +22,6 @@ namespace MegaBuy
         public DevView()
         {
             Branch = new ClickUIBranch("Dev", (int)ClickUIPriorities.Dev);
-            var button1 = ImageTextButtonFactory.Create("Referer 1", new Vector2(Sizes.Margin, Sizes.Margin),
-                () => Promote(Job.ReferrerLevel1));
-            _buttons.Add(button1);
-            var button2 = ImageTextButtonFactory.Create("Referer 2", new Vector2(Sizes.Margin*2 + Sizes.Button.Width, Sizes.Margin),
-                () => Promote(Job.ReferrerLevel2));
-            _buttons.Add(button2);
-            var button3 = ImageTextButtonFactory.Create("Referer 3", new Vector2(Sizes.Margin*3 + Sizes.Button.Width*2, Sizes.Margin),
-                () => Promote(Job.ReferrerLevel3));
-            _buttons.Add(button3);
             var button4 = ImageTextButtonFactory.Create("Return Specialist 1", new Vector2(Sizes.Margin * 4 + Sizes.Button.Width * 3, Sizes.Margin),
                 () => Promote(Job.ReturnSpecialistLevel1));
             _buttons.Add(button4);

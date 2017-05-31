@@ -28,7 +28,7 @@ namespace MegaBuy.Shopping.Foods
         public void Buy(IItem item)
         {
             var food = (Food)item;
-            World.Publish(new FoodEaten(food));
+            World.Publish(new FoodOrdered(food));
             _gameState.PlayerAccount.Remove(food.Cost);
         }
     }
