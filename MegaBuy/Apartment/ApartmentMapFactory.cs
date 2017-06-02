@@ -28,7 +28,7 @@ namespace MegaBuy.Apartment
             map.Add(new ClickableTile("2/bed-top", new TileLocation(1, 2), true, () => World.Publish(new PreparingForBed()), 1));
             map.Add(new ClickableTile("2/bed-bot", new TileLocation(1, 3), true, () => World.Publish(new PreparingForBed()), 1));
             
-            map.Add(new ClickableTile("2/laundry2", new TileLocation(2, 4), false, 1));
+            map.Add(new ClickableTile("2/laundry2", new TileLocation(2, 4), false, () => World.Publish(new HadAThought(Laundry.GetThought())), 1));
             
             map.Add(new ClickableTile("2/door-top", new TileLocation(width - 1, 0), false, () => World.Publish(new HadAThought(Outside.GetThought())), 2));
             map.Add(new ClickableTile("2/door-bot", new TileLocation(width - 1, 1), false, () => World.Publish(new HadAThought(Outside.GetThought())), 2));
@@ -45,10 +45,14 @@ namespace MegaBuy.Apartment
             map.Add(new ClickableTile("2/poster1-top", new TileLocation(4, 0), false, 2));
             map.Add(new ClickableTile("2/poster1-bot", new TileLocation(4, 1), false, 2));
 
-            map.Add(new ClickableTile("2/desk1-1", new TileLocation(width / 2 - 1, height - 3), true, 2));
-            map.Add(new ClickableTile("2/desk1-2", new TileLocation(width / 2, height - 3), true, 2));
-            map.Add(new ClickableTile("2/desk1-3", new TileLocation(width / 2 - 1, height - 2), true, 2));
-            map.Add(new ClickableTile("2/desk1-4", new TileLocation(width / 2, height - 2), true, 2));
+            map.Add(new ClickableTile("2/desk1-1", new TileLocation(width / 2 - 1, height - 3), true, () => World.Publish(new HadAThought(ComputerRig.GetThought())), 2));
+            map.Add(new ClickableTile("2/desk1-2", new TileLocation(width / 2, height - 3), true, () => World.Publish(new HadAThought(ComputerRig.GetThought())), 2));
+            map.Add(new ClickableTile("2/desk1-3", new TileLocation(width / 2 - 1, height - 2), true, () => World.Publish(new HadAThought(ComputerRig.GetThought())), 2));
+            map.Add(new ClickableTile("2/desk1-4", new TileLocation(width / 2, height - 2), true, () => World.Publish(new HadAThought(ComputerRig.GetThought())), 2));
+
+            var counter = new FoodCounter(new TileLocation(width - 1, 3));
+            map.Add(counter.Tile);
+            map.Add(counter.FoodTile);
 
             return map;
         }

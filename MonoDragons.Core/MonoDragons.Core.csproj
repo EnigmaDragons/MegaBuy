@@ -225,6 +225,9 @@
     <Content Include="Content\Fonts\Audiowide.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Music\mute.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Logo\enigmadragons.png">

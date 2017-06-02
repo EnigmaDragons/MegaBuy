@@ -40,6 +40,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Apartment\FoodCounter.cs" />
     <Compile Include="Calls\Callers\CallerNames.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
+    <Compile Include="Player\Thoughts\ComputerRig.cs" />
+    <Compile Include="Player\Thoughts\Laundry.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />
@@ -402,6 +406,9 @@
     <Content Include="Content\Images\Endings\heartattack.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Endings\starved.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Items\blueberry-cheesecake.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -474,6 +481,9 @@
     <Content Include="Content\Images\Map\2\floor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\Map\2\food.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\Map\2\laundry1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -500,6 +510,12 @@
     </Content>
     <Content Include="Content\Images\Map\2\stove.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Map\2\table1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Map\2\table2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Map\2\tv1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -601,6 +617,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Icons\video-call.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Map\transparent.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Menu\menu.jpg">
@@ -800,6 +819,12 @@
     </Content>
     <Content Include="Content\Music\maintheme.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\sleep.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\EatFood.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Notification.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

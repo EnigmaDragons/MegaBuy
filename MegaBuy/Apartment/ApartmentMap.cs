@@ -63,6 +63,7 @@ namespace MegaBuy.Apartment
             return transform + moveBy;
         }
 
+        // @todo #1 Make the interact detection feel a little bit nicer... bigger range, etc.
         public void Interact(TileLocation location)
         {
             Get(location).ForEach(x => x.Interact());

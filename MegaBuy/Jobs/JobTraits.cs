@@ -4,7 +4,6 @@ using MegaBuy.Calls;
 using MegaBuy.Jobs.ReturnSpecialist;
 using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.MegaBuyCorporation.Policies;
-
 namespace MegaBuy.Jobs
 {
     public static class JobTraits
@@ -26,7 +25,7 @@ namespace MegaBuy.Jobs
 
         public static Dictionary<Job, Func<Call>> Calls = new Dictionary<Job, Func<Call>>
         {
-            { Job.ReturnSpecialistLevel1, () => ReturnSpecialistCalls.NewLevel1Call() },
+            { Job.ReturnSpecialistLevel1, () => ReturnSpecialistCalls.NewCall() },
         };
     }
 }
