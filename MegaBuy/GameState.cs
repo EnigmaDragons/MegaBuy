@@ -34,8 +34,7 @@ namespace MegaBuy
         {
             Job = Job.ReturnSpecialistLevel1;
             CharName = "player";
-            ActivePolicies = new ActivePolicies();
-            ActivePolicies.Add(ReturnSpecialistPolicies.Level1);
+            ActivePolicies = new ActivePolicies(ReturnSpecialistPolicies.Level1);
             Clock = new Clock(400, new DateTime(2328, 7, 16, 8, 0, 0));
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();

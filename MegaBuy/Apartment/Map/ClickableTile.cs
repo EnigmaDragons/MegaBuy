@@ -8,7 +8,8 @@ namespace MegaBuy.Apartment.Map
 {
     public class ClickableTile : ClickableUIElement
     {
-        public string TextureName { get; }
+        private string _textureName;
+        public string TextureName { get { return _textureName; } set { _textureName = "Images/Map/" + value; } }
         public TileLocation Location { get; }
         public Transform2 Transform { get; }
         public bool IsBlocking { get; }
@@ -22,7 +23,7 @@ namespace MegaBuy.Apartment.Map
         public ClickableTile(string textureName, TileLocation location, bool blocking, Action onInteract, int layer = 0)
             : base(location.Transform.ToRectangle())
         {
-            TextureName = "Images/Map/" + textureName;
+            _textureName = "Images/Map/" + textureName;
             Location = location;
             Transform = location.Transform;
             IsBlocking = blocking;

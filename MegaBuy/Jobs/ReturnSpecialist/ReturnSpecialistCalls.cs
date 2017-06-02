@@ -21,22 +21,24 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             new CallResolutionOption(CallResolution.Reject, "Reject Request"),
         };
         
-        private static readonly List<Func<Call>> Level1Calls = new List<Func<Call>>
+        private static readonly List<Func<Call>> Calls = new List<Func<Call>>
         {
-            () => CreateLvl1((c, s) => c.CallerSays($"I want to return this dumb {s.ProductName}!"), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"Can I get a replacement for {s.ProductName}? Mine is dead."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"This {s.ProductName} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"My {s.ProductName} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
-            () => CreateLvl1((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
-            () => CreateLvl1((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.ProductName}. Take it back!"), CallResolution.ApproveReturn),
-            () => CreateLvl1((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
-            // @todo #1 Content: Write 4 more scripts
+            () => Create((c, s) => c.CallerSays($"I want to return this dumb {s.ProductName}!"), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"Can I get a replacement for {s.ProductName}? Mine is dead."), CallResolution.ApproveReplacement),
+            () => Create((c, s) => c.CallerSays($"Hello, I would like to return this {s.ProductName}."), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"This {s.ProductName} {Problems.Description[s.Problem]}, let me return it."), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"My {s.ProductName} {Problems.Description[s.Problem]}. I need a replacement."), CallResolution.ApproveReplacement),
+            () => Create((c, s) => c.CallerSays($"I'm going to ship you this pair of broken sandals."), CallResolution.Reject),
+            () => Create((c, s) => c.CallerSays($"This is third time you bastards have shipped me a defective {s.ProductName}. Take it back!"), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"You sent me the wrong item. I ordered {s.ProductName}."), CallResolution.ApproveReplacement),
+            () => Create((c, s) => c.CallerSays($"I accidently ordered {s.ProductName}. Can you let me return it?"), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"My daughter didn't like her birthday gift: {s.ProductName}. I'm returning it."), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"I bought {s.ProductName}, but I don't need it anymore."), CallResolution.ApproveReturn),
+            () => Create((c, s) => c.CallerSays($"This {s.ProductName} just isn't what I expected. I don't want it."), CallResolution.ApproveReturn),
+            // @todo #1 Content: Write another 4 more scripts
         };
-
-        // @todo #1 Content: Create ReturnSpecialistLevel2 Calls
-
-        private static Call CreateLvl1(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
+        
+        private static Call Create(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
             var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
@@ -88,6 +90,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             "Hi there, how can I help you today?",
             "Hello, I understand you are having problems with a product.",
             "Good day.",
+            // @todo #1 Add more introductions
         };
 
         private static Script InitScript()
@@ -95,9 +98,9 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             return new Script { { CallRole.Player, Introductions.Random() } };
         }
 
-        public static Call NewLevel1Call()
+        public static Call NewCall()
         {
-            return Level1Calls.Random().Invoke();
+            return Calls.Random().Invoke();
         }
     }
 }
