@@ -5,7 +5,7 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public class ImageTextButton : ClickableUIElement, ISpatialVisual
+    public class ImageTextButton : VisualClickableUIElement, ISpatial
     {
         private readonly ImageButton _button;
         private readonly Label _label;
@@ -45,7 +45,7 @@ namespace MonoDragons.Core.UserInterface
             _button.OnReleased();
         }
 
-        public void Draw(Transform2 parentTransform)
+        public override void Draw(Transform2 parentTransform)
         {
             if (_isVisible())
             {
