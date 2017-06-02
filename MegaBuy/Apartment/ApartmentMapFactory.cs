@@ -28,6 +28,7 @@ namespace MegaBuy.Apartment
             map.Add(new ClickableTile("2/bed-top", new TileLocation(1, 2), true, () => World.Publish(new PreparingForBed()), 1));
             map.Add(new ClickableTile("2/bed-bot", new TileLocation(1, 3), true, () => World.Publish(new PreparingForBed()), 1));
             
+            // @todo #1 Add comedy lines for Laundry
             map.Add(new ClickableTile("2/laundry2", new TileLocation(2, 4), false, 1));
             
             map.Add(new ClickableTile("2/door-top", new TileLocation(width - 1, 0), false, () => World.Publish(new HadAThought(Outside.GetThought())), 2));

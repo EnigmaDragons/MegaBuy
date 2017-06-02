@@ -67,7 +67,7 @@ namespace MegaBuy.Pads
         private IApp MakeApp(App app)
         {
             if (app.Equals(App.Call))
-                return new ReturnCallApp();
+                return new CallApp();
             if (app.Equals(App.Shopping))
                 return new ShoppingApp();
             if (app.Equals(App.Policies))

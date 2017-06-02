@@ -11,6 +11,11 @@ namespace MegaBuy.MegaBuyCorporation.Policies
 
         public int Count => _policies.Count;
 
+        public ActivePolicies(IEnumerable<Policy> policies)
+        {
+            _policies.AddRange(policies);
+        }
+
         public void Add(IEnumerable<Policy> policies)
         {
             _policies.AddRange(policies);
