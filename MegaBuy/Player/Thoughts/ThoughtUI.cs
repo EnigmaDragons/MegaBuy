@@ -48,7 +48,7 @@ namespace MegaBuy.Player.Thoughts
         {
             Branch.Add(_button);
             _isThinking = true;
-            _label.Transform = new Transform2(new Size2(Sizes.LargeLabel.Width - Sizes.SmallMargin * 2, 0));
+            _label.Transform = new Transform2(new Size2(Sizes.LargeLabel.Width - Sizes.SmallMargin * 2, 200));
             _label.Text = thought.Thought;
             var font = Resources.Load<SpriteFont>(_label.Font);
             var size = font.MeasureString(_label.Text);
