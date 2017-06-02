@@ -50,7 +50,7 @@ namespace MegaBuy.Apartment
             map.Add(new ClickableTile("2/desk1-3", new TileLocation(width / 2 - 1, height - 2), true, 2));
             map.Add(new ClickableTile("2/desk1-4", new TileLocation(width / 2, height - 2), true, 2));
 
-            map.Add(new ClickableTile("2/table2", new TileLocation(width - 1, 3), true, 2));
+            map.Add(new FoodCounter(new TileLocation(width - 1, 3)).Tile);
             map.Add(new ClickableTile("2/food", new TileLocation(width - 1, 3), false, 3));
 
             return map;
