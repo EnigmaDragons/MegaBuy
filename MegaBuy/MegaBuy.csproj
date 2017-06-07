@@ -52,7 +52,8 @@
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
-    <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PoliciesChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="Jobs\JobAccepted.cs" />
     <Compile Include="Jobs\JobDeclined.cs" />

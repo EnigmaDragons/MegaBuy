@@ -30,13 +30,19 @@ namespace MegaBuy.MegaBuyCorporation.Policies
             _pagePolicyIndex = pagePolicyIndex;
             _pagePolicyCount = pagePolicyCount;
             UpdatePolicies();
-            World.Subscribe(EventSubscription.Create<PolicyChanged>(x => UpdatePolicies(), this));
+            World.Subscribe(EventSubscription.Create<PoliciesChanged>(x => UpdatePolicies(), this));
         }
 
         private void UpdatePolicies()
         {
             _policyTexts.Clear();
-            _policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount).ForEach(x => _policyTexts.Add(new ImageLabel(x, "Images/UI/Policy", new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin), Sizes.Policy))));
+            _policies.GetPolicyTexts(_pagePolicyIndex, _pagePolicyCount)
+                .ForEach(x => _policyTexts.Add(MakePolicyLabel(x)));
+        }
+
+        private static ImageLabel MakePolicyLabel(string x)
+        {
+            return new ImageLabel(x, "Images/UI/Policy", new Transform2(new Vector2(Sizes.Margin * 2 + Sizes.SideButton.Width, Sizes.Margin), Sizes.Policy));
         }
 
         public PolicyPageUI GetNextPage()
