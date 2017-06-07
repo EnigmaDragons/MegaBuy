@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using MegaBuy.Time;
 using MonoDragons.Core.Audio;
 using MonoDragons.Core.Engine;
@@ -43,7 +44,8 @@ namespace MegaBuy.Player.Energy
         private void WentToBed(WentToBed wentToBed)
         {
             _minuteToAwake = _currentMinute;
-            _hourToAwake = _currentHour + wentToBed.HoursToSleep;
+            _hourToAwake = (_currentHour + wentToBed.HoursToSleep) % 24;
+            Debug.WriteLine($"Will awake at: {_hourToAwake}:{_minuteToAwake}");
             Sleep();
         }
 
