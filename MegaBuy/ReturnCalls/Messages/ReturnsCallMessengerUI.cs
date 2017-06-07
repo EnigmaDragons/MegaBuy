@@ -59,6 +59,8 @@ namespace MegaBuy.ReturnCalls.Messages
 
         private void Clear()
         {
+            _messagesTotalHeight = 0;
+            _pastMessages.Clear();
             _incomingMessages.Clear();
             _messages.Clear();
         }
