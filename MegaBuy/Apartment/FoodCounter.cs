@@ -25,7 +25,6 @@ namespace MegaBuy.Apartment
         {
             if (_foods.Count > 0)
             {
-                // @todo #1 Frontend: Add sound for eating food
                 // @todo #1 Frontend: Add animation for eating food
                 World.Publish(new FoodEaten(_foods[0]));
                 _foods.RemoveAt(0);

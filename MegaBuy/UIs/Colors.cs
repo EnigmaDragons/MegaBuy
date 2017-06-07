@@ -16,5 +16,10 @@ namespace MegaBuy.UIs
         public static Color ButtonHover = Color.FromNonPremultiplied(255, 61, 0, 255); //#FF3D00
         public static Color ButtonPress = Color.FromNonPremultiplied(255, 110, 64, 255); //#FF6E40
         public static Color ButtonBorder = Color.FromNonPremultiplied(255, 158, 128, 255); //#FF9E80
+
+        //#CCFF90
+        //#B2FF59
+        //#76FF03
+        //#64DD17
     }
 }

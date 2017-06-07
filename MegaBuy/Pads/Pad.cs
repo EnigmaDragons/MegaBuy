@@ -34,6 +34,7 @@ namespace MegaBuy.Pads
             _currentApp = new NoneApp();
             World.Subscribe(EventSubscription.Create<AppChanged>(x => OpenApp(x.App), this));
             // @todo #1 Fix the state transfer architecture
+            OpenApp(App.Notification);
             OpenApp(App.PurchaseHistory);
             OpenApp(App.Call);
         }
@@ -67,7 +68,7 @@ namespace MegaBuy.Pads
         private IApp MakeApp(App app)
         {
             if (app.Equals(App.Call))
-                return new CallApp();
+                return new ReturnCallApp();
             if (app.Equals(App.Shopping))
                 return new ShoppingApp();
             if (app.Equals(App.Policies))

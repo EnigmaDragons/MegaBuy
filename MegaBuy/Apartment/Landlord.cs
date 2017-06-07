@@ -1,5 +1,4 @@
 ﻿using System;
-using MegaBuy.Money;
 using MegaBuy.Money.Accounts;
 using MegaBuy.Rents;
 using MegaBuy.Time;
@@ -11,7 +10,7 @@ namespace MegaBuy.Apartment
     public sealed class Landlord
     {
         private readonly Rent _currentRent;
-        private PlayerAccount _rentersAccount;
+        private readonly PlayerAccount _rentersAccount;
 
         public bool RentPaidToday { get; private set; } = false;
 

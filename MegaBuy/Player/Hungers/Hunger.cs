@@ -2,7 +2,6 @@
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Shopping;
 using MegaBuy.Shopping.Foods;
 using MegaBuy.Player.Energy;
 

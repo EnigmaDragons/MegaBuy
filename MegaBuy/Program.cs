@@ -40,7 +40,7 @@ namespace MegaBuy
                 { "MainMenu", () => new Menu() },
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "InGame", () => new InGame() },
-                { "Starved", () => new Starved() },
+                { "Starved", () => new FadingInScene(new Starved()) },
                 { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new FadingInScene(new Fired()) },
                 { "HeartAttack", () => new FadingInScene(new HeartAttack()) },

@@ -49,10 +49,10 @@
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
-    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
-    <Compile Include="MegaBuyCorporation\Policies\PolicyChanged.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
+    <Compile Include="MegaBuyCorporation\Policies\PoliciesChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="Jobs\JobAccepted.cs" />
     <Compile Include="Jobs\JobDeclined.cs" />
@@ -69,7 +69,22 @@
     <Compile Include="Player\Thoughts\Laundry.cs" />
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
+    <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
+    <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />
+    <Compile Include="ReturnCalls\Callers\PurchaseHistoryNavigationUI.cs" />
+    <Compile Include="ReturnCalls\Callers\ReturnsCallerInfo.cs" />
     <Compile Include="ReturnCalls\Callers\ReturnsCallReadyUI.cs" />
+    <Compile Include="ReturnCalls\Choices\ChoicesUI.cs" />
+    <Compile Include="ReturnCalls\Messages\ExcusesUI.cs" />
+    <Compile Include="ReturnCalls\Messages\MessengerGrid.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseHistoriesUI.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseSummaryUI.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseUI.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryGrid.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryViewed.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\ViewCallerUI.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\ViewPurchaseListUI.cs" />
+    <Compile Include="ReturnCalls\Ratings\ReturnsRatingsUI.cs" />
     <Compile Include="ReturnCalls\ReturnCallApp.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsCallMessengerUI.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsMessageUI.cs" />
@@ -79,7 +94,7 @@
     <Compile Include="PurchaseHistories\Data\Provider.cs" />
     <Compile Include="PurchaseHistories\Data\Providers.cs" />
     <Compile Include="PurchaseHistories\Data\ShippingAddresses.cs" />
-    <Compile Include="PurchaseHistories\PurchaseInspected.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\PurchaseInspected.cs" />
     <Compile Include="PurchaseHistories\Nullifier.cs" />
     <Compile Include="PurchaseHistories\Purchase.cs" />
     <Compile Include="Player\CharacterSex.cs" />
@@ -100,7 +115,7 @@
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="PurchaseHistories\PurchaseDetailUI.cs" />
     <Compile Include="PurchaseHistories\PurchaseHistoryApp.cs" />
-    <Compile Include="PurchaseHistories\PurchasesListed.cs" />
+    <Compile Include="ReturnCalls\PurchaseHistories\PurchasesListed.cs" />
     <Compile Include="PurchaseHistories\PurchaseSummaryUI.cs" />
     <Compile Include="PurchaseHistories\PurchaseUI.cs" />
     <Compile Include="PurchaseHistories\PurchasesUI.cs" />
@@ -179,6 +194,7 @@
     <Compile Include="Calls\ReadyUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyOptionUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyUI.cs" />
+    <Compile Include="Sounds\AllSounds.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
     <Compile Include="Shopping\ItemCost.cs" />
@@ -341,28 +357,28 @@
     <Content Include="Content\Images\Customers\ash-jacobson.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\cheri-waters.jpg">
+    <Content Include="Content\Images\Customers\eli-daniels.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\eli-daniels.jpg">
+    <Content Include="Content\Images\Customers\erick-silberstein.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\gemma-hunter.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\ginger-hayward.jpg">
+    <Content Include="Content\Images\Customers\hector-david.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\jada-keilt.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Images\Customers\jay-michaels.jpg">
+    <Content Include="Content\Images\Customers\jack-neals.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\mark-dennison.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\Customers\merida-kingsley.jpg">
+    <Content Include="Content\Images\Customers\matt-brownell.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Customers\patrick-conolly.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Customers\samantha-powell.jpg">
@@ -391,6 +407,9 @@
     </Content>
     <Content Include="Content\Images\Endings\heartattack.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\Endings\starved.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\Items\blueberry-cheesecake.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -803,8 +822,14 @@
     <Content Include="Content\Music\maintheme.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Notification.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Music\sleep.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\EatFood.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\PlayerNotification.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>

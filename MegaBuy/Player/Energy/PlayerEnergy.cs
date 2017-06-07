@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using MegaBuy.Time;
+using MonoDragons.Core.Audio;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 
@@ -7,7 +9,7 @@ namespace MegaBuy.Player.Energy
 {
     public sealed class PlayerEnergy : IAutomaton
     {
-        private const float TimeRateFactorWhileSleeping = 10.0f;
+        private const float TimeRateFactorWhileSleeping = 15.0f;
 
         private readonly int _energyUsedPerHour;
         private readonly int _energyPerHourSlept;
@@ -39,10 +41,11 @@ namespace MegaBuy.Player.Energy
             _energy = Math.Max(100, Math.Min(0, _energy + obj.Amount)); 
         }
 
-        private void WentToBed(WentToBed wentoToBed)
+        private void WentToBed(WentToBed wentToBed)
         {
             _minuteToAwake = _currentMinute;
-            _hourToAwake = _currentHour + wentoToBed.HoursToSleep;
+            _hourToAwake = (_currentHour + wentToBed.HoursToSleep) % 24;
+            Debug.WriteLine($"Will awake at: {_hourToAwake}:{_minuteToAwake}");
             Sleep();
         }
 
@@ -51,6 +54,8 @@ namespace MegaBuy.Player.Energy
             _isExhausted = false;
             World.Publish(new TimeRateChanged(1f / TimeRateFactorWhileSleeping));
             World.Publish(new Awaken());
+            Audio.StopMusic();
+            Audio.PlayMusic("Music/sleep", 0);
         }
 
         private void CollapseFromExhaustion()
@@ -59,10 +64,11 @@ namespace MegaBuy.Player.Energy
             World.Publish(new CollapsedWithExhaustion());
             Sleep();
         }
-
+        
         private void Sleep()
         {
             _isSleeping = true;
+            Audio.PlayMusic("Music/sleep");
             World.Publish(new TimeRateChanged(TimeRateFactorWhileSleeping));
         }
 

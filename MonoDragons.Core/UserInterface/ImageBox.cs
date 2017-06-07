@@ -5,15 +5,15 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class ImageBox : IVisual
     {
-        private readonly Transform2 _transform;
-
         private string _image;
+
+        public Transform2 Transform { get; }
 
         public ImageBox(Transform2 transform) : this(transform, "none") {}
 
         public ImageBox(Transform2 transform, string name)
         {
-            _transform = transform;
+            Transform = transform;
             _image = name;
         }
 
@@ -30,7 +30,7 @@ namespace MonoDragons.Core.UserInterface
         public void Draw(Transform2 parentTransform)
         {
             if (!"none".Equals(_image))
-                World.Draw(_image, parentTransform + _transform);
+                World.Draw(_image, parentTransform + Transform);
         }
     }
 }

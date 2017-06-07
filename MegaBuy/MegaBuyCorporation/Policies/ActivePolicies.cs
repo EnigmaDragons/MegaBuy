@@ -2,6 +2,7 @@
 using System.Linq;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Rules;
+using MonoDragons.Core.Engine;
 
 namespace MegaBuy.MegaBuyCorporation.Policies
 {
@@ -19,16 +20,19 @@ namespace MegaBuy.MegaBuyCorporation.Policies
         public void Add(IEnumerable<Policy> policies)
         {
             _policies.AddRange(policies);
+            World.Publish(new PoliciesChanged());
         }
 
         public void Add(Policy policy)
         {
             _policies.Add(policy);
+            World.Publish(new PoliciesChanged());
         }
 
         public void Remove(Policy policy)
         {
             _policies.RemoveAll(x => x.Text.Equals(policy.Text));
+            World.Publish(new PoliciesChanged());
         }
 
         public List<string> GetPolicyTexts()
@@ -40,7 +44,7 @@ namespace MegaBuy.MegaBuyCorporation.Policies
         {
             return _policies
                 .Select(x => x.Text)
-                .Skip(startingIndex - 1)
+                .Skip(startingIndex)
                 .Take(count)
                 .ToList();
         }

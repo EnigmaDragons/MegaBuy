@@ -147,6 +147,7 @@
     <Compile Include="Text\IWrapText.cs" />
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
+    <Compile Include="UserInterface\IVisualAutomatonControl.cs" />
     <Compile Include="UserInterface\Layouts\ConcreteDefinition.cs" />
     <Compile Include="UserInterface\Layouts\Definition.cs" />
     <Compile Include="UserInterface\Layouts\ShareDefintion.cs" />
@@ -179,10 +180,12 @@
     <Compile Include="UserInterface\ScrollableElements.cs" />
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\SingleImageButton.cs" />
+    <Compile Include="UserInterface\SmartControl.cs" />
     <Compile Include="UserInterface\TextBox.cs" />
     <Compile Include="UserInterface\TextButton.cs" />
     <Compile Include="UserInterface\TextClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />
+    <Compile Include="UserInterface\VisualClickableUIElement.cs" />
     <Compile Include="UserInterface\WrapGrid.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +224,9 @@
     </Content>
     <Content Include="Content\Fonts\Audiowide.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\mute.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

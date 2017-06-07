@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaBuy.MegaBuyCorporation.Policies
+namespace MegaBuy.ReturnCalls.Callers
 {
-    public class PolicyChanged
+    class CallerViewed
     {
     }
 }

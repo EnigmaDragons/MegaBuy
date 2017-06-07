@@ -94,7 +94,6 @@ namespace MegaBuy.Player
 
         private void UpdateInteractLocation()
         {
-            //var playerTile = new TileLocation(_transform);
             var offset = _transform.Rotation.ToDirection().AsOffset();
             _interactLocation = new TileLocation(Collider.Transform + new Transform2
                 (new Vector2(offset.X * TileSize.Int *3 /4, offset.Y * TileSize.Int *3 /4), 1)).Plus(new TileLocation(0, 0));
@@ -105,7 +104,7 @@ namespace MegaBuy.Player
         {
             var t = _transform + parentTransform;
             _anims.Draw(t);
-            _interactRect.Draw(parentTransform); //Uncomment to debug interactions
+            //_interactRect.Draw(parentTransform); //Uncomment to debug interactions
         }
 
         private void UpdateAnimState()

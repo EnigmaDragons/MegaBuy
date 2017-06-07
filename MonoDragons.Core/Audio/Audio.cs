@@ -54,6 +54,11 @@ namespace MonoDragons.Core.Audio
             TransitionToSong(volume, song);
         }
 
+        public static void StopMusic()
+        {
+            PlayMusic("Music/mute", 0);
+        }
+
         private static void TransitionToSong(float volume, ISampleProvider song)
         {
             if (_musicTrack == null)

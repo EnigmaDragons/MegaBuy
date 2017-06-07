@@ -53,6 +53,7 @@ namespace MegaBuy.Player.Thoughts
             var font = Resources.Load<SpriteFont>(_label.Font);
             var size = font.MeasureString(_label.Text);
             _label.Transform = new Transform2(new Vector2(Sizes.SmallMargin, Sizes.SmallMargin), new Size2((int)size.X, (int)size.Y));
+            _isThinking = true;
         }
 
         private void Dismiss()

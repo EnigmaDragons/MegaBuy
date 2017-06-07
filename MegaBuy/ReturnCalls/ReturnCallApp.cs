@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using MegaBuy.Calls.Ratings;
 using MegaBuy.Pads.Apps;
 using MegaBuy.ReturnCalls.Callers;
+using MegaBuy.ReturnCalls.Choices;
 using MegaBuy.ReturnCalls.Messages;
+using MegaBuy.ReturnCalls.PurchaseHistories;
+using MegaBuy.ReturnCalls.Ratings;
 using MegaBuy.UIs;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -22,42 +25,24 @@ namespace MegaBuy.ReturnCalls
 
         public ReturnCallApp()
         {
-            //Build Branch
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
+            var grid = new GridLayout(new Size2(1600, 720), 2, 1);
+            
+            var messengerGrid = new MessengerGrid(grid.GetBlockSize(1, 1));
+            var callerGrid = new CallerGrid(grid.GetBlockSize(2, 1));
+            var rating = new ReturnsRatingsUI();
+            var purchaseHistoryGrid = new PurchaseHistoryGrid(grid.GetBlockSize(2, 1));
 
-            //Build Grids
-            var grid = new GridLayout(new Size2(1600, 695), 2, 1);
-            var messengerGrid = new GridLayout(grid.GetBlockSize(1, 1), 1, 
-                new List<Definition> { new ShareDefintion(), new ConcreteDefinition(95)});
-            var callerGrid = new GridLayout(grid.GetBlockSize(2, 1), 
-                new List<Definition> { new ShareDefintion(), new ConcreteDefinition(300) }, 
-                new List<Definition> { new ConcreteDefinition(150), new ConcreteDefinition(150), new ConcreteDefinition(150), new ShareDefintion() });
+            grid.AddSpatial(messengerGrid, new Transform2(grid.GetBlockSize(1, 1)), 1, 1);
+            grid.AddSpatial(rating, rating.Transform, 1, 1);
+            grid.AddSpatial(callerGrid, new Transform2(grid.GetBlockSize(2, 1)), 2, 1);
+            grid.AddSpatial(purchaseHistoryGrid, new Transform2(grid.GetBlockSize(2, 1)), 2, 1);
 
-            //Build Pieces
-            var messengerTransform = new Transform2(messengerGrid.GetBlockSize(1, 1) - new Size2(50, 50));
-            var messenger = new ReturnsCallMessengerUI(messengerTransform);
-            var excuseButton = ImageTextButtonFactory.Create("Excuse", new Vector2(0, 0), () => { });
-
-            var caller = new CallerFaceUI();
-            var ready = new ReturnsCallReadyUI();
-
-            //Griding
-            grid.AddSpatial(messengerGrid, new Transform2(messengerGrid.Size), 1, 1);
-            grid.AddSpatial(callerGrid, new Transform2(callerGrid.Size), 2, 1);
-
-            messengerGrid.AddSpatial(messenger, messengerTransform, 1, 1);
-            messengerGrid.AddSpatial(excuseButton, excuseButton.Transform, 1, 2);
-
-            callerGrid.AddSpatial(caller, caller.Transform, 2, 1, 1, 3);
-            callerGrid.AddSpatial(ready, ready.Transform, 1, 1, 3, 1);
-
-            //Branching
-            Branch.Add(excuseButton);
-            Branch.Add(ready.Branch);
-
-            //Adding
+            Branch.Add(messengerGrid.Branch);
+            Branch.Add(callerGrid.Branch);
+            Branch.Add(purchaseHistoryGrid.Branch);
             _visuals.Add(grid);
-            _automatons.Add(messenger);
+            _automatons.Add(messengerGrid);
         }
 
         public void Update(TimeSpan delta)
