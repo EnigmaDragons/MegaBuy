@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Jobs.ReturnSpecialist;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Money.Amounts;
+
 namespace MegaBuy.Jobs
 {
     public static class JobTraits
@@ -15,7 +16,10 @@ namespace MegaBuy.Jobs
 
         public static Dictionary<Job, PerCallRate> Rates = new Dictionary<Job, PerCallRate>
         {
-            { Job.ReturnSpecialistLevel1, ReturnSpecialistPerCallRates.Level1PerCallRate },
+            { Job.ReturnSpecialistLevel1, new PerCallRate(14) },
+            { Job.ReturnSpecialistLevel2, new PerCallRate(17) },
+            { Job.ReturnSpecialistLevel3, new PerCallRate(21) },
+            { Job.ReturnSpecialistLevel4, new PerCallRate(26) },
         };
 
         public static Dictionary<Job, IVisualControl> Controls = new Dictionary<Job, IVisualControl>

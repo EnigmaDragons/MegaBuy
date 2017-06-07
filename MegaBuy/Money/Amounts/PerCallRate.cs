@@ -1,19 +1,17 @@
-﻿using MegaBuy.Money.Amounts;
-
-namespace MegaBuy.MegaBuyCorporation.JobRoles.Referrer
+﻿namespace MegaBuy.Money.Amounts
 {
     public class PerCallRate : IAmount
     {
-        private decimal v;
+        private readonly decimal _rate;
 
-        public PerCallRate(decimal v)
+        public PerCallRate(decimal rate)
         {
-            this.v = v;
+            _rate = rate;
         }
 
         public decimal Amount()
         {
-            return v;
+            return _rate;
         }
     }
 }

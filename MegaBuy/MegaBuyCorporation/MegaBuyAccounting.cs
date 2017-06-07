@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Calls.Events;
 using MegaBuy.Jobs;
-using MegaBuy.MegaBuyCorporation.JobRoles.Referrer;
 using MegaBuy.Money.Accounts;
 using MegaBuy.Money.Amounts;
 using MegaBuy.Notifications;
@@ -20,10 +19,10 @@ namespace MegaBuy.MegaBuyCorporation
 
         private readonly List<int> _pendingPayments;
 
-        public MegaBuyAccounting(IAccount playerAccount, PerCallRate payment)
+        public MegaBuyAccounting(IAccount playerAccount)
         {
             _playerAccount = playerAccount;
-            _currentRate = payment;
+            _currentRate = new PerCallRate(0);
             _pendingPayments = new List<int>();
             _dayPayment = new DayPayment();
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
