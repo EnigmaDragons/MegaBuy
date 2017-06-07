@@ -33,7 +33,6 @@ namespace MegaBuy.Shopping
 
         public ShoppingApp()
         {
-            World.Subscribe(EventSubscription.Create<FoodDelivered>((f) => NewMethod(), this));
             Branch = new ClickUIBranch("Item App", (int)ClickUIPriorities.Pad);
             _companiesBranch = new ClickUIBranch("Companies", (int)ClickUIPriorities.Pad);
             Branch.Add(_companiesBranch);
@@ -47,11 +46,6 @@ namespace MegaBuy.Shopping
                 _companiesBranch.Add(option.Branch);
             }
             _return = ImageTextButtonFactory.Create("Return", new Vector2(1000, 625), NavigateToCompanySelection);
-        }
-
-        private void NewMethod()
-        {
-            Audio.PlaySound("Notification");
         }
 
         public void Update(TimeSpan delta)

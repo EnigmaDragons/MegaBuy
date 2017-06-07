@@ -2,10 +2,8 @@
 using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MegaBuy.Shopping;
 using MegaBuy.Shopping.Foods;
 using MegaBuy.Player.Energy;
-using MonoDragons.Core.Audio;
 
 namespace MegaBuy.Player.Hungers
 {
@@ -32,7 +30,6 @@ namespace MegaBuy.Player.Hungers
         private void EatFood(FoodEaten foodEaten)
         {
             _hunger -= foodEaten.Food.HungerRecovery.Amount;
-            Audio.PlaySound("EatFood");
         }
 
         private void IncreaseHunger(MinuteChanged minuteChanged)
