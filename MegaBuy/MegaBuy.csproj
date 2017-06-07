@@ -64,6 +64,7 @@
     <Compile Include="MegaBuyCorporation\Policies\PoliciesApp.cs" />
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
+    <Compile Include="Player\Thoughts\BottleBox.cs" />
     <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
     <Compile Include="Player\Thoughts\Laundry.cs" />
