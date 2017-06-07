@@ -44,7 +44,7 @@ namespace MegaBuy.MegaBuyCorporation.Policies
         {
             return _policies
                 .Select(x => x.Text)
-                .Skip(startingIndex - 1)
+                .Skip(startingIndex)
                 .Take(count)
                 .ToList();
         }
