@@ -10,6 +10,7 @@ namespace MegaBuy.Calls.Callers
     public sealed class Caller : IAutomaton, IDisposable
     {
         public CallerPatience Patience = CallerStartingPatience.New;
+        public string FirstName => Name.Split(' ')[0];
         public string Name { get; }
         public Dictionary<string, string> Traits { get; }
 
