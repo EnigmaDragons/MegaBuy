@@ -45,7 +45,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new GovernmentTaxes(PlayerAccount));
             AddSingleInstanceSubscription(new AutoSave());
             AddSingleInstanceSubscription(new FoodDelivery());
-            World.Publish(new DayStarted(new DateTime(2328, 7, 16)));
+            AddSingleInstanceSubscription(new MegaBuyPolicyDepartment(ActivePolicies));
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }

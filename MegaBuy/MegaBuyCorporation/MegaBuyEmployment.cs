@@ -56,7 +56,7 @@ namespace MegaBuy.MegaBuyCorporation
             _policies.Clear();
             _policies.Add(JobTraits.Policies[role]);
             World.Publish(new PlayerNotification("MegaBuy", "Congrats on gaining " + role.ToString() + "."));
-            World.Publish(new PolicyChanged());
+            World.Publish(new PoliciesChanged());
             World.Publish(new JobChanged(role));
         }
 
