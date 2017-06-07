@@ -1,4 +1,5 @@
 ﻿using MegaBuy.PurchaseHistories;
+using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -12,10 +13,13 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
     {
         private readonly GridLayout _grid;
 
+        public Transform2 Transform => new Transform2(_grid.Size);
+
         public NewPurchaseUI(Size2 size)
         {
-            _grid = new GridLayout(size, 2, 18);
+            _grid = new GridLayout(size - new Size2(Sizes.Margin * 2, Sizes.Margin * 2), 2, 18);
             World.Subscribe(EventSubscription.Create<PurchaseInspected>(x => OnPurchaseInspected(x.Purchase), this));
+            World.Subscribe(EventSubscription.Create<PurchasesListed>(x => OnPurchasesListed(), this));
         }
 
         public void Draw(Transform2 parentTransform)
@@ -25,7 +29,6 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
 
         private void OnPurchaseInspected(Purchase purchase)
         {
-            _grid.Clear();
             _grid.AddSpatial(new ImageBox(new Transform2(_grid.Size), "Images/UI/purchase"), new Transform2(_grid.Size), 1, 1, 2, 18);
 
             AddLabel(purchase.ProductName, "16", HorizontalAlignment.Center, 1, 1, 2, 1);
@@ -57,6 +60,11 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
 
             AddLabel("Item Cost: " + purchase.ItemPrice, "14", HorizontalAlignment.Center, 1, 17);
             AddLabel("Total Cost: " + purchase.TotalCost, "14", HorizontalAlignment.Center, 2, 17);
+        }
+
+        private void OnPurchasesListed()
+        {
+            _grid.Clear();
         }
 
         private void AddLabel(string text, string font, HorizontalAlignment horizontalAlignment, int column, int row, int columnSpan = 1, int rowSpan = 1, int xOffset = 0, int yOffset = 0)
