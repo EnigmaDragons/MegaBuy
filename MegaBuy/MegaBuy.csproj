@@ -49,7 +49,6 @@
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
-    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPerCallRates.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
@@ -66,9 +65,11 @@
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Player\Energy\NewSelectSleepDurationUI.cs" />
+    <Compile Include="Player\Thoughts\BottleBox.cs" />
     <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
     <Compile Include="Player\Thoughts\Laundry.cs" />
+    <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />

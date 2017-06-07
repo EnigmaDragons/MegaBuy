@@ -34,7 +34,7 @@ namespace MegaBuy.Apartment
             map.Add(new ClickableTile("2/door-bot", new TileLocation(width - 1, 1), false, () => World.Publish(new HadAThought(Outside.GetThought())), 2));
             map.Add(new ClickableTile("2/security1", new TileLocation(width - 2, 1), false, 2));
 
-            map.Add(new ClickableTile("2/boxofstims", new TileLocation(1, height - 2), true, 2));
+            map.Add(new ClickableTile("2/boxofstims", new TileLocation(1, height - 2), true, () => World.Publish(new HadAThought(BottleBox.GetThought())), 2));
 
             map.Add(new ClickableTile("2/tv1", new TileLocation(1, 0), false, 2));
 

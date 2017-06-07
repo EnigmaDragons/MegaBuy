@@ -73,12 +73,12 @@ namespace MegaBuy.Apartment.Map
 
         private static int GetRow(Transform2 transform)
         {
-            return (int)Math.Round(transform.ToScale(1).Location.Y / TileSize.Int);
+            return (int)Math.Round((transform.ToScale(1).Location.Y - transform.Size.Height / 2 ) / TileSize.Int);
         }
 
         private static int GetColumn(Transform2 transform)
         {
-            return (int)Math.Round(transform.ToScale(1).Location.X / TileSize.Int);
+            return (int)Math.Round((transform.ToScale(1).Location.X - transform.Size.Width / 2) / TileSize.Int);
         }
 
         private static Transform2 MakeTransform(int column, int row)

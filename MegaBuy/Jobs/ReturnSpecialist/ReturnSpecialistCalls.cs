@@ -42,7 +42,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         {
             var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
-            var script = InitScript();
+            var script = InitScript(scenario);
             scriptBuilder(script, scenario);
 
             var purchase = CreatePurchase(scenario, script, correctResolution);
@@ -84,18 +84,21 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             return CurrentGameState.State.DateTime.AddDays(-Rng.Int(days));
         }
 
-        private static readonly List<string> Introductions = new List<string>()
+        private static readonly List<Func<CallScenario, string>> Introductions = new List<Func<CallScenario, string>>
         {
-            "Hello there, how can I help you today?",
-            "Hi there, how can I help you today?",
-            "Hello, I understand you are having problems with a product.",
-            "Good day.",
-            // @todo #1 Add more introductions
+            s => "Hello there, how can I help you today?",
+            s => "Hi, how can I help you?",
+            s => "Hello, I understand you are having problems with a product.",
+            s => "Good day, thank you for calling MegaBuy. How may I help you?",
+            s => "We appreciate your business. What can I do for you?",
+            s => "Thank you for calling MegaBuy! What would you like today?",
+            s => "Do you need help with a return or replacement?",
+            s => $"Hello {s.Caller.FirstName}. How can I assist you?",
         };
 
-        private static Script InitScript()
+        private static Script InitScript(CallScenario scenario)
         {
-            return new Script { { CallRole.Player, Introductions.Random() } };
+            return new Script { { CallRole.Player, Introductions.Random().Invoke(scenario) } };
         }
 
         public static Call NewCall()
