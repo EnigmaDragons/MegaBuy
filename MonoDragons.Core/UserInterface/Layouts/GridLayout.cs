@@ -69,6 +69,11 @@ namespace MonoDragons.Core.UserInterface.Layouts
             _layout.Remove(visual);
         }
 
+        public void Clear()
+        {
+            _layout.Clear();
+        }
+
         public Size2 GetBlockSize(int column, int row)
         {
             return GetBlockSize(column, row, 1, 1);

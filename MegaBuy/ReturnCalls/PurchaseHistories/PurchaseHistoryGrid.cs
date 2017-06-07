@@ -27,12 +27,12 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
             _grid = new GridLayout(size, 2, new List<Definition> { new ShareDefintion(), new ConcreteDefinition(70) });
 
             var purchases = new NewPurchaseHistoriesUI(_grid.GetBlockSize(1, 1, 2, 1));
-            var purchase = new NewPurchaseUI();
+            var purchase = new NewPurchaseUI(_grid.GetBlockSize(1, 1, 2, 1));
             var callerButton = new ViewCallerUI();
             var listPurchasesButton = new ViewPurchaseListUI();
 
             _grid.AddSpatial(purchases, new Transform2(_grid.GetBlockSize(1, 1, 2, 1)), 1, 1, 2, 1);
-            _grid.AddSpatial(purchase, new Transform2(_grid.GetBlockSize(1, 1, 2, 1)), 1, 1, 2, 1);
+            _grid.AddSpatial(purchase, purchase.Transform, 1, 1, 2, 1);
             _grid.AddSpatial(callerButton, callerButton.Transform, 2, 2);
             _grid.AddSpatial(listPurchasesButton, listPurchasesButton.Transform, 1, 2);
 
