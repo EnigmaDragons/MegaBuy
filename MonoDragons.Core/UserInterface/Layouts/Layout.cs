@@ -29,5 +29,10 @@ namespace MonoDragons.Core.UserInterface.Layouts
         {
             _visuals.Remove(visual);
         }
+
+        public void Clear()
+        {
+            _visuals.Clear();
+        }
     }
 }
