@@ -194,6 +194,7 @@
     <Compile Include="Calls\ReadyUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyOptionUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyUI.cs" />
+    <Compile Include="Sounds\AllSounds.cs" />
     <Compile Include="Time\ClockUI.cs" />
     <Compile Include="Pads\TogglePad.cs" />
     <Compile Include="Shopping\ItemCost.cs" />
@@ -827,8 +828,11 @@
     <Content Include="Content\Sounds\EatFood.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Notification.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Sounds\FoodDelivered.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\PlayerNotification.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>

@@ -14,6 +14,7 @@ using MegaBuy.Rents;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Shopping;
+using MegaBuy.Sounds;
 
 namespace MegaBuy
 {
@@ -46,6 +47,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new AutoSave());
             AddSingleInstanceSubscription(new FoodDelivery());
             AddSingleInstanceSubscription(new MegaBuyPolicyDepartment(ActivePolicies));
+            AddSingleInstanceSubscription(new AllSounds());
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
