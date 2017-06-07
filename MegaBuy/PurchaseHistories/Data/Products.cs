@@ -88,6 +88,12 @@ namespace MegaBuy.PurchaseHistories.Data
 
         public static Product Random => Prods.Random();
 
+        public static Optional<Product> RandomInTheseCategoriesWithinPrice(List<ProductCategory> categories, decimal min, decimal max)
+        {
+            var prods = Prods.Where((p) => categories.Contains(p.Category)).Where((p) => p.Price >= min && p.Price <= max).ToList();
+            return prods.Count > 0 ? new Optional<Product>(prods.Random()): new Optional<Product>();
+        }
+
         public static Problem GetProblemFor(string product)
         {
             return GetProblems(product).Random();
