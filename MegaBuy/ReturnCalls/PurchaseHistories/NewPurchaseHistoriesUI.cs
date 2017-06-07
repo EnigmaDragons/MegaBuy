@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Events;
-using MegaBuy.Pads.Apps;
 using MegaBuy.PurchaseHistories;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
@@ -37,7 +36,7 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
             Branch.Add(smartBackButton.Branch);
             _grid.AddSpatial(smartBackButton, backButton.Transform, 1, 1);
 
-            var forwardButton = ImageTextButtonFactory.CreateRotated(">>", Vector2.Zero, NavigateForward, () => _purchaseSupplier.Current != null);
+            var forwardButton = ImageTextButtonFactory.CreateRotated(">>", Vector2.Zero, NavigateForward, () => _purchaseSupplier.Current != null || _index + _ordersPerPage < _purchaseUIs.Count);
             var smartForwardButton = new SmartControl(forwardButton, (int)ClickUIPriorities.Pad);
             Branch.Add(smartForwardButton.Branch);
             _grid.AddSpatial(smartForwardButton, forwardButton.Transform, 3, 1);
@@ -82,8 +81,8 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
         {
             while (_purchaseUIs.Count < _index + _ordersPerPage && _purchaseSupplier.Current != null)
             {
-                _purchaseSupplier.MoveNext();
                 _purchaseUIs.Add(new NewPurchaseSummaryUI(_purchaseSupplier.Current, _grid.GetBlockSize(2, 1)));
+                _purchaseSupplier.MoveNext();
             }
         }
 
