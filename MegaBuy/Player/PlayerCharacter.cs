@@ -87,16 +87,17 @@ namespace MegaBuy.Player
             _anims.Update(delta);
             _components.ForEach(x => x.Update(delta));
             var distance = new Physics().GetDistance(moveSpeed, delta);
-            if (distance > 0)
+            if (distance > 0 && !_dir.Equals(Direction.None))
                 _transform = _charSpace.ApplyMove(_transform, Collider, new Movement(distance, _dir).GetDelta());
             UpdateInteractLocation();
         }
 
         private void UpdateInteractLocation()
         {
-            var playerTile = new TileLocation(_transform);
+            //var playerTile = new TileLocation(_transform);
             var offset = _transform.Rotation.ToDirection().AsOffset();
-            _interactLocation = playerTile.Plus(new TileLocation(offset.Y, offset.X));
+            _interactLocation = new TileLocation(Collider.Transform + new Transform2
+                (new Vector2(offset.X * TileSize.Int *3 /4, offset.Y * TileSize.Int *3 /4), 1)).Plus(new TileLocation(0, 0));
             _interactRect.Transform = _interactLocation.Transform;
         }
 
@@ -104,7 +105,7 @@ namespace MegaBuy.Player
         {
             var t = _transform + parentTransform;
             _anims.Draw(t);
-            //_interactRect.Draw(parentTransform); Uncomment to debug interactions
+            _interactRect.Draw(parentTransform); //Uncomment to debug interactions
         }
 
         private void UpdateAnimState()
