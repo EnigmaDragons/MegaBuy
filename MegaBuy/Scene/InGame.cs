@@ -37,7 +37,7 @@ namespace MegaBuy.Scene
         // Sleep
         private bool _preparingForBed;
         private bool _isSleeping;
-        private SelectSleepDurationUI _sleep;
+        private NewSelectSleepDurationUI _sleep;
 
         public void Init()
         {
@@ -50,7 +50,7 @@ namespace MegaBuy.Scene
             _gameState.Pad = _pad;
             _map = ApartmentMapFactory.Create();
             _branch.Add(_map.Branch);
-            _sleep = new SelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Remove(_sleep.Branch); });
+            _sleep = new NewSelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Remove(_sleep.Branch); });
             _gameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             _thoughts = new ThoughtUI();
@@ -114,7 +114,7 @@ namespace MegaBuy.Scene
             _dev.Draw(Transform2.Zero);
 
             if (_preparingForBed)
-                _sleep.Draw(new Transform2(new Vector2(400, 300)));
+                _sleep.Draw(Transform2.Zero);
         }
     }
 }

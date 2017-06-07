@@ -31,13 +31,19 @@ namespace MonoDragons.Core.UserInterface.Layouts
             _columns = columns;
             _rows = rows;
 
-            decimal widthRemaining = Size.Width - _columns.Where(x => x.Size != SizeType.Share).Sum(x => x.Length);
-            decimal shareWidth = widthRemaining / _columns.Where(x => x.Size == SizeType.Share).Sum(x => x.Shares);
-            _columns.Where(x => x.Size == SizeType.Share).ForEach(x => x.Length = x.Shares * shareWidth);
+            if (_columns.Any(x => x.Size == SizeType.Share))
+            {
+                decimal widthRemaining = Size.Width - _columns.Where(x => x.Size != SizeType.Share).Sum(x => x.Length);
+                decimal shareWidth = widthRemaining / _columns.Where(x => x.Size == SizeType.Share).Sum(x => x.Shares);
+                _columns.Where(x => x.Size == SizeType.Share).ForEach(x => x.Length = x.Shares * shareWidth);
+            }
 
-            decimal heightRemaining = Size.Height - _rows.Where(x => x.Size != SizeType.Share).Sum(x => x.Length);
-            decimal shareHeight = heightRemaining / _rows.Where(x => x.Size == SizeType.Share).Sum(x => x.Shares);
-            _rows.Where(x => x.Size == SizeType.Share).ForEach(x => x.Length = x.Shares * shareHeight);
+            if (_rows.Any(x => x.Size == SizeType.Share))
+            {
+                decimal heightRemaining = Size.Height - _rows.Where(x => x.Size != SizeType.Share).Sum(x => x.Length);
+                decimal shareHeight = heightRemaining / _rows.Where(x => x.Size == SizeType.Share).Sum(x => x.Shares);
+                _rows.Where(x => x.Size == SizeType.Share).ForEach(x => x.Length = x.Shares * shareHeight);
+            }
         }
 
         public void Draw(Transform2 parentTransform)

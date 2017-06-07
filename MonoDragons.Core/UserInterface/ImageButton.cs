@@ -4,7 +4,7 @@ using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ImageButton : ClickableUIElement, IVisual
+    public sealed class ImageButton : VisualClickableUIElement
     {
         private readonly string _basic;
         private readonly string _hover;
@@ -31,7 +31,7 @@ namespace MonoDragons.Core.UserInterface
             _current = _basic;
         }
 
-        public void Draw(Transform2 parentTransform)
+        public override void Draw(Transform2 parentTransform)
         {
             if (_isVisible())
                 World.Draw(_current, parentTransform + _transform);
