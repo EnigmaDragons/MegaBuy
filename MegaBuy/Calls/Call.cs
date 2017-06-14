@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Events;
@@ -17,6 +18,7 @@ namespace MegaBuy.Calls
 {
     public sealed class Call : IAutomaton, IDisposable
     {
+        private static readonly Policy DefaultPolicy = new Policy("All valid customer requests must be approved.", x => true, CallResolution.Reject);
         private readonly CallResolution _correctResolution;
         private readonly ActivePolicies _activePolicies;
 
@@ -43,12 +45,21 @@ namespace MegaBuy.Calls
             Caller.Update(delta);
         }
 
+        public void Dispose()
+        {
+            Caller.Dispose();
+            World.Unsubscribe(this);
+        }
+
         private void ResolveCall(CallResolved callResolved)
         {
+            var res = callResolved.Resolution;
             var violations = _activePolicies.GetViolations(callResolved.Resolution, this);
             violations.ForEach(x => World.Publish(new TechnicalMistakeOccurred(new PayPenalty(5), x)));
+            if (res != _correctResolution && res == CallResolution.Reject && !violations.Any())
+                World.Publish(new TechnicalMistakeOccurred(new PayPenalty(5), DefaultPolicy));
 
-            if (callResolved.Resolution == _correctResolution)
+            if (res == _correctResolution)
             {
                 World.Publish(new CallSucceeded(GetHashCode()));
                 World.Publish(new CallRated(GetHashCode(), CallerPatienceCallRatings.Get(Caller.Patience)));
@@ -59,12 +70,6 @@ namespace MegaBuy.Calls
                 World.Publish(new CallRated(GetHashCode(), new CallRating(1)));
             }
             Dispose();
-        }
-
-        public void Dispose()
-        {
-            Caller.Dispose();
-            World.Unsubscribe(this);
         }
     }
 }

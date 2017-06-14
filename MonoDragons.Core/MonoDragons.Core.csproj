@@ -84,6 +84,7 @@
     <Compile Include="IO\AppDataJsonIo.cs" />
     <Compile Include="MouseControls\ClickAction.cs" />
     <Compile Include="MouseControls\MouseButton.cs" />
+    <Compile Include="MouseControls\MouseDownAction.cs" />
     <Compile Include="MouseControls\MouseDragging.cs" />
     <Compile Include="MouseControls\MouseClicking.cs" />
     <Compile Include="Navigation\INavigation.cs" />

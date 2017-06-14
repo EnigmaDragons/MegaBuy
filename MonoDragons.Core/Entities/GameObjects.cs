@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.Entities
@@ -19,7 +20,7 @@ namespace MonoDragons.Core.Entities
 
         public void ForEach(Action<GameObject> action)
         {
-            _entities.ForEach(action);
+            _entities.ToList().ForEach(action);
         }
     }
 }

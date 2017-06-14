@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Entities;
@@ -22,12 +23,20 @@ namespace MonoDragons.Core.MouseControls
             if (StillDragging(leftButtonIsPressed))
                 _targets.ForEach(t => t.Transform.Location += (pos - _lastPos).ToVector2());
             if (DragStarted(leftButtonIsPressed))
-                entities.ForEach(e => e.With<MouseDrag>(x => e.Transform.If(t => t.Intersects(_lastPos), t => _targets.Add(e))));
+                SelectDragTarget(entities);
             if (!leftButtonIsPressed)
                 _targets.Clear();
 
             _leftButtonWasPressed = leftButtonIsPressed;
             _lastPos = pos;
+        }
+
+        private void SelectDragTarget(IEntities entities)
+        {
+            var possibleTargets = new List<GameObject>();
+            entities.ForEach(e => e.With<MouseDrag>(x => e.Transform.If(t => t.Intersects(_lastPos), t => possibleTargets.Add(e))));
+            if (possibleTargets.Any())
+                _targets.Add(possibleTargets.OrderByDescending(x => x.Transform.ZIndex).First());
         }
 
         private bool StillDragging(bool leftButtonIsPressed)
