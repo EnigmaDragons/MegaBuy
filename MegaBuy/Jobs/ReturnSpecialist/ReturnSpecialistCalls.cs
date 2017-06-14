@@ -48,7 +48,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             var purchase = CreatePurchase(scenario, script, correctResolution);
 
             Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
-            var history = Purchase.CreateInfiniteWith(purchase).Where(x => x.PurchasedWithinLast(90));
+            var history = Purchase.CreateInfiniteWith(purchase).Take(1000).Where(x => x.PurchasedWithinLast(90));
             scenario.Purchases = history;
             scenario.Target = new Optional<Purchase>(purchase);
             return new Call(script, scenario, correctResolution, Level1Options);
