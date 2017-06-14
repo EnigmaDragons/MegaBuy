@@ -54,8 +54,8 @@ namespace MegaBuy.Player
             Input.ClearBindings();
             Input.OnDirection(UpdatePhysics);
             Input.On(Control.A, Interact);
-            World.Subscribe(EventSubscription.Create<WentToBed>((e) => _isSleeping = true, this));
-            World.Subscribe(EventSubscription.Create<Awaken>((e) => _isSleeping = false, this));
+            World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
+            World.Subscribe(EventSubscription.Create<Awaken>((e) => Awaken(), this));
             World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => _isSleeping = true, this));
         }
 
@@ -80,6 +80,20 @@ namespace MegaBuy.Player
 
                 UpdateAnimState();
             }
+        }
+
+        private void WentToBed()
+        {
+            _isSleeping = true;
+            _facing = "Down";
+            UpdateAnimState();
+            _transform = new Transform2(new Vector2(TileSize.Size.Width, TileSize.Size.Height * 2.3f));
+        }
+
+        private void Awaken()
+        {
+            _transform = new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 2.3f));
+            _isSleeping = false;
         }
 
         public void Update(TimeSpan delta)
