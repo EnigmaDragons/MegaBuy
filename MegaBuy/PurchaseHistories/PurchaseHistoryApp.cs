@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using MegaBuy.Calls;
 using MegaBuy.Calls.Events;
 using MegaBuy.Pads.Apps;
 using MegaBuy.UIs;
