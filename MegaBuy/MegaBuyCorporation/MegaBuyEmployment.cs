@@ -11,6 +11,10 @@ namespace MegaBuy.MegaBuyCorporation
 {
     public class MegaBuyEmployment
     {
+        private const int MaxMistakes = 7;
+        private const int PenultimateMistake = 6;
+        private const int AntepenultimateMistake = 5;
+
         private readonly ActivePolicies _policies;
 
         private int _numMistakesInCurrentDay;
@@ -68,7 +72,11 @@ namespace MegaBuy.MegaBuyCorporation
         private void TechnicalMistakeOccurred(TechnicalMistakeOccurred obj)
         {
             _numMistakesInCurrentDay++;
-            if (_numMistakesInCurrentDay == 7)
+            if (_numMistakesInCurrentDay == PenultimateMistake)
+                World.Publish(new PlayerNotification("MegaBuy", "FINAL WARNING: Your work does not meet minimum quality standards."));
+            if (_numMistakesInCurrentDay == AntepenultimateMistake)
+                World.Publish(new PlayerNotification("MegaBuy", "WARNING: Your work quality is below our expectations."));
+            if (_numMistakesInCurrentDay == MaxMistakes)
                 World.NavigateToScene("Fired");
         }
     }
