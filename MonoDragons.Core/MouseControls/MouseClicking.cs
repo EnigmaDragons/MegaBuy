@@ -28,6 +28,7 @@ namespace MonoDragons.Core.MouseControls
 
             if (!_leftWasPressed && leftIsPressed)
             {
+                entities.ForEach(e => e.With<MouseDownAction>(t => e.Transform.If(x => x.Intersects(pos), () => t.Action())));
                 entities.ForEach(e => e.With<ClickAction>(t => e.Transform.If(x => x.Intersects(pos), () => _targets.Add(e))));
                 _timer.Reset();
             }

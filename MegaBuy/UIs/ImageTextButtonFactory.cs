@@ -37,5 +37,19 @@ namespace MegaBuy.UIs
                 "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
                 new Transform2(location, Sizes.SideButton), onClick, isVisible);
         }
+
+        public static ImageButton CreateUpArrow(Vector2 location, Action onClick)
+        {
+            return new ImageButton(
+                "Images/UI/button-small-arrow-up", "Images/UI/button-small-arrow-up-hover", "Images/UI/button-small-arrow-up-press",
+                new Transform2(new Size2(70, 70)), onClick);
+        }
+
+        public static ImageButton CreateDownArrow(Vector2 location, Action onClick)
+        {
+            return new ImageButton(
+                "Images/UI/button-small-arrow-down", "Images/UI/button-small-arrow-down-hover", "Images/UI/button-small-arrow-down-press",
+                new Transform2(new Size2(70, 70)), onClick);
+        }
     }
 }

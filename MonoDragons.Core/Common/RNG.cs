@@ -52,5 +52,16 @@ namespace MonoDragons.Core.Common
         {
             return Dbl() <= primaryWeight ? primary : other;
         }
+
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            for (var n = list.Count - 1; n > 1; n--)
+            {
+                var k = Instance.Next(n + 1);
+                var value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
     }
 }

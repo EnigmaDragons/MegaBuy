@@ -10,6 +10,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
     public static class ReturnSpecialistPolicies
     {
         private static readonly CallResolution[] ReturnOrReplace = {CallResolution.ApproveReplacement, CallResolution.ApproveReturn};
+        private const CallResolution Reject = CallResolution.Reject;
         private const CallResolution Replace = CallResolution.ApproveReplacement;
         
         private static readonly Predicate<Call> Any = x => true;
@@ -29,6 +30,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
 
         public static List<Policy> Level1 = new List<Policy>
         {
+            new Policy("All valid customer requests must be approved", x => true, Reject),
             new Policy("Returns must have been purchased at MegaBuy", ItemWasPurchasedAtMegaBuy, ReturnOrReplace),
             new Policy("Broken items may be returned within 60 days of delivery", ItemIsBrokenAndIsWithin60Days, ReturnOrReplace),
             new Policy("Other returns must happen within 30 days of delivery", ItemIsNotBrokenAndIsWithin30Days, ReturnOrReplace),
