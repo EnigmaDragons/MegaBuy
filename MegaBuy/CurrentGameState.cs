@@ -4,11 +4,22 @@ namespace MegaBuy
 {
     public static class CurrentGameState
     {
-        public static GameState State = new GameState("nobody", CharacterSex.Male);
+        private static string _charName = "nobody";
+        private static CharacterSex _charSex = CharacterSex.Male;
 
-        public static void StartNewGame(string characterName, CharacterSex sex)
+        public static GameState State;
+
+        public static GameState StartNewGame()
         {
-            State = new GameState(characterName, sex);
+            State?.Dispose();
+            State = new GameState(_charName, _charSex);
+            return State;
+        }
+
+        public static void SetupCharacter(string characterName, CharacterSex sex)
+        {
+            _charName = characterName;
+            _charSex = sex;
         }
     }
 }

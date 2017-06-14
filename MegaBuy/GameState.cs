@@ -18,7 +18,7 @@ using MegaBuy.Sounds;
 
 namespace MegaBuy
 {
-    public class GameState
+    public class GameState : IDisposable
     {
         public Clock Clock { get; set; }
         public DateTime DateTime => Clock.DateTime;
@@ -68,6 +68,12 @@ namespace MegaBuy
                 Clock = Clock.Time,
                 PlayerAccount = PlayerAccount.Amount()
             };
+        }
+
+        public void Dispose()
+        {
+            foreach (var v in SingleInstanceSubscriptions.Values)
+                World.Unsubscribe(v);
         }
     }
 }

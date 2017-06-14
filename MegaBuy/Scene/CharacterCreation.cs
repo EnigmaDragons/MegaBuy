@@ -35,7 +35,7 @@ namespace MegaBuy.Scene
 
         private void StartGame()
         {
-            CurrentGameState.StartNewGame(_charName.RawText, CharacterSex.Male);
+            CurrentGameState.SetupCharacter(_charName.RawText, CharacterSex.Male);
             World.NavigateToScene("InGame");
         }
 
