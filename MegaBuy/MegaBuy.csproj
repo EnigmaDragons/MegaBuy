@@ -50,7 +50,6 @@
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
-    <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistUI.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PoliciesChanged.cs" />
@@ -116,12 +115,7 @@
     <Compile Include="Player\Energy\CollapsedWithExhaustion.cs" />
     <Compile Include="Player\Energy\EnergyUI.cs" />
     <Compile Include="Player\Energy\Tired.cs" />
-    <Compile Include="PurchaseHistories\PurchaseDetailUI.cs" />
-    <Compile Include="PurchaseHistories\PurchaseHistoryApp.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchasesListed.cs" />
-    <Compile Include="PurchaseHistories\PurchaseSummaryUI.cs" />
-    <Compile Include="PurchaseHistories\PurchaseUI.cs" />
-    <Compile Include="PurchaseHistories\PurchasesUI.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
     <Compile Include="Shopping\FoodDelivery.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
@@ -183,7 +177,6 @@
     <Compile Include="Save\AutoSave.cs" />
     <Compile Include="Save\MegaBuySave.cs" />
     <Compile Include="Pads\Apps\AppChanged.cs" />
-    <Compile Include="Calls\CallApp.cs" />
     <Compile Include="Calls\Callers\CallerUI.cs" />
     <Compile Include="Calls\Messages\CallMessengerUI.cs" />
     <Compile Include="Pads\MenuBar.cs" />
@@ -194,7 +187,6 @@
     <Compile Include="Pads\Pad.cs" />
     <Compile Include="Pads\PadClosed.cs" />
     <Compile Include="Pads\PadOpened.cs" />
-    <Compile Include="Calls\ReadyUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyOptionUI.cs" />
     <Compile Include="Shopping\ShoppingCompanyUI.cs" />
     <Compile Include="Sounds\AllSounds.cs" />

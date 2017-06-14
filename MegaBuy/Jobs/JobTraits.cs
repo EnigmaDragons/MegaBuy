@@ -22,11 +22,6 @@ namespace MegaBuy.Jobs
             { Job.ReturnSpecialistLevel4, new PerCallRate(26) },
         };
 
-        public static Dictionary<Job, IVisualControl> Controls = new Dictionary<Job, IVisualControl>
-        {
-            { Job.ReturnSpecialistLevel1, new ReturnSpecialistUI() },
-        };
-
         public static Dictionary<Job, Func<Call>> Calls = new Dictionary<Job, Func<Call>>
         {
             { Job.ReturnSpecialistLevel1, () => ReturnSpecialistCalls.NewCall() },
