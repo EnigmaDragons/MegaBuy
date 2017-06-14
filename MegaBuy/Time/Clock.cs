@@ -7,9 +7,7 @@ namespace MegaBuy.Time
 {
     public sealed class Clock : IAutomaton
     {
-        private readonly Timer _timer;
-
-        private float _currentRate = 1.0f;
+        private Timer _timer;
         
         private int Hour => DateTime.Hour;
         private int Minute => DateTime.Minute;
@@ -30,13 +28,13 @@ namespace MegaBuy.Time
 
         public void Update(TimeSpan delta)
         {
-            var relativeTimePassed = TimeSpan.FromMilliseconds(delta.TotalMilliseconds * _currentRate);
+            var relativeTimePassed = TimeSpan.FromMilliseconds(delta.TotalMilliseconds);
             _timer.Update(relativeTimePassed);
         }
 
         private void ChangeRate(TimeRateChanged rateChanged)
         {
-            _currentRate *= rateChanged.Factor;
+            _timer = new Timer(IncrementMinute, rateChanged.MsPerMinute);
         }
 
         private void IncrementMinute()

@@ -46,13 +46,13 @@ namespace MegaBuy.Player.Energy
             _minuteToAwake = _currentMinute;
             _hourToAwake = (_currentHour + wentToBed.HoursToSleep) % 24;
             Debug.WriteLine($"Will awake at: {_hourToAwake}:{_minuteToAwake}");
-            Sleep();
+            Sleep(wentToBed.HoursToSleep * 60);
         }
 
         private void Awaken()
         {
             _isExhausted = false;
-            World.Publish(new TimeRateChanged(1f / TimeRateFactorWhileSleeping));
+            World.Publish(new TimeRateChanged(400));
             World.Publish(new Awaken());
             Audio.StopMusic();
             Audio.PlayMusic("Music/sleep", 0);
@@ -62,14 +62,15 @@ namespace MegaBuy.Player.Energy
         {
             _isExhausted = true;
             World.Publish(new CollapsedWithExhaustion());
-            Sleep();
+            decimal energyPerMinute = (_energyPerHourSlept * new decimal(0.55)) / 60;
+            Sleep((int)((70 - _energy) / energyPerMinute));
         }
         
-        private void Sleep()
+        private void Sleep(int minutes)
         {
             _isSleeping = true;
             Audio.PlayMusic("Music/sleep");
-            World.Publish(new TimeRateChanged(TimeRateFactorWhileSleeping));
+            World.Publish(new TimeRateChanged((double)10000 / minutes));
         }
 
         private void MinuteChanged(MinuteChanged minuteChanged)

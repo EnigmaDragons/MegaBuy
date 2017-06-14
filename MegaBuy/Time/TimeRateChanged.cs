@@ -3,11 +3,11 @@ namespace MegaBuy.Time
 {
     public sealed class TimeRateChanged
     {
-        public float Factor { get; }
+        public double MsPerMinute { get; }
 
-        public TimeRateChanged(float factor)
+        public TimeRateChanged(double msPerMinute)
         {
-            Factor = factor;
+            MsPerMinute = msPerMinute;
         }
     }
 }
