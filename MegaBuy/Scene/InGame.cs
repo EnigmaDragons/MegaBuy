@@ -51,7 +51,7 @@ namespace MegaBuy.Scene
             _map = ApartmentMapFactory.Create();
             _branch.Add(_map.Branch);
             _sleep = new NewSelectSleepDurationUI(() => { _preparingForBed = false; _clickUi.Remove(_sleep.Branch); });
-            _gameState.PlayerCharacter = new PlayerCharacter(CharacterSex.Male, _map, 
+            _gameState.PlayerCharacter = new PlayerCharacter(CurrentGameState.State.CharacterSex, _map, 
                 new Transform2(new Vector2(TileSize.Size.Width * 2, TileSize.Size.Height * 3)));
             _thoughts = new ThoughtUI();
             _branch.Add(_thoughts.Branch);

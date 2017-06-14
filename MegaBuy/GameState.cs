@@ -20,9 +20,12 @@ namespace MegaBuy
 {
     public class GameState
     {
-        public DateTime DateTime => Clock.DateTime;
-        public string CharName { get; set; }
         public Clock Clock { get; set; }
+        public DateTime DateTime => Clock.DateTime;
+
+        public string CharName { get; set; }
+        public CharacterSex CharacterSex { get; set; }
+
         public PlayerCharacter PlayerCharacter { get; set; }
         public PlayerAccount PlayerAccount { get; set; }
         public Pad Pad { get; set; }
@@ -31,10 +34,11 @@ namespace MegaBuy
         public ActivePolicies ActivePolicies { get; set; }
         public Job Job { get; set; }
 
-        public GameState()
+        public GameState(string charName, CharacterSex charSex)
         {
             Job = Job.ReturnSpecialistLevel1;
-            CharName = "player";
+            CharName = charName;
+            CharacterSex = charSex;
             ActivePolicies = new ActivePolicies(ReturnSpecialistPolicies.Level1);
             Clock = new Clock(400, new DateTime(2328, 7, 16, 8, 0, 0));
             PlayerAccount = new PlayerAccount();

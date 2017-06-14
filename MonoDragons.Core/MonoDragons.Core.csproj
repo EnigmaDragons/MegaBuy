@@ -149,6 +149,7 @@
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
     <Compile Include="UserInterface\IVisualAutomatonControl.cs" />
+    <Compile Include="UserInterface\KeyboardTyping.cs" />
     <Compile Include="UserInterface\Layouts\ConcreteDefinition.cs" />
     <Compile Include="UserInterface\Layouts\Definition.cs" />
     <Compile Include="UserInterface\Layouts\ShareDefintion.cs" />
@@ -182,7 +183,6 @@
     <Compile Include="UserInterface\SimpleClickable.cs" />
     <Compile Include="UserInterface\SingleImageButton.cs" />
     <Compile Include="UserInterface\SmartControl.cs" />
-    <Compile Include="UserInterface\TextBox.cs" />
     <Compile Include="UserInterface\TextButton.cs" />
     <Compile Include="UserInterface\TextClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />
