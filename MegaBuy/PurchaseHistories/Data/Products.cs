@@ -45,13 +45,14 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Business Appointment Scheduler", 89.13m, ProductCategory.Software),
             Make("Awakening Assistance Automator", 931.01m, ProductCategory.Software),
             Make("Elevated-Enlightenment Assistor", 534.96m, ProductCategory.Software),
+            Make("Internal Reorganizing Assistant", 171.53m, ProductCategory.Software),
 
             Make("Sailboat Reflections Painting", 2615.19m, ProductCategory.Decor),
             Make("NetCorp Beverage Tumbler", 241.85m, ProductCategory.Decor),
             Make("Liberated Minds Hopper Sticker", 65.89m, ProductCategory.Decor),
             Make("Vintage Orange Sheer Window Scarf", 312.83m, ProductCategory.Decor),
-            Make("High-Powered Florescent Green Window Shades", 594.14m, ProductCategory.Decor),
-            Make("Self-Adjusting Famous Actor Shower Curtains", 119.13m, ProductCategory.Decor),
+            Make("High-Powered Neon Green Window Shades", 594.14m, ProductCategory.Decor),
+            Make("Self-Adjusting Actor Shower Curtains", 119.13m, ProductCategory.Decor),
 
             Make("Oil-Tanned Calfskin Leather Wristband", 263.17m, ProductCategory.Apparel),
             Make("Vibram #1276 NeoKicks", 787.42m, ProductCategory.Apparel),
@@ -67,7 +68,7 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("5 lbs. Gummy Palm Trees", 53.14m, ProductCategory.Food),
             Make("Premium Grated Parmesan", 120.54m, ProductCategory.Food),
             Make("Honeydew-Tomato Marinade Seasoning", 28.03m, ProductCategory.Food),
-            Make("Organic Light-Up Gummy Fruit Snack Barrel", 145.93m, ProductCategory.Food),
+            Make("Organic Light-Up Gummy Snack Barrel", 145.93m, ProductCategory.Food),
         };
 
         private static Product Make(string name, decimal price, ProductCategory category)
