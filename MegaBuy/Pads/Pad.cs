@@ -35,7 +35,6 @@ namespace MegaBuy.Pads
             World.Subscribe(EventSubscription.Create<AppChanged>(x => OpenApp(x.App), this));
             // @todo #1 Fix the state transfer architecture
             OpenApp(App.Notification);
-            OpenApp(App.PurchaseHistory);
             OpenApp(App.Call);
         }
 
