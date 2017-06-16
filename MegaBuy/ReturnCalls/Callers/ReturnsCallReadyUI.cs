@@ -43,6 +43,7 @@ namespace MegaBuy.ReturnCalls.Callers
 
         private void AtEndCall()
         {
+            World.Publish(new AgentCallStatusChanged(AgentCallStatus.Idle));
             _isCalling = false;
             Branch.Add(_button);
         }

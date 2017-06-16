@@ -52,6 +52,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new FoodDelivery());
             AddSingleInstanceSubscription(new MegaBuyPolicyDepartment(ActivePolicies));
             AddSingleInstanceSubscription(new AllSounds());
+            AddSingleInstanceSubscription(new MegaBuyReporting());
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }

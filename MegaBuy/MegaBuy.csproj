@@ -54,6 +54,7 @@
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyReporting.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PoliciesChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="Jobs\JobAccepted.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Player\Thoughts\Laundry.cs" />
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="Reports\WorkReportData.cs" />
+    <Compile Include="Reports\WorkReportPublished.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />
