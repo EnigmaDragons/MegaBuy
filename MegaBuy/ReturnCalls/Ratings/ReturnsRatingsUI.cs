@@ -35,7 +35,7 @@ namespace MegaBuy.ReturnCalls.Ratings
 
         private void OnCallRated(CallRated rating)
         {
-            _rating = rating.Rating.AsInt();
+            _rating = rating.RatingScore;
         }
 
         private void OnCallStart()
