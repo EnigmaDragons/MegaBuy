@@ -1,5 +1,4 @@
 ﻿using MegaBuy.Calls.Events;
-using MegaBuy.Temp;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -30,7 +29,7 @@ namespace MegaBuy.Calls.Ratings
 
         private void RateCall(CallRated rating)
         {
-            _rating = rating.Rating.AsInt();
+            _rating = rating.RatingScore;
         }
     }
 }

@@ -1,17 +1,20 @@
 ﻿
+using MegaBuy.Calls.Callers;
 using MegaBuy.Calls.Ratings;
 
 namespace MegaBuy.Calls.Events
 {
-    public struct CallRated
+    public sealed class CallRated
     {
         public int CallId { get; }
-        public CallRating Rating { get; }
+        public int RatingScore => Feedback.RatingScore;
+        public CallerFeedback Feedback { get; }
+        public CallRating Rating => Feedback.Rating;
 
-        public CallRated(int callId, CallRating callRating)
+        public CallRated(int callId, CallerFeedback feedback)
         {
             CallId = callId;
-            Rating = callRating;
+            Feedback = feedback;
         }
     }
 }

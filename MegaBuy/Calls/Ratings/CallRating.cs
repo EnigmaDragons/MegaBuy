@@ -9,7 +9,7 @@ namespace MegaBuy.Calls.Ratings
 
         public CallRating(int value)
         {
-            if (value > 5 || value < 1)
+            if (value > 3 || value < 1)
                 throw new ArgumentException("Invalid Call Rating");
             _rating = value;
         }

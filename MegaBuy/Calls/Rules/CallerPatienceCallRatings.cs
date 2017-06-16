@@ -8,12 +8,12 @@ namespace MegaBuy.Calls.Rules
     {
         private static readonly Dictionary<int, int> _ratings = new Dictionary<int, int>
         {
-            {15, 5},
-            {14, 4},
-            {13, 4},
+            {15, 3},
+            {14, 3},
+            {13, 3},
             {12, 3},
             {11, 3},
-            {10, 3},
+            {10, 2},
             {9, 2},
             {8, 2},
             {7, 2},

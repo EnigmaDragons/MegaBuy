@@ -18,7 +18,7 @@ using MegaBuy.Sounds;
 
 namespace MegaBuy
 {
-    public class GameState
+    public class GameState : IDisposable
     {
         public Clock Clock { get; set; }
         public DateTime DateTime => Clock.DateTime;
@@ -52,6 +52,7 @@ namespace MegaBuy
             AddSingleInstanceSubscription(new FoodDelivery());
             AddSingleInstanceSubscription(new MegaBuyPolicyDepartment(ActivePolicies));
             AddSingleInstanceSubscription(new AllSounds());
+            AddSingleInstanceSubscription(new MegaBuyReporting());
             World.Publish(new JobChanged(Job));
             //World.Publish(new TimeRateChanged(5.0f)); // To speed the game during development
         }
@@ -68,6 +69,12 @@ namespace MegaBuy
                 Clock = Clock.Time,
                 PlayerAccount = PlayerAccount.Amount()
             };
+        }
+
+        public void Dispose()
+        {
+            foreach (var v in SingleInstanceSubscriptions.Values)
+                World.Unsubscribe(v);
         }
     }
 }

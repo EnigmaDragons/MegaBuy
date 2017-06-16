@@ -22,6 +22,7 @@ namespace MegaBuy.Calls
         {
             if (!statusChanged.Status.Equals(AgentCallStatus.Available)) return;
             await Task.Delay(Rng.Int(0, 10) * 200);
+            World.Publish(new AgentCallStatusChanged(AgentCallStatus.InCall));
             World.Publish(new CallStarted(_generator.GenerateCall()));
         }
 

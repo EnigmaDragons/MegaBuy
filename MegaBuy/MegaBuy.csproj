@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Apartment\FoodCounter.cs" />
     <Compile Include="Apartment\RoomUI.cs" />
+    <Compile Include="Calls\Callers\CallerFeedback.cs" />
     <Compile Include="Calls\Callers\CallerNames.cs" />
+    <Compile Include="Calls\Callers\CallerReviews.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistCalls.cs" />
     <Compile Include="Jobs\JobTraits.cs" />
     <Compile Include="MegaBuyCorporation\MegaBuyPolicyDepartment.cs" />
+    <Compile Include="MegaBuyCorporation\MegaBuyReporting.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PoliciesChanged.cs" />
     <Compile Include="Jobs\ReturnSpecialist\ReturnSpecialistPolicies.cs" />
     <Compile Include="Jobs\JobAccepted.cs" />
@@ -70,6 +73,8 @@
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
     <Compile Include="Player\Thoughts\Laundry.cs" />
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
+    <Compile Include="Reports\WorkReportData.cs" />
+    <Compile Include="Reports\WorkReportPublished.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerNameUI.cs" />

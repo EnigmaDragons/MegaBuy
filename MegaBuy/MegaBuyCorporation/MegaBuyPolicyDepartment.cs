@@ -18,7 +18,7 @@ namespace MegaBuy.MegaBuyCorporation
         {
             _futurePolicies = ReturnSpecialistPolicies.Level2.ToList();
             _policies = policies;
-            World.SubscribeForever(EventSubscription.Create<DayStarted>(DayStarted, this));
+            World.Subscribe(EventSubscription.Create<DayStarted>(DayStarted, this));
         }
 
         private void DayStarted(DayStarted day)

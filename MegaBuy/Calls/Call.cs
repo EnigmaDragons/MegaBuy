@@ -61,13 +61,14 @@ namespace MegaBuy.Calls
 
             if (res == _correctResolution)
             {
+                var rating = CallerPatienceCallRatings.Get(Caller.Patience);
                 World.Publish(new CallSucceeded(GetHashCode()));
-                World.Publish(new CallRated(GetHashCode(), CallerPatienceCallRatings.Get(Caller.Patience)));
+                World.Publish(new CallRated(GetHashCode(), new CallerFeedback(rating, CallerReviews.Get(rating))));
             }
             else
             {
                 World.Publish(new CallFailed(new Fee(2)));
-                World.Publish(new CallRated(GetHashCode(), new CallRating(1)));
+                World.Publish(new CallRated(GetHashCode(), new CallerFeedback(new CallRating(1), CallerReviews.Get(1))));
             }
             Dispose();
         }

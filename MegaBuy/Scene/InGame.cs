@@ -32,10 +32,11 @@ namespace MegaBuy.Scene
         private bool _isSleeping;
         private bool _isPadOpen;
         private int _padLocation;
-        private GameState _gameState = CurrentGameState.State;
+        private GameState _gameState;
 
         public void Init()
         {
+            _gameState = CurrentGameState.StartNewGame();
             _padLocation = 900;
             _clock = _gameState.Clock;
             _clickUi.Add(_branch);
