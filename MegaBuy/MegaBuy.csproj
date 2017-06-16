@@ -72,10 +72,8 @@
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
-    <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />
-    <Compile Include="ReturnCalls\Callers\PurchaseHistoryNavigationUI.cs" />
-    <Compile Include="ReturnCalls\Callers\ReturnsCallerInfo.cs" />
-    <Compile Include="ReturnCalls\Callers\ReturnsCallReadyUI.cs" />
+    <Compile Include="ReturnCalls\Callers\CallerNameUI.cs" />
+    <Compile Include="ReturnCalls\Ready\ReturnsCallReadyUI.cs" />
     <Compile Include="ReturnCalls\Choices\ChoicesUI.cs" />
     <Compile Include="ReturnCalls\Messages\ExcusesUI.cs" />
     <Compile Include="ReturnCalls\Messages\MessengerGrid.cs" />
@@ -83,8 +81,6 @@
     <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseSummaryUI.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseUI.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryGrid.cs" />
-    <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryViewed.cs" />
-    <Compile Include="ReturnCalls\PurchaseHistories\ViewCallerUI.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\ViewPurchaseListUI.cs" />
     <Compile Include="ReturnCalls\Ratings\ReturnsRatingsUI.cs" />
     <Compile Include="ReturnCalls\ReturnCallApp.cs" />
@@ -718,7 +714,7 @@
     <Content Include="Content\Images\UI\button-trapazoid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\UI\caller-info.png">
+    <Content Include="Content\Images\UI\call-detail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\UI\checkbox-checked.png">

@@ -16,7 +16,7 @@ namespace MegaBuy.ReturnCalls.Ratings
 
         public ReturnsRatingsUI()
         {
-            Transform = new Transform2(new Size2(Sizes.Star.Width * 5, Sizes.Star.Height));
+            Transform = new Transform2(new Size2(Sizes.Star.Width * 3, Sizes.Star.Height));
             World.Subscribe(EventSubscription.Create<CallRated>(OnCallRated, this));
             World.Subscribe(EventSubscription.Create<CallStarted>(x => OnCallStart(), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => OnCallResolved(), this));
@@ -26,7 +26,7 @@ namespace MegaBuy.ReturnCalls.Ratings
         {
             if (_isInCall)
                 return;
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 3; i++)
             {
                 var starTransform = parentTransform + new Transform2(new Vector2(i * Sizes.Star.Width, 0), Sizes.Star);
                 World.Draw(i < _rating ? "Images/UI/star-filled" : "Images/UI/star-empty", starTransform);

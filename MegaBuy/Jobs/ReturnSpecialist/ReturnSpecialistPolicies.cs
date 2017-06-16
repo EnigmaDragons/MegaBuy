@@ -18,7 +18,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
         // @todo #1 Backend: Design logic for checking broken
         private static readonly Predicate<Call> ItemIsBrokenAndIsWithin60Days = x => x.Purchase.IsTrue(y => y.PurchasedWithinLast(60));
         private static readonly Predicate<Call> ItemIsNotBrokenAndIsWithin30Days = x => x.Purchase.IsTrue(y => y.PurchasedWithinLast(30));
-        private static readonly Predicate<Call> ReplacementIsInStock = x => x.Scenario.NumInStock > 0;
+        private static readonly Predicate<Call> ReplacementIsInStock = x => x.Purchase.IsTrue(y => y.ItemsInStock > 0);
         private static readonly Predicate<Call> ItemNotSoldAsIs = x => x.Purchase.IsFalse(y => y.SoldAsIs);
         
         private static readonly Predicate<Call> ItemWasDelivered = x => x.Purchase.IsTrue(y => y.IsDelivered);

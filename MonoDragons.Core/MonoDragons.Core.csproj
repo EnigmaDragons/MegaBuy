@@ -148,7 +148,6 @@
     <Compile Include="Text\IWrapText.cs" />
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
-    <Compile Include="UserInterface\IVisualAutomatonControl.cs" />
     <Compile Include="UserInterface\KeyboardTyping.cs" />
     <Compile Include="UserInterface\Layouts\ConcreteDefinition.cs" />
     <Compile Include="UserInterface\Layouts\Definition.cs" />
@@ -165,7 +164,7 @@
     <Compile Include="UserInterface\ImageLabel.cs" />
     <Compile Include="UserInterface\ImageTextButton.cs" />
     <Compile Include="UserInterface\ImageWithDescription.cs" />
-    <Compile Include="Engine\IVIsualAutomatonControl.cs" />
+    <Compile Include="Engine\IVisualAutomatonControl.cs" />
     <Compile Include="UserInterface\Label.cs" />
     <Compile Include="UserInterface\Layouts\Layout.cs" />
     <Compile Include="MouseControls\MouseDrag.cs" />
@@ -186,6 +185,7 @@
     <Compile Include="UserInterface\TextButton.cs" />
     <Compile Include="UserInterface\TextClickable.cs" />
     <Compile Include="UserInterface\UI.cs" />
+    <Compile Include="UserInterface\VerticalAlignment.cs" />
     <Compile Include="UserInterface\VisualClickableUIElement.cs" />
     <Compile Include="UserInterface\WrapGrid.cs" />
   </ItemGroup>

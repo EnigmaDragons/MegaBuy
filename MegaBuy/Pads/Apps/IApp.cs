@@ -2,7 +2,7 @@
 
 namespace MegaBuy.Pads.Apps
 {
-    public interface IApp : IVIsualAutomatonControl
+    public interface IApp : IVisualAutomatonControl
     {
         App Type { get; }
     }

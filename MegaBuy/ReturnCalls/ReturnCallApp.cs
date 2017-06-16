@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using MegaBuy.Calls.Ratings;
 using MegaBuy.Pads.Apps;
 using MegaBuy.ReturnCalls.Callers;
@@ -7,6 +8,7 @@ using MegaBuy.ReturnCalls.Choices;
 using MegaBuy.ReturnCalls.Messages;
 using MegaBuy.ReturnCalls.PurchaseHistories;
 using MegaBuy.ReturnCalls.Ratings;
+using MegaBuy.ReturnCalls.Ready;
 using MegaBuy.UIs;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
@@ -26,21 +28,41 @@ namespace MegaBuy.ReturnCalls
         public ReturnCallApp()
         {
             Branch = new ClickUIBranch("Call App", (int)ClickUIPriorities.Pad);
-            var grid = new GridLayout(new Size2(1600, 720), 2, 1);
-            
-            var messengerGrid = new MessengerGrid(grid.GetBlockSize(1, 1));
+            var grid = new GridLayout(new Size2(1600, 720), 
+                new List<Definition>
+                {
+                    new ConcreteDefinition(25),
+                    new ConcreteDefinition(250),
+                    new ConcreteDefinition(525),
+                    new ShareDefintion()
+                }, 
+                new List<Definition>
+                {
+                    new ShareDefintion(),
+                    new ConcreteDefinition(70)
+                });
+
             var callerGrid = new CallerGrid(grid.GetBlockSize(2, 1));
+            var messengerGrid = new MessengerGrid(grid.GetBlockSize(3, 1));
+            var purchaseHistoryGrid = new PurchaseHistoryGrid(grid.GetBlockSize(4, 1));
             var rating = new ReturnsRatingsUI();
-            var purchaseHistoryGrid = new PurchaseHistoryGrid(grid.GetBlockSize(2, 1));
+            var ready = new ReturnsCallReadyUI();
+            var excuses = new ExcusesUI();
+            var callChoicesTransform = new Transform2(grid.GetBlockSize(4, 2));
+            var callChoices = new ChoicesUI(callChoicesTransform);
 
-            grid.AddSpatial(messengerGrid, new Transform2(grid.GetBlockSize(1, 1)), 1, 1);
-            grid.AddSpatial(rating, rating.Transform, 1, 1);
             grid.AddSpatial(callerGrid, new Transform2(grid.GetBlockSize(2, 1)), 2, 1);
-            grid.AddSpatial(purchaseHistoryGrid, new Transform2(grid.GetBlockSize(2, 1)), 2, 1);
+            grid.AddSpatial(messengerGrid, new Transform2(grid.GetBlockSize(3, 1)), 3, 1);
+            grid.AddSpatial(purchaseHistoryGrid, new Transform2(grid.GetBlockSize(4, 1)), 4, 1);
+            grid.AddSpatial(rating, rating.Transform, 1, 1, 4, 1);
+            grid.AddSpatial(ready, ready.Transform, 1, 1, 4, 1);
+            grid.AddSpatial(callChoices, callChoicesTransform, 4, 2);
+            grid.AddSpatial(excuses, excuses.Transform, 3, 2);
 
-            Branch.Add(messengerGrid.Branch);
-            Branch.Add(callerGrid.Branch);
+            Branch.Add(callChoices.Branch);
             Branch.Add(purchaseHistoryGrid.Branch);
+            Branch.Add(ready.Branch);
+            Branch.Add(excuses.Branch);
             _visuals.Add(grid);
             _automatons.Add(messengerGrid);
         }

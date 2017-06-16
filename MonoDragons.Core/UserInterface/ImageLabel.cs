@@ -12,9 +12,9 @@ namespace MonoDragons.Core.UserInterface
 
         public string Text { set { _label.Text = value; } }
 
-        public ImageLabel(string text, string imageName, Transform2 transform)
+        public ImageLabel(string text, string imageName, Transform2 transform, string font = "Fonts/audiowide")
         {
-            _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Text = text, Transform = transform };
+            _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Font = font, Transform = transform, Text = text };
             _imageName = imageName;
         }
 

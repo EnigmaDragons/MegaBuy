@@ -24,7 +24,7 @@ namespace MegaBuy.ReturnCalls.Choices
         {
             Branch = new ClickUIBranch("Choices", (int)ClickUIPriorities.Pad);
             Transform = transform;
-            _grid = new GridLayout(transform.Size, 2, 2);
+            _grid = new GridLayout(transform.Size, 3, 1);
             World.Subscribe(EventSubscription.Create<CallStarted>(x => OnCallStart(x.Call), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => OnCallResolved(), this));
         }
@@ -41,7 +41,7 @@ namespace MegaBuy.ReturnCalls.Choices
                 var button = ImageTextButtonFactory.Create(call.Options[i].Description, Vector2.Zero, call.Options[i].Go);
                 var smartButton = new SmartControl(button, (int)ClickUIPriorities.Pad);
                 _choices.Add(smartButton);
-                _grid.AddSpatial(smartButton, button.Transform, (i % 2) + 1, (int)Math.Floor((decimal)i / 2) + 1);
+                _grid.AddSpatial(smartButton, button.Transform, i + 1, 1);
                 Branch.Add(smartButton.Branch);
             }
         }

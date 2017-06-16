@@ -1,6 +1,6 @@
 ﻿namespace MonoDragons.Core.Engine
 {
-    public interface IVIsualAutomatonControl : IVisual, IAutomaton, IControl
+    public interface IVisualAutomatonControl : IVisual, IAutomaton, IControl
     {
     }
 }

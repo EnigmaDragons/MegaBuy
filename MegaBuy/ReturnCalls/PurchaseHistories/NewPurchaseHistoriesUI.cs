@@ -24,6 +24,7 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
 
         private int _index = 0;
         private bool _isListing = true;
+        private bool _isInCall = false;
 
         public NewPurchaseHistoriesUI(Size2 size)
         {
@@ -31,12 +32,12 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
             _grid = new GridLayout(size, 
                 new List<Definition> { new ConcreteDefinition(120), new ShareDefintion(), new ConcreteDefinition(120)}, 1);
 
-            var backButton = ImageTextButtonFactory.CreateRotated("<<", Vector2.Zero, NavigateBack, () => _index != 0);
+            var backButton = ImageTextButtonFactory.CreateRotated("<<", Vector2.Zero, NavigateBack, () => _index != 0 && _isInCall);
             var smartBackButton = new SmartControl(backButton, (int)ClickUIPriorities.Pad);
             Branch.Add(smartBackButton.Branch);
             _grid.AddSpatial(smartBackButton, backButton.Transform, 1, 1);
 
-            var forwardButton = ImageTextButtonFactory.CreateRotated(">>", Vector2.Zero, NavigateForward, () => _purchaseSupplier.Current != null || _index + _ordersPerPage < _purchaseUIs.Count);
+            var forwardButton = ImageTextButtonFactory.CreateRotated(">>", Vector2.Zero, NavigateForward, () => (_purchaseSupplier?.Current != null || _index + _ordersPerPage < _purchaseUIs.Count) && _isInCall);
             var smartForwardButton = new SmartControl(forwardButton, (int)ClickUIPriorities.Pad);
             Branch.Add(smartForwardButton.Branch);
             _grid.AddSpatial(smartForwardButton, forwardButton.Transform, 3, 1);
@@ -94,6 +95,8 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
 
         private void ListPurchases()
         {
+            if (!_isInCall)
+                return;
             _isListing = true;
             _branches.ForEach(x => Branch.Add(x));
             AddCurrentPurchaseSummaries();
@@ -112,17 +115,20 @@ namespace MegaBuy.ReturnCalls.PurchaseHistories
 
         public void EndCall()
         {
+            _isInCall = false;
             RemoveCurrentPurchaseSummaries();
-            _isListing = false;
             _index = 0;
             _purchaseUIs.Clear();
+            _branches.ForEach(x => Branch.Remove(x));
         }
 
         public void StartCall(Call call)
         {
+            _isInCall = true;
             _purchaseSupplier = call.Scenario.Purchases.GetEnumerator();
             _purchaseSupplier.MoveNext();
             RetrieveNeededPurchases();
+            _branches.ForEach(x => Branch.Add(x));
             AddCurrentPurchaseSummaries();
             _isListing = true;
         }

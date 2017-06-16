@@ -29,6 +29,7 @@ namespace MegaBuy.PurchaseHistories
         public bool WasReturned { get; private set; }
         public string DeliverDateTime { get; private set; }
         public string ReturnDateTime { get; private set; }
+        public int ItemsInStock { get; private set; }
 
         public Purchase(DateTime purchaseDate, decimal itemPrice)
         {
@@ -116,6 +117,7 @@ namespace MegaBuy.PurchaseHistories
                 ShippingAddress = ShippingAddresses.Random.RandomlyNullify(),
                 DeliverDateTime = (wasDelivered ? purchaseDate.ToString(DateFormat.Get) : "NULL").RandomlyNullify(),
                 IsDelivered = wasDelivered,
+                ItemsInStock = Rng.Int(0, 2) * Rng.Int(1, 99999),
             };
         }
 

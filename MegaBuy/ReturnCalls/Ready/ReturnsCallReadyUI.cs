@@ -7,7 +7,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
-namespace MegaBuy.ReturnCalls.Callers
+namespace MegaBuy.ReturnCalls.Ready
 {
     public class ReturnsCallReadyUI : ISpatialVisualControl
     { 
