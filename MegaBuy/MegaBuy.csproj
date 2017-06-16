@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Apartment\FoodCounter.cs" />
     <Compile Include="Apartment\RoomUI.cs" />
+    <Compile Include="Calls\Callers\CallerFeedback.cs" />
     <Compile Include="Calls\Callers\CallerNames.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
     <Compile Include="Player\Thoughts\Laundry.cs" />
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
+    <Compile Include="Reports\WorkReportData.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerViewed.cs" />
