@@ -11,6 +11,8 @@ namespace MegaBuy.ReturnCalls.Callers
     {
         private readonly ImageLabel _name;
 
+        private bool _isInCall = false;
+
         public Transform2 Transform { get; }
 
         public CallerNameUI()
@@ -24,16 +26,19 @@ namespace MegaBuy.ReturnCalls.Callers
 
         public void Draw(Transform2 parentTransform)
         {
-            _name.Draw(parentTransform);
+            if (_isInCall)
+                _name.Draw(parentTransform);
         }
 
         private void OnCallStart(Call call)
         {
+            _isInCall = true;
             _name.Text = call.Caller.Name;
         }
 
         private void OnCallResolved()
         {
+            _isInCall = false;
             _name.Text = "";
         }
     }

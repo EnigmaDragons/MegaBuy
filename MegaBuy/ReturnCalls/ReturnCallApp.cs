@@ -10,6 +10,7 @@ using MegaBuy.ReturnCalls.PurchaseHistories;
 using MegaBuy.ReturnCalls.Ratings;
 using MegaBuy.ReturnCalls.Ready;
 using MegaBuy.UIs;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -41,6 +42,7 @@ namespace MegaBuy.ReturnCalls
                     new ShareDefintion(),
                     new ConcreteDefinition(70)
                 });
+            var innerGrid = new GridLayout(new Size2(1600, 720), 1, 2);
 
             var callerGrid = new CallerGrid(grid.GetBlockSize(2, 1));
             var messengerGrid = new MessengerGrid(grid.GetBlockSize(3, 1));
@@ -54,8 +56,8 @@ namespace MegaBuy.ReturnCalls
             grid.AddSpatial(callerGrid, new Transform2(grid.GetBlockSize(2, 1)), 2, 1);
             grid.AddSpatial(messengerGrid, new Transform2(grid.GetBlockSize(3, 1)), 3, 1);
             grid.AddSpatial(purchaseHistoryGrid, new Transform2(grid.GetBlockSize(4, 1)), 4, 1);
-            grid.AddSpatial(rating, rating.Transform, 1, 1, 4, 1);
-            grid.AddSpatial(ready, ready.Transform, 1, 1, 4, 1);
+            innerGrid.AddSpatial(rating, rating.Transform, 1, 1);
+            innerGrid.AddSpatial(ready, ready.Transform, 1, 2);
             grid.AddSpatial(callChoices, callChoicesTransform, 4, 2);
             grid.AddSpatial(excuses, excuses.Transform, 3, 2);
 
@@ -64,6 +66,7 @@ namespace MegaBuy.ReturnCalls
             Branch.Add(ready.Branch);
             Branch.Add(excuses.Branch);
             _visuals.Add(grid);
+            _visuals.Add(innerGrid);
             _automatons.Add(messengerGrid);
         }
 
