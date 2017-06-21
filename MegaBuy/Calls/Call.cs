@@ -23,17 +23,17 @@ namespace MegaBuy.Calls
         private readonly ActivePolicies _activePolicies;
 
         public List<ICallOption> Options { get; }
-        public Script Script { get; }
+        public Chat Chat { get; }
         public CallScenario Scenario { get; }
 
         public Caller Caller => Scenario.Caller;
         public IEnumerable<Purchase> Purchases => Scenario.Purchases;
         public Optional<Purchase> Purchase => Scenario.Target;
 
-        public Call(Script script, CallScenario scenario, CallResolution correctResolution, List<ICallOption> options)
+        public Call(Chat chat, CallScenario scenario, CallResolution correctResolution, List<ICallOption> options)
         {
             _activePolicies = CurrentGameState.State.ActivePolicies;
-            Script = script;
+            Chat = chat;
             Scenario = scenario;
             _correctResolution = correctResolution;
             Options = options;

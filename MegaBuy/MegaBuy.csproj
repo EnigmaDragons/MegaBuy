@@ -154,7 +154,7 @@
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
-    <Compile Include="Calls\Messages\Script.cs" />
+    <Compile Include="Calls\Messages\Chat.cs" />
     <Compile Include="Calls\Options\ICallOption.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\Events\CallStarted.cs" />
@@ -164,7 +164,7 @@
     <Compile Include="Calls\Events\AgentCallStatusChanged.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
-    <Compile Include="Calls\Messages\ScriptLine.cs" />
+    <Compile Include="Calls\Messages\ChatMessage.cs" />
     <Compile Include="Calls\Events\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\Events\TechnicalMistakeOccurred.cs" />
     <Compile Include="Endings\Fired.cs" />

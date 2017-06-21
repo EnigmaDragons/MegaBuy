@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using MegaBuy.Calls.Ratings;
+using MegaBuy.Calls;
+using MegaBuy.Calls.Events;
 using MegaBuy.Pads.Apps;
 using MegaBuy.ReturnCalls.Callers;
 using MegaBuy.ReturnCalls.Choices;
@@ -11,6 +11,7 @@ using MegaBuy.ReturnCalls.Ratings;
 using MegaBuy.ReturnCalls.Ready;
 using MegaBuy.UIs;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.UserInterface.Layouts;
@@ -65,6 +66,8 @@ namespace MegaBuy.ReturnCalls
             Branch.Add(excuses.Branch);
             _visuals.Add(grid);
             _automatons.Add(messengerGrid);
+            World.Subscribe(EventSubscription.Create<CallStarted>(CallStarted, this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
         }
 
         public void Update(TimeSpan delta)
@@ -75,6 +78,16 @@ namespace MegaBuy.ReturnCalls
         public void Draw(Transform2 parentTransform)
         {
             _visuals.ForEach(x => x.Draw(parentTransform));
+        }
+
+        private void CallStarted(CallStarted obj)
+        {
+            _automatons.Add(obj.Call);
+        }
+
+        private void CallResolved(CallResolved obj)
+        {
+            _automatons.RemoveAll(x => x is Call);
         }
     }
 }

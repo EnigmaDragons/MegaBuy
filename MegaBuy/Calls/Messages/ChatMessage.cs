@@ -1,11 +1,11 @@
 ﻿namespace MegaBuy.Calls.Messages
 {
-    public sealed class ScriptLine
+    public sealed class ChatMessage
     {
         public CallRole Role { get; }
         public string Text { get; }
 
-        public ScriptLine(CallRole callRole, string text)
+        public ChatMessage(CallRole callRole, string text)
         {
             Role = callRole;
             Text = text;

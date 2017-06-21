@@ -4,6 +4,7 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using MegaBuy.Calls.Messages;
 
 namespace MegaBuy.Calls.Callers
 {
@@ -15,15 +16,16 @@ namespace MegaBuy.Calls.Callers
         public Dictionary<string, string> Traits { get; }
 
         private readonly int _patienceLossRateMs;
+        private readonly Chat _chat;
         private int _gracePeriods;
-
         private double _elapsedMs;
 
-        public Caller(int patienceLossRateMs, Dictionary<string, string> traits)
-            : this(CallerNames.Random, patienceLossRateMs, traits) { }
+        public Caller(Chat chat, int patienceLossRateMs, Dictionary<string, string> traits)
+            : this(chat, CallerNames.Random, patienceLossRateMs, traits) { }
 
-        public Caller(string name, int patienceLossRateMs, Dictionary<string, string> traits)
+        public Caller(Chat chat, string name, int patienceLossRateMs, Dictionary<string, string> traits)
         {
+            _chat = chat;
             Traits = traits;
             Name = name;
             _patienceLossRateMs = patienceLossRateMs;
@@ -52,6 +54,13 @@ namespace MegaBuy.Calls.Callers
             }
 
             Patience.ReduceBy(1);
+            if (Patience.Value < 10 && Patience.Value % 3 == 0)
+                Complain();
+        }
+
+        private void Complain()
+        {
+            _chat.CallerSays("Are you still there?");
         }
 
         private void SocialMistakeOccurred(SocialMistakeOccurred mistake)

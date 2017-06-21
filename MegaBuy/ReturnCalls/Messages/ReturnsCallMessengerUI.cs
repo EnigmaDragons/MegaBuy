@@ -20,19 +20,29 @@ namespace MegaBuy.ReturnCalls.Messages
         private readonly Timer _timer;
         private readonly Transform2 _transform;
 
+        private Chat _chat = new Chat();
+        private int _msg;
+
         private int _messagesTotalHeight = 0;
 
         public ReturnsCallMessengerUI(Transform2 transform)
         {
             _timer = new Timer(UpdateMessenger, 1000);
             _transform = transform;
-            World.Subscribe(EventSubscription.Create<CallStarted>(x => AddMessages(x.Call.Script), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => AddMessages(x.Call.Chat), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => Clear(), this));
         }
 
         public void Update(TimeSpan delta)
         {
             _timer.Update(delta);
+            ProcessNewChatMessages();
+        }
+
+        private void ProcessNewChatMessages()
+        {
+            for (; _msg < _chat.Count; _msg++)
+                AddMessage(_chat[_msg].Text, _chat[_msg].Role.Equals(CallRole.Player));
         }
 
         public void Draw(Transform2 parentTransform)
@@ -47,9 +57,10 @@ namespace MegaBuy.ReturnCalls.Messages
             }
         }
 
-        private void AddMessages(Script script)
+        private void AddMessages(Chat chat)
         {
-            script.ForEach(y => AddMessage(y.Text, y.Role.Equals(CallRole.Player)));
+            _msg = 0;
+            _chat = chat;
         }
 
         private void AddMessage(string text, bool isPlayer)

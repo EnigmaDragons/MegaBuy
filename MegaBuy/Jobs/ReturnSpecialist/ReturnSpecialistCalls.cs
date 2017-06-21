@@ -38,23 +38,23 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             // @todo #1 Content: Write another 4 more scripts
         };
         
-        private static Call Create(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
+        private static Call Create(Action<Chat, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
             var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
-            var script = InitScript(scenario);
-            scriptBuilder(script, scenario);
+            var chat = InitChat(scenario);
+            scriptBuilder(chat, scenario);
 
-            var purchase = CreatePurchase(scenario, script, correctResolution);
+            var purchase = CreatePurchase(scenario, chat, correctResolution);
 
             Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
             var history = Purchase.CreateInfiniteWith(purchase).Take(1000).Where(x => x.PurchasedWithinLast(90));
             scenario.Purchases = history;
             scenario.Target = new Optional<Purchase>(purchase);
-            return new Call(script, scenario, correctResolution, Level1Options);
+            return new Call(chat, scenario, correctResolution, Level1Options);
         }
 
-        private static Purchase CreatePurchase(CallScenario scenario, Script script, CallResolution correctResolution)
+        private static Purchase CreatePurchase(CallScenario scenario, Chat chat, CallResolution correctResolution)
         {
             var policies = CurrentGameState.State.ActivePolicies;
 
@@ -66,7 +66,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
                 purchase = Purchase.Create(DateWithinDays(90), scenario.Product);
                 scenario.Target = new Optional<Purchase>(purchase);
                 // @todo #1 Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
-                var call = new Call(script, scenario, correctResolution, Level1Options);
+                var call = new Call(chat, scenario, correctResolution, Level1Options);
                 var violations = policies.GetViolations(correctResolution, call);
                 call.Dispose();
                 if (correctResolution == CallResolution.Reject && violations.Any())
@@ -96,9 +96,9 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             s => $"Hello {s.Caller.FirstName}. How can I assist you?",
         };
 
-        private static Script InitScript(CallScenario scenario)
+        private static Chat InitChat(CallScenario scenario)
         {
-            return new Script { { CallRole.Player, Introductions.Random().Invoke(scenario) } };
+            return scenario.Chat.PlayerSays(Introductions.Random().Invoke(scenario));
         }
 
         public static Call NewCall()
