@@ -4,6 +4,7 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 
 namespace MegaBuy.Calls.Callers
@@ -69,7 +70,7 @@ namespace MegaBuy.Calls.Callers
 
         private void Complain()
         {
-            _chat.CallerSays("Are you still there?");
+            _chat.CallerSays(new RandomComplaint());
             _lastComplaint = _chat.Count;
             _patienceLossRateMs *= 1 / ComplaintImpatienceFactor;
         }

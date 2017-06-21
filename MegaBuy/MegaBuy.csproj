@@ -46,6 +46,7 @@
     <Compile Include="Calls\Callers\CallerNames.cs" />
     <Compile Include="Calls\Callers\CallerReviews.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
+    <Compile Include="Calls\Conversation Pieces\RandomComplaint.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
     <Compile Include="DevView.cs" />
