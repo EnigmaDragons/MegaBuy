@@ -44,6 +44,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var chat = InitChat(scenario);
             scriptBuilder(chat, scenario);
+            AddPlayerRequestConfirmation(chat);
 
             var purchase = CreatePurchase(scenario, chat, correctResolution);
 
@@ -52,6 +53,11 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             scenario.Purchases = history;
             scenario.Target = new Optional<Purchase>(purchase);
             return new Call(chat, scenario, correctResolution, Level1Options);
+        }
+
+        private static void AddPlayerRequestConfirmation(Chat chat)
+        {
+            chat.PlayerSays("Let me see what I can do for you.");
         }
 
         private static Purchase CreatePurchase(CallScenario scenario, Chat chat, CallResolution correctResolution)
