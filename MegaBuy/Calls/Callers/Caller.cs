@@ -10,15 +10,22 @@ namespace MegaBuy.Calls.Callers
 {
     public sealed class Caller : IAutomaton, IDisposable
     {
+        private const double ComplaintImpatienceFactor = 1.5;
+
         public CallerPatience Patience = CallerStartingPatience.New;
         public string FirstName => Name.Split(' ')[0];
         public string Name { get; }
         public Dictionary<string, string> Traits { get; }
 
-        private readonly int _patienceLossRateMs;
+        private readonly int _originalPatienceLossRateMs;
         private readonly Chat _chat;
+
+        private bool ComplaintWasAddressed => _chat.Count > _lastComplaint;
+
+        private double _patienceLossRateMs;
         private int _gracePeriods;
         private double _elapsedMs;
+        private int _lastComplaint = -1;
 
         public Caller(Chat chat, int patienceLossRateMs, Dictionary<string, string> traits)
             : this(chat, CallerNames.Random, patienceLossRateMs, traits) { }
@@ -28,6 +35,7 @@ namespace MegaBuy.Calls.Callers
             _chat = chat;
             Traits = traits;
             Name = name;
+            _originalPatienceLossRateMs = patienceLossRateMs;
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
             World.Subscribe(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
@@ -38,6 +46,7 @@ namespace MegaBuy.Calls.Callers
         {
             _elapsedMs += delta.TotalMilliseconds;
             UpdatePatience();
+            ResolveComplaints();
             if (Patience.Value == 0)
                 World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
@@ -61,8 +70,16 @@ namespace MegaBuy.Calls.Callers
         private void Complain()
         {
             _chat.CallerSays("Are you still there?");
+            _lastComplaint = _chat.Count;
+            _patienceLossRateMs *= 1/ComplaintImpatienceFactor;
         }
 
+        private void ResolveComplaints()
+        {
+            if (ComplaintWasAddressed)
+                _patienceLossRateMs = _originalPatienceLossRateMs;
+        }
+        
         private void SocialMistakeOccurred(SocialMistakeOccurred mistake)
         {
             Patience.ReduceBy(mistake.PatiencePenalty);
