@@ -44,7 +44,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
             var chat = InitChat(scenario);
             scriptBuilder(chat, scenario);
-            AddPlayerRequestConfirmation(chat);
+            AddPlayerRequestConfirmation(scenario);
 
             var purchase = CreatePurchase(scenario, chat, correctResolution);
 
@@ -53,11 +53,6 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             scenario.Purchases = history;
             scenario.Target = new Optional<Purchase>(purchase);
             return new Call(chat, scenario, correctResolution, Level1Options);
-        }
-
-        private static void AddPlayerRequestConfirmation(Chat chat)
-        {
-            chat.PlayerSays("Let me see what I can do for you.");
         }
 
         private static Purchase CreatePurchase(CallScenario scenario, Chat chat, CallResolution correctResolution)
@@ -101,6 +96,25 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             s => "Do you need help with a return or replacement?",
             s => $"Hello {s.Caller.FirstName}. How can I assist you?",
         };
+
+        private static readonly List<Func<CallScenario, string>> Confirmations = new List<Func<CallScenario, string>>
+        {
+            s => "Let me see what I can do for you.",
+            s => $"Ok {s.Caller.FirstName}, I'm on it.",
+            s => "That sounds possible. Let me look it up.",
+            s => "I'm sorry to hear about your experience. We'll remedy the situation.",
+            s => $"Listen {s.Caller.FirstName}, I've got you covered!",
+            s => "No problem. Let's see...",
+            s => $"{s.ProductName}? Hmmmm...",
+            s => "I need to check a few details first.",
+            s => "How unfortunate! Let's take care of that.",
+            s => "Let's get that resolved right away.",
+        };
+
+        private static void AddPlayerRequestConfirmation(CallScenario scenario)
+        {
+            scenario.Chat.PlayerSays(Confirmations.Random().Invoke(scenario));
+        }
 
         private static Chat InitChat(CallScenario scenario)
         {
