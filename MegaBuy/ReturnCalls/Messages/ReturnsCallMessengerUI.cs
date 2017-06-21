@@ -70,6 +70,7 @@ namespace MegaBuy.ReturnCalls.Messages
 
         private void Clear()
         {
+            _chat = new Chat();
             _messagesTotalHeight = 0;
             _pastMessages.Clear();
             _incomingMessages.Clear();
