@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MegaBuy.Calls;
 using MegaBuy.Calls.Events;
 using MegaBuy.Pads.Apps;
@@ -10,7 +11,6 @@ using MegaBuy.ReturnCalls.PurchaseHistories;
 using MegaBuy.ReturnCalls.Ratings;
 using MegaBuy.ReturnCalls.Ready;
 using MegaBuy.UIs;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -75,7 +75,7 @@ namespace MegaBuy.ReturnCalls
 
         public void Update(TimeSpan delta)
         {
-            _automatons.ForEach(x => x.Update(delta));
+            _automatons.ToList().ForEach(x => x.Update(delta));
         }
 
         public void Draw(Transform2 parentTransform)

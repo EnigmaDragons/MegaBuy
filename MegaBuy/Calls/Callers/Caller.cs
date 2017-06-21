@@ -10,7 +10,7 @@ namespace MegaBuy.Calls.Callers
 {
     public sealed class Caller : IAutomaton, IDisposable
     {
-        private const double ComplaintImpatienceFactor = 1.5;
+        private const double ComplaintImpatienceFactor = 1.2;
 
         public CallerPatience Patience = CallerStartingPatience.New;
         public string FirstName => Name.Split(' ')[0];
@@ -20,7 +20,7 @@ namespace MegaBuy.Calls.Callers
         private readonly int _originalPatienceLossRateMs;
         private readonly Chat _chat;
 
-        private bool ComplaintWasAddressed => _chat.Count > _lastComplaint;
+        private bool ComplaintWasAddressed => _lastComplaint > -1 && _lastComplaint < _chat.Count;
 
         private double _patienceLossRateMs;
         private int _gracePeriods;
@@ -71,13 +71,17 @@ namespace MegaBuy.Calls.Callers
         {
             _chat.CallerSays("Are you still there?");
             _lastComplaint = _chat.Count;
-            _patienceLossRateMs *= 1/ComplaintImpatienceFactor;
+            _patienceLossRateMs *= 1 / ComplaintImpatienceFactor;
         }
 
         private void ResolveComplaints()
         {
-            if (ComplaintWasAddressed)
-                _patienceLossRateMs = _originalPatienceLossRateMs;
+            if (!ComplaintWasAddressed)
+                return;
+
+            _patienceLossRateMs = _originalPatienceLossRateMs;
+            _gracePeriods += 3;
+            _lastComplaint = -1;
         }
         
         private void SocialMistakeOccurred(SocialMistakeOccurred mistake)

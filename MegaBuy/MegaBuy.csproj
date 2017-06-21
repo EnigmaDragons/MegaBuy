@@ -68,6 +68,7 @@
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Player\Energy\NewSelectSleepDurationUI.cs" />
+    <Compile Include="Player\RandomExcuse.cs" />
     <Compile Include="Player\Thoughts\BottleBox.cs" />
     <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
