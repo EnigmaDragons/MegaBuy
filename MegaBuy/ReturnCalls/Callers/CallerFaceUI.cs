@@ -23,9 +23,10 @@ namespace MegaBuy.ReturnCalls.Callers
 
         public void Draw(Transform2 parentTransform)
         {
+            if (!_isInCall)
+                return;
             World.Draw("Images/UI/caller", parentTransform + Transform);
-            if (_isInCall)
-                World.Draw("Images/Customers/" + _caller, parentTransform + Transform + new Transform2(new Vector2(5, 5), new Size2(-10, -10)));
+            World.Draw("Images/Customers/" + _caller, parentTransform + Transform + new Transform2(new Vector2(5, 5), new Size2(-10, -10)));
         }
 
         private void StartCall(Call call)
