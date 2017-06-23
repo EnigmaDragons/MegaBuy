@@ -1,13 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
-using System;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ColoredCone : IVisual, IDisposable
+    public sealed class Cone : IVisual, IDisposable
     {
         private Texture2D _background;
 
@@ -18,7 +18,7 @@ namespace MonoDragons.Core.UserInterface
         private Rotation2 angle;
         public Rotation2 Angle { get { return angle; } set { angle = value; GenerateTexture(); } }
 
-        public ColoredCone()
+        public Cone()
         {
             color = Color.Orange;
             transform = new Transform2(new Size2(400, 400));

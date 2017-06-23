@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;

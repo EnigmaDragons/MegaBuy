@@ -14,7 +14,7 @@ namespace MonoDragons.Core.UserInterface
 
         public ImageLabel(string text, string imageName, Transform2 transform, string font = "Fonts/audiowide")
         {
-            _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Font = font, Transform = transform, Text = text };
+            _label = new Label { BackgroundColor = Color.Transparent, TextColor = Color.White, Font = font, Transform = transform + new Transform2( new Vector2(10, 0), new Size2(-20, 0)), Text = text };
             _imageName = imageName;
         }
 

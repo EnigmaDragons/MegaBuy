@@ -49,6 +49,7 @@ namespace MegaBuy
                 { "Evicted", () => new FadingInScene(new Evicted()) },
                 { "Fired", () => new FadingInScene(new Fired()) },
                 { "HeartAttack", () => new FadingInScene(new HeartAttack()) },
+                { "Graph", () => new Graph() },
             });
         }
     }

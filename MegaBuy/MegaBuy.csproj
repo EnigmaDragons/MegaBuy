@@ -78,10 +78,13 @@
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="Reports\WorkReportData.cs" />
     <Compile Include="Reports\WorkReportPublished.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\BetweenCallGrid.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\CallSummaries.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\CallSummaryUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerNameUI.cs" />
-    <Compile Include="ReturnCalls\Ready\ReturnsCallReadyUI.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\ReturnsCallReadyUI.cs" />
     <Compile Include="ReturnCalls\Choices\ChoicesUI.cs" />
     <Compile Include="ReturnCalls\Messages\ExcusesUI.cs" />
     <Compile Include="ReturnCalls\Messages\MessengerGrid.cs" />
@@ -90,7 +93,7 @@
     <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseUI.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryGrid.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\ViewPurchaseListUI.cs" />
-    <Compile Include="ReturnCalls\Ratings\ReturnsRatingsUI.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\ReturnsRatingsUI.cs" />
     <Compile Include="ReturnCalls\ReturnCallApp.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsCallMessengerUI.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsMessageUI.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchasesListed.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
+    <Compile Include="Scene\Graph.cs" />
     <Compile Include="Shopping\FoodDelivery.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodDelivered.cs" />
@@ -247,6 +251,7 @@
     <Compile Include="UIs\ImageTextButtonFactory.cs" />
     <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />
+    <Compile Include="WorkReports\DailyCallAnsweredReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -873,7 +878,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
-    <Folder Include="WorkReports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">
