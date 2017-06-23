@@ -48,7 +48,6 @@ namespace MegaBuy.Calls
 
         public void Dispose()
         {
-            Caller.Dispose();
             World.Unsubscribe(this);
             CurrentScene.Remove(this);
         }

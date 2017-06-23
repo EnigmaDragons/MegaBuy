@@ -61,6 +61,7 @@ namespace MegaBuy.ReturnCalls
             Branch.Add(betweenCallGrid.Branch);
             _visuals.Add(grid);
             _automatons.Add(messengerGrid);
+            _automatons.Add(callerGrid);
         }
 
         public void Update(TimeSpan delta)

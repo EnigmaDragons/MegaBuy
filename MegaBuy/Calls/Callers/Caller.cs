@@ -4,7 +4,6 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
-using System.Diagnostics;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
 using MonoDragons.Core.Common;
@@ -43,7 +42,8 @@ namespace MegaBuy.Calls.Callers
             _originalPatienceLossRateMs = patienceLossRateMs;
             ResetPatience();
             World.Subscribe(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
-            World.Subscribe(EventSubscription.Create<CallResolved>(x => World.Unsubscribe(this), this));
+            World.Subscribe(EventSubscription.Create<CallResolved>(x => Dispose(), this));
+            World.Subscribe(EventSubscription.Create<CallerHangupFinished>(x => OnCallerHangupFinished(), this));
         }
 
         public void Update(TimeSpan delta)
@@ -51,6 +51,11 @@ namespace MegaBuy.Calls.Callers
             _elapsedMs += delta.TotalMilliseconds;
             ProcessNewChatMessages();
             UpdatePatience();
+        }
+
+        private void OnCallerHangupFinished()
+        {
+            World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
 
         private void UpdatePatience()
@@ -81,7 +86,10 @@ namespace MegaBuy.Calls.Callers
         private void HangupIfOutOfPatience()
         {
             if (Patience.Value == 0)
-                World.Publish(new CallResolved(CallResolution.CallerHangUp));
+            {
+                _chat.CallerSays(new RandomHangup());
+                World.Publish(new CallerHangupStarted());
+            }
         }
 
         private void AnnouceHangingUp()
