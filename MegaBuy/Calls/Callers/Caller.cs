@@ -4,8 +4,10 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy.Calls.Callers
 {
@@ -23,7 +25,6 @@ namespace MegaBuy.Calls.Callers
         private readonly Chat _chat;
 
         private bool AnyNewChatMessages => _lastChatMessage < _chat.Count;
-        private bool _isHangingUp = false;
 
         private double _patienceLossRateMs;
         private int _gracePeriods;
@@ -51,17 +52,6 @@ namespace MegaBuy.Calls.Callers
             _elapsedMs += delta.TotalMilliseconds;
             ProcessNewChatMessages();
             UpdatePatience();
-            if (Patience.Value == 0)
-                Hangup();
-        }
-
-        private void Hangup()
-        {
-            if (_isHangingUp)
-                return;
-            _isHangingUp = true;
-            _chat.CallerSays(new RandomHangup());
-            World.Publish(new CallerHangupStarted());
         }
 
         private void OnCallerHangupFinished()
@@ -81,8 +71,31 @@ namespace MegaBuy.Calls.Callers
             }
 
             Patience.ReduceBy(1);
-            if (Patience.Value < 10 && Patience.Value % 3 == 0)
+            ComplainIfImpatient();
+            HangupIfOutOfPatience();
+        }
+
+        private void ComplainIfImpatient()
+        { 
+            if (Patience.Value < 10 && Patience.Value > 0 && Patience.Value % 3 == 0)
                 Complain();
+
+            if (Patience.Value == 0 && Rng.Dbl() < 0.5)
+                AnnouceHangingUp();
+        }
+
+        private void HangupIfOutOfPatience()
+        {
+            if (Patience.Value == 0)
+            {
+                _chat.CallerSays(new RandomHangup());
+                World.Publish(new CallerHangupStarted());
+            }
+        }
+
+        private void AnnouceHangingUp()
+        {
+            _chat.CallerSays("You're so slow! I gotta go.");
         }
 
         private void Complain()
