@@ -31,7 +31,7 @@ namespace MegaBuy.ReturnCalls.Callers
             if (_scale == 0f)
                 World.Publish(new CallerHangupFinished());
             if (_hangingUp)
-                _scale = Math.Max((float)(delta.TotalMilliseconds / 2000), 0f);
+                _scale = Math.Max(_scale - (float)(delta.TotalMilliseconds / 2000), 0f);
         }
 
         public void Draw(Transform2 parentTransform)
@@ -39,7 +39,10 @@ namespace MegaBuy.ReturnCalls.Callers
             if (!_isInCall)
                 return;
             World.Draw("Images/UI/caller", parentTransform + Transform);
-            World.Draw("Images/Customers/" + _caller, parentTransform + Transform + new Transform2(new Vector2(5, 5), new Size2(-10, -10)) + new Transform2(Vector2.Zero, Rotation2.Default, Size2.Zero, _scale));
+            var unscaledTransform = Transform + new Transform2(new Size2(-10, -10));
+            var scaledSize = new Size2((int)(unscaledTransform.Size.Width * _scale), (int) (unscaledTransform.Size.Height * _scale));
+            var scaledTransform = new Transform2(new Vector2((250 - scaledSize.Width) / 2, (410 - scaledSize.Height) / 2), scaledSize);
+            World.Draw("Images/Customers/" + _caller, parentTransform + scaledTransform);
         }
 
         private void StartCall(Call call)

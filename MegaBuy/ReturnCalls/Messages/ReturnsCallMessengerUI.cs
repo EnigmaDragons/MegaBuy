@@ -22,7 +22,7 @@ namespace MegaBuy.ReturnCalls.Messages
 
         private Chat _chat = new Chat();
         private int _msg;
-
+        private bool _isInCall = false;
         private int _messagesTotalHeight = 0;
 
         public ReturnsCallMessengerUI(Transform2 transform)
@@ -36,7 +36,8 @@ namespace MegaBuy.ReturnCalls.Messages
         public void Update(TimeSpan delta)
         {
             _timer.Update(delta);
-            ProcessNewChatMessages();
+            if (_isInCall)
+                ProcessNewChatMessages();
         }
 
         private void ProcessNewChatMessages()
@@ -71,6 +72,7 @@ namespace MegaBuy.ReturnCalls.Messages
             _msg = 0;
             _chat = chat;
             ProcessInitialChatMessages();
+            _isInCall = true;
         }
 
         private void AddInitialMessage(string text, bool isPlayer)
@@ -80,6 +82,7 @@ namespace MegaBuy.ReturnCalls.Messages
 
         private void Clear()
         {
+            _isInCall = false;
             _chat = new Chat();
             _messagesTotalHeight = 0;
             _pastMessages.Clear();

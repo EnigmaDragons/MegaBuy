@@ -29,6 +29,7 @@ namespace MegaBuy.ReturnCalls.Callers
             callerGrid.AddSpatial(name, name.Transform, 1, 3);
 
             _visuals.Add(callerGrid);
+            _automatons.Add(caller);
         }
 
         public void Draw(Transform2 parentTransform)
