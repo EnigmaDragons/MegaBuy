@@ -14,6 +14,7 @@ using MonoDragons.Core.Inputs;
 using System;
 using MonoDragons.Core.Navigation;
 using MonoDragons.Core.Render;
+using MonoDragons.Core.UserInterface.Graphs;
 
 namespace MonoDragons.Core.Engine
 {
@@ -138,6 +139,11 @@ namespace MonoDragons.Core.Engine
         public static void Draw(Texture2D texture, Transform2 transform)
         {
             Draw(texture, transform.ToRectangle());
+        }
+
+        public static void DrawLine(Texture2D texture, Vector2 start, Vector2 end)
+        {
+            _spriteBatch.DrawLine(texture, start, end);
         }
 
         public static void Darken()

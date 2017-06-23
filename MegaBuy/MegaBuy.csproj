@@ -118,6 +118,7 @@
     <Compile Include="Player\Energy\Tired.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchasesListed.cs" />
     <Compile Include="Scene\CharacterCreation.cs" />
+    <Compile Include="Scene\Graph.cs" />
     <Compile Include="Shopping\FoodDelivery.cs" />
     <Compile Include="Shopping\Foods\Food.cs" />
     <Compile Include="Shopping\Foods\FoodDelivered.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="UIs\ImageTextButtonFactory.cs" />
     <Compile Include="UIs\Sizes.cs" />
     <Compile Include="Time\TimeRateChanged.cs" />
+    <Compile Include="WorkReports\DailyCallAnsweredReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -870,7 +872,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Workshop\" />
-    <Folder Include="WorkReports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\Arial.xnb">

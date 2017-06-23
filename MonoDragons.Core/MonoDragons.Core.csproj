@@ -148,6 +148,13 @@
     <Compile Include="Text\IWrapText.cs" />
     <Compile Include="Text\EnumExtensions.cs" />
     <Compile Include="Text\WrappingText.cs" />
+    <Compile Include="UserInterface\Graphs\Graph.cs" />
+    <Compile Include="UserInterface\Graphs\GraphDefaults.cs" />
+    <Compile Include="UserInterface\Graphs\GraphGrid.cs" />
+    <Compile Include="UserInterface\Graphs\Line.cs" />
+    <Compile Include="UserInterface\Graphs\GraphLine.cs" />
+    <Compile Include="UserInterface\Graphs\GraphPoint.cs" />
+    <Compile Include="UserInterface\Graphs\LineRenderer.cs" />
     <Compile Include="UserInterface\KeyboardTyping.cs" />
     <Compile Include="UserInterface\Layouts\ConcreteDefinition.cs" />
     <Compile Include="UserInterface\Layouts\Definition.cs" />
@@ -157,7 +164,7 @@
     <Compile Include="UserInterface\HorizontalAlignment.cs" />
     <Compile Include="UserInterface\AutoSizingLabel.cs" />
     <Compile Include="UserInterface\ClickUIBranch.cs" />
-    <Compile Include="UserInterface\ColoredCone.cs" />
+    <Compile Include="UserInterface\Cone.cs" />
     <Compile Include="UserInterface\ColoredRectangle.cs" />
     <Compile Include="Graphics\ConeTexture.cs" />
     <Compile Include="UserInterface\IconButton.cs" />
@@ -169,7 +176,6 @@
     <Compile Include="UserInterface\Layouts\Layout.cs" />
     <Compile Include="MouseControls\MouseDrag.cs" />
     <Compile Include="UserInterface\MutableTextPage.cs" />
-    <Compile Include="Shapes\Circle.cs" />
     <Compile Include="UserInterface\ClickableUIElement.cs" />
     <Compile Include="UserInterface\ClickUI.cs" />
     <Compile Include="UserInterface\ImageBox.cs" />

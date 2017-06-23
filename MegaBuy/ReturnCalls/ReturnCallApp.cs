@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using MegaBuy.Calls.Ratings;
 using MegaBuy.Pads.Apps;
 using MegaBuy.ReturnCalls.Callers;
 using MegaBuy.ReturnCalls.Choices;
@@ -10,7 +8,6 @@ using MegaBuy.ReturnCalls.PurchaseHistories;
 using MegaBuy.ReturnCalls.Ratings;
 using MegaBuy.ReturnCalls.Ready;
 using MegaBuy.UIs;
-using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
