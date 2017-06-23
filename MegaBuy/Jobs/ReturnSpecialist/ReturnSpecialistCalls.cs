@@ -46,7 +46,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             scriptBuilder(chat, scenario);
             AddPlayerRequestConfirmation(scenario);
 
-            var purchase = CreatePurchase(scenario, chat, correctResolution);
+            var purchase = CreatePurchase(scenario, correctResolution);
 
             Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
             var history = Purchase.CreateInfiniteWith(purchase).Take(1000).Where(x => x.PurchasedWithinLast(90));
@@ -55,7 +55,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             return new Call(chat, scenario, correctResolution, Level1Options);
         }
 
-        private static Purchase CreatePurchase(CallScenario scenario, Chat chat, CallResolution correctResolution)
+        private static Purchase CreatePurchase(CallScenario scenario, CallResolution correctResolution)
         {
             var policies = CurrentGameState.State.ActivePolicies;
 
@@ -65,17 +65,13 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             {
                 numAttempts++;
                 purchase = Purchase.Create(DateWithinDays(90), scenario.Product);
-                scenario.Target = new Optional<Purchase>(purchase);
-                // @todo #1 Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
-                var call = new Call(chat, scenario, correctResolution, Level1Options);
+                var call = new ResolvedCall(new Optional<Purchase>(purchase), correctResolution, correctResolution);
                 var violations = policies.GetViolations(correctResolution, call);
-                call.Dispose();
-                if (correctResolution == CallResolution.Reject && violations.Any())
-                    break;
-                if (!violations.Any())
+                if (!violations.Any() || correctResolution == CallResolution.Reject)
                     break;
             }
 
+            scenario.Target = new Optional<Purchase>(purchase);
             Debug.WriteLine($"Created target purchase in {numAttempts} attempts");
             return purchase;
         }

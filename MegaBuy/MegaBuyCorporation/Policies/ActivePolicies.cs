@@ -49,7 +49,7 @@ namespace MegaBuy.MegaBuyCorporation.Policies
                 .ToList();
         }
 
-        public List<Policy> GetViolations(CallResolution resolution, Call call)
+        public List<Policy> GetViolations(CallResolution resolution, ResolvedCall call)
         {
             return _policies.Where(x => !x.MeetsPolicy(resolution, call)).ToList();
         }
