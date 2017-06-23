@@ -18,7 +18,7 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("MaxBass Auds", 216.74m, ProductCategory.Machine),
             Make("GC310 840W Garment Steamer", 487.52m, ProductCategory.Machine),
             Make("Thermo-Detecto-Metric 3", 513.74m, ProductCategory.Machine),
-            Make("R3p38t1ng Fabric Defect Expeller", 2813.99m, ProductCategory.Machine),
+            Make("Repeating Fabric Defect Expeller", 2813.99m, ProductCategory.Machine),
 
             Make("Ghandi Gun", 2123.72m, ProductCategory.Weapon),
             Make("MagMaster 30X", 3045.61m, ProductCategory.Weapon),
@@ -36,7 +36,6 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Colours", 74.12m, ProductCategory.Entertainment),
             Make("Psychokinesis and Mental States", 101.46m, ProductCategory.Entertainment),
             Make("Tropical Arcology Infrastructure", 131.79m, ProductCategory.Entertainment),
-            Make("Divine Remedies Under Good Services", 836.32m, ProductCategory.Entertainment),
 
             Make("Matrix Analyzer", 882.37m, ProductCategory.Software),
             Make("Data Raven", 195.72m, ProductCategory.Software),
@@ -44,14 +43,13 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Mini-Micro-Mega-DataMaster", 373.68m, ProductCategory.Software),
             Make("Business Appointment Scheduler", 89.13m, ProductCategory.Software),
             Make("Awakening Assistance Automator", 931.01m, ProductCategory.Software),
-            Make("Elevated-Enlightenment Assistor", 534.96m, ProductCategory.Software),
             Make("Internal Reorganizing Assistant", 171.53m, ProductCategory.Software),
 
             Make("Sailboat Reflections Painting", 2615.19m, ProductCategory.Decor),
             Make("NetCorp Beverage Tumbler", 241.85m, ProductCategory.Decor),
             Make("Liberated Minds Hopper Sticker", 65.89m, ProductCategory.Decor),
             Make("Vintage Orange Sheer Window Scarf", 312.83m, ProductCategory.Decor),
-            Make("High-Powered Neon Green Window Shades", 594.14m, ProductCategory.Decor),
+            Make("Neon Green Powered Window Shades", 594.14m, ProductCategory.Decor),
             Make("Self-Adjusting Actor Shower Curtains", 119.13m, ProductCategory.Decor),
 
             Make("Oil-Tanned Calfskin Leather Wristband", 263.17m, ProductCategory.Apparel),
@@ -60,7 +58,7 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("Kissy Kissy Buckaroo Bodysuit", 1262.83m, ProductCategory.Apparel),
             Make("Kiplin Sabiens Sports Series Shirt", 215.38m, ProductCategory.Apparel),
             Make("Lucky Gemstone Necklace", 184.13m, ProductCategory.Apparel),
-            Make("Lightup Snowflake Princess Sunglaesses", 70.14m, ProductCategory.Apparel),
+            Make("Lightup Snowflake Princess Sunglasses", 70.14m, ProductCategory.Apparel),
             Make("Awesome Adonis Adventure Towel", 215.48m, ProductCategory.Apparel),
 
             Make("Hillshire Cove Fruit Basket", 374.42m, ProductCategory.Food),
@@ -68,7 +66,6 @@ namespace MegaBuy.PurchaseHistories.Data
             Make("5 lbs. Gummy Palm Trees", 53.14m, ProductCategory.Food),
             Make("Premium Grated Parmesan", 120.54m, ProductCategory.Food),
             Make("Honeydew-Tomato Marinade Seasoning", 28.03m, ProductCategory.Food),
-            Make("Organic Light-Up Gummy Snack Barrel", 145.93m, ProductCategory.Food),
         };
 
         private static Product Make(string name, decimal price, ProductCategory category)
