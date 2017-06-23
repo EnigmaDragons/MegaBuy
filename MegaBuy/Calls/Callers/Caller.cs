@@ -4,8 +4,10 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MegaBuy.Calls.Conversation_Pieces;
 using MegaBuy.Calls.Messages;
+using MonoDragons.Core.Common;
 
 namespace MegaBuy.Calls.Callers
 {
@@ -49,8 +51,6 @@ namespace MegaBuy.Calls.Callers
             _elapsedMs += delta.TotalMilliseconds;
             ProcessNewChatMessages();
             UpdatePatience();
-            if (Patience.Value == 0)
-                World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
 
         private void UpdatePatience()
@@ -65,8 +65,28 @@ namespace MegaBuy.Calls.Callers
             }
 
             Patience.ReduceBy(1);
-            if (Patience.Value < 10 && Patience.Value % 3 == 0)
+            ComplainIfImpatient();
+            HangupIfOutOfPatience();
+        }
+
+        private void ComplainIfImpatient()
+        { 
+            if (Patience.Value < 10 && Patience.Value > 0 && Patience.Value % 3 == 0)
                 Complain();
+
+            if (Patience.Value == 0 && Rng.Dbl() < 0.5)
+                AnnouceHangingUp();
+        }
+
+        private void HangupIfOutOfPatience()
+        {
+            if (Patience.Value == 0)
+                World.Publish(new CallResolved(CallResolution.CallerHangUp));
+        }
+
+        private void AnnouceHangingUp()
+        {
+            _chat.CallerSays("You're so slow! I gotta go.");
         }
 
         private void Complain()
