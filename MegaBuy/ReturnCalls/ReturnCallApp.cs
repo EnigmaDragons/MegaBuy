@@ -64,6 +64,7 @@ namespace MegaBuy.ReturnCalls
             Branch.Add(betweenCallGrid.Branch);
             _visuals.Add(grid);
             _automatons.Add(messengerGrid);
+            _automatons.Add(callerGrid);
             World.Subscribe(EventSubscription.Create<CallStarted>(CallStarted, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
         }

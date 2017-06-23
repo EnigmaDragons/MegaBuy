@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface.Layouts;
 
 namespace MegaBuy.ReturnCalls.Callers
 {
-    public class CallerGrid : IVisual
+    public class CallerGrid : IVisualAutomaton
     {
         private List<IVisual> _visuals = new List<IVisual>();
+        private List<IAutomaton> _automatons = new List<IAutomaton>();
 
         public CallerGrid(Size2 size)
         {
@@ -32,6 +34,11 @@ namespace MegaBuy.ReturnCalls.Callers
         public void Draw(Transform2 parentTransform)
         {
             _visuals.ForEach(x => x.Draw(parentTransform));
+        }
+
+        public void Update(TimeSpan delta)
+        {
+            _automatons.ForEach(x => x.Update(delta));
         }
     }
 }

@@ -23,6 +23,7 @@ namespace MegaBuy.Calls.Callers
         private readonly Chat _chat;
 
         private bool AnyNewChatMessages => _lastChatMessage < _chat.Count;
+        private bool _isHangingUp = false;
 
         private double _patienceLossRateMs;
         private int _gracePeriods;
@@ -42,6 +43,7 @@ namespace MegaBuy.Calls.Callers
             ResetPatience();
             World.Subscribe(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => World.Unsubscribe(this), this));
+            World.Subscribe(EventSubscription.Create<CallerHangupFinished>(x => OnCallerHangupFinished(), this));
         }
 
         public void Update(TimeSpan delta)
@@ -50,7 +52,21 @@ namespace MegaBuy.Calls.Callers
             ProcessNewChatMessages();
             UpdatePatience();
             if (Patience.Value == 0)
-                World.Publish(new CallResolved(CallResolution.CallerHangUp));
+                Hangup();
+        }
+
+        private void Hangup()
+        {
+            if (_isHangingUp)
+                return;
+            _isHangingUp = true;
+            _chat.CallerSays(new RandomHangup());
+            World.Publish(new CallerHangupStarted());
+        }
+
+        private void OnCallerHangupFinished()
+        {
+            World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
 
         private void UpdatePatience()
