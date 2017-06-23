@@ -42,7 +42,16 @@ namespace MegaBuy.ReturnCalls.Messages
         private void ProcessNewChatMessages()
         {
             for (; _msg < _chat.Count; _msg++)
-                AddMessage(_chat[_msg].Text, _chat[_msg].Role.Equals(CallRole.Player));
+            {
+                _incomingMessages.Insert(0, new ReturnMessageUI(_chat[_msg].Text, _transform.Size.Width - Sizes.MessageMargin * 2, _chat[_msg].Role.Equals(CallRole.Player)));
+                UpdateMessenger();
+            }
+        }
+
+        private void ProcessInitialChatMessages()
+        {
+            for (; _msg < _chat.Count; _msg++)
+                AddInitialMessage(_chat[_msg].Text, _chat[_msg].Role.Equals(CallRole.Player));
         }
 
         public void Draw(Transform2 parentTransform)
@@ -61,9 +70,10 @@ namespace MegaBuy.ReturnCalls.Messages
         {
             _msg = 0;
             _chat = chat;
+            ProcessInitialChatMessages();
         }
 
-        private void AddMessage(string text, bool isPlayer)
+        private void AddInitialMessage(string text, bool isPlayer)
         {
             _incomingMessages.Add(new ReturnMessageUI(text, _transform.Size.Width - Sizes.MessageMargin * 2, isPlayer));
         }
