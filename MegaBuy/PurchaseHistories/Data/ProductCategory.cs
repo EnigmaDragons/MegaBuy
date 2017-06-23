@@ -11,5 +11,7 @@ namespace MegaBuy.PurchaseHistories.Data
         Apparel,
         Decor,
         Food,
+        Accessory,
+        Book
     }
 }

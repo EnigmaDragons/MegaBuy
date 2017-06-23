@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonoDragons.Core.Scenes;
 
-namespace MonoDragons.Core.Engine
+namespace MonoDragons.Core.Scenes
 {
     public class SceneFactory
     {

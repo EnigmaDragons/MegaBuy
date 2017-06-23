@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 
 namespace MonoDragons.Core.Navigation

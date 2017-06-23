@@ -1,6 +1,7 @@
 ﻿
 using System;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.Entities
 {
@@ -9,10 +10,12 @@ namespace MonoDragons.Core.Entities
         private readonly Map<Type, object> _components = new Map<Type, object>();
 
         public int Id { get; }
+        public Transform2 Transform { get; }
 
-        internal GameObject(int id)
+        internal GameObject(int id, Transform2 transform)
         {
             Id = id;
+            Transform = transform;
         }
 
         public override bool Equals(object obj)
@@ -25,12 +28,21 @@ namespace MonoDragons.Core.Entities
             return Id;
         }
 
+        public GameObject Add<T>(T component)
+        {
+            return Add(component, typeof(T));
+        }
+
         public GameObject Add(object component)
         {
-            var type = component.GetType();
-            if (_components.ContainsKey(type))
-                throw new InvalidOperationException($"Cannot add more than one {type.Name} component.");
-            _components.Add(component.GetType(), component);
+            return Add(component, component.GetType());
+        }
+
+        public GameObject Add(object component, Type componentType)
+        {
+            if (_components.ContainsKey(componentType))
+                throw new InvalidOperationException($"Cannot add more than one {componentType.Name} component.");
+            _components.Add(componentType, component);
             return this;
         }
         

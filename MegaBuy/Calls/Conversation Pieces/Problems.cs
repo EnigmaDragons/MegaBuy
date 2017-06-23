@@ -19,6 +19,8 @@ namespace MegaBuy.Calls.Conversation_Pieces
             { Problem.WrongStyle, "isn't my style" },
             { Problem.IsSpoiled, "is spoiled" },
             { Problem.DoesNotTasteGood, "tastes terrible" },
+            { Problem.FinishedIt, "was finished already" },
+            { Problem.Boring, "bored me" },
         };
     }
 
@@ -36,6 +38,8 @@ namespace MegaBuy.Calls.Conversation_Pieces
         DoesNotFit,
         WrongStyle,
         IsSpoiled,
-        DoesNotTasteGood
+        DoesNotTasteGood,
+        FinishedIt,
+        Boring
     }
 }

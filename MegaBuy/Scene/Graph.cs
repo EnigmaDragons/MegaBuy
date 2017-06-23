@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface.Graphs;
 
 namespace MegaBuy.Scene

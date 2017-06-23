@@ -10,7 +10,9 @@ namespace MonoDragons.Core.Entities
         private readonly List<GameObject> _entities = new List<GameObject>();
 
         private int _nextId;
-        
+
+        public int Count => _entities.Count;
+
         public GameObject Create(Transform2 transform)
         {
             var obj = new GameObject(_nextId++, transform);
@@ -21,6 +23,11 @@ namespace MonoDragons.Core.Entities
         public void ForEach(Action<GameObject> action)
         {
             _entities.ToList().ForEach(action);
+        }
+
+        public void Remove(GameObject gameObject)
+        {
+            _entities.Remove(gameObject);
         }
     }
 }

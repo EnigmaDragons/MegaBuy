@@ -7,7 +7,7 @@ namespace MegaBuy
         private static string _charName = "nobody";
         private static CharacterSex _charSex = CharacterSex.Male;
 
-        public static GameState State;
+        public static GameState State { get; private set; }
 
         public static GameState StartNewGame()
         {
