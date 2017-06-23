@@ -1,5 +1,6 @@
 ﻿using MegaBuy.Calls.Callers;
 using System.Collections.Generic;
+using MegaBuy.Calls.Messages;
 using MegaBuy.Jobs;
 using MegaBuy.PurchaseHistories.Data;
 
@@ -15,9 +16,11 @@ namespace MegaBuy.Calls.Conversation_Pieces
         public static CallScenario Create(Job job, int patienceLossRateMs, Dictionary<string, string> traits)
         {
             var product = Products.Random;
+            var chat = new Chat();
             return new CallScenario
             {
-                Caller = new Caller(patienceLossRateMs, traits),
+                Chat = chat,
+                Caller = new Caller(chat, patienceLossRateMs, traits),
                 Product = product,
                 Problem = Products.GetProblemFor(product.Name)
             };

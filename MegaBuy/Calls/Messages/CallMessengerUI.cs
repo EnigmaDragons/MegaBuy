@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MegaBuy.Calls.Events;
-using MegaBuy.Temp;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -21,7 +20,7 @@ namespace MegaBuy.Calls.Messages
         public CallMessengerUI()
         {
             _timer = new Timer(UpdateMessenger, 1000);
-            World.Subscribe(EventSubscription.Create<CallStarted>(x => AddMessages(x.Call.Script), this));
+            World.Subscribe(EventSubscription.Create<CallStarted>(x => AddMessages(x.Call.Chat), this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => Clear(), this));
         }
 
@@ -44,9 +43,9 @@ namespace MegaBuy.Calls.Messages
             }
         }
 
-        private void AddMessages(Script script)
+        private void AddMessages(Chat chat)
         {
-            script.ForEach(y => AddMessage(y.Text, y.Role.Equals(CallRole.Player)));
+            chat.ForEach(y => AddMessage(y.Text, y.Role.Equals(CallRole.Player)));
         }
 
         private void AddMessage(string text, bool isPlayer)

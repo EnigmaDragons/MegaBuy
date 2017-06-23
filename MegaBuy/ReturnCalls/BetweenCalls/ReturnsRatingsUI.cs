@@ -5,7 +5,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 
-namespace MegaBuy.ReturnCalls.Ratings
+namespace MegaBuy.ReturnCalls.BetweenCalls
 {
     public class ReturnsRatingsUI : IVisual
     {

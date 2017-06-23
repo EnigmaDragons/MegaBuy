@@ -46,6 +46,7 @@
     <Compile Include="Calls\Callers\CallerNames.cs" />
     <Compile Include="Calls\Callers\CallerReviews.cs" />
     <Compile Include="Calls\Callers\Traits.cs" />
+    <Compile Include="Calls\Conversation Pieces\RandomComplaint.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
     <Compile Include="DevView.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="MegaBuyCorporation\Policies\Policy.cs" />
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Player\Energy\NewSelectSleepDurationUI.cs" />
+    <Compile Include="Player\RandomExcuse.cs" />
     <Compile Include="Player\Thoughts\BottleBox.cs" />
     <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
     <Compile Include="Player\Thoughts\ComputerRig.cs" />
@@ -75,10 +77,13 @@
     <Compile Include="PurchaseHistories\RestrictableRandomBool.cs" />
     <Compile Include="Reports\WorkReportData.cs" />
     <Compile Include="Reports\WorkReportPublished.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\BetweenCallGrid.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\CallSummaries.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\CallSummaryUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerFaceUI.cs" />
     <Compile Include="ReturnCalls\Callers\CallerGrid.cs" />
     <Compile Include="ReturnCalls\Callers\CallerNameUI.cs" />
-    <Compile Include="ReturnCalls\Ready\ReturnsCallReadyUI.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\ReturnsCallReadyUI.cs" />
     <Compile Include="ReturnCalls\Choices\ChoicesUI.cs" />
     <Compile Include="ReturnCalls\Messages\ExcusesUI.cs" />
     <Compile Include="ReturnCalls\Messages\MessengerGrid.cs" />
@@ -87,7 +92,7 @@
     <Compile Include="ReturnCalls\PurchaseHistories\NewPurchaseUI.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\PurchaseHistoryGrid.cs" />
     <Compile Include="ReturnCalls\PurchaseHistories\ViewPurchaseListUI.cs" />
-    <Compile Include="ReturnCalls\Ratings\ReturnsRatingsUI.cs" />
+    <Compile Include="ReturnCalls\BetweenCalls\ReturnsRatingsUI.cs" />
     <Compile Include="ReturnCalls\ReturnCallApp.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsCallMessengerUI.cs" />
     <Compile Include="ReturnCalls\Messages\ReturnsMessageUI.cs" />
@@ -155,7 +160,7 @@
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Calls\Rules\CallResolution.cs" />
     <Compile Include="Calls\Events\CallFailed.cs" />
-    <Compile Include="Calls\Messages\Script.cs" />
+    <Compile Include="Calls\Messages\Chat.cs" />
     <Compile Include="Calls\Options\ICallOption.cs" />
     <Compile Include="Calls\CallQueue.cs" />
     <Compile Include="Calls\Events\CallStarted.cs" />
@@ -165,7 +170,7 @@
     <Compile Include="Calls\Events\AgentCallStatusChanged.cs" />
     <Compile Include="Calls\Rules\CallerPatienceCallRatings.cs" />
     <Compile Include="Calls\Rules\CallerStartingPatience.cs" />
-    <Compile Include="Calls\Messages\ScriptLine.cs" />
+    <Compile Include="Calls\Messages\ChatMessage.cs" />
     <Compile Include="Calls\Events\SocialMistakeOccurred.cs" />
     <Compile Include="Calls\Events\TechnicalMistakeOccurred.cs" />
     <Compile Include="Endings\Fired.cs" />

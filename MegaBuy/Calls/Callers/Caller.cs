@@ -4,28 +4,39 @@ using MegaBuy.Calls.Rules;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
+using MegaBuy.Calls.Conversation_Pieces;
+using MegaBuy.Calls.Messages;
 
 namespace MegaBuy.Calls.Callers
 {
     public sealed class Caller : IAutomaton, IDisposable
     {
+        private const double ComplaintImpatienceFactor = 1.2;
+
         public CallerPatience Patience = CallerStartingPatience.New;
         public string FirstName => Name.Split(' ')[0];
         public string Name { get; }
         public Dictionary<string, string> Traits { get; }
 
-        private readonly int _patienceLossRateMs;
+        private readonly int _originalPatienceLossRateMs;
+        private readonly Chat _chat;
+
+        private bool ComplaintWasAddressed => _lastComplaint > -1 && _lastComplaint < _chat.Count;
+
+        private double _patienceLossRateMs;
         private int _gracePeriods;
-
         private double _elapsedMs;
+        private int _lastComplaint = -1;
 
-        public Caller(int patienceLossRateMs, Dictionary<string, string> traits)
-            : this(CallerNames.Random, patienceLossRateMs, traits) { }
+        public Caller(Chat chat, int patienceLossRateMs, Dictionary<string, string> traits)
+            : this(chat, CallerNames.Random, patienceLossRateMs, traits) { }
 
-        public Caller(string name, int patienceLossRateMs, Dictionary<string, string> traits)
+        public Caller(Chat chat, string name, int patienceLossRateMs, Dictionary<string, string> traits)
         {
+            _chat = chat;
             Traits = traits;
             Name = name;
+            _originalPatienceLossRateMs = patienceLossRateMs;
             _patienceLossRateMs = patienceLossRateMs;
             _gracePeriods = 3;
             World.Subscribe(EventSubscription.Create<SocialMistakeOccurred>(SocialMistakeOccurred, this));
@@ -36,6 +47,7 @@ namespace MegaBuy.Calls.Callers
         {
             _elapsedMs += delta.TotalMilliseconds;
             UpdatePatience();
+            ResolveComplaints();
             if (Patience.Value == 0)
                 World.Publish(new CallResolved(CallResolution.CallerHangUp));
         }
@@ -52,8 +64,27 @@ namespace MegaBuy.Calls.Callers
             }
 
             Patience.ReduceBy(1);
+            if (Patience.Value < 10 && Patience.Value % 3 == 0)
+                Complain();
         }
 
+        private void Complain()
+        {
+            _chat.CallerSays(new RandomComplaint());
+            _lastComplaint = _chat.Count;
+            _patienceLossRateMs *= 1 / ComplaintImpatienceFactor;
+        }
+
+        private void ResolveComplaints()
+        {
+            if (!ComplaintWasAddressed)
+                return;
+
+            _patienceLossRateMs = _originalPatienceLossRateMs;
+            _gracePeriods += 3;
+            _lastComplaint = -1;
+        }
+        
         private void SocialMistakeOccurred(SocialMistakeOccurred mistake)
         {
             Patience.ReduceBy(mistake.PatiencePenalty);

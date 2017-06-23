@@ -38,23 +38,24 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             // @todo #1 Content: Write another 4 more scripts
         };
         
-        private static Call Create(Action<Script, CallScenario> scriptBuilder, CallResolution requestedOption)
+        private static Call Create(Action<Chat, CallScenario> scriptBuilder, CallResolution requestedOption)
         {
             var correctResolution = Rng.Between(requestedOption, CallResolution.Reject, 0.70);
             var scenario = CallScenarioFactory.Create(Job.ReturnSpecialistLevel1, PatienceLevel.Random);
-            var script = InitScript(scenario);
-            scriptBuilder(script, scenario);
+            var chat = InitChat(scenario);
+            scriptBuilder(chat, scenario);
+            AddPlayerRequestConfirmation(scenario);
 
-            var purchase = CreatePurchase(scenario, script, correctResolution);
+            var purchase = CreatePurchase(scenario, chat, correctResolution);
 
             Debug.WriteLine($"CallResolution: Requested {requestedOption}. Expects {correctResolution} for {purchase.ProductName}");
             var history = Purchase.CreateInfiniteWith(purchase).Take(1000).Where(x => x.PurchasedWithinLast(90));
             scenario.Purchases = history;
             scenario.Target = new Optional<Purchase>(purchase);
-            return new Call(script, scenario, correctResolution, Level1Options);
+            return new Call(chat, scenario, correctResolution, Level1Options);
         }
 
-        private static Purchase CreatePurchase(CallScenario scenario, Script script, CallResolution correctResolution)
+        private static Purchase CreatePurchase(CallScenario scenario, Chat chat, CallResolution correctResolution)
         {
             var policies = CurrentGameState.State.ActivePolicies;
 
@@ -66,7 +67,7 @@ namespace MegaBuy.Jobs.ReturnSpecialist
                 purchase = Purchase.Create(DateWithinDays(90), scenario.Product);
                 scenario.Target = new Optional<Purchase>(purchase);
                 // @todo #1 Backend: Change this to use a lighter-weight object that doesn't involve event subscriptions
-                var call = new Call(script, scenario, correctResolution, Level1Options);
+                var call = new Call(chat, scenario, correctResolution, Level1Options);
                 var violations = policies.GetViolations(correctResolution, call);
                 call.Dispose();
                 if (correctResolution == CallResolution.Reject && violations.Any())
@@ -96,9 +97,28 @@ namespace MegaBuy.Jobs.ReturnSpecialist
             s => $"Hello {s.Caller.FirstName}. How can I assist you?",
         };
 
-        private static Script InitScript(CallScenario scenario)
+        private static readonly List<Func<CallScenario, string>> Confirmations = new List<Func<CallScenario, string>>
         {
-            return new Script { { CallRole.Player, Introductions.Random().Invoke(scenario) } };
+            s => "Let me see what I can do for you.",
+            s => $"Ok {s.Caller.FirstName}, I'm on it.",
+            s => "That sounds possible. Let me look it up.",
+            s => "I'm sorry to hear about your experience. We'll remedy the situation.",
+            s => $"Listen {s.Caller.FirstName}, I've got you covered!",
+            s => "No problem. Let's see...",
+            s => $"{s.ProductName}? Hmmmm...",
+            s => "I need to check a few details first.",
+            s => "How unfortunate! Let's take care of that.",
+            s => "Let's get that resolved right away.",
+        };
+
+        private static void AddPlayerRequestConfirmation(CallScenario scenario)
+        {
+            scenario.Chat.PlayerSays(Confirmations.Random().Invoke(scenario));
+        }
+
+        private static Chat InitChat(CallScenario scenario)
+        {
+            return scenario.Chat.PlayerSays(Introductions.Random().Invoke(scenario));
         }
 
         public static Call NewCall()
