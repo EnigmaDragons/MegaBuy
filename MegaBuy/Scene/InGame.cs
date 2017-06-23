@@ -11,7 +11,9 @@ using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 
 namespace MegaBuy.Scene
@@ -33,6 +35,7 @@ namespace MegaBuy.Scene
         private bool _isPadOpen;
         private int _padLocation;
         private GameState _gameState;
+        private SceneAutomatons _automatons;
 
         public void Init()
         {
@@ -50,6 +53,23 @@ namespace MegaBuy.Scene
             _dev = new DevView();
             _branch.Add(_dev.Branch);
             _branch.Add(_room.Branch);
+            InitAutomatons();
+            InitSubscriptions();
+        }
+
+        private void InitAutomatons()
+        {
+            _automatons = CurrentScene.BeginNew();
+            _automatons.Add(_room);
+            _automatons.Add(_clock);
+            _automatons.Add(_clickUi);
+            _automatons.Add(_overlay);
+            _automatons.Add(_pad);
+            Resources.Put("automatons", _automatons);
+        }
+
+        private void InitSubscriptions()
+        {
             World.Subscribe(EventSubscription.Create<PadOpened>(x => _isPadOpen = true, this));
             World.Subscribe(EventSubscription.Create<PadClosed>(x => _isPadOpen = false, this));
             World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
@@ -71,14 +91,9 @@ namespace MegaBuy.Scene
 
         public void Update(TimeSpan delta)
         {
-            _room.Update(delta);
             _padLocation = _isPadOpen
                 ? (int) Math.Max(_padLocation - delta.TotalMilliseconds * _speed, 0)
                 : (int) Math.Min(_padLocation + delta.TotalMilliseconds * _speed, 900);
-            _clock.Update(delta);
-            _clickUi.Update(delta);
-            _overlay.Update(delta);
-            _pad.Update(delta);
         }
 
         public void Draw()

@@ -49,6 +49,7 @@
     <Compile Include="Calls\Conversation Pieces\RandomComplaint.cs" />
     <Compile Include="Calls\Options\CallResolutionOption.cs" />
     <Compile Include="CurrentGameState.cs" />
+    <Compile Include="CurrentScene.cs" />
     <Compile Include="DevView.cs" />
     <Compile Include="IVisualControl.cs" />
     <Compile Include="Jobs\JobChanged.cs" />

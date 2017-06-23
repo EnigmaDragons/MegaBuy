@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoDragons.Core.Engine
+namespace MonoDragons.Core.Scenes
 {
     public interface IScene
     {

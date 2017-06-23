@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Content;
 
-namespace MonoDragons.Core.Engine
+namespace MonoDragons.Core.Scenes
 {
     public class SceneContents : IDisposable
     {

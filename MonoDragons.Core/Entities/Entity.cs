@@ -7,14 +7,21 @@ namespace MonoDragons.Core.Entities
         internal static readonly GameObjects Objs = new GameObjects();
         internal static readonly EntitySystem System = new EntitySystem(Objs);
 
-        public static IEntitySystemRegistration GetSystem()
+        public static int Count => Objs.Count;
+
+        public static void Register(ISystem system)
         {
-            return System;
+            System.Register(system);
         }
 
         public static GameObject Create(Transform2 transform)
         {
             return Objs.Create(transform);
+        }
+
+        public static void Destroy(GameObject obj)
+        {
+            Objs.Remove(obj);
         }
     }
 }

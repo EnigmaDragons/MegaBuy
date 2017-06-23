@@ -5,9 +5,11 @@ using MegaBuy.Scene;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.Entities;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Navigation;
 using MonoDragons.Core.Render;
+using MonoDragons.Core.Scenes;
 
 namespace MegaBuy
 {
@@ -18,7 +20,10 @@ namespace MegaBuy
         static void Main()
         {
             using (var game = new NeedlesslyComplexMainGame("MegaBuy", "CharacterCreation", new Display(1600, 900, false), CreateSceneFactory(), CreateKeyboardController()))
+            {
+                Entity.Register(new Automation());
                 game.Run();
+            }
         }
 
         private static IController CreateKeyboardController()
