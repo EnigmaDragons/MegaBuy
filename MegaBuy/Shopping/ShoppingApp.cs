@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using MegaBuy.Pads.Apps;
 using MegaBuy.Shopping.Foods;
+using MegaBuy.Shopping.Upgrades;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
-using MonoDragons.Core.Engine;
-using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.Audio;
 
 namespace MegaBuy.Shopping
 {
@@ -18,6 +16,7 @@ namespace MegaBuy.Shopping
         {
             new McKingJrs(),
             new SweetBakery(),
+            new FurnitureStore(),
         };
 
         private readonly Transform2 _transform = new Transform2(new Vector2(350, Sizes.Margin));
