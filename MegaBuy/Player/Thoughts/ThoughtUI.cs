@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -16,11 +17,13 @@ namespace MegaBuy.Player.Thoughts
         private readonly ImageTextButton _button;
 
         private bool _isThinking = false;
+        private bool _justReceivedThought = false;
 
         public ClickUIBranch Branch { get; }
 
         public ThoughtUI()
         {
+            Input.On(Control.A, Dismiss);
             Branch = new ClickUIBranch("Thought", (int)ClickUIPriorities.Thoughts);
             _label = new Label
             {
@@ -47,19 +50,30 @@ namespace MegaBuy.Player.Thoughts
         private void Think(HadAThought thought)
         {
             Branch.Add(_button);
-            _isThinking = true;
             _label.Transform = new Transform2(new Size2(Sizes.LargeLabel.Width - Sizes.SmallMargin * 2, Sizes.LargeLabel.Height - Sizes.SmallMargin * 2));
             _label.Text = thought.Thought;
             var font = Resources.Load<SpriteFont>(_label.Font);
             var size = font.MeasureString(_label.Text);
             _label.Transform = new Transform2(new Vector2(Sizes.SmallMargin, Sizes.SmallMargin), new Size2((int)size.X, (int)size.Y));
+            _justReceivedThought = true;
             _isThinking = true;
+            World.Publish(new InteractionStarted());
         }
 
         private void Dismiss()
         {
+            if (!_isThinking)
+                return;
+
+            if (_justReceivedThought)
+            {
+                _justReceivedThought = false;
+                return;
+            }
+            
             Branch.Remove(_button);
             _isThinking = false;
+            World.Publish(new InteractionFinished());
         }
     }
 }

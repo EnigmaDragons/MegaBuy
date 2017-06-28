@@ -75,6 +75,8 @@
     <Compile Include="MegaBuyCorporation\Policies\PolicyPageUI.cs" />
     <Compile Include="Notifications\Mailbox.cs" />
     <Compile Include="Player\Energy\NewSelectSleepDurationUI.cs" />
+    <Compile Include="Player\InteractionFinished.cs" />
+    <Compile Include="Player\InteractionStarted.cs" />
     <Compile Include="Player\RandomExcuse.cs" />
     <Compile Include="Player\Thoughts\BottleBox.cs" />
     <Compile Include="PurchaseHistories\PurchaseGenerator.cs" />
@@ -148,7 +150,6 @@
     <Compile Include="Notifications\NotificationApp.cs" />
     <Compile Include="Rents\RentApp.cs" />
     <Compile Include="Player\Energy\PreparingForBed.cs" />
-    <Compile Include="Player\Energy\SelectSleepDurationUI.cs" />
     <Compile Include="Player\Energy\WentToBed.cs" />
     <Compile Include="Calls\Call.cs" />
     <Compile Include="Calls\Events\CallConnecting.cs" />

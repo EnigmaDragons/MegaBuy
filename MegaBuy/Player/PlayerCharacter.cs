@@ -37,6 +37,9 @@ namespace MegaBuy.Player
         // Interaction
         private readonly ColoredRectangle _interactRect = new ColoredRectangle {Color = Color.FromNonPremultiplied(255, 0, 0, 100)};
         private TileLocation _interactLocation;
+        private bool _isInteracting;
+
+        private bool NotBusy => !_isSleeping && !_isInteracting;
 
         private bool _isSleeping = false;
         private Direction _dir;
@@ -57,11 +60,13 @@ namespace MegaBuy.Player
             World.Subscribe(EventSubscription.Create<WentToBed>((e) => WentToBed(), this));
             World.Subscribe(EventSubscription.Create<Awaken>((e) => Awaken(), this));
             World.Subscribe(EventSubscription.Create<CollapsedWithExhaustion>((e) => _isSleeping = true, this));
+            World.Subscribe(EventSubscription.Create<InteractionStarted>(x => _isInteracting = true, this));
+            World.Subscribe(EventSubscription.Create<InteractionFinished>(x => _isInteracting = false, this));
         }
 
         private void Interact()
         {
-            if(!_isSleeping)
+            if(NotBusy)
                 _charSpace.Interact(_interactLocation);
         }
 
