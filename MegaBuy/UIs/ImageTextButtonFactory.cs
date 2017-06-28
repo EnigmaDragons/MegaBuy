@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Audio;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 
@@ -16,14 +17,14 @@ namespace MegaBuy.UIs
         {
             return new ImageTextButton(text,
                 "Images/UI/button-press", "Images/UI/button", "Images/UI/button-hover",
-                new Transform2(location, Sizes.Button), onClick, isVisible);
+                new Transform2(location, Sizes.Button), WithSound(onClick), isVisible);
         }
 
         public static ImageTextButton CreateTrapazoid(string text, Vector2 location, Action onClick)
         {
             return new ImageTextButton(text,
                 "Images/UI/button-trapazoid", "Images/UI/button-trapazoid-press", "Images/UI/button-trapazoid-hover", 
-                new Transform2(location, Sizes.PadToggle), onClick);
+                new Transform2(location, Sizes.PadToggle), WithSound(onClick));
         }
 
         public static ImageTextButton CreateRotated(string text, Vector2 location, Action onClick)
@@ -35,21 +36,30 @@ namespace MegaBuy.UIs
         {
             return new ImageTextButton(text,
                 "Images/UI/button-side-press", "Images/UI/button-side", "Images/UI/button-side-hover",
-                new Transform2(location, Sizes.SideButton), onClick, isVisible);
+                new Transform2(location, Sizes.SideButton), WithSound(onClick), isVisible);
         }
 
         public static ImageButton CreateUpArrow(Vector2 location, Action onClick)
         {
             return new ImageButton(
                 "Images/UI/button-small-arrow-up", "Images/UI/button-small-arrow-up-hover", "Images/UI/button-small-arrow-up-press",
-                new Transform2(new Size2(70, 70)), onClick);
+                new Transform2(new Size2(70, 70)), WithSound(onClick));
         }
 
         public static ImageButton CreateDownArrow(Vector2 location, Action onClick)
         {
             return new ImageButton(
                 "Images/UI/button-small-arrow-down", "Images/UI/button-small-arrow-down-hover", "Images/UI/button-small-arrow-down-press",
-                new Transform2(new Size2(70, 70)), onClick);
+                new Transform2(new Size2(70, 70)), WithSound(onClick));
+        }
+
+        private static Action WithSound(Action onClick)
+        {
+            return () =>
+            {
+                Audio.PlaySound("Click");
+                onClick();
+            };
         }
     }
 }
