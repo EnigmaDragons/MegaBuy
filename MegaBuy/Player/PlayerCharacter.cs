@@ -117,7 +117,7 @@ namespace MegaBuy.Player
         public void Draw(Transform2 parentTransform)
         {
             var t = _transform + parentTransform;
-            _anims.Draw(t);
+            _anims.Draw(t + new Transform2(new Size2(32, 32)));
             //_interactRect.Draw(parentTransform); //Uncomment to debug interactions
         }
 

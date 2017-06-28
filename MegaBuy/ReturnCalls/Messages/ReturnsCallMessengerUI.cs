@@ -6,6 +6,7 @@ using MegaBuy.Calls.Messages;
 using MegaBuy.NewCalls.Messages;
 using MegaBuy.UIs;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Audio;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -103,6 +104,7 @@ namespace MegaBuy.ReturnCalls.Messages
                 _messages.RemoveAt(0);
                 _messagesTotalHeight -= _pastMessages.Last().Height + Sizes.MessageMargin;
             }
+            Audio.PlaySound("Bubble");
         }
     }
 }
