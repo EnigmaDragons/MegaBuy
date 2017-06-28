@@ -1,8 +1,7 @@
-﻿using MonoDragons.Core.Engine;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MonoDragons.Core.EventSystem
 {
@@ -18,7 +17,7 @@ namespace MonoDragons.Core.EventSystem
             var eventType = payload.GetType();
             if (_eventActions.ContainsKey(eventType))
                 foreach (var action in _eventActions[eventType].ToList())
-                    ((Action<object>)action)(payload);
+                    Task.Run(() => ((Action<object>)action)(payload));
         }
 
         public void Subscribe(EventSubscription subscription)

@@ -13,7 +13,6 @@ namespace MegaBuy.ReturnCalls.BetweenCalls
     {
         private readonly ImageLabel _label;
 
-        private bool _shouldShow = false;
         private bool _technicalMistakeMade = false;
         private CallResolution _resolution;
 
@@ -30,19 +29,16 @@ namespace MegaBuy.ReturnCalls.BetweenCalls
 
         public void Draw(Transform2 parentTransform)
         {
-            if (_shouldShow)
-                _label.Draw(parentTransform);
+            _label.Draw(parentTransform);
         }
 
         private void OnCallStart()
         {
             _technicalMistakeMade = false;
-            _shouldShow = false;
         }
 
         private void OnCallResolved(CallResolution resolution)
         {
-            _shouldShow = true;
             _resolution = resolution;
             _label.Text = CallSummaries.GetSummary(_resolution, _technicalMistakeMade);
         }
