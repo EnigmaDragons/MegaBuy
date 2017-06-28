@@ -1,4 +1,5 @@
 ﻿using MegaBuy.Calls.Callers;
+using MegaBuy.MegaBuyCorporation;
 
 namespace MegaBuy.Reports
 {
@@ -13,5 +14,7 @@ namespace MegaBuy.Reports
         
         public CallerFeedback BestFeedback { get; set; }
         public CallerFeedback WorstFeedback { get; set; }
+
+        public MegaBuyPerformanceRating PerformanceRating { get; set; }
     }
 }
