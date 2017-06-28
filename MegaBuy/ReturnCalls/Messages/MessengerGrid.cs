@@ -15,8 +15,6 @@ namespace MegaBuy.ReturnCalls.Messages
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly List<IAutomaton> _automatons = new List<IAutomaton>();
 
-        private bool _isInCall = false;
-
         public MessengerGrid(Size2 size)
         {
             var grid = new GridLayout(size, 1, 1);
@@ -28,9 +26,6 @@ namespace MegaBuy.ReturnCalls.Messages
 
             _automatons.Add(messenger);
             _visuals.Add(grid);
-
-            World.Subscribe(EventSubscription.Create<CallStarted>(x => OnCallStart(), this));
-            World.Subscribe(EventSubscription.Create<CallResolved>(x => OnCallResolved(), this));
         }
 
         public void Update(TimeSpan delta)
@@ -40,18 +35,7 @@ namespace MegaBuy.ReturnCalls.Messages
 
         public void Draw(Transform2 parentTransform)
         {
-            if (_isInCall)
-                _visuals.ForEach(x => x.Draw(parentTransform));
+            _visuals.ForEach(x => x.Draw(parentTransform));
         }
-
-        private void OnCallStart()
-        {
-            _isInCall = true;
-        }
-
-        private void OnCallResolved()
-        {
-            _isInCall = false;
-        } 
     }
 }

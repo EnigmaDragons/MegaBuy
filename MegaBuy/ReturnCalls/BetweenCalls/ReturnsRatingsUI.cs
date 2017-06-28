@@ -10,7 +10,6 @@ namespace MegaBuy.ReturnCalls.BetweenCalls
     public class ReturnsRatingsUI : IVisual
     {
         private int _rating;
-        private bool _isInCall = true;
 
         public Transform2 Transform { get; }
 
@@ -18,14 +17,10 @@ namespace MegaBuy.ReturnCalls.BetweenCalls
         {
             Transform = new Transform2(new Size2(Sizes.Star.Width * 3, Sizes.Star.Height));
             World.Subscribe(EventSubscription.Create<CallRated>(OnCallRated, this));
-            World.Subscribe(EventSubscription.Create<CallStarted>(x => OnCallStart(), this));
-            World.Subscribe(EventSubscription.Create<CallResolved>(x => OnCallResolved(), this));
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            if (_isInCall)
-                return;
             for (var i = 0; i < 3; i++)
             {
                 var starTransform = parentTransform + new Transform2(new Vector2(i * Sizes.Star.Width, 0), Sizes.Star);
@@ -36,16 +31,6 @@ namespace MegaBuy.ReturnCalls.BetweenCalls
         private void OnCallRated(CallRated rating)
         {
             _rating = rating.RatingScore;
-        }
-
-        private void OnCallStart()
-        {
-            _isInCall = true;
-        }
-
-        private void OnCallResolved()
-        {
-            _isInCall = false;
         }
     }
 }

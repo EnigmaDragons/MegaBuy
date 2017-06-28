@@ -20,10 +20,14 @@ namespace MegaBuy.Calls
 
         private async void PlayerAvailable(AgentCallStatusChanged statusChanged)
         {
-            if (!statusChanged.Status.Equals(AgentCallStatus.Available)) return;
-            await Task.Delay(Rng.Int(0, 10) * 200);
-            World.Publish(new AgentCallStatusChanged(AgentCallStatus.InCall));
-            World.Publish(new CallStarted(_generator.GenerateCall()));
+            if (!statusChanged.Status.Equals(AgentCallStatus.Available))
+                return;
+            Task.Run(async () =>
+            {
+                await Task.Delay(Rng.Int(0, 10) * 200);
+                World.Publish(new AgentCallStatusChanged(AgentCallStatus.InCall));
+                World.Publish(new CallStarted(_generator.GenerateCall()));
+            });
         }
 
         private void JobChanged(JobChanged job)

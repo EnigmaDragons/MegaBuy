@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
@@ -50,8 +53,7 @@ namespace MonoDragons.Core.Render
 
         public void Draw(Transform2 transform)
         {
-            // TODO: TileSize needs to be supplied externally
-            World.Draw(CurrentSprite, transform.WithSize(new Size2(32, 32)));
+            World.Draw(CurrentSprite, transform);
         }
     }
 }
