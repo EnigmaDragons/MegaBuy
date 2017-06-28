@@ -13,6 +13,7 @@ using MegaBuy.Player;
 using MegaBuy.Rents;
 using MegaBuy.MegaBuyCorporation;
 using MegaBuy.MegaBuyCorporation.Policies;
+using MegaBuy.Notifications;
 using MegaBuy.Shopping;
 using MegaBuy.Sounds;
 
@@ -32,6 +33,7 @@ namespace MegaBuy
         public Map<Type, object> SingleInstanceSubscriptions { get; set; }
         public Landlord Landlord { get; set; }
         public ActivePolicies ActivePolicies { get; set; }
+        public Mailbox Mailbox { get; set; }
         public Job Job { get; set; }
 
         public GameState(string charName, CharacterSex charSex)
@@ -44,6 +46,7 @@ namespace MegaBuy
             PlayerAccount = new PlayerAccount();
             SingleInstanceSubscriptions = new Map<Type, object>();
             Landlord = new Landlord(new Rent(50), PlayerAccount);
+            Mailbox = new Mailbox();
             AddSingleInstanceSubscription(new MegaBuyAccounting(PlayerAccount));
             AddSingleInstanceSubscription(new CallQueue());
             AddSingleInstanceSubscription(new MegaBuyEmployment(ActivePolicies));

@@ -24,7 +24,7 @@ namespace MegaBuy.ReturnCalls.Messages
         public ExcusesUI()
         {
             Branch = new ClickUIBranch("Excuses", (int)ClickUIPriorities.Pad);
-            _excuseButton = ImageTextButtonFactory.Create("Excuse", new Vector2(0, 0), MakeExcuse);
+            _excuseButton = ImageTextButtonFactory.Create("Soothe", new Vector2(0, 0), MakeExcuse);
             World.Subscribe(EventSubscription.Create<CallStarted>(OnCallStart, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(x => OnCallResolved(), this));
         }
