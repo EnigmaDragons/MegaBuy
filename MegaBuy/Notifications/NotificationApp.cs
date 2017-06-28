@@ -14,9 +14,7 @@ namespace MegaBuy.Notifications
     {
         private readonly Transform2 _transform = Transform2.Zero;
         private readonly List<NotificationUI> _notifications = new List<NotificationUI>();
-
-        private int _notificationCount;
-
+        
         public App Type => App.Notification;
         public ClickUIBranch Branch { get; }
 
@@ -31,7 +29,6 @@ namespace MegaBuy.Notifications
         {
             var ui = new NotificationUI(obj, _notifications);
             _notifications.Add(ui);
-            _notificationCount = _notifications.Count;
             Branch.Add(ui.Branch);
         }
 
