@@ -59,11 +59,12 @@ namespace MegaBuy.ReturnCalls.Messages
         {
             World.Draw("Images/UI/Messenger", parentTransform + _transform);
             var currentHeightUsed = 0;
-            for (var i = 0; i < _messages.Count; i++)
+            var msgs = _messages.ToList();
+            foreach (var m in msgs)
             {
-                _messages[i].Draw(parentTransform + 
-                    new Transform2(new Vector2(Sizes.MessageMargin, Sizes.MessageMargin + currentHeightUsed)));
-                currentHeightUsed += _messages[i].Height + Sizes.MessageMargin;
+                m.Draw(parentTransform + 
+                       new Transform2(new Vector2(Sizes.MessageMargin, Sizes.MessageMargin + currentHeightUsed)));
+                currentHeightUsed += m.Height + Sizes.MessageMargin;
             }
         }
 
