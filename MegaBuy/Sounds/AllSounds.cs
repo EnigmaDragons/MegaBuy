@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MegaBuy.Notifications;
+﻿using MegaBuy.Notifications;
 using MegaBuy.Shopping.Foods;
 using MonoDragons.Core.Audio;
 using MonoDragons.Core.Engine;
@@ -16,7 +11,6 @@ namespace MegaBuy.Sounds
 
         public AllSounds()
         {
-            
             World.Subscribe(EventSubscription.Create<PlayerNotification>(PlayerNotificationReceived, this));
             World.Subscribe(EventSubscription.Create<FoodEaten>(FoodEaten, this));
         }
@@ -30,7 +24,5 @@ namespace MegaBuy.Sounds
         {
             Audio.PlaySound("PlayerNotification", 0.50f);
         }
-
-
     }
 }
