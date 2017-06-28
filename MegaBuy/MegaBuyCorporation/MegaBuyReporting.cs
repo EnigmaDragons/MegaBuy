@@ -60,7 +60,6 @@ namespace MegaBuy.MegaBuyCorporation
             var bestFeedback = _feedback.Count > 0 ? _feedback.OrderBy(x => x.RatingScore).Last() : CallerFeedback.None;
             var worstFeedback = _feedback.Count > 0 ? _feedback.OrderBy(x => x.RatingScore).First() : CallerFeedback.None;
             var avgCallRating = _feedback.Count > 0 ? _feedback.Average(x => x.RatingScore) : 0;
-
             return new WorkReportData
             {
                 AvgCallRatingActual = avgCallRating,
@@ -70,7 +69,8 @@ namespace MegaBuy.MegaBuyCorporation
                 HoursWorkedActual = Math.Round(_currentHoursWorked, 2),
                 HoursWorkedExpected = Math.Round(_expectedHoursWorked, 2),
                 BestFeedback = bestFeedback,
-                WorstFeedback = worstFeedback
+                WorstFeedback = worstFeedback,
+                PerformanceRating = MegaBuyPerformanceRating.Normal,
             };
         }
     }

@@ -3,7 +3,6 @@ using MegaBuy.Time;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MegaBuy.Notifications;
-using MegaBuy.Calls;
 using MegaBuy.MegaBuyCorporation.Policies;
 using MegaBuy.Jobs;
 
@@ -19,12 +18,12 @@ namespace MegaBuy.MegaBuyCorporation
 
         private int _numMistakesInCurrentDay;
         private int _numResolvedCallsInCurrentDay;
-        private Job role;
+        private Job _job;
         
         public MegaBuyEmployment(ActivePolicies policies)
         {
             _policies = policies;
-            role = Job.ReturnSpecialistLevel1;
+            _job = Job.ReturnSpecialistLevel1;
             World.Subscribe(EventSubscription.Create<HourChanged>(HourChanged, this));
             World.Subscribe(EventSubscription.Create<CallResolved>(CallResolved, this));
             World.Subscribe(EventSubscription.Create<TechnicalMistakeOccurred>(TechnicalMistakeOccurred, this));
