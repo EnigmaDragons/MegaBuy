@@ -2,12 +2,18 @@
 
 namespace MonoDragons.Core.Audio
 {
-    class LoopingFileReader : ISampleProvider
+    internal sealed class Looping : ISampleProvider
     {
-        public WaveFormat WaveFormat => _reader.WaveFormat;
         private readonly AudioFileReader _reader;
 
-        public LoopingFileReader(AudioFileReader reader)
+        public WaveFormat WaveFormat => _reader.WaveFormat;
+
+        public Looping(string fileName)
+            : this(new AudioFileReader(fileName))
+        {
+        }
+
+        public Looping(AudioFileReader reader)
         {
             _reader = reader;
         }

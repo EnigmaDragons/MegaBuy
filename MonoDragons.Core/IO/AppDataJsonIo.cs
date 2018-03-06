@@ -8,9 +8,9 @@ namespace MonoDragons.Core.IO
     {
         private readonly string _gameStorageFolder;
 
-        public AppDataJsonIo(string gaemFolderName)
+        public AppDataJsonIo(string gameFolderName)
         {
-            _gameStorageFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), gaemFolderName);
+            _gameStorageFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), gameFolderName);
         }
 
         public T Load<T>(string saveName)

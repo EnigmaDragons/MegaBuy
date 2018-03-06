@@ -3,20 +3,20 @@ using System.Threading;
 
 namespace MonoDragons.Core.Audio
 {
-    public class DampeningSampleProvider : ISampleProvider
+    internal sealed class Dampening : ISampleProvider
     {
         public int Dampeners => _dampeners;
-        int _dampeners;
+        private int _dampeners;
 
         public float Volume { get; set; }
         public WaveFormat WaveFormat => _source.WaveFormat;
-  
+
         private readonly ISampleProvider _source;
 
-        public DampeningSampleProvider(ISampleProvider source, float volume)
+        public Dampening(ISampleProvider source, float volume)
             : this(source, volume, 0) { }
 
-        public DampeningSampleProvider(ISampleProvider source, float volume, int dampeners)
+        public Dampening(ISampleProvider source, float volume, int dampeners)
         {
             _source = source;
             Volume = volume;

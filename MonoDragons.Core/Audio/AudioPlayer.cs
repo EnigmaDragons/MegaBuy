@@ -4,7 +4,7 @@ using NAudio.Wave.SampleProviders;
 
 namespace MonoDragons.Core.Audio
 {
-    class AudioPlaybackEngine : IDisposable
+    internal class AudioPlaybackEngine : IDisposable
     {
         public static readonly AudioPlaybackEngine Instance = new AudioPlaybackEngine(44100, 2);
 
@@ -13,9 +13,10 @@ namespace MonoDragons.Core.Audio
 
         public AudioPlaybackEngine(int sampleRate = 44100, int channelCount = 2)
         {
-            outputDevice = new WaveOutEvent();
+            ;
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
+            outputDevice = new WaveOutEvent();
             outputDevice.Init(mixer);
             outputDevice.Play();
         }
@@ -28,16 +29,12 @@ namespace MonoDragons.Core.Audio
         private ISampleProvider ConvertToRightChannelCount(ISampleProvider input)
         {
             if (input.WaveFormat.Channels == mixer.WaveFormat.Channels)
-            {
                 return input;
-            }
             if (input.WaveFormat.Channels == 1 && mixer.WaveFormat.Channels == 2)
-            {
                 return new MonoToStereoSampleProvider(input);
-            }
             throw new NotImplementedException("Not yet implemented this channel count conversion");
         }
-        
+
         private void AddMixerInput(ISampleProvider input)
         {
             mixer.AddMixerInput(ConvertToRightChannelCount(input));

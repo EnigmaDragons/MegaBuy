@@ -3,31 +3,37 @@ using System;
 
 namespace MonoDragons.Core.Audio
 {
-    class DisposingFileReader : ISampleProvider
+    internal sealed class PlayOnce : ISampleProvider
     {
-        public event EventHandler Disposed;
+        private readonly AudioFileReader _reader;
+        private bool _isDisposed;
+
+        public event EventHandler OnSoundFinished;
 
         public WaveFormat WaveFormat => _reader.WaveFormat;
-        private readonly AudioFileReader _reader;
 
-        public DisposingFileReader(AudioFileReader reader)
+        public PlayOnce(string fileName)
+            : this(new AudioFileReader(fileName))
+        {
+        }
+
+        public PlayOnce(AudioFileReader reader)
         {
             _reader = reader;
         }
 
-        private bool isDisposed;
         public int Read(float[] buffer, int offset, int count)
         {
-            if (isDisposed)
+            if (_isDisposed)
                 return 0;
 
             var read = _reader.Read(buffer, offset, count);
             if (read < count)
             {
                 _reader.Dispose();
-                isDisposed = true;
+                _isDisposed = true;
 
-                Disposed?.Invoke(this, EventArgs.Empty);
+                OnSoundFinished?.Invoke(this, EventArgs.Empty);
             }
 
             return read;

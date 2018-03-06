@@ -8,7 +8,6 @@ using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 using System;
 using Microsoft.Xna.Framework.Input;
-using MonoDragons.Core.Entities;
 using MonoDragons.Core.Navigation;
 using MonoDragons.Core.Scenes;
 
@@ -21,7 +20,6 @@ namespace MonoDragons.Core.Engine
         private readonly SceneFactory _sceneFactory;
         private readonly IController _controller;
         private readonly Metrics _metrics;
-        private readonly EntitySystem _ecs;
         private readonly bool _areScreenSettingsPreCalculated;
 
         private IScene _currentScene;
@@ -30,7 +28,6 @@ namespace MonoDragons.Core.Engine
         private Display _display;
         private Size2 _defaultScreenSize;
         private Texture2D _black;
-
 
         // @todo #1 fix this so we config everything before the game
         public NeedlesslyComplexMainGame(string title, string startingViewName, Size2 defaultGameSize, SceneFactory sceneFactory, IController controller)
@@ -55,9 +52,6 @@ namespace MonoDragons.Core.Engine
             _sceneFactory = sceneFactory;
             _controller = controller;
             _metrics = new Metrics();
-            _ecs = Entity.System;
-            Renderers.RegisterAll(_ecs);
-            PhysicsSystems.RegisterAll(_ecs);
 
             Window.Title = title;
         }
@@ -67,7 +61,7 @@ namespace MonoDragons.Core.Engine
             InitDisplayIfNeeded();
             // @todo #1 Bug: Update the GraphicsDeviceManager in the constructor, to avoid the window being mispositioned and visibly changing size
             _display.Apply(_graphics);
-            Window.Position = new Point(0, 0); // Delete this once the above issue is fixed 
+            Window.Position = new Point(0, 0); // Delete this once the above issue is fixed
             IsMouseVisible = true;
             _sprites = new SpriteBatch(GraphicsDevice);
             Resources.Init(this);
@@ -146,9 +140,9 @@ namespace MonoDragons.Core.Engine
         // TODO: This is only for development. Remove this when re're ready to release to production!!
         private void CheckForEscape()
         {
-#if DEBUG  
+#if DEBUG
             var state = Keyboard.GetState();
-            if(state.IsKeyDown(Keys.Escape))
+            if (state.IsKeyDown(Keys.Escape))
                 Hack.TheGame.Exit();
 #endif
         }
