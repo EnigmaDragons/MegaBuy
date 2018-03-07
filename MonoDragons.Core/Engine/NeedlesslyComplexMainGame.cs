@@ -51,7 +51,9 @@ namespace MonoDragons.Core.Engine
             _startingViewName = startingViewName;
             _sceneFactory = sceneFactory;
             _controller = controller;
+#if DEBUG
             _metrics = new Metrics();
+#endif
 
             Window.Title = title;
         }
@@ -65,10 +67,8 @@ namespace MonoDragons.Core.Engine
             IsMouseVisible = true;
             _sprites = new SpriteBatch(GraphicsDevice);
             Resources.Init(this);
-            Hack.TheGame = this;
+            GameInstance.Init(this);
             Input.SetController(_controller);
-            _ecs.Register(new ControlHandler());
-            _ecs.Register(new DirectionHandler());
             _black = new RectangleTexture(new Rectangle(new Point(0, 0), new Point(1, 1)), Color.Black).Create();
             World.Init(this, this, _sprites, _display);
             UI.Init(this, _sprites, _display);
@@ -101,9 +101,10 @@ namespace MonoDragons.Core.Engine
         protected override void Update(GameTime gameTime)
         {
             CheckForEscape();
+#if DEBUG
             _metrics.Update(gameTime.ElapsedGameTime);
+#endif
             _controller.Update(gameTime.ElapsedGameTime);
-            _ecs.Update(gameTime.ElapsedGameTime);
             _currentScene?.Update(gameTime.ElapsedGameTime);
             new Physics().Resolve();
             base.Update(gameTime);
@@ -114,8 +115,9 @@ namespace MonoDragons.Core.Engine
             _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp);
             World.DrawBackgroundColor(Color.Black);
             _currentScene?.Draw();
-            _ecs.Draw();
+#if DEBUG
             _metrics.Draw(Transform2.Zero);
+#endif
             HideExternals();
             _sprites.End();
             base.Draw(gameTime);
@@ -143,7 +145,7 @@ namespace MonoDragons.Core.Engine
 #if DEBUG
             var state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Escape))
-                Hack.TheGame.Exit();
+                GameInstance.TheGame.Exit();
 #endif
         }
     }

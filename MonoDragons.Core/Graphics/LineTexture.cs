@@ -16,7 +16,7 @@ namespace MonoDragons.Core.Graphics
         public Texture2D Create()
         {
             var data = new[] { _color };
-            var result = new Texture2D(Hack.TheGame.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            var result = new Texture2D(GameInstance.TheGame.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             result.SetData(data, 0, result.Width * result.Height);
             return result;
         }

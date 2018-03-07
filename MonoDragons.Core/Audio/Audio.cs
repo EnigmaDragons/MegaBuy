@@ -5,51 +5,60 @@ namespace MonoDragons.Core.Audio
 {
     public static class Audio
     {
-        private static Dampening _music;
+        private static Dampening _backgroundMusic;
 
-        public static void PlaySound(string soundName)
+        public static void PlaySound(string name)
         {
-            PlaySound(soundName, 1.0f);
+            PlaySound(name, 1.0f);
         }
 
-        public static void PlaySound(string soundName, float volume)
+        public static void PlaySound(string name, float volume)
         {
-            var filename = $"Content/Sounds/{ soundName }.mp3";
-            var input = new PlayOnce(new AudioFileReader(filename));
+            AudioPlayer.Instance.Play(new PlayOnce($"Content/Sounds/{ name }.mp3"));
+        }
 
-            if (_music != null)
+        public static void PlayMusicEffect(string name)
+        {
+            PlaySound(name, 1.0f);
+        }
+
+        public static void PlayMusicEffect(string name, float volume)
+        {
+            var input = new PlayOnce($"Content/Sounds/{ name }.mp3");
+
+            if (_backgroundMusic != null)
             {
-                _music.AddDampener();
-                input.OnSoundFinished += OnSoundFinished;
+                _backgroundMusic.AddDampener();
+                input.OnSoundFinished += OnMusicEffectFinished;
             }
 
-            AudioPlaybackEngine.Instance.Play(input);
+            AudioPlayer.Instance.Play(input);
         }
 
-        private static void OnSoundFinished(object sender, EventArgs e)
+        private static void OnMusicEffectFinished(object sender, EventArgs e)
         {
-            ((PlayOnce)sender).OnSoundFinished -= OnSoundFinished;
-            _music.RemoveDampener();
+            ((PlayOnce)sender).OnSoundFinished -= OnMusicEffectFinished;
+            _backgroundMusic.RemoveDampener();
         }
 
-        public static void PlayMusicOnce(string songName)
+        public static void PlayMusicOnce(string name)
         {
-            PlayMusicOnce(songName, 0.5f);
+            PlayMusicOnce(name, 0.5f);
         }
 
-        public static void PlayMusicOnce(string songName, float volume)
+        public static void PlayMusicOnce(string name, float volume)
         {
-            TransitionToSong(volume, new PlayOnce($"Content/{ songName }.mp3"));
+            TransitionToSong(volume, new PlayOnce($"Content/{ name }.mp3"));
         }
 
-        public static void PlayMusic(string songName)
+        public static void PlayMusic(string name)
         {
-            PlayMusic(songName, 0.5f);
+            PlayMusic(name, 0.5f);
         }
 
-        public static void PlayMusic(string songName, float volume)
+        public static void PlayMusic(string name, float volume)
         {
-            TransitionToSong(volume, new Looping($"Content/{ songName }.mp3"));
+            TransitionToSong(volume, new Looping($"Content/{ name }.mp3"));
         }
 
         public static void StopMusic()
@@ -59,15 +68,15 @@ namespace MonoDragons.Core.Audio
 
         private static void TransitionToSong(float volume, ISampleProvider song)
         {
-            if (_music == null)
-                _music = new Dampening(song, volume);
+            if (_backgroundMusic == null)
+                _backgroundMusic = new Dampening(song, volume);
             else
             {
-                var old = _music;
-                _music = new Dampening(song, volume, old.Dampeners);
+                var old = _backgroundMusic;
+                _backgroundMusic = new Dampening(song, volume, old.Dampeners);
                 old.Volume = 0;
             }
-            AudioPlaybackEngine.Instance.Play(_music);
+            AudioPlayer.Instance.Play(_backgroundMusic);
         }
     }
 }

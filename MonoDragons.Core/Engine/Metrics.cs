@@ -20,22 +20,17 @@ namespace MonoDragons.Core.Engine
         public Metrics()
         {
             _timer = new Timer(AccumulateMetrics, 500);
-#if DEBUG
             AppDomain.MonitoringIsEnabled = true;
-#endif
         }
 
         public void Update(TimeSpan delta)
         {
-#if DEBUG
             _timer.Update(delta);
             _updatesThisSecond++;
-#endif
         }
 
         public void Draw(Transform2 parentTransform)
         {
-#if DEBUG
             var memory = AppDomain.MonitoringSurvivedProcessMemorySize;
             var exponent = memory.ToString().Length - 2;
             memory = (int)Math.Round(memory / Math.Pow(10, exponent));
@@ -46,7 +41,6 @@ namespace MonoDragons.Core.Engine
             UI.DrawText($"Sub: {World.CurrentEventSubscriptionCount}", new Vector2(0, 120), color);
             UI.DrawText($"Scn: {Resources.CurrentSceneDisposableCount}", new Vector2(0, 160), color);
             _framesThisSecond++;
-#endif
         }
 
         private void AccumulateMetrics()
@@ -66,7 +60,7 @@ namespace MonoDragons.Core.Engine
             if (_frameRateTroubleCount > 4)
             {
                 Debug.WriteLine("Framerate Exception: Exiting Program.");
-                Hack.TheGame.Exit();
+                GameInstance.TheGame.Exit();
             }
         }
     }

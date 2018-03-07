@@ -1,16 +1,15 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.Inputs
 {
     public struct Direction
     {
-        public static Direction None = new Direction(HorizontalDirection.None, VerticalDirection.None);
+        public static readonly Direction None = new Direction(HorizontalDirection.None, VerticalDirection.None);
 
         public HorizontalDirection HDir { get; }
         public VerticalDirection VDir { get; }
-        
+
         public Direction(HorizontalDirection hDir, VerticalDirection vDir)
         {
             HDir = hDir;

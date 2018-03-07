@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MonoDragons.Core.Scenes
 {
-    public class SceneContents : IDisposable
+    public sealed class SceneContents : IDisposable
     {
         private readonly HashSet<IDisposable> _diposables = new HashSet<IDisposable>();
         private readonly ContentManager _contentManager;

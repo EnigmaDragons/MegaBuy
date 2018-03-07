@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using MonoDragons.Core.Scenes;
+using MonoDragons.Core.Engine;
 
 namespace MonoDragons.Core.Scenes
 {
-    public class SceneFactory
+    public sealed class SceneFactory
     {
-        private readonly Dictionary<string, Func<IScene>> _sceneInstructions;
+        private readonly Map<string, Func<IScene>> _sceneInstructions;
 
-        public SceneFactory(Dictionary<string, Func<IScene>> sceneInstructions)
+        public SceneFactory(Map<string, Func<IScene>> sceneInstructions)
         {
             _sceneInstructions = sceneInstructions;
         }

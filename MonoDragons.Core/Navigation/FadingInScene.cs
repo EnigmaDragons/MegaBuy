@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
@@ -11,7 +10,7 @@ namespace MonoDragons.Core.Navigation
     {
         private readonly TimeSpan _duration;
         private readonly Func<IScene> _sceneFactory;
-        
+
         private double _transitionElapsedMillis;
         private bool _transitionComplete;
 
@@ -20,10 +19,10 @@ namespace MonoDragons.Core.Navigation
         private IScene _scene;
 
         public FadingInScene(IScene scene)
-            : this (TimeSpan.FromMilliseconds(2000), scene) { }
+            : this(TimeSpan.FromMilliseconds(2000), scene) { }
 
         public FadingInScene(TimeSpan duration, IScene scene)
-            : this (duration, () => scene) { }
+            : this(duration, () => scene) { }
 
         public FadingInScene(TimeSpan duration, Func<IScene> sceneFactory)
         {

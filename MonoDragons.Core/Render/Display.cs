@@ -20,8 +20,8 @@ namespace MonoDragons.Core.Render
             FullScreen = fullScreen;
             if (FullScreen)
             {
-                ProgramWidth = Hack.TheGame.GraphicsDevice.DisplayMode.Width;
-                ProgramHeight = Hack.TheGame.GraphicsDevice.DisplayMode.Height;
+                ProgramWidth = GameInstance.TheGame.GraphicsDevice.DisplayMode.Width;
+                ProgramHeight = GameInstance.TheGame.GraphicsDevice.DisplayMode.Height;
             }
             else
             {

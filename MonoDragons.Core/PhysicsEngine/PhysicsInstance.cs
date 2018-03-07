@@ -35,8 +35,6 @@ namespace MonoDragons.Core.PhysicsEngine
             return float.IsNaN(distance) ? 1 : distance;
         }
 
-
-
         public void MoveTowards(Vector2 source, Vector2 destination, float speed, TimeSpan deltaTime, Action<Vector2> moveCallback)
         {
             MoveTowards(source, destination, GetDistance(speed, deltaTime), moveCallback);

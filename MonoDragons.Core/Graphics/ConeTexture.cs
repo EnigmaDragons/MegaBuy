@@ -144,7 +144,7 @@ namespace MonoDragons.Core.UserInterface
                         colorData[index] = Color.Transparent;
                 }
             }
-            var texture = new Texture2D(Hack.TheGame.GraphicsDevice, diam + 1, diam + 1);
+            var texture = new Texture2D(GameInstance.TheGame.GraphicsDevice, diam + 1, diam + 1);
             texture.SetData(colorData);
             return texture;
         }
